@@ -1,0 +1,14 @@
+{
+  "autoload": {
+
+    "classmap": [
+
+      "./"
+
+    ]
+
+  },
+  "require": {
+    "phroute/phroute": "1.*"
+  }
+}
