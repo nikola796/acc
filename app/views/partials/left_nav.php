@@ -59,9 +59,5 @@
     //    ?>
 </div>
 
-<<<<<<< HEAD
-
-    <div style="border:1px solid red;" class="col-lg-8">
-=======
 <div style="" class="col-lg-8">
->>>>>>> fix_nav
+
