@@ -24,5 +24,7 @@
 
 <body bgcolor="#010080" leftmargin="0" topmargin="0" >
 
+<div class="wrapper container">
 
 <?php require('nav.php') ?>
+

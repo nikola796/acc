@@ -1,13 +1,12 @@
 <?php $title = 'Интранет сървър'?>
 <?php require('partials/header.php') ?>
 
-
-
+    <div class="bs-example">
         <h3 align="center" style="color: #000099"><strong>Интранет
-                    сървър </strong></h3>
+                сървър </strong></h3>
         <div align="center" >
 
-                <p>Версия 2.2</p>
+            <p>Версия 2.2</p>
 
         </div>
 
@@ -85,6 +84,10 @@
                     </font></td>
             </tr>
         </table>
+    </div>
+
+
+
 
 
 
