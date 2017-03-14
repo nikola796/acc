@@ -12,4 +12,5 @@ $router->get('important', array('App\Controllers\FilesController', 'important'))
 
 $router->get('files', function(){
     echo 'Test Router';
+
 });

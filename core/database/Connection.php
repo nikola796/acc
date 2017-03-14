@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 <?php
+
 
 class Connection
 {
@@ -22,5 +24,6 @@ public static function make($connect)
 			die( $e->getMessage());
 }
 }
+
 
 }

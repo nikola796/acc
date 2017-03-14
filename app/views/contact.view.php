@@ -2,4 +2,5 @@
 
 	<h1>Contact With Us </h1>
 
+
 <?php require 'partials/footer.php';

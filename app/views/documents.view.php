@@ -1,3 +1,4 @@
+
 <?php require('partials/header.php') ?>
 <div class="text-center"><h4>Дирекции</h4><hr /></div>
 
@@ -11,6 +12,7 @@
     <?php endforeach;?>
 
 </ul>
+
 
 
 <?php require('partials/footer.php') ?>

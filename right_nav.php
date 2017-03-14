@@ -20,17 +20,14 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-3">
-                            <a href="#" class="btn btn-primary btn-xs">ВъведиМе</a>
+                            <a href="#" class="btn btn-primary btn-xs">Въведи</a>
                         </div>
                     </div>
                 </fieldset>
             </form>
-            Test
         </div>
     </div>
 
-
 </div>
-
 
 </div>

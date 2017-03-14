@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /intranet_test/
+RewriteCond $1 !^(public)
+RewriteRule ^(.+)$ index.php [QSA,L]

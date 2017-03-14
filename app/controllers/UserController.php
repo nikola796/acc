@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Core\App;
@@ -17,5 +18,6 @@ class UserController
 
         return view('api', compact('authors'));
     }
+
 
 }

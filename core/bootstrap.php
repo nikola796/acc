@@ -36,4 +36,5 @@ function view($name, $data = array())
 function redirect($path)
 {
     header("Location: /{$path}");
+
 }

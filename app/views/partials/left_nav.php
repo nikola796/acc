@@ -36,8 +36,9 @@
     <?php
 
     setlocale(LC_ALL,"bg_BG.UTF8");
-    echo(strftime("%Y. %B %d."));
+    echo(strftime("%d. %b. %Y. %a"));
     ?>
     </div>
+
 
     <div style="border:1px solid red;" class="col-lg-8">
