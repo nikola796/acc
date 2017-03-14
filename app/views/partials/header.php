@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Document</title>
+    <title><?= $title?></title>
     <link href="http://localhost/intranet_test/public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="http://localhost/intranet_test/public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
     <link href="http://localhost/intranet_test/public/css/css.style.css" rel="stylesheet" type="text/css">

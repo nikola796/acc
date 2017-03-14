@@ -1,4 +1,4 @@
-
+<?php $title = 'Дирекция "'. $documents[0]->dep .'"'?>
 <?php require 'partials/header.php';?>
 
     <div class="text-center"><h4>Дирекция "<?= $documents[0]->dep ?>"</h4></div>

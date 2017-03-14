@@ -1,3 +1,4 @@
+<?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
 <div class="text-center"><h4>Дирекции</h4><hr /></div>
 

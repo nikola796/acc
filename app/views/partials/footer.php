@@ -1,4 +1,7 @@
-<?php require 'right_nav.php' ?>
+
+
+
+<?php require 'right_part.php' ?>
 
 <script>
     $(document).ready(function () {

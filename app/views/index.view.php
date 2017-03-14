@@ -1,3 +1,4 @@
+<?php $title = 'Интранет сървър'?>
 <?php require('partials/header.php') ?>
 
 
@@ -16,7 +17,7 @@
         <table border="0" align="center" width=90%>
             <tr>
                 <td align="center"><font color="#000099" size="2" face="Verdana, Arial, Helvetica, sans-serif">
-                        В интерес на вашате сигурност моля да съблюдавате следните правила при работа:
+                        В интерес на вашата сигурност моля да съблюдавате следните правила при работа:
                     </font></td>
             </tr>
         </table><br>
