@@ -1,3 +1,4 @@
+<?php $title = 'Интранет сървър'?>
 <?php require('partials/header.php') ?>
 
 
@@ -10,7 +11,7 @@
 
         </div>
 
-        <div align="center" style="margin-top:-20px"><img src="public/images/line.gif" width="300" height="1" align="absmiddle"></div>
+        <div align="center" style="margin-top:-10px"><img src="public/images/line.gif" width="300" height="1" align="absmiddle"></div>
         <br><br>
         <p align="center"><font color="#000099" size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong>Уважаеми колеги,</strong></font></p>
         <table border="0" align="center" width=90%>
