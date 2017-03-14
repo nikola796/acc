@@ -1,3 +1,4 @@
+<?php $title = 'Важно'?>
 <?php require 'partials/header.php';?>
 
     <div class="text-center"><div align="left"><a href="http://10.30.1.5/index.php?username=am&password=4477505d28284bd99a6ff73574d51d0b&ph=1" target="_blank" class="style1"><img src="public/images/Apis7.png" width="150" height="80">

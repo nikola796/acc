@@ -10,7 +10,5 @@ $router->get('files/{id}', array('App\Controllers\FilesController', 'index'));
 
 $router->get('important', array('App\Controllers\FilesController', 'important'));
 
-$router->get('files', function(){
-    echo 'Test Router';
 
-});
+

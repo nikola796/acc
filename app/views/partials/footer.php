@@ -1,3 +1,6 @@
+
+
+
 <?php require 'right_nav.php' ?>
 
 <script>

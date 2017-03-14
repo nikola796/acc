@@ -2,7 +2,7 @@
 
     <div style="border:1px solid red;" class="col-lg-2">
 
-        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;font-size: 0.9em">
+        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;">
             <div class="panel-heading">
                 <h5 class="panel-title">Документи</h5>
             </div>
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;font-size: 0.9em">
+        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;">
             <div class="panel-heading">
                 <h5 class="panel-title">Търсене</h5>
             </div>
@@ -24,9 +24,9 @@
             </div>
         </div>
 
-        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;font-size: 0.9em">
+        <div class="panel panel-primary" style="background-color: #FFFFE6;float:right;width:80%;">
             <div class="panel-heading">
-                <p style="color: #00FF00; font-size: 1em; font-weight:bold" class="panel-title">Валутни курсове</p>
+                <p style="font-size:0.9em;color: #00FF00; font-weight:bold" class="panel-title">Валутни курсове</p>
             </div>
             <div style="bgcolor: #FFFFFF"" class="panel-body">
             <a name="scrollingCode"></a><a href="http://customs.bg/bg/page/25" target="_blank">Митнически валутни курсове<!--а--></a>
