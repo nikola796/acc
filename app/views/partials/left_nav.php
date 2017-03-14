@@ -20,7 +20,7 @@
                 <h5 class="panel-title">Търсене</h5>
             </div>
             <div class="panel-body">
-                <form action="search.php" method="post" name="form1" target="_blank">  <table align="center" border="0" width="100">    <tbody><tr>       <td><input name="l_msa" id="l_msa" size="20" type="text"></td>    </tr>    <tr>       <td>           <div align="left"><input name="Submit" value="Търси" type="submit">&nbsp;&nbsp;&nbsp;<img src="http://localhost/intranet_test/public/images/srchanim1.gif" align="absmiddle" height="50" width="50">        </div></td>    </tr>  </tbody></table></form>
+                <form action="search.php" method="post" name="form1" target="_blank">  <input name="l_msa" id="l_msa"  type="text">         <div align="left"><input name="Submit" value="Търси" type="submit">&nbsp;&nbsp;&nbsp;<img src="http://localhost/intranet_test/public/images/srchanim1.gif" align="absmiddle" height="50" width="50">        </div></form>
             </div>
         </div>
 
