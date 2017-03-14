@@ -2,7 +2,7 @@ body {
     margin-top: 100px;
     background-color: #FFFFE6;
     color: #345487;
-    font-size: 2;
+    font-size: 1.2em;
     font-family: Verdana, Arial, Helvetica, sans-serif;
 
 }
@@ -43,7 +43,6 @@ div.list-group a:visited {
 .panel-primary {
     width: 80%;
     float: left;
-    font-size: 0.9em;
     background-color: #FFFFE6;
 }
 
