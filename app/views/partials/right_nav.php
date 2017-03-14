@@ -28,20 +28,15 @@
         </div>
     </div>
 <div class="" style="border: 1px solid red; float:left">
-    <?php
-
-    setlocale(LC_ALL,"bg_BG.UTF8");
-    //echo(strftime("%d. %b. %Y. %a"));
-    ?>
     <table align="right" width="70" height="95" cellpadding="0" cellspacing="0" background="public/images/calendar.gif">
         <tr>
-            <td align="center"> <font face="tahoma,arial" ><?php echo strftime("%d");?></font><br/>
+            <td align="center"> <font face="tahoma,arial" ><?php echo date("d");?></font><br/>
                 <font face="tahoma,arial" size="2">
-                    <?php  echo  strftime("%b");?>
+                    <?php  setlocale(LC_TIME, 'bg_BG.UTF8'); echo  strftime("%b");?>
                 </font><br/>
-                <font face="tahoma,arial" ><?php echo strftime("%Y");?></font><br/>
+                <font face="tahoma,arial" ><?php echo date("Y");?></font><br/>
                 <font face="tahoma,arial" >
-                    <?php echo strftime("%a");?>
+                    <?php setlocale(LC_TIME, 'bg_BG.UTF8'); echo strftime("%a");?>
                 </font> </td>
         </tr>
     </table>
