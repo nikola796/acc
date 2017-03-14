@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d4524c-fae1-472a-82ab-e4a532f18c5d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/right_nav.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/partials/right_part.php" afterPath="$PROJECT_DIR$/app/views/partials/right_nav.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/footer.php" afterPath="$PROJECT_DIR$/app/views/partials/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/left_nav.php" afterPath="$PROJECT_DIR$/app/views/partials/left_nav.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/css.style.css" afterPath="$PROJECT_DIR$/public/css/css.style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/nav.php" afterPath="$PROJECT_DIR$/app/views/partials/nav.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,16 +22,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="right_nav.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/right_nav.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="42" column="4" lean-forward="false" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="css.style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/css.style.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="left_nav.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="left_nav.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/partials/left_nav.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -60,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/partials/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/partials/nav.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -122,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="left_nav.php" pinned="true" current-in-tab="false">
+      <file leaf-file-name="left_nav.php" pinned="true" current-in-tab="true">
         <entry file="remoteDeploymentFS://&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/left_nav.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="22" column="350" lean-forward="false" selection-start-line="22" selection-start-column="350" selection-end-line="22" selection-end-column="350" />
               <folding />
             </state>
           </provider>
@@ -146,11 +140,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/views/partials/footer.php" />
         <option value="$PROJECT_DIR$/app/views/partials/right_nav2.php" />
         <option value="$PROJECT_DIR$/app/views/partials/right_part.php" />
-        <option value="$PROJECT_DIR$/app/views/partials/header.php" />
         <option value="$PROJECT_DIR$/app/views/index.view.php" />
         <option value="$PROJECT_DIR$/app/views/important.view.php" />
         <option value="$PROJECT_DIR$/app/views/documents.view.php" />
@@ -197,6 +188,9 @@
         <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/index.view.php" />
         <option value="$PROJECT_DIR$/public/css/css.style.css" />
         <option value="$PROJECT_DIR$/app/views/partials/left_nav.php" />
+        <option value="$PROJECT_DIR$/app/views/partials/nav.php" />
+        <option value="$PROJECT_DIR$/app/views/partials/header.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/left_nav.php" />
       </list>
     </option>
   </component>
@@ -213,8 +207,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="518" />
-    <option name="y" value="45" />
+    <option name="x" value="224" />
+    <option name="y" value="54" />
     <option name="width" value="1107" />
     <option name="height" value="780" />
   </component>
@@ -439,15 +433,15 @@
       <workItem from="1489414683945" duration="1601000" />
       <workItem from="1489416515936" duration="1854000" />
       <workItem from="1489475047003" duration="9087000" />
-      <workItem from="1489486275374" duration="2015000" />
+      <workItem from="1489486275374" duration="4227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54937000" />
+    <option name="totallyTimeSpent" value="57149000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="518" y="45" width="1107" height="780" extended-state="0" />
+    <frame x="224" y="54" width="1107" height="780" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1747851" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -668,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/nav.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="53" lean-forward="false" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/contact.view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -758,14 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/important.view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -840,6 +819,22 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/partials/nav.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/partials/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
