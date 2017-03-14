@@ -1,5 +1,5 @@
 </div>
-<div style="" class="col-lg-2" >
+<div style="" class="col-md-2" >
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h5 class="panel-title">Администрация</h5>
