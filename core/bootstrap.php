@@ -15,7 +15,10 @@ App::bind('config', require 'config.php');
 //
 //require 'core/database/Connection.php';
 //
-//require 'core/database/QueryBuilder.php';
+require_once 'core/init.inc.php';
+
+$options = @parse_ini_file('core/BBCodeParser.ini');
+$parser = new HTML_BBCodeParser2($options);
 
 $conf = App::get('config');
 App::bind('database', new QueryBuilder(
@@ -36,4 +39,17 @@ function view($name, $data = array())
 function redirect($path)
 {
     header("Location: /{$path}");
+}
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
+
+function parser()
+{
+    $options = @parse_ini_file('core/BBCodeParser.ini');
+    $parser = new HTML_BBCodeParser2($options);
+    return $parser;
 }

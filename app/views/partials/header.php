@@ -10,7 +10,7 @@
     <title><?= $title?></title>
     <link href="http://localhost/intranet_test/public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="http://localhost/intranet_test/public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="http://localhost/intranet_test/public/css/css.style.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost/intranet_test/public/css/styles.css" rel="stylesheet" type="text/css">
 
     <script src="http://localhost/intranet_test/public/js/libs/jquery-2.2.4.min.js"></script>
     <script src="http://localhost/intranet_test/public/js/libs/bootstrap.min.js"></script>
@@ -23,4 +23,4 @@
 
 <div class="wrapper container">
 
-<?php require('nav.php') ?>
+<?php require('nav.php');

@@ -14,7 +14,7 @@ class Request
         array_slice(
             explode('/', $_SERVER['REQUEST_URI']), 2));
 
-		return $uri;
+		return urldecode($uri);
 		 //processInput($_SERVER['REQUEST_URI']);
 
 		 //return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
