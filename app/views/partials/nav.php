@@ -10,13 +10,13 @@
     </div>
     <div class="navbar-collapse collapse">
         <div class="nav navbar-nav">
-           <img src="http://localhost/intranet_test/public/images/left_logo.jpg" style="height:90px;" />
+           <img src="http://10.30.176.252/intranet_test/public/images/left_logo.jpg" style="height:90px;" />
         </div>
         <div class="nav navbar-nav navbar-center">
-            <img src="http://localhost/intranet_test/public/images/top_logo.jpg" />
+            <img src="http://10.30.176.252/intranet_test/public/images/top_logo.jpg" />
         </div>
         <div class="nav navbar-nav navbar-right">
-            <img src="http://localhost/intranet_test/public/images/right_logo.jpg" />
+            <img src="http://10.30.176.252/intranet_test/public/images/right_logo.jpg" />
         </div>
     </div>
 </nav>

@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-1">
                                 <a href="#" class="btn btn-primary btn-xs">Търси</a>
-                                <img src="http://localhost/intranet_test/public/images/srchanim1.gif" align="absmiddle"
+                                <img src="http://10.30.176.252/intranet_test/public/images/srchanim1.gif" align="absmiddle"
                                      height="50" width="50">
                             </div>
                         </div>

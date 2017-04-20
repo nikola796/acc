@@ -1,6 +1,6 @@
 </div>
-<div style="" class="col-md-2" >
-    <div class="panel panel-primary">
+<div style="" class="col-md-2"  >
+    <div class="panel panel-primary" style="background-color: #FFFFE6;">
         <div class="panel-heading">
             <h5 class="panel-title">Администрация</h5>
         </div>
