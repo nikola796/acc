@@ -58,7 +58,7 @@ class QueryBuilder
     public function selectAllFiles($id)
     {
 
-        $stmt = $this->pdo->prepare("SELECT * FROM files WHERE directory = ? ");
+        $stmt = $this->pdo->prepare("SELECT * FROM files WHERE directory = ? and department_id = 1 ");
         $stmt->execute(array($id));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 

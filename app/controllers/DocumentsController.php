@@ -54,17 +54,19 @@ class DocumentsController
         $dep_id = App::get('database')->getId('id', $dep, 'departments');
 
 
+        //$posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
         $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
-
-         //dd($posts);
+        //dd($posts);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
 
-        //die(var_dump($folders[0]->name));
+       // $files = App::get('database')->selectAllFiles($id);
+        $files = App::get('database')->selectAllFiles(0);
 
         // $documents = App::get('database')->selectDirectories($id);
-
-        return view('show', compact('folders', 'dep', 'posts'));
+        $current_folder = $dep;
+        //return view('show', compact('folders', 'dep', 'posts'));
+        return view('files', compact('folders', 'files', 'current_folder', 'posts'));
 
     }
 

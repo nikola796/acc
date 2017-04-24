@@ -11,8 +11,7 @@
             </li>
         <?php endforeach ?>
     </ul>
-
-    <hr>
+    <hr />
 <?php endif; ?>
 
 <?php if (count($posts) > 0): ?>
@@ -22,7 +21,7 @@
     <ul>
 
         <?php foreach ($posts as $post): ?>
-            <hr>
+
             <li><?= parser()->qParse(htmlspecialchars($post->post)) ?></li>
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id == $post->id): ?>
@@ -33,11 +32,12 @@
 
         <?php endforeach ?>
     </ul>
+    <hr />
 <?endif ?>
 
-<?php foreach ($files as $file): ?>
+<?php foreach ($files as $only_files): ?>
 
-    <?php if ($file->post_id === null): ?>
+    <?php if ($only_files->post_id == null): ?>
         <h5>Файлове към <?= $current_folder ?></h5>
 
 
@@ -50,8 +50,9 @@
                 <?php endif; ?>
             <?php endforeach ?>
         </ul>
+        <hr />
     <?php endif ?>
-    <?php break ?>
+
 <?php endforeach ?>
 
 
