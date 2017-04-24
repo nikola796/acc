@@ -16,6 +16,7 @@ $router->get('Важно', array('App\Controllers\FilesController', 'important')
 
 $router->get('admin', function(){
     return view('form');
+    //echo 'Test';
 });
 
 $router->get('admin2',  array('App\Controllers\DocumentsController', 'admin2'));
@@ -26,13 +27,30 @@ $router->get('Документи/{dep}', array('App\Controllers\DocumentsControl
 
 $router->get('bb_test', array('App\Controllers\DocumentsController', 'bb'));
 
-$router->post('bb_test', array('App\Controllers\DocumentsController', 'bb_store'));
+$router->get('parser', function(){
+    return view('parser');
+});
+
+$router->get('ckeditor', function(){
+    return view('ckeditor');
+});
+
+
+$router->post('view-post', array('App\Controllers\DocumentsController', 'previewPost'));
+
+$router->get('{folder}/Файлове/{id}', array('App\Controllers\FilesController', 'indexTest'));
 
 $router->get('{folder}', array('App\Controllers\DocumentsController', 'getFolder'));
 
-$router->get('{folder}/Файлове/{id}', array('App\Controllers\FilesController', 'indexTest'));
+
+$router->post('parser', function(){
+    return view('parser');
+});
+
+$router->post('create-folder', array('App\Controllers\DocumentsController', 'createFolder'));
 
 $router->post('admin', array('App\Controllers\DocumentsController', 'admin_store'));
 
 $router->post('admin2', array('App\Controllers\DocumentsController', 'admin_store2'));
 
+$router->post('bb_test', array('App\Controllers\DocumentsController', 'bb_store'));

@@ -56,7 +56,7 @@ class DocumentsController
 
         $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
 
-        // die(var_dump($posts));
+         //dd($posts);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
 
@@ -133,28 +133,35 @@ class DocumentsController
 
     }
 
+    public function previewPost()
+    {
+        $config = parse_ini_file('core/BBCodeParser2.ini', true);
+        $options = $config['HTML_BBCodeParser2'];
+        $parser = new HTML_BBCodeParser2($options);
+
+        $review = $parser->qParse(htmlspecialchars($_POST['text']));
+        echo $review;
+    }
+
+    /*** CREATE NEW FOLDER ***/
+    public function createFolder()
+    {
+        if (isset($_POST['parent'])) {
+            return Folder::createFolder();
+        }
+    }
+
     public function admin_store2()
     {
 
+        //return $success = 'Success!';
+
         $response = array();
-        /*** HERE WE CHECK IF USER CLICK ON PREVIEW BUTTON TO VIEW POST BEFORE SUBMIT FORM ***/
-        if (isset($_POST['type']) && $_POST['type'] == 'show post') {
-
-            echo $this->viewPost();
-
-        }
-
-        /*** CREATE NEW FOLDER ***/
-        if (isset($_POST['parent'])) {
-
-            $new_folder = Folder::createFolder();
-            $response['new_folder'] = $new_folder;
-        }
 
         /***************** CHECK IS USER CREATE POST **********************/
         if (!empty($_POST['text'])) {
 
-           $post_id = $this->savePost();
+            $post_id = $this->savePost();
             $response['new_post'] = $post_id;
 
         }
@@ -165,9 +172,10 @@ class DocumentsController
             $response['new_file'] = $this->fileUpload($post_id);
 
         }
-        foreach ($response as $res){
-            echo $res;
+        foreach ($response as $res) {
+          //  echo $res;
         }
+        redirect('admin2');
 
     }
 
@@ -225,7 +233,7 @@ class DocumentsController
 
 
             }
-           // echo '<pre>' . print_r($narr, true) . '</pre>';die();
+            // echo '<pre>' . print_r($narr, true) . '</pre>';die();
             App::get('database')->saveFile($narr);
 
 // a flag to see if everything is ok
@@ -287,15 +295,15 @@ class DocumentsController
      * SHOW TO USER THE POST WHICH HE TYPE BEFORE SUBMIT
      * @return PARSED TEXT
      */
-    private function viewPost()
-    {
-        $options = @parse_ini_file('core/BBCodeParser.ini');
-        $parser = new HTML_BBCodeParser2($options);
-
-        $review = $parser->qParse(htmlspecialchars($_POST['text']));
-
-        return $review;
-    }
+//    private function viewPost()
+//    {
+//        $options = @parse_ini_file('core/BBCodeParser.ini');
+//        $parser = new HTML_BBCodeParser2($options);
+//
+//        $review = $parser->qParse(htmlspecialchars($_POST['text']));
+//
+//        return $review;
+//    }
 
     /**
      * INSERT USER`S POST INTO DB

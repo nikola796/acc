@@ -22,13 +22,15 @@
     <ul>
 
         <?php foreach ($posts as $post): ?>
+            <hr>
             <li><?= parser()->qParse(htmlspecialchars($post->post)) ?></li>
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id == $post->id): ?>
-                    <p><a href="http://localhost/intranet_test/public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                    <p style="margin-left:5px"><a href="http://localhost/intranet_test/public/files/<?= $file->name ?>"><?= $file->label ?></a>
                     </p>
                 <?php endif ?>
             <?php endforeach ?>
+
         <?php endforeach ?>
     </ul>
 <?endif ?>

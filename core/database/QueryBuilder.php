@@ -177,14 +177,14 @@ ORDER BY node.lft;');
     {
         //die(var_dump($values));
 
-        $sql = 'SELECT * FROM posts WHERE  department = :department AND directory ';
+        $sql = 'SELECT * FROM posts WHERE  department = :department AND directory = ';
 
         if(!$values['directory'])
         {
-            $sql .= 'is null';
+            $sql .= '0';
         }
         else{
-            $sql .= '= :directory';
+            $sql .= ':directory';
 
         }
 

@@ -1,9 +1,9 @@
 <?php
-require_once 'core/HTML/BBCodeParser2.php';
-$options = @parse_ini_file('core/BBCodeParser.ini');
-
-// die( '<pre>' . print_r($folders, true) . '</pre>');
-$parser = new HTML_BBCodeParser2($options);
+//require_once 'core/HTML/BBCodeParser2.php';
+//$options = @parse_ini_file('core/BBCodeParser.ini');
+//
+//// die( '<pre>' . print_r($folders, true) . '</pre>');
+//$parser = new HTML_BBCodeParser2($options);
 ?>
 <!doctype html>
 <html lang="en">
@@ -80,9 +80,7 @@ $parser = new HTML_BBCodeParser2($options);
 <h3 class="text-center">Администрация интранет страница на АМ</h3>
 <div class="container">
 
-    <div id="view_parsed_text" style="display:none; border: solid 1px orange; padding:20px; margin: 20px">
 
-    </div>
 
     <div class="row">
         <div id="callout-formgroup-inputgroup" class="bs-callout bs-callout-warning">
@@ -92,6 +90,10 @@ $parser = new HTML_BBCodeParser2($options);
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
+                <button type="button" onclick="wrapText('text','[b]','[/b]');">B</button>
+                <button type="button" onclick="wrapText('text','[i]','[/i]');">I</button>
+                <button type="button" onclick="wrapText('text','[u]','[/u]');">U</button>
+                <button type="button" onclick="wrapText('text','[img]','[/img]');">Img</button><br />
                 <textarea id="text" class="form-control" placeholder="Място за текст" rows="4" name="text"></textarea>
             </div>
 
@@ -156,7 +158,7 @@ $parser = new HTML_BBCodeParser2($options);
 
 
             <div id="perentFolders" class="form-group">
-                <select name="folder" class="form-control">
+                <select name="folder" class="form-control" id="folder">
                     <option value="0">Главна директория</option>
                     <?php foreach ($folders as $folder): ?>
                         <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -214,7 +216,9 @@ $parser = new HTML_BBCodeParser2($options);
                 <button type="submit" class="btn btn-primary" name="save">Запази</button>
             </div>
         </form>
+        <div id="view_parsed_text" style="display:none; border: solid 1px orange; padding:20px; margin: 20px">
 
+        </div>
 
         <!--        <form action="" method="post" enctype="multipart/form-data">-->
         <!--            Send these files:<br />-->
@@ -228,14 +232,28 @@ $parser = new HTML_BBCodeParser2($options);
         <!--            <div class="form-group"><input type="submit" value="Send files" /></div>-->
         <!--            </div>-->
         <!--        </form>-->
-
-
     </div>
 </div>
 
 </div>
 </body>
 <script>
+$( "#folder").on('change', function(){
+    var str = '';
+    str = $( "#folder option:selected").val();
+    console.log(str);
+})
+    function wrapText(elementID, openTag, closeTag) {
+        var textArea = document.getElementById(elementID);
+
+        if (typeof(textArea.selectionStart) != "undefined") {
+            var begin = textArea.value.substr(0, textArea.selectionStart);
+            var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
+            var end = textArea.value.substr(textArea.selectionEnd);
+            textArea.value = begin + openTag + selection + closeTag + end;
+        }
+    }
+
     var $text = $('#sel');
 $('#mod').on('click', function (dialog) {
 
@@ -254,7 +272,7 @@ $('#mod').on('click', function (dialog) {
                     dialog.setClosable(false);
                     $.ajax({
                         method: 'post',
-                        url: 'admin22',
+                        url: 'create-folder',
                         data: {
                             name: $('#newFolderName').val(),
                             parent: $('#perentFolder').val()
@@ -301,8 +319,18 @@ $('#mod').on('click', function (dialog) {
     })
 })
 
-
-
+//$('form').submit(function(e){
+//
+//    e.preventDefault();
+//    var formData = {
+//        'post' : $('#text').val(),
+//        'folder':  $( "#folder option:selected").val()
+//        'file' : $('input[name=userfile')
+//    }
+//    console.log(formData);
+//
+//
+//})
 
 
 //$text.append('<div class="form-group"><label for="folderName">Име на новата папка</label><input type="text" class="form-control" id="newFolderName" placeholder="Наименование"></div><select name="folder" id="perentFolder" class="form-control"><?php foreach ($folders as $folder): ?><option value="">Главна директория</option><option value="<?= $folder->id ?>"><?= $folder->name ?></option><?php endforeach; ?></select>');
@@ -345,7 +373,7 @@ $('#mod').on('click', function (dialog) {
         if(($('#text').val().length) > 0){
         $.ajax({
             method: 'POST',
-            url: 'http://localhost/intranet_test/admin2',
+            url: 'http://localhost/intranet_test/view-post',
             data: {
                 text: $('#text').val(),
                 type: 'show post'
