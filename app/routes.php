@@ -11,9 +11,7 @@ $router->get('documents/{id}', array('App\Controllers\DocumentsController', 'sho
 $router->get('Важно', array('App\Controllers\FilesController', 'important'));
 
 
-<<<<<<< HEAD
 
-=======
 // TEST ROUTES
 // TODO DELETE AFTER TESTS ENDS
 
@@ -57,4 +55,4 @@ $router->post('admin', array('App\Controllers\DocumentsController', 'admin_store
 $router->post('admin2', array('App\Controllers\DocumentsController', 'admin_store2'));
 
 $router->post('bb_test', array('App\Controllers\DocumentsController', 'bb_store'));
->>>>>>> feature_ckeditor
+
