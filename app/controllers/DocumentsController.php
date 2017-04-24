@@ -156,8 +156,6 @@ class DocumentsController
     public function admin_store2()
     {
 
-        //return $success = 'Success!';
-
         $response = array();
 
         /***************** CHECK IS USER CREATE POST **********************/

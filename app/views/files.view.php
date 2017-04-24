@@ -23,7 +23,7 @@
 
         <?php foreach ($posts as $post): ?>
 
-            <li><?= parser()->qParse(htmlspecialchars($post->post)) ?></li>
+            <li><?= $post->post ?></li>   <!-- OLD VERSION -> parser()->qParse(htmlspecialchars($post->post)) -->
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id == $post->id): ?>
                     <p style="margin-left:5px"><a href="http://localhost/intranet_test/public/files/<?= $file->name ?>"><?= $file->label ?></a>

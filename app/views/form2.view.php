@@ -30,6 +30,7 @@
     <script src="http://localhost/intranet_test/public/themes/explorer/theme.js" type="text/javascript"></script>
     <script src="http://localhost/intranet_test/public/js/libs/bootstrap.min.js" type="text/javascript"></script>
     <script src="http://localhost/intranet_test/public/js/libs/bootstrap-dialog.js" type="text/javascript"></script>
+    <script src="http://localhost/intranet_test/public/ckeditor/ckeditor.js"></script>
 
     <style>
         li {
@@ -81,21 +82,23 @@
 <div class="container">
 
 
-
     <div class="row">
-        <div id="callout-formgroup-inputgroup" class="bs-callout bs-callout-warning">
-            <h4 class="text-center">Добавете текст в полето по-долу.</h4> <span>Може да използвате bb символи за да стилизирате текста си.</span>
-        </div>
-
-
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <button type="button" onclick="wrapText('text','[b]','[/b]');">B</button>
-                <button type="button" onclick="wrapText('text','[i]','[/i]');">I</button>
-                <button type="button" onclick="wrapText('text','[u]','[/u]');">U</button>
-                <button type="button" onclick="wrapText('text','[img]','[/img]');">Img</button><br />
-                <textarea id="text" class="form-control" placeholder="Място за текст" rows="4" name="text"></textarea>
+
+            <div id="callout-formgroup-inputgroup" class="bs-callout bs-callout-warning">
+                <h4 class="text-center">Добавете текст в редактора по-долу.</h4>
             </div>
+            <div class="form-group">
+                <textarea cols="80" id="text" name="text" rows="10" placeholder="Място за текст"></textarea>
+            </div>
+            <!--            <div class="form-group">-->
+            <!--                <button type="button" onclick="wrapText('text','[b]','[/b]');">B</button>-->
+            <!--                <button type="button" onclick="wrapText('text','[i]','[/i]');">I</button>-->
+            <!--                <button type="button" onclick="wrapText('text','[u]','[/u]');">U</button>-->
+            <!--                <button type="button" onclick="wrapText('text','[img]','[/img]');">Img</button>-->
+            <!--                <br/>-->
+            <!--                <textarea id="text" class="form-control" placeholder="Място за текст" rows="4" name="text"></textarea>-->
+            <!--            </div>-->
 
             <!--            <input type="file" name="userfile[]" id="fileElem" multiple accept="" style="" onchange="handleFiles(this.files)">-->
             <!--            <div id="fileList">-->
@@ -118,7 +121,7 @@
                 <span class="form-control-static"><strong>Изберете от списъка в коя папка да бъде Вашата публикация.</strong></span>
 
                 <span class="form-control-static"><strong>Или създайте </strong></span>
-               <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Нова папка</button> -->
+                <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Нова папка</button> -->
                 <button id="mod" type="button" class="btn btn-success">Нова папка</button>
                 <!-- Modal -->
 
@@ -126,23 +129,25 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Нова папка</h4>
                             </div>
                             <div id="sel" class="modal-body">
                                 <div class="form-group">
                                     <label for="folderName">Име на новата папка</label>
-                                    <input type="text" class="form-control" id="newFolderName" placeholder="Наименование">
+                                    <input type="text" class="form-control" id="newFolderName"
+                                           placeholder="Наименование">
                                 </div>
                                 <div class="form-group">
                                     <label for="folderName">Място на новата папка</label>
-                                <select name="folder" id="perentFolder" class="form-control">
-                                    <option value="0">Главна директория</option>
-                                    <?php foreach ($folders as $folder): ?>
+                                    <select name="folder" id="perentFolder" class="form-control">
+                                        <option value="0">Главна директория</option>
+                                        <?php foreach ($folders as $folder): ?>
 
-                                        <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                            <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -168,7 +173,7 @@
 
             <div class="form-group">
 
-                <input type="button" class="form-control btn-primary" id="addAnotherFile" value="Добави файл" />
+                <input type="button" class="form-control btn-primary" id="addAnotherFile" value="Добави файл"/>
 
             </div>
             <div id="attachedFiles">
@@ -236,13 +241,21 @@
 </div>
 
 </div>
-</body>
+
 <script>
-$( "#folder").on('change', function(){
-    var str = '';
-    str = $( "#folder option:selected").val();
-    console.log(str);
-})
+
+    CKEDITOR.replace('text', {
+        language: 'bg',
+        height: 250,
+        extraPlugins: 'colorbutton,colordialog'
+    });
+
+
+    $("#folder").on('change', function () {
+        var str = '';
+        str = $("#folder option:selected").val();
+        console.log(str);
+    })
     function wrapText(elementID, openTag, closeTag) {
         var textArea = document.getElementById(elementID);
 
@@ -255,87 +268,87 @@ $( "#folder").on('change', function(){
     }
 
     var $text = $('#sel');
-$('#mod').on('click', function (dialog) {
+    $('#mod').on('click', function (dialog) {
 
-    BootstrapDialog.show({
-        title: 'Нова папка',
-        message: $text,
-        buttons: [{
-            label: 'Създай',
-            cssClass: 'btn-primary',
-            action: function(dialog) {
-                var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+        BootstrapDialog.show({
+            title: 'Нова папка',
+            message: $text,
+            buttons: [{
+                label: 'Създай',
+                cssClass: 'btn-primary',
+                action: function (dialog) {
+                    var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
 
-                if(($('#newFolderName').val().length) > 0) {
-                    $button.disable();
-                    $button.spin();
-                    dialog.setClosable(false);
-                    $.ajax({
-                        method: 'post',
-                        url: 'create-folder',
-                        data: {
-                            name: $('#newFolderName').val(),
-                            parent: $('#perentFolder').val()
-                        }
-                    }).done(function (data) {
-                        console.log(typeof data);
-                        if(data !== 'success'){
-                            BootstrapDialog.alert({
-                                type: BootstrapDialog.TYPE_WARNING,
-                                title: 'Мнимание',
-                                message: 'Възникна проблем с Вашата заявка!'
-                            });
-                            $button.enable();
-                            $button.stopSpin();
-                            dialog.setClosable(true);
-                            dialog.close();
-                        } else {
-                            BootstrapDialog.alert({
-                                type: BootstrapDialog.TYPE_SUCCESS,
-                                title: 'Успех',
-                                message: 'Успешно създадохте новата папка!'
-                            });
-                            $button.enable();
-                            $button.stopSpin();
-                            dialog.setClosable(true);
-                            dialog.close();
-                        }
-                    })
+                    if (($('#newFolderName').val().length) > 0) {
+                        $button.disable();
+                        $button.spin();
+                        dialog.setClosable(false);
+                        $.ajax({
+                            method: 'post',
+                            url: 'create-folder',
+                            data: {
+                                name: $('#newFolderName').val(),
+                                parent: $('#perentFolder').val()
+                            }
+                        }).done(function (data) {
+                            console.log(typeof data);
+                            if (data !== 'success') {
+                                BootstrapDialog.alert({
+                                    type: BootstrapDialog.TYPE_WARNING,
+                                    title: 'Мнимание',
+                                    message: 'Възникна проблем с Вашата заявка!'
+                                });
+                                $button.enable();
+                                $button.stopSpin();
+                                dialog.setClosable(true);
+                                dialog.close();
+                            } else {
+                                BootstrapDialog.alert({
+                                    type: BootstrapDialog.TYPE_SUCCESS,
+                                    title: 'Успех',
+                                    message: 'Успешно създадохте новата папка!'
+                                });
+                                $button.enable();
+                                $button.stopSpin();
+                                dialog.setClosable(true);
+                                dialog.close();
+                            }
+                        })
 
-                } else {
-                    BootstrapDialog.alert({
-                        type: BootstrapDialog.TYPE_WARNING,
-                        title: 'Внимание',
-                        message: 'Не сте въвели нищо в полето за име на новата папка!'
-                    });
+                    } else {
+                        BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_WARNING,
+                            title: 'Внимание',
+                            message: 'Не сте въвели нищо в полето за име на новата папка!'
+                        });
+                    }
                 }
-            }
-        }, {
-            label: 'Отказ',
-            action: function(dialogItself){
-                dialogItself.close();
-            }
-        }]
+            }, {
+                label: 'Отказ',
+                action: function (dialogItself) {
+                    dialogItself.close();
+                }
+            }]
+        })
     })
-})
 
-//$('form').submit(function(e){
-//
-//    e.preventDefault();
-//    var formData = {
-//        'post' : $('#text').val(),
-//        'folder':  $( "#folder option:selected").val()
-//        'file' : $('input[name=userfile')
-//    }
-//    console.log(formData);
-//
-//
-//})
+    //$('form').submit(function(e){
+    //
+    //    e.preventDefault();
+    //    var formData = {
+    //        'post' : $('#text').val(),
+    //        'folder':  $( "#folder option:selected").val()
+    //        'file' : $('input[name=userfile')
+    //    }
+    //    console.log(formData);
+    //
+    //
+    //})
 
 
-//$text.append('<div class="form-group"><label for="folderName">Име на новата папка</label><input type="text" class="form-control" id="newFolderName" placeholder="Наименование"></div><select name="folder" id="perentFolder" class="form-control"><?php foreach ($folders as $folder): ?><option value="">Главна директория</option><option value="<?= $folder->id ?>"><?= $folder->name ?></option><?php endforeach; ?></select>');
-    $(document).on('click', '#createFolder', function() {
-        if (($('#newFolderName').val().length) > 0){
+    //$text.append('<div class="form-group"><label for="folderName">Име на новата папка</label><input type="text" class="form-control" id="newFolderName" placeholder="Наименование"></div><select name="folder" id="perentFolder" class="form-control"><?php foreach ($folders as $folder): ?><option value="">Главна директория</option><option value="<?= $folder->id ?>"><?= $folder->name ?></option><?php endforeach; ?></select>');
+    $(document).on('click', '#createFolder', function () {
+        if (($('#newFolderName').val().length) > 0) {
             $.ajax({
                 method: 'post',
                 url: 'folders',
@@ -352,7 +365,7 @@ $('#mod').on('click', function (dialog) {
                         message: $text
                     });
                 })
-    } else {
+        } else {
             BootstrapDialog.alert({
                 type: BootstrapDialog.TYPE_WARNING,
                 title: 'Внимание',
@@ -362,36 +375,36 @@ $('#mod').on('click', function (dialog) {
         //$('#newFolderName').val('')
     })
 
-    $(document).on('click', 'span.glyphicon-remove', function(){
+    $(document).on('click', 'span.glyphicon-remove', function () {
         $(this).parent('div').remove();
     })
-        $(document).on('click', '#addAnotherFile', function () {
-            $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
-        });
+    $(document).on('click', '#addAnotherFile', function () {
+        $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
+    });
     $(document).on('click', '#view_post', function (e) {
         e.preventDefault();
-        if(($('#text').val().length) > 0){
-        $.ajax({
-            method: 'POST',
-            url: 'http://localhost/intranet_test/view-post',
-            data: {
-                text: $('#text').val(),
-                type: 'show post'
-            }
-        })
-            .done(function (data) {
-                if (data.length > 0) {
-                    $('#view_parsed_text').show().html(data);
+        if (($('#text').val().length) > 0) {
+            $.ajax({
+                method: 'POST',
+                url: 'http://localhost/intranet_test/view-post',
+                data: {
+                    text: $('#text').val(),
+                    type: 'show post'
                 }
-
             })
-    } else{
-        BootstrapDialog.alert({
-            type: BootstrapDialog.TYPE_WARNING,
-            title: 'Внимание',
-            message: 'Не сте въвели нищо в полето!'
-        });
-    }
+                .done(function (data) {
+                    if (data.length > 0) {
+                        $('#view_parsed_text').show().html(data);
+                    }
+
+                })
+        } else {
+            BootstrapDialog.alert({
+                type: BootstrapDialog.TYPE_WARNING,
+                title: 'Внимание',
+                message: 'Не сте въвели нищо в полето!'
+            });
+        }
 
     });
 
@@ -403,12 +416,12 @@ $('#mod').on('click', function (dialog) {
         fileUl = document.getElementById("attached");
 
 
-//    fileSelect.addEventListener("click", function (e) {
-//        if (fileElem) {
-//            fileElem.click();
-//        }
-//        e.preventDefault(); // prevent navigation to "#"
-//    }, false);
+    //    fileSelect.addEventListener("click", function (e) {
+    //        if (fileElem) {
+    //            fileElem.click();
+    //        }
+    //        e.preventDefault(); // prevent navigation to "#"
+    //    }, false);
 
     function handleFiles(files) {
         $("#fileSelect").appendTo('#fileList');
@@ -477,4 +490,5 @@ $('#mod').on('click', function (dialog) {
     //        }
     //    });
 </script>
+</body>
 </html>
