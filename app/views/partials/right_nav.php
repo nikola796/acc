@@ -1,6 +1,6 @@
 </div>
-<div style="" class="col-md-2"  >
-    <div class="panel panel-primary" style="background-color: #FFFFE6;">
+<div style="" class="col-md-2" >
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h5 class="panel-title">Администрация</h5>
         </div>
@@ -27,6 +27,9 @@
             </form>
         </div>
     </div>
+
+
+
 <div class="" style="float:left">
     <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="public/images/calendar.gif">
         <tr>

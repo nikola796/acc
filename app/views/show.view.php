@@ -1,18 +1,29 @@
-<?php $title = 'Дирекция "'. $documents[0]->dep .'"'?>
+<?php $title = 'Дирекция "'. $dep .'"'?>
 <?php require 'partials/header.php';?>
 
-    <div class="text-center"><h4>Дирекция "<?= $documents[0]->dep ?>"</h4></div>
+    <div class="text-center"><h4>Дирекция "<?= $dep ?>"</h4></div>
+<p>Папки</p>
 <ul style="list-style-type: none;line-height: 200%;">
 
-    <?php foreach ($documents as $document): ?>
+    <?php foreach ($folders as $document): ?>
 
-        <li><a href="/intranet_test/files/<?= $document->id?>"><?= $document->name ?></a></li>
+        <li><a href="/intranet_test/<?= str_replace(' ', '+', $document->name)?>/Файлове/<?= $document->category_id?>"><?= $document->name ?></a></li>
 
     <?php endforeach; ?>
 
 </ul>
+<?php if(count($posts) > 0 ): ?>
+    <p>Публикации:</p>
+    <ul style="list-style-type: none;line-height: 200%;">
 
+        <?php foreach ($posts as $post): ?>
 
+            <li> <?= parser()->qParse(htmlspecialchars($post->post)) ?></li>
+
+        <?php endforeach; ?>
+
+    </ul>
+<?php endif;?>
 
 
 <?php require 'partials/footer.php';

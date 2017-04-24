@@ -10,7 +10,6 @@
 
  
     <title><?= $title?></title>
-
     <link href="http://10.30.176.252/intranet_test/public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="http://10.30.176.252/intranet_test/public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
     <link href="http://10.30.176.252/intranet_test/public/css/css.style.css" rel="stylesheet" type="text/css">
@@ -25,6 +24,6 @@
 <body bgcolor="#010080" leftmargin="0" topmargin="0" >
 
 <div class="wrapper container">
-
-<?php require('nav.php') ?>
+    
+<?php require('nav.php');
 

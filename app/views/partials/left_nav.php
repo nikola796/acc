@@ -8,8 +8,8 @@
             </div>
             <div class="list-group table-of-contents">
                 <a class="list-group-item" href="/intranet_test">Начало</a>
-                <a style="color:red" class="list-group-item" href="/intranet_test/important">Важно</a>
-                <a class="list-group-item" href="/intranet_test/documents">Преглед на документи</a>
+                <a style="color:red" class="list-group-item" href="/intranet_test/Важно">Важно</a>
+                <a class="list-group-item" href="/intranet_test/Документи">Преглед на документи</a>
                 <a class="list-group-item" href="#tables">Форум</a>
                 <a class="list-group-item" href="#forms">Чат</a>
             </div>

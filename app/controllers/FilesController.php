@@ -22,6 +22,19 @@ class FilesController
 
     }
 
+    public function indexTest($current_folder,$id)
+    {
+        $folders = App::get('database')->selectSubFolders($id);
+
+        $posts = App::get('database')->getPosts(array('department' => 1, 'directory' => $id));
+
+        $files = App::get('database')->selectAllFiles($id);
+
+        return view('files', compact('folders', 'files', 'current_folder', 'posts'));
+
+    }
+
+
     public function show($id)
     {
         $files = App::get('database')->selectFiles('files', $id);

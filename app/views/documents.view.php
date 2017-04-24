@@ -8,7 +8,7 @@
 
     <?php foreach ($departments as $department): ?>
 
-        <li><a href="documents/<?= $department->id ?>"><?= $department->name ?></a></li>
+        <li><a href="Документи/<?= str_replace(' ', '+', $department->name) ?>"><?= $department->name ?></a></li>
 
     <?php endforeach;?>
 
