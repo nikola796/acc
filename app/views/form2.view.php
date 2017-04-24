@@ -217,7 +217,7 @@
             <!--<input type="hidden" name="type" value="show post">-->
             <div class="spacer-bg"></div>
             <div class="text-center">
-                <button type="submit" class="btn btn-default" id="view_post" name="view">Прегледай</button>
+<!--                <button type="submit" class="btn btn-default" id="view_post" name="view">Прегледай</button>-->
                 <button type="submit" class="btn btn-primary" name="save">Запази</button>
             </div>
         </form>
