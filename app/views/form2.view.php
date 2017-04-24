@@ -151,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Отказ</button>
+<!--                                <button type="button" class="btn btn-default" data-dismiss="modal">Отказ</button>-->
                                 <button type="button" id="createFolder" class="btn btn-primary">Запази</button>
                             </div>
                         </div>
