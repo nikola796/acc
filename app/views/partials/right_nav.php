@@ -31,7 +31,7 @@
 
 
 <div class="" style="float:left">
-    <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="public/images/calendar.gif">
+    <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php url()?>public/images/calendar.gif">
         <tr>
             <td align="center"> <font face="tahoma,arial" ><?php echo date("d");?></font><br/>
                 <font face="tahoma,arial" size="2">
