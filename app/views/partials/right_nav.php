@@ -5,22 +5,22 @@
             <h5 class="panel-title">Администрация</h5>
         </div>
         <div class="panel-body" >
-            <form class="form-horizontal">
+            <form method="post" action="<?php url() ?>auth" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <input class="form-control" id="inputEmail" placeholder="Потребител" type="text">
+                            <input class="form-control" id="username" name="username" placeholder="Потребител" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <input class="form-control" id="inputPassword" placeholder="Парола" type="password">
+                            <input class="form-control" id="password" name="password" placeholder="Парола" type="password">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-3">
-                            <a href="#" class="btn btn-primary btn-xs">Въведи</a>
+                            <button class="btn btn-primary btn-xs">Въведи</button>
                         </div>
                     </div>
                 </fieldset>

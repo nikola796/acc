@@ -39,6 +39,7 @@ function view($name, $data = array())
 function redirect($path)
 {
     header("Location: {$path}");
+    exit();
 }
 
 function console_log( $data ){
@@ -60,3 +61,19 @@ function parser()
     $parser = new HTML_BBCodeParser2($options);
     return $parser;
 }
+
+function url()
+{
+    if ($_SERVER['SERVER_PORT'] != '443') {
+        $URL = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+    } else {
+        $URL = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+    }
+    echo substr( $URL, 0,-9);
+}
+
+function uri(){
+
+    return substr($_SERVER['PHP_SELF'], 0,-9);
+}
+

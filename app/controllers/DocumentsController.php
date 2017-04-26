@@ -179,6 +179,10 @@ class DocumentsController
 
     }
 
+    /**
+     * GET DATA FOR USER AND HIS PERMISSION TO FOLDERS
+     * @return VIEW FOR ADMIN PAGE
+     */
     public function admin2()
     {
 

@@ -7,7 +7,7 @@
 
     <?php foreach ($folders as $document): ?>
 
-        <li><a href="/intranet_test/<?= str_replace(' ', '+', $document->name)?>/Файлове/<?= $document->category_id?>"><?= $document->name ?></a></li>
+        <li><a href="<?php url()?>/<?= str_replace(' ', '+', $document->name)?>/Файлове/<?= $document->category_id?>"><?= $document->name ?></a></li>
 
     <?php endforeach; ?>
 
