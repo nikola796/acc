@@ -1,5 +1,6 @@
 
 <?php require('partials/header.php') ?>
+
 <?php if ($folders[0]->name): ?>
     <h5>Папки към <?= $current_folder ?></h5>
 
@@ -8,7 +9,7 @@
 
         <?php foreach ($folders as $folder): ?>
             <li>
-                <a href="http://localhost/intranet_test/<?= str_replace(' ', '+', $folder->name) ?>/Файлове/<?= $folder->category_id ?>"><?= $folder->name ?></a>
+                <a href="<?php url()?><?= str_replace(' ', '+', $folder->name) ?>/Файлове/<?= $folder->category_id ?>"><?= $folder->name ?></a>
             </li>
         <?php endforeach ?>
     </ul>
@@ -26,7 +27,7 @@
             <li><?= $post->post ?></li>   <!-- OLD VERSION -> parser()->qParse(htmlspecialchars($post->post)) -->
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id == $post->id): ?>
-                    <p style="margin-left:5px"><a href="http://localhost/intranet_test/public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                    <p style="margin-left:5px"><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
                     </p>
                 <?php endif ?>
             <?php endforeach ?>
@@ -46,7 +47,7 @@
 
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id === null): ?>
-                    <li><a href="http://localhost/intranet_test/public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                    <li><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
                     </li>
                 <?php endif; ?>
             <?php endforeach ?>
