@@ -14,7 +14,7 @@ $router->get('Важно', array('App\Controllers\FilesController', 'important')
 // TODO DELETE AFTER TESTS ENDS
 
 $router->get('admin', array('app\\controllers\\AdminsController', 'index'),
-    array('before' => 'auth', 'after' => 'authComplete'));
+    array('before' => 'auth'));
 
 $router->get('logout',   array('app\controllers\AuthController', 'logout'));
 

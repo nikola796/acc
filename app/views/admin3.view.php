@@ -299,13 +299,6 @@
     </div>
 </footer>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!--<script src="https://code.jquery.com/jquery.js"></script>-->
-<!--<!-- jQuery UI -->-->
-<!--<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
-<!--<!-- Include all compiled plugins (below), or include individual files as needed -->-->
-<!--<script src="--><?php //url()?><!--/public/js/libs/bootstrap.min.js"></script>-->
-
 <script src="<?php url() ?>public/js/libs/jquery-2.2.4.min.js"></script>
 <script src="<?php url() ?>public/js/plugins/sortable.js" type="text/javascript"></script>
 <script src="<?php url() ?>public/js/fileinput.js" type="text/javascript"></script>
