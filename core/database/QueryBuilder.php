@@ -37,6 +37,19 @@ class QueryBuilder
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function selectFolders($table)
+    {
+        $stmt = $this->pdo->prepare('SELECT CONCAT( REPEAT( "&nbsp; &nbsp", COUNT( parent.name ) -1) , node.name ) AS name, node.category_id
+                                              FROM ' . $table . ' AS node, ' . $table . ' AS parent
+                                              WHERE node.lft
+                                              BETWEEN parent.lft
+                                              AND parent.rgt
+                                              GROUP BY node.name
+                                              ORDER BY node.lft');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function selectDirectories($id)
     {
 //        $sql = "SELECT * FROM {$table} WHERE {$column}  = {$id}";
@@ -114,7 +127,7 @@ ORDER BY node.lft;');
 
     public function selectAllFolders($dep)
     {
-      //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
+        //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
 //die(var_dump($dep));
         $stmt = $this->pdo->prepare("SELECT * FROM mynested_category WHERE dep = ? AND parent_id = 0");
         $stmt->execute(array($dep));
@@ -141,14 +154,14 @@ ORDER BY node.lft;');
 
     public function insertPost($text, $directory, $files = null)
     {
-        try{
+        try {
             $stmt = $this->pdo->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when) VALUES(?, ?, ?, 1, 1, ' . time() . ')');
 
             $stmt->execute(array($text, $files, $directory));
 
             return $this->pdo->lastInsertId();;
 
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
 
@@ -179,11 +192,9 @@ ORDER BY node.lft;');
 
         $sql = 'SELECT * FROM posts WHERE  department = :department AND directory = ';
 
-        if(!$values['directory'])
-        {
+        if (!$values['directory']) {
             $sql .= '0';
-        }
-        else{
+        } else {
             $sql .= ':directory';
 
         }
@@ -198,12 +209,11 @@ ORDER BY node.lft;');
     public function saveFile($file = array())
     {
         $sql = 'INSERT INTO files (name, label, added_from, added_when, department_id, directory, post_id)
-                  VALUES(?, ?, 1, '. time() .', 1, ?, ?)';
+                  VALUES(?, ?, 1, ' . time() . ', 1, ?, ?)';
 
         $stmt = $this->pdo->prepare($sql);
 
-        foreach($file as $f)
-        {
+        foreach ($file as $f) {
             $stmt->execute(array($f['name'], $f['label'], $f['folder'], $f['post_id']));
         }
         //$stmt->execute($file);

@@ -2,28 +2,425 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d4524c-fae1-472a-82ab-e4a532f18c5d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/AdminsController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/AuthController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/Admin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin3.view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/admin_styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/custom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/editors.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/Sorting icons.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/back_disabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/back_enabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/back_enabled_hover.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/forward_disabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/forward_enabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/forward_enabled_hover.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/sort_asc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/sort_asc_disabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/sort_both.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/sort_desc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/images/sort_desc_disabled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/partials/bottom.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/partials/footer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/partials/header.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/partials/sidebar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/partials/top_panel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/posts.view.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/users.view.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/jquery.dataTables.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/libs/select2.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/css/demo_page.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/css/demo_table.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/css/demo_table_jui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/css/jquery.dataTables.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/css/jquery.dataTables_themeroller.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/dataTables.bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/dataTables.bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/js/jquery.dataTables.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/js/jquery.dataTables.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/js/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/DataTables.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/api/api.internal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/api/api.methods.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/api/api.static.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.ajax.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.columns.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.constructor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.data.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.draw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.filter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.info.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.init.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.length.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.page.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.processing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.scrolling.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.sizing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.sort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.state.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/core/core.support.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/ext/ext.classes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/ext/ext.paging.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/ext/ext.sorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/ext/ext.types.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.column.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.defaults.columns.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.defaults.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.ext.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.row.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.search.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/src/model/model.settings.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/controller.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/performance/draw.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/performance/large.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/performance/page.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/performance/sort.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/-complex_header.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/2512.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/6776.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/complex_header_2.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/deferred_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/dom_data.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/dom_data_th.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/dom_data_two_headers.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/dymanic_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/empty_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/html_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/js_data.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/js_data_mixed_types.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/templates/two_tables.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests/1_dom/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/-complex_header.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/-iDraw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2512.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2530-2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2530.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2569.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2600.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2608.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2635.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2746-stable-sort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2799.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2840-restore-table-width.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/2914-state-save-sort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/5396-fnUpdate-arrays-mData.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/5396-fnUpdate-arrays.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/5508-xscroll-zero-content.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/6776-scrolling-table-grows.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/_getDataFunctions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/_setDataFunctions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.bVisible2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.iDataSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bInfiniteScroll.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bJQueryUI.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bSortCellsTop.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnCookieCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnCreatedCell.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnCreatedRow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnDeleteRow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnFooterCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnInfoCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnSetColumnVis.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/fnSetColumnVis2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/html-autodetect-sort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/sScrollXY.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/1_dom/th_in_body.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/39-nested-null.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/6872-default-content-missing-props.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/8549--string-sorting-nonstrings.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.iDataSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnCreatedCell.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnCreatedRow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnFooterCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/js_data_mixed_types.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/2_js/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.iDataSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnCreatedCell.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnCreatedRow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/fnServerData.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sLoadingRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/sAjaxDataProp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/sAjaxDataProp2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/3_ajax/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/-iDraw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/2440.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/2569.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/2600.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bInfiniteScroll.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnCreatedCell.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnCreatedRow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/iDeferLoading.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/sAjaxDataProp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/4_server-side/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_arrays_subobjects.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_deep.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_mDataProp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_null_source.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_objects.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/_zero_config_objects_subarrays.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.iDataSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/fnServerData.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/5_ajax_objects/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/_zero_config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aaSorting.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aaSortingFixed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.bSearchable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.bSortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.bUseRendered.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.bVisible.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.fnRender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.iDataSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.sClass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.sName.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.sTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoColumns.sWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/aoSearchCols.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/asStripClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bAutoWidth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bLengthChange.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bServerSide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bSort.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/bSortClasses.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/fnDrawCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/fnHeaderCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/fnInitComplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/fnRowCallback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/fnServerData.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/iDisplayLength.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.oPaginate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sInfo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sInfoEmpty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sInfoPostFix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sLengthMenu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sProcessing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sUrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oLanguage.sZeroRecords.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/oSearch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/sAjaxDataProp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/sAjaxDataProp2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/sAjaxSource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/sDom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/tests_onhold/6_delayed_rendering/sPaginationType.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/datatables/unit_testing/unit_test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/jquery.dataTables.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/libs/select2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/posts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/tables.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/admin3.view.php" afterPath="$PROJECT_DIR$/app/views/admin/admin3.view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/DocumentsController.php" afterPath="$PROJECT_DIR$/app/controllers/DocumentsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/AdminsController.php" afterPath="$PROJECT_DIR$/app/controllers/AdminsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/AuthController.php" afterPath="$PROJECT_DIR$/app/controllers/AuthController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/User.php" afterPath="$PROJECT_DIR$/app/models/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/files.view.php" afterPath="$PROJECT_DIR$/app/views/files.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/form2.view.php" afterPath="$PROJECT_DIR$/app/views/form2.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/important.view.php" afterPath="$PROJECT_DIR$/app/views/important.view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/index.view.php" afterPath="$PROJECT_DIR$/app/views/index.view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/footer.php" afterPath="$PROJECT_DIR$/app/views/partials/footer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/header.php" afterPath="$PROJECT_DIR$/app/views/partials/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/left_nav.php" afterPath="$PROJECT_DIR$/app/views/partials/left_nav.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/nav.php" afterPath="$PROJECT_DIR$/app/views/partials/nav.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/right_nav.php" afterPath="$PROJECT_DIR$/app/views/partials/right_nav.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/show.view.php" afterPath="$PROJECT_DIR$/app/views/show.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/bootstrap.php" afterPath="$PROJECT_DIR$/core/bootstrap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/database/QueryBuilder.php" afterPath="$PROJECT_DIR$/core/database/QueryBuilder.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +436,13 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="intranet/125910de-5f4d-4aff-a230-b13c7d3951f9:SCHEMA" value="Orange" />
+    </colors>
+  </component>
   <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
@@ -56,70 +459,135 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="intranet" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="mynested_category" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+      <file leaf-file-name="AdminsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/AdminsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="42" column="84" lean-forward="false" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/DocumentsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="193" column="57" lean-forward="true" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="autoload_classmap.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin3.view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin3.view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="94" column="91" lean-forward="true" selection-start-line="94" selection-start-column="91" selection-end-line="94" selection-end-column="101" />
+            <state relative-caret-position="223">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
-                <marker date="1493192587975" expanded="false" signature="13265:13288" ph="..." />
-                <marker date="1493192587975" expanded="true" signature="19791:19805" ph="..." />
-                <marker date="1493192587975" expanded="true" signature="19876:19886" ph="..." />
+                <element signature="e#135#152#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryBuilder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/database/QueryBuilder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="41" column="99" lean-forward="false" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
+              <folding>
+                <marker date="1494334889412" expanded="true" signature="208:592" ph="SELECT node.... nested_category" />
+                <marker date="1494334889412" expanded="true" signature="928:967" ph="SELECT * FRO... $" />
+                <marker date="1494334889412" expanded="true" signature="1139:1243" ph="SELECT CONCA... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="1139:1289" ph="SELECT CONCA... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="1139:1293" ph="SELECT CONCA... " />
+                <marker date="1494334889412" expanded="true" signature="1139:1294" ph="SELECT CONCA... ${$table}" />
+                <marker date="1494334889412" expanded="true" signature="1139:1308" ph="SELECT CONCA... ${$table}" />
+                <marker date="1494334889412" expanded="true" signature="1139:1658" ph="SELECT CONCA... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="1139:1860" ph="SELECT CONCA... " />
+                <marker date="1494334889412" expanded="true" signature="1922:2073" ph="SELECT d.id,... directories" />
+                <marker date="1494334889412" expanded="true" signature="2264:2380" ph="SELECT ${{$t... " />
+                <marker date="1494334889412" expanded="true" signature="2568:2629" ph="SELECT * FRO... files" />
+                <marker date="1494334889412" expanded="true" signature="2804:2835" ph="INSERT INTO " />
+                <marker date="1494334889412" expanded="true" signature="3376:3640" ph="SELECT node.... nested_category" />
+                <marker date="1494334889412" expanded="true" signature="3932:3995" ph="SELECT * FRO... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="4283:4336" ph="SELECT * FRO... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="4527:4576" ph="SELECT ${{$i... " />
+                <marker date="1494334889412" expanded="true" signature="4790:4906" ph="INSERT INTO posts... " />
+                <marker date="1494334889412" expanded="true" signature="5186:5205" ph="SELECT * FRO... posts" />
+                <marker date="1494334889412" expanded="true" signature="5373:5419" ph="SELECT * FRO... mynested_category" />
+                <marker date="1494334889412" expanded="true" signature="5667:5734" ph="SELECT * FRO... posts" />
+                <marker date="1494334889412" expanded="true" signature="6067:6216" ph="INSERT INTO files... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/125910de-5f4d-4aff-a230-b13c7d3951f9/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/index.view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="87" column="10" lean-forward="false" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/partials/footer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,13 +595,32 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="45" column="96" lean-forward="false" selection-start-line="45" selection-start-column="96" selection-end-line="45" selection-end-column="96" />
+            <state relative-caret-position="11">
+              <caret line="207" column="20" lean-forward="false" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="20" />
               <folding>
-                <element signature="e#129#146#0#PHP" expanded="true" />
-                <marker date="1493190581885" expanded="true" signature="343:373" ph="SELECT * FRO... users" />
-                <marker date="1493190581885" expanded="true" signature="959:1010" ph="SELECT * FRO... users" />
-                <marker date="1493190581885" expanded="true" signature="959:1025" ph="SELECT * FRO... users" />
+                <marker date="1494323340041" expanded="true" signature="657:687" ph="SELECT * FRO... users" />
+                <marker date="1494323340041" expanded="true" signature="1232:1283" ph="SELECT * FRO... users" />
+                <marker date="1494323340041" expanded="true" signature="1232:1298" ph="SELECT * FRO... users" />
+                <marker date="1494323340041" expanded="true" signature="1631:1650" ph="SELECT * FRO... users" />
+                <marker date="1494323340041" expanded="true" signature="2020:2063" ph="SELECT id, r... roles" />
+                <marker date="1494323340041" expanded="true" signature="2660:2836" ph="INSERT INTO users... " />
+                <marker date="1494323340041" expanded="true" signature="2983:3043" ph="INSERT INTO users_folders... " />
+                <marker date="1494323340041" expanded="true" signature="3457:3633" ph="INSERT INTO users... " />
+                <marker date="1494323340041" expanded="true" signature="4126:4228" ph="UPDATE `user... " />
+                <marker date="1494323340041" expanded="true" signature="4322:4367" ph="DELETE FROM " />
+                <marker date="1494323340041" expanded="true" signature="4481:4541" ph="INSERT INTO users_folders... " />
+                <marker date="1494323340041" expanded="true" signature="4974:5076" ph="UPDATE `user... " />
+                <marker date="1494323340041" expanded="true" signature="5170:5215" ph="DELETE FROM " />
+                <marker date="1494323340041" expanded="true" signature="5521:5547" ph="UPDATE users... " />
+                <marker date="1494323340041" expanded="true" signature="5521:5566" ph="UPDATE users... " />
+                <marker date="1494323340041" expanded="true" signature="5521:5569" ph="UPDATE users... " />
+                <marker date="1494323340041" expanded="true" signature="5904:6396" ph="SELECT u.id,... users" />
+                <marker date="1494323340041" expanded="true" signature="5904:6426" ph="SELECT u.id,... users" />
+                <marker date="1494323340041" expanded="true" signature="6541:6554" ph="SELECT u.id,... users" />
+                <marker date="1494323340041" expanded="true" signature="6814:6847" ph="SELECT COUNT... users" />
+                <marker date="1494323340041" expanded="true" signature="7517:8019" ph="SELECT u.id,... users" />
+                <marker date="1494323340041" expanded="true" signature="9591:9595" ph="..." />
+                <marker date="1494323340041" expanded="true" signature="11901:11957" ph="SELECT * FRO... users" />
               </folding>
             </state>
           </provider>
@@ -142,47 +629,41 @@
       <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+            <state relative-caret-position="59">
+              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
               <folding>
-                <element signature="e#135#152#0#PHP" expanded="true" />
+                <element signature="e#36#53#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/AdminsController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="595">
+              <caret line="52" column="88" lean-forward="false" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueryBuilder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/database/QueryBuilder.php">
+      <file leaf-file-name="users.view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/users.view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="163" column="57" lean-forward="true" selection-start-line="163" selection-start-column="57" selection-end-line="163" selection-end-column="57" />
-              <folding>
-                <marker date="1493029457251" expanded="true" signature="208:592" ph="SELECT node.... nested_category" />
-                <marker date="1493029457251" expanded="true" signature="928:967" ph="SELECT * FRO... $" />
-                <marker date="1493029457251" expanded="true" signature="1231:1382" ph="SELECT d.id,... directories" />
-                <marker date="1493029457251" expanded="true" signature="1573:1689" ph="SELECT ${{$t... " />
-                <marker date="1493029457251" expanded="true" signature="1877:1938" ph="SELECT * FRO... files" />
-                <marker date="1493029457251" expanded="true" signature="2113:2144" ph="INSERT INTO " />
-                <marker date="1493029457251" expanded="true" signature="2685:2949" ph="SELECT node.... nested_category" />
-                <marker date="1493029457251" expanded="true" signature="3239:3302" ph="SELECT * FRO... mynested_category" />
-                <marker date="1493029457251" expanded="true" signature="3590:3643" ph="SELECT * FRO... mynested_category" />
-                <marker date="1493029457251" expanded="true" signature="3834:3883" ph="SELECT ${{$i... " />
-                <marker date="1493029457251" expanded="true" signature="4096:4212" ph="INSERT INTO posts... " />
-                <marker date="1493029457251" expanded="true" signature="4491:4510" ph="SELECT * FRO... posts" />
-                <marker date="1493029457251" expanded="true" signature="4678:4724" ph="SELECT * FRO... mynested_category" />
-                <marker date="1493029457251" expanded="true" signature="4972:5039" ph="SELECT * FRO... posts" />
-                <marker date="1493029457251" expanded="true" signature="5386:5533" ph="INSERT INTO files... " />
-              </folding>
+            <state relative-caret-position="2037">
+              <caret line="175" column="21" lean-forward="false" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="posts.view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/posts.view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,24 +673,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>css.</find>
-      <find>css.s</find>
-      <find>css.st</find>
-      <find>css.sty</find>
-      <find>css.styl</find>
-      <find>css.style</find>
-      <find>file_id</find>
-      <find>getId</find>
-      <find>attachedFiles</find>
-      <find>register_globals</find>
-      <find>fileEle</find>
       <find>sel</find>
       <find>getUsersFolders</find>
       <find>createF</find>
@@ -229,6 +700,17 @@
       <find>showT</find>
       <find>нова</find>
       <find>AdminC</find>
+      <find>departm</find>
+      <find>departments</find>
+      <find>d</find>
+      <find>di</find>
+      <find>dialog</find>
+      <find>createUser</find>
+      <find>each</find>
+      <find>DataTable</find>
+      <find>$totalData</find>
+      <find>$totalFiltered</find>
+      <find>active</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp_5.3\htdocs\intranet_test\public\img</dir>
@@ -241,57 +723,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/upload.php" />
-        <option value="$PROJECT_DIR$/app/models/Files.php" />
-        <option value="$PROJECT_DIR$/app/models/Post.php" />
-        <option value="$PROJECT_DIR$/app/models/Folder.php" />
-        <option value="$PROJECT_DIR$/core/init.inc.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Basic.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Extended.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Links.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Images.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Lists.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/Email.php" />
-        <option value="$PROJECT_DIR$/core/HTML/BBCodeParser2/Filter/MyBB.php" />
-        <option value="$PROJECT_DIR$/app/views/bbb.view.php" />
-        <option value="$PROJECT_DIR$/core/HTML_BBCodeParser2/HTML/BBCodeParser2/Filter/Basic.php" />
-        <option value="$PROJECT_DIR$/core/HTML_BBCodeParser2/HTML/BBCodeParser2/Filter.php" />
-        <option value="$PROJECT_DIR$/app/views/bb.view.php" />
-        <option value="$PROJECT_DIR$/app/views/about.view.php" />
-        <option value="$PROJECT_DIR$/app/views/parser.view.php" />
-        <option value="$PROJECT_DIR$/app/views/ckeditor.view.php" />
-        <option value="$PROJECT_DIR$/app/controllers/FilesController.php" />
-        <option value="$PROJECT_DIR$/core/database/QueryBuilder.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/public/css/styles.css" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/core/database/QueryBuilder.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/core/bootstrap.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/right_nav.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/files.view.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/routes.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/controllers/DocumentsController.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/header.php" />
-        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/form2.view.php" />
         <option value="$PROJECT_DIR$/app/controllers/Auth.php" />
-        <option value="$PROJECT_DIR$/app/views/partials/header.php" />
-        <option value="$PROJECT_DIR$/app/views/index.view.php" />
         <option value="$PROJECT_DIR$/app/views/documents.view.php" />
         <option value="$PROJECT_DIR$/app/views/partials/nav.php" />
         <option value="$PROJECT_DIR$/app/views/partials/left_nav.php" />
         <option value="$PROJECT_DIR$/app/views/files.view.php" />
         <option value="$PROJECT_DIR$/app/views/important.view.php" />
         <option value="$PROJECT_DIR$/app/views/show.view.php" />
-        <option value="$PROJECT_DIR$/core/bootstrap.php" />
-        <option value="$PROJECT_DIR$/app/views/partials/right_nav.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/app/views/form2.view.php" />
         <option value="$PROJECT_DIR$/app/controllers/DocumentsController.php" />
-        <option value="$PROJECT_DIR$/app/models/User.php" />
-        <option value="$PROJECT_DIR$/app/controllers/AuthController.php" />
-        <option value="$PROJECT_DIR$/app/controllers/AdminsController.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/right_nav.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/core/bootstrap.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/nav.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/left_nav.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/partials/header.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/form2.view.php" />
         <option value="$PROJECT_DIR$/app/views/admin3.view.php" />
+        <option value="$PROJECT_DIR$/core/bootstrap.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/routes.php" />
+        <option value="&lt;26a1bb1b-63f4-4700-9dbf-d032ef291673&gt;/app/views/admin3.view.php" />
+        <option value="$PROJECT_DIR$/public/js/posts.js" />
+        <option value="$PROJECT_DIR$/app/views/admin/partials/bottom.php" />
+        <option value="$PROJECT_DIR$/public/css/admin_styles.css" />
+        <option value="$PROJECT_DIR$/public/js/libs/select2.min.js" />
+        <option value="$PROJECT_DIR$/public/css/libs/select2.min.css" />
+        <option value="$PROJECT_DIR$/app/views/admin/partials/footer.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/partials/top_panel.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/table.php" />
+        <option value="$PROJECT_DIR$/public/arrays.txt" />
+        <option value="$PROJECT_DIR$/public/test.html" />
+        <option value="$PROJECT_DIR$/app/views/admin/table.view.php" />
+        <option value="$PROJECT_DIR$/public/js/libs/jquery.dataTables.js" />
+        <option value="$PROJECT_DIR$/public/js/libs/jquery.dataTables.min.js" />
+        <option value="$PROJECT_DIR$/public/js/libs/datatables.min.js" />
+        <option value="$PROJECT_DIR$/app/views/admin/ajax.view.php" />
+        <option value="$PROJECT_DIR$/public/js/jquery.dataTables.min.js" />
+        <option value="$PROJECT_DIR$/app/views/admin/partials/header.php" />
+        <option value="$PROJECT_DIR$/app/models/User.php" />
+        <option value="$PROJECT_DIR$/app/views/partials/right_nav.php" />
+        <option value="$PROJECT_DIR$/app/views/partials/header.php" />
+        <option value="$PROJECT_DIR$/app/views/index.view.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/partials/sidebar.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/admin3.view.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/users.view.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/posts.view.php" />
+        <option value="$PROJECT_DIR$/app/views/partials/footer.php" />
+        <option value="$PROJECT_DIR$/app/controllers/AuthController.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/125910de-5f4d-4aff-a230-b13c7d3951f9/console.sql" />
+        <option value="$PROJECT_DIR$/app/controllers/AdminsController.php" />
+        <option value="$PROJECT_DIR$/core/database/QueryBuilder.php" />
       </list>
     </option>
   </component>
@@ -308,10 +790,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="114" />
-    <option name="y" value="45" />
-    <option name="width" value="1379" />
-    <option name="height" value="739" />
+    <option name="x" value="269" />
+    <option name="y" value="111" />
+    <option name="width" value="1455" />
+    <option name="height" value="819" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -328,6 +810,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -337,38 +821,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="intranet_test" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="intranet_test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="intranet_test" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="intranet_test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="intranet_test" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="composer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -432,18 +884,56 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intranet_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intranet_test" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intranet_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intranet_test" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="D:/themes/Bootstrap-Admin-Theme-3-master" />
+    <property name="last_opened_file_path" value="D:/themes/datatable" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="nodejs_interpreter_path" value="D:/VA/nodejs/NodeJSPortable/App/NodeJS/node" />
@@ -456,21 +946,22 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\css" />
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\js" />
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\images" />
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\css\libs" />
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\js\libs" />
+      <recent name="C:\xampp_5.3\htdocs\intranet_test\app\views\admin" />
       <recent name="C:\xampp_5.3\htdocs\intranet_test\public" />
       <recent name="C:\xampp_5.3\htdocs\intranet_test\core\HTML_BBCodeParser2" />
       <recent name="C:\xampp_5.3\htdocs\intranet_test\core\database" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\core" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\app\views" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\js" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\css" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\core\ckeditor" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\core" />
-      <recent name="C:\xampp_5.3\htdocs\intranet_test\public\js\libs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -612,59 +1103,48 @@
       <workItem from="1492754956481" duration="6874000" />
       <workItem from="1493024446258" duration="18267000" />
       <workItem from="1493100742213" duration="27549000" />
-      <workItem from="1493187215726" duration="5719000" />
+      <workItem from="1493187215726" duration="27501000" />
+      <workItem from="1493273144722" duration="18300000" />
+      <workItem from="1493359798716" duration="87000" />
+      <workItem from="1493360750087" duration="7643000" />
+      <workItem from="1493705703853" duration="23292000" />
+      <workItem from="1493791842614" duration="22409000" />
+      <workItem from="1493878323818" duration="23547000" />
+      <workItem from="1493964386542" duration="1185000" />
+      <workItem from="1493971809788" duration="11855000" />
+      <workItem from="1493993462176" duration="864000" />
+      <workItem from="1494310174712" duration="20387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364747000" />
+    <option name="totallyTimeSpent" value="516098000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="114" y="45" width="1379" height="739" extended-state="0" />
+    <frame x="269" y="111" width="1455" height="819" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14935558" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20470053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14935558" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32751092" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19928315" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17159277" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16200717" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25322214" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23723228" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2530466" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24599709" sideWeight="0.49702382" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23558484" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26523888" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26523888" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24404761" sideWeight="0.49702382" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1502463" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22413793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17159277" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39880952" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -679,173 +1159,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.lock">
+    <entry file="file://$PROJECT_DIR$/app/models/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/BBCodeParser2.ini">
+    <entry file="file://$PROJECT_DIR$/app/controllers/AdminController.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="185">
+          <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Folder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/public/images/calendar.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/about.view.php" />
-    <entry file="file://$PROJECT_DIR$/app/views/about-culture.view.php" />
-    <entry file="file://$PROJECT_DIR$/app/views/api.view.php" />
-    <entry file="file://$PROJECT_DIR$/app/views/contact.view.php" />
-    <entry file="file://$PROJECT_DIR$/app/views/bb.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/public/images/bg1.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/libs/ckeditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/ckeditor.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/ckeditor/lang/af.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/FilesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="32" column="85" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/ckeditor/samples/color.html" />
-    <entry file="file://$PROJECT_DIR$/public/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1024">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/left_nav.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/nav.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/documents_test.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/form.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/important.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/parser.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <marker date="1493024831186" expanded="true" signature="1040:1092" ph="..." />
-            <marker date="1493024831186" expanded="true" signature="1093:1094" ph="..." />
-            <marker date="1493024831186" expanded="true" signature="1093:1102" ph="..." />
-            <marker date="1493024831186" expanded="true" signature="1093:1111" ph="..." />
-            <marker date="1493024831186" expanded="true" signature="1130:1143" ph="..." />
-            <marker date="1493024831186" expanded="true" signature="1169:1408" ph="..." />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/public/images/Apis7.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/show.view.php">
@@ -855,161 +1196,321 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/test.view.php">
+    <entry file="file://$PROJECT_DIR$/app/views/admin/editors.view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/index.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="0" column="34" lean-forward="true" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="196" column="7" lean-forward="true" selection-start-line="196" selection-start-column="7" selection-end-line="196" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/documents.view.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-229">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/posts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/datatables/js/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="28" lean-forward="true" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/admin_styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/DocumentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="25" column="70" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/libs/select2.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="1248" lean-forward="false" selection-start-line="2" selection-start-column="1248" selection-end-line="2" selection-end-column="1248" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/libs/select2.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/form2.view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5610">
+          <caret line="330" column="17" lean-forward="false" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/partials/top_panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/tables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/arrays.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="3" lean-forward="false" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/database/Connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="77" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/table.view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="7" lean-forward="false" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/datatables/js/jquery.dataTables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1388842440000" expanded="true" signature="150003:150075" ph="..." />
+            <marker date="1388842440000" expanded="true" signature="150098:150165" ph="..." />
+            <marker date="1388842440000" expanded="true" signature="150209:150233" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/libs/jquery.dataTables.min.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/libs/datatables.min.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/libs/jquery.dataTables.js" />
+    <entry file="file://$PROJECT_DIR$/public/css/libs/jquery.dataTables.css" />
+    <entry file="file://$PROJECT_DIR$/public/test.html" />
+    <entry file="file://$PROJECT_DIR$/app/views/admin/ajax.view.php" />
+    <entry file="file://$PROJECT_DIR$/public/js/jquery.dataTables.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/jquery.dataTables.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users.view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/right_nav.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="57" lean-forward="false" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/partials/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/partials/bottom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/partials/header.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/files.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="39" />
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="12" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/admin_styles.css">
+    <entry file="file://$PROJECT_DIR$/app/views/partials/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/bootstrap.php">
+    <entry file="file://$PROJECT_DIR$/app/views/admin/partials/sidebar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="46" lean-forward="false" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="46" />
+        <state relative-caret-position="136">
+          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/form2.view.php">
+    <entry file="file://$PROJECT_DIR$/app/views/admin/admin3.view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="31" />
-          <folding>
-            <marker date="1493124840187" expanded="true" signature="19537:19551" ph="..." />
-            <marker date="1493124840187" expanded="true" signature="19622:19632" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/phroute/phroute/src/Phroute/RouteCollector.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        <state relative-caret-position="365">
+          <caret line="95" column="4" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/phroute/phroute/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="272">
-            <caret line="16" column="156" lean-forward="false" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="156" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/app/views/admin/posts.view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="377">
+          <caret line="101" column="13" lean-forward="false" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Admin.php">
+    <entry file="file://$PROJECT_DIR$/app/views/index.view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="331">
+          <caret line="87" column="10" lean-forward="false" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/AdminController.php">
+    <entry file="file://$PROJECT_DIR$/app/views/partials/footer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="297">
+          <caret line="39" column="21" lean-forward="true" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="39" />
+        <state relative-caret-position="595">
+          <caret line="52" column="88" lean-forward="false" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="45" column="96" lean-forward="false" selection-start-line="45" selection-start-column="96" selection-end-line="45" selection-end-column="96" />
+        <state relative-caret-position="11">
+          <caret line="207" column="20" lean-forward="false" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="20" />
           <folding>
-            <element signature="e#129#146#0#PHP" expanded="true" />
-            <marker date="1493190581885" expanded="true" signature="343:373" ph="SELECT * FRO... users" />
-            <marker date="1493190581885" expanded="true" signature="959:1010" ph="SELECT * FRO... users" />
-            <marker date="1493190581885" expanded="true" signature="959:1025" ph="SELECT * FRO... users" />
+            <marker date="1494323340041" expanded="true" signature="657:687" ph="SELECT * FRO... users" />
+            <marker date="1494323340041" expanded="true" signature="1232:1283" ph="SELECT * FRO... users" />
+            <marker date="1494323340041" expanded="true" signature="1232:1298" ph="SELECT * FRO... users" />
+            <marker date="1494323340041" expanded="true" signature="1631:1650" ph="SELECT * FRO... users" />
+            <marker date="1494323340041" expanded="true" signature="2020:2063" ph="SELECT id, r... roles" />
+            <marker date="1494323340041" expanded="true" signature="2660:2836" ph="INSERT INTO users... " />
+            <marker date="1494323340041" expanded="true" signature="2983:3043" ph="INSERT INTO users_folders... " />
+            <marker date="1494323340041" expanded="true" signature="3457:3633" ph="INSERT INTO users... " />
+            <marker date="1494323340041" expanded="true" signature="4126:4228" ph="UPDATE `user... " />
+            <marker date="1494323340041" expanded="true" signature="4322:4367" ph="DELETE FROM " />
+            <marker date="1494323340041" expanded="true" signature="4481:4541" ph="INSERT INTO users_folders... " />
+            <marker date="1494323340041" expanded="true" signature="4974:5076" ph="UPDATE `user... " />
+            <marker date="1494323340041" expanded="true" signature="5170:5215" ph="DELETE FROM " />
+            <marker date="1494323340041" expanded="true" signature="5521:5547" ph="UPDATE users... " />
+            <marker date="1494323340041" expanded="true" signature="5521:5566" ph="UPDATE users... " />
+            <marker date="1494323340041" expanded="true" signature="5521:5569" ph="UPDATE users... " />
+            <marker date="1494323340041" expanded="true" signature="5904:6396" ph="SELECT u.id,... users" />
+            <marker date="1494323340041" expanded="true" signature="5904:6426" ph="SELECT u.id,... users" />
+            <marker date="1494323340041" expanded="true" signature="6541:6554" ph="SELECT u.id,... users" />
+            <marker date="1494323340041" expanded="true" signature="6814:6847" ph="SELECT COUNT... users" />
+            <marker date="1494323340041" expanded="true" signature="7517:8019" ph="SELECT u.id,... users" />
+            <marker date="1494323340041" expanded="true" signature="9591:9595" ph="..." />
+            <marker date="1494323340041" expanded="true" signature="11901:11957" ph="SELECT * FRO... users" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/125910de-5f4d-4aff-a230-b13c7d3951f9/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        <state relative-caret-position="59">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="e#36#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/users.view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2037">
+          <caret line="175" column="21" lean-forward="false" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/AdminsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="e#135#152#0#PHP" expanded="true" />
           </folding>
@@ -1018,61 +1519,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/database/QueryBuilder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="163" column="57" lean-forward="true" selection-start-line="163" selection-start-column="57" selection-end-line="163" selection-end-column="57" />
+        <state relative-caret-position="122">
+          <caret line="41" column="99" lean-forward="false" selection-start-line="41" selection-start-column="99" selection-end-line="41" selection-end-column="99" />
           <folding>
-            <marker date="1493029457251" expanded="true" signature="208:592" ph="SELECT node.... nested_category" />
-            <marker date="1493029457251" expanded="true" signature="928:967" ph="SELECT * FRO... $" />
-            <marker date="1493029457251" expanded="true" signature="1231:1382" ph="SELECT d.id,... directories" />
-            <marker date="1493029457251" expanded="true" signature="1573:1689" ph="SELECT ${{$t... " />
-            <marker date="1493029457251" expanded="true" signature="1877:1938" ph="SELECT * FRO... files" />
-            <marker date="1493029457251" expanded="true" signature="2113:2144" ph="INSERT INTO " />
-            <marker date="1493029457251" expanded="true" signature="2685:2949" ph="SELECT node.... nested_category" />
-            <marker date="1493029457251" expanded="true" signature="3239:3302" ph="SELECT * FRO... mynested_category" />
-            <marker date="1493029457251" expanded="true" signature="3590:3643" ph="SELECT * FRO... mynested_category" />
-            <marker date="1493029457251" expanded="true" signature="3834:3883" ph="SELECT ${{$i... " />
-            <marker date="1493029457251" expanded="true" signature="4096:4212" ph="INSERT INTO posts... " />
-            <marker date="1493029457251" expanded="true" signature="4491:4510" ph="SELECT * FRO... posts" />
-            <marker date="1493029457251" expanded="true" signature="4678:4724" ph="SELECT * FRO... mynested_category" />
-            <marker date="1493029457251" expanded="true" signature="4972:5039" ph="SELECT * FRO... posts" />
-            <marker date="1493029457251" expanded="true" signature="5386:5533" ph="INSERT INTO files... " />
+            <marker date="1494334889412" expanded="true" signature="208:592" ph="SELECT node.... nested_category" />
+            <marker date="1494334889412" expanded="true" signature="928:967" ph="SELECT * FRO... $" />
+            <marker date="1494334889412" expanded="true" signature="1139:1243" ph="SELECT CONCA... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="1139:1289" ph="SELECT CONCA... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="1139:1293" ph="SELECT CONCA... " />
+            <marker date="1494334889412" expanded="true" signature="1139:1294" ph="SELECT CONCA... ${$table}" />
+            <marker date="1494334889412" expanded="true" signature="1139:1308" ph="SELECT CONCA... ${$table}" />
+            <marker date="1494334889412" expanded="true" signature="1139:1658" ph="SELECT CONCA... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="1139:1860" ph="SELECT CONCA... " />
+            <marker date="1494334889412" expanded="true" signature="1922:2073" ph="SELECT d.id,... directories" />
+            <marker date="1494334889412" expanded="true" signature="2264:2380" ph="SELECT ${{$t... " />
+            <marker date="1494334889412" expanded="true" signature="2568:2629" ph="SELECT * FRO... files" />
+            <marker date="1494334889412" expanded="true" signature="2804:2835" ph="INSERT INTO " />
+            <marker date="1494334889412" expanded="true" signature="3376:3640" ph="SELECT node.... nested_category" />
+            <marker date="1494334889412" expanded="true" signature="3932:3995" ph="SELECT * FRO... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="4283:4336" ph="SELECT * FRO... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="4527:4576" ph="SELECT ${{$i... " />
+            <marker date="1494334889412" expanded="true" signature="4790:4906" ph="INSERT INTO posts... " />
+            <marker date="1494334889412" expanded="true" signature="5186:5205" ph="SELECT * FRO... posts" />
+            <marker date="1494334889412" expanded="true" signature="5373:5419" ph="SELECT * FRO... mynested_category" />
+            <marker date="1494334889412" expanded="true" signature="5667:5734" ph="SELECT * FRO... posts" />
+            <marker date="1494334889412" expanded="true" signature="6067:6216" ph="INSERT INTO files... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/DocumentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="193" column="57" lean-forward="true" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/AdminsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin3.view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="94" column="91" lean-forward="true" selection-start-line="94" selection-start-column="91" selection-end-line="94" selection-end-column="101" />
-          <folding>
-            <marker date="1493192587975" expanded="false" signature="13265:13288" ph="..." />
-            <marker date="1493192587975" expanded="true" signature="19791:19805" ph="..." />
-            <marker date="1493192587975" expanded="true" signature="19876:19886" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="42" column="84" lean-forward="false" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
-          <folding />
         </state>
       </provider>
     </entry>
