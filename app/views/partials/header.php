@@ -10,6 +10,8 @@
     <title><?= $title?></title>
     <link href="<?php url()?>public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php url()?>public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
+          type="text/css"/>
     <link href="<?php url()?>public/css/styles.css" rel="stylesheet" type="text/css">
 
     <script src="<?php url()?>public/js/libs/jquery-2.2.4.min.js"></script>

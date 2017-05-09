@@ -20,7 +20,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-3">
-                            <button class="btn btn-primary btn-xs">Въведи</button>
+                            <button  id="user_login_form" class="btn btn-primary btn-xs">Въведи</button>
                         </div>
                     </div>
                 </fieldset>

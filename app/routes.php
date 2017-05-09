@@ -13,10 +13,16 @@ $router->get('Важно', array('App\Controllers\FilesController', 'important')
 // TEST ROUTES
 // TODO DELETE AFTER TESTS ENDS
 
-$router->get('admin', array('app\\controllers\\AdminsController', 'index'),
-    array('before' => 'auth', 'after' => 'authComplete'));
+$router->get('admin/home', array('app\\controllers\\AdminsController', 'index'),
+    array('before' => 'auth'));
 
-$router->get('logout',   array('app\controllers\AuthController', 'logout'));
+$router->get('admin/users', array('app\\controllers\\AdminsController', 'users'),
+    array('before' => 'auth'));
+
+$router->get('admin/posts', array('app\\controllers\\AdminsController', 'posts'),
+    array('before' => 'auth'));
+
+$router->get('admin/logout',   array('app\controllers\AuthController', 'logout'));
 
 $router->get('admin2',  array('App\Controllers\DocumentsController', 'admin2'));
 
@@ -38,8 +44,23 @@ $router->get('{folder}/Файлове/{id}', array('App\Controllers\FilesControl
 
 $router->get('{folder}', array('App\Controllers\DocumentsController', 'getFolder'));
 
+$router->get('admin/table', array('app\controllers\AdminsController', 'table'));
+
+
 
 /****** POST ROUTES *****************************************************************************************/
+
+$router->post('admin/table/get', array('app\controllers\AdminsController', 'tableGet'));
+
+$router->post('admin/users', array('app\\controllers\\AdminsController', 'createUser'),
+    array('before' => 'auth'));
+
+$router->post('admin/users/all', array('app\\controllers\\AdminsController', 'test_table'),
+    array('before' => 'auth'));
+
+$router->post('admin/users/delete/{id}', array('app\\controllers\\AdminsController', 'deActivateUser'),
+    array('before' => 'auth'));
+
 $router->post('auth', array('app\controllers\AuthController', 'login'));
 
 $router->post('view-post', array('App\Controllers\DocumentsController', 'previewPost'));

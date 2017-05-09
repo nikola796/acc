@@ -1,3 +1,4 @@
+<?php session_start()?>
 <?php $title = 'Интранет сървър'?>
 <?php require('partials/header.php') ?>
 
@@ -85,11 +86,5 @@
             </tr>
         </table>
     </div>
-
-
-
-
-
-
 
 <?php require('partials/footer.php') ?>
