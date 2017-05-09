@@ -62,12 +62,18 @@ class AdminsController
     {
         $user_data = $_POST;
     $user_info = $this->user->isUserExist($user_data);
-        if(count($user_info) === 0){
-            if($user_data['action'] == 'add') {
+
+        if($user_data['action'] == 'add') {
+            if(count($user_info) === 0) {
                 $access = $user_data['access'];
-                unset($user_data['action'],$user_data['id'],$user_data['access']);
+                unset($user_data['action'], $user_data['id'], $user_data['access']);
                 $result = $this->user->createUser($user_data, $access);
-                echo ($result == 1 ? 'Успешно създадохте нов потребител' : '');
+                echo($result == 1 ? 'Успешно създадохте нов потребител' : '');
+            } else if(count($user_info) === 1){
+                echo($user_info[0]['active'] == 0 ? 'Вече съществува деактивиран потребител с това потребителско име или с този мейл. Използвайте други данни, за да създадете нов потребител или активирайте този потребител от меню Потребители' : 'Вече съществува потребител с това потребителско име или с този мейл');
+            } else {
+                echo 'Съществуват повече от едни записа с това потребителско име или с този мейл';
+            }
             }
             elseif ($user_data['action'] == 'edit'){
                 $access = $user_data['access'];
@@ -75,11 +81,26 @@ class AdminsController
                 $result = $this->user->editUser($user_data, $access);
                 echo ($result == 1 ? 'Успешно редактирахте потребителя' : '');
             }
-        } else if(count($user_info) === 1){
-           echo ($user_info[0]['active'] == 0 ? 'Вече съществува деактивиран потребител с това потребителско име или с този мейл. Използвайте други данни, за да създадете нов потребител или активирайте този потребител от меню Потребители' : 'Вече съществува потребител с това потребителско име или с този мейл');
-        } else{
-            echo 'Съществуват повече от едни записа с това потребителско име или с този мейл';
-        }
+
+
+//        if(count($user_info) === 0){
+//            if($user_data['action'] == 'add') {
+//                $access = $user_data['access'];
+//                unset($user_data['action'],$user_data['id'],$user_data['access']);
+//                $result = $this->user->createUser($user_data, $access);
+//                echo ($result == 1 ? 'Успешно създадохте нов потребител' : '');
+//            }
+//            elseif ($user_data['action'] == 'edit'){
+//                $access = $user_data['access'];
+//                unset($user_data['pass'], $user_data['action'],$user_data['access']);
+//                $result = $this->user->editUser($user_data, $access);
+//                echo ($result == 1 ? 'Успешно редактирахте потребителя' : '');
+//            }
+//        } else if(count($user_info) === 1){
+//           echo ($user_info[0]['active'] == 0 ? 'Вече съществува деактивиран потребител с това потребителско име или с този мейл. Използвайте други данни, за да създадете нов потребител или активирайте този потребител от меню Потребители' : 'Вече съществува потребител с това потребителско име или с този мейл');
+//        } else{
+//            echo 'Съществуват повече от едни записа с това потребителско име или с този мейл';
+//        }
 
 
         

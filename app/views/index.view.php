@@ -1,4 +1,3 @@
-<?php session_start()?>
 <?php $title = 'Интранет сървър'?>
 <?php require('partials/header.php') ?>
 

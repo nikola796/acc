@@ -15,6 +15,7 @@ class AuthController
 
         if(isset($_SESSION['username']) && $_SESSION['username'] == $_POST['username']){
             echo 'Logged';
+           // redirect('admin/home');
         } else{
             $user = User::userLogin();
             //echo '<pre>' . print_r($user, true) . '</pre>';die();
@@ -26,7 +27,7 @@ class AuthController
                 $_SESSION['department'] = $user[0]->department;
                 $_SESSION['section'] = $user[0]->section;
                 // var_dump( $_SESSION['is_logged']);
-                //redirect('admin/home');
+
                 echo 'Logged';
             } else{
                 echo 'Подадената от Вас комбинация потребител-парола не е открита';

@@ -270,14 +270,17 @@
                             buttons: [{
                                 label: 'Разбрах',
                                 action: function () {
-                                    location.reload();
+                                    window.location.reload(true);
                                 }
                             }]
 
                         });
                     }
                 });
+                //location.reload();
             });
+
+
 
 /***************** EDIT USER *****************************************************/
             $(document).on('click', '.user_id', function () {
