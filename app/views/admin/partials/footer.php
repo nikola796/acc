@@ -2,7 +2,7 @@
     <div class="container">
 
         <div class="copy text-center">
-            Copyright 2017 <a href='customs.bg'>Агенция Митници</a>
+            Copyright 2017 <a href='http://customs.bg/'>Агенция Митници</a>
         </div>
 
     </div>

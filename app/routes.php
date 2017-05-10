@@ -75,7 +75,7 @@ $router->post('parser', function(){
     return view('parser');
 });
 
-$router->post('create-folder', array('App\Controllers\DocumentsController', 'createFolder'));
+$router->post('admin/create-folder', array('App\Controllers\DocumentsController', 'createFolder'));
 
 $router->post('admin', array('App\Controllers\DocumentsController', 'admin_store'));
 

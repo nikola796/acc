@@ -188,7 +188,7 @@ class DocumentsController
 
         $user = User::getUser(1);
 
-        $folders = App::get('database')->getUsersFolders($user[0]->section);
+        $folders = App::get('database')->getUsersFolders(1);
 
 
         return view('form2', compact('user', 'folders'));

@@ -51,12 +51,19 @@ class Folder
         } else {
 
             try {
-                $stmt = $db->query("LOCK TABLE mynested_category WRITE");
-                $stmt = $db->query("SELECT @myRight := rgt FROM mynested_category WHERE parent_id = {$_POST['parent']}");
-                $stmt = $db->query("UPDATE mynested_category SET rgt = rgt + 2 WHERE rgt > @myRight");
-                $stmt = $db->query("UPDATE mynested_category SET lft = lft + 2 WHERE lft > @myRight");
-                $stmt = $db->prepare("INSERT INTO mynested_category(parent_id,name, lft, rgt,dep) VALUES(?, ?, @myRight + 1, @myRight + 2, 1)");
-                $stmt->execute(array($_POST['parent'], $_POST['name']));
+/**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
+                $stmt = $db->query("LOCK TABLE nested_categorys WRITE");
+                $stmt = $db->query("SELECT @myRight := rgt, @myDep := dep FROM nested_categorys WHERE category_id = {$_POST['parent']}");
+                $stmt = $db->query("UPDATE nested_categorys SET rgt = rgt + 2 WHERE rgt >= @myRight");
+                $stmt = $db->query("UPDATE nested_categorys SET lft = lft + 2 WHERE lft >= @myRight");
+                $stmt = $db->prepare("INSERT INTO nested_categorys(name, lft, rgt,dep,parent_id) VALUES(?, @myRight, @myRight + 1, @myDep, ?)");
+
+//                $stmt = $db->query("LOCK TABLE nested_categorys WRITE");
+//                $stmt = $db->query("SELECT @myLeft := lft, @myDep := dep FROM nested_categorys WHERE category_id = {$_POST['parent']}");
+//                $stmt = $db->query("UPDATE nested_categorys SET rgt = rgt + 2 WHERE rgt >= @myLeft");
+//                $stmt = $db->query("UPDATE nested_categorys SET lft = lft + 2 WHERE lft >= @myRight");
+//                $stmt = $db->prepare("INSERT INTO nested_categorys(name, lft, rgt,dep) VALUES(?, @myLeft + 1, @myLeft + 2, @myDep)");
+                $stmt->execute(array($_POST['name'], $_POST['parent']));
                 $stmt = $db->query("UNLOCK TABLES");
 
                 $db->commit();

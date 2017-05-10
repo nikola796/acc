@@ -39,7 +39,7 @@ class QueryBuilder
 
     public function selectFolders($table)
     {
-        $stmt = $this->pdo->prepare('SELECT CONCAT( REPEAT( "&nbsp; &nbsp", COUNT( parent.name ) -1) , node.name ) AS name, node.category_id
+        $stmt = $this->pdo->prepare('SELECT CONCAT( REPEAT( "* ", COUNT( parent.name ) -1) , node.name) AS name, node.category_id
                                               FROM ' . $table . ' AS node, ' . $table . ' AS parent
                                               WHERE node.lft
                                               BETWEEN parent.lft

@@ -38,8 +38,8 @@ class AdminsController
 
         $departments = App::get('database')->selectAll('departments');
 
-        $folders = App::get('database')->selectFolders('mynested_category');
-
+        $folders = App::get('database')->selectFolders('nested_categorys');
+//die(view($folders));
         $users_roles_access = $this->user->getUsersRolesAccess();
 
         if(isset($_POST['param'])){
@@ -55,7 +55,8 @@ class AdminsController
 
     public function posts()
     {
-        return view('admin/posts');
+        $folders = App::get('database')->selectFolders('nested_categorys');
+        return view('admin/posts', compact('folders'));
     }
 
     public function createUser()

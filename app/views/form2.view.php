@@ -1,5 +1,6 @@
 <?php
-session_start();
+//die('<pre>' . print_r($folders, true) . '</pre>');
+//session_start();
 
 if(isset($_SESSION['is_logged']) && $_SESSION['is_logged'] === true) {
 
@@ -290,7 +291,7 @@ if(isset($_SESSION['is_logged']) && $_SESSION['is_logged'] === true) {
                             dialog.setClosable(false);
                             $.ajax({
                                 method: 'post',
-                                url: 'create-folder',
+                                url: 'admin/create-folder',
                                 data: {
                                     name: $('#newFolderName').val(),
                                     parent: $('#perentFolder').val()

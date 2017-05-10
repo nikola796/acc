@@ -44,7 +44,6 @@
                                         <div class="form-group">
                                             <label for="folderName">Място на новата папка</label>
                                             <select name="folder" id="perentFolder" class="form-control">
-                                                <option value="0">Главна директория</option>
                                                 <?php foreach ($folders as $folder): ?>
 
                                                     <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -66,7 +65,6 @@
 
                     <div id="perentFolders" class="form-group">
                         <select name="folder" class="form-control" id="folder">
-                            <option value="0">Главна директория</option>
                             <?php foreach ($folders as $folder): ?>
                                 <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
                             <?php endforeach; ?>
