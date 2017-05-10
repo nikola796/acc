@@ -46,6 +46,10 @@ $router->get('{folder}', array('App\Controllers\DocumentsController', 'getFolder
 
 $router->get('admin/table', array('app\controllers\AdminsController', 'table'));
 
+$router->get('admin/calendar', function(){
+    return view('admin/calendar');
+});
+
 
 
 /****** POST ROUTES *****************************************************************************************/
