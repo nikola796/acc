@@ -61,7 +61,7 @@ class User
 
         $db = Connection::make($conf['database']);
 
-        $stmt = $db->prepare('SELECT * FROM users WHERE name=:name AND pass=:pass AND active = 1');
+        $stmt = $db->prepare('SELECT * FROM users WHERE name=:name AND pass=:pass');
         $stmt->execute(array('name' => $name_input, 'pass' => static::saltPassword($user_password)));
         $user = $stmt->fetchAll(PDO::FETCH_CLASS);
 
