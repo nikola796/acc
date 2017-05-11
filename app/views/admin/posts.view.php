@@ -84,7 +84,7 @@
                     <div class="spacer-bg"></div>
                     <div class="text-center">
                         <!--                <button type="submit" class="btn btn-default" id="view_post" name="view">Прегледай</button>-->
-                        <button type="submit" class="btn btn-primary" name="save">Запази</button>
+                        <button type="submit" class="btn btn-primary" name="save" value="1">Запази</button>
                     </div>
                 </form>
             </div>
@@ -98,5 +98,9 @@
     <script src="<?php url() ?>/public/js/posts.js"></script>
 <script>
     $('#posts').addClass('current')
+//    $(document).on('submit', 'form', function(e){
+//        e.preventDefault()
+//        console.log('Form is Submitted')
+//    })
 </script>
 <?php require("partials/bottom.php");

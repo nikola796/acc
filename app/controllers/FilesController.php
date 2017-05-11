@@ -26,10 +26,10 @@ class FilesController
     {
         $folders = App::get('database')->selectSubFolders($id);
 
-        $posts = App::get('database')->getPosts(array('department' => 1, 'directory' => $id));
+        $posts = App::get('database')->getPosts(array('department' => $folders[0]->dep, 'directory' => $id));
 
-        $files = App::get('database')->selectAllFiles($id);
-
+        $files = App::get('database')->selectAllFiles(array( 'dep' => $folders[0]->dep, 'directory' => $id));
+//die( '<pre>' . print_r($files, true) . '</pre>');
         return view('files', compact('folders', 'files', 'current_folder', 'posts'));
 
     }

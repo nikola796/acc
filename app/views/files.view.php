@@ -38,23 +38,27 @@
 
 <?php foreach ($files as $only_files): ?>
 
-    <?php if ($only_files->post_id == null): ?>
-        <h5>Файлове към <?= $current_folder ?></h5>
-
-
-        <ul>
-
-            <?php foreach ($files as $file): ?>
-                <?php if ($file->post_id === null): ?>
-                    <li><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
-                    </li>
-                <?php endif; ?>
-            <?php endforeach ?>
-        </ul>
-        <hr />
-    <?php endif ?>
+    <?php
+    if ($only_files->post_id == null) {
+        $msg = '<h5>Файлове към ' . $current_folder . '</h5>';
+        break;
+    } else{
+        $msg = '';
+    }
+    ?>
 
 <?php endforeach ?>
+<?php if(strlen($msg) > 0):?>
+    <?= $msg ?>
+    <ul>
 
-
+        <?php foreach ($files as $file): ?>
+            <?php if ($file->post_id === null): ?>
+                <li><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach ?>
+    </ul>
+    <hr />
+<?php endif?>
 <?php require 'partials/footer.php';

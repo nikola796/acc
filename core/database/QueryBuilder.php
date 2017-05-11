@@ -68,11 +68,11 @@ class QueryBuilder
 
     }
 
-    public function selectAllFiles($id)
+    public function selectAllFiles($params)
     {
 
-        $stmt = $this->pdo->prepare("SELECT * FROM files WHERE directory = ? and department_id = 1 ");
-        $stmt->execute(array($id));
+        $stmt = $this->pdo->prepare("SELECT * FROM files WHERE directory = :directory AND department_id = :dep ");
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
     }
@@ -129,7 +129,8 @@ ORDER BY node.lft;');
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
 //die(var_dump($dep));
-        $stmt = $this->pdo->prepare("SELECT * FROM mynested_category WHERE dep = ? AND parent_id = 0");
+        $stmt = $this->pdo->query("SELECT @Category_id := category_id FROM nested_categorys WHERE dep = {$dep} AND parent_id = 0");
+        $stmt = $this->pdo->prepare("SELECT * FROM nested_categorys WHERE dep = ? AND parent_id = @Category_id");
         $stmt->execute(array($dep));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -138,7 +139,7 @@ ORDER BY node.lft;');
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
 //die(var_dump($dep));
-        $stmt = $this->pdo->prepare("SELECT * FROM `mynested_category` where parent_id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM `nested_categorys` where parent_id = ?");
         $stmt->execute(array($parent));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -146,18 +147,27 @@ ORDER BY node.lft;');
     public function getId($id, $name, $table)
     {
 
-        $stmt = $this->pdo->prepare("SELECT {$id} from {$table} where name = '{$name}'");
-        $stmt->execute();
+        $stmt = $this->pdo->prepare("SELECT {$id} from {$table} where name = :name");
+        $stmt->execute(array('name' => $name));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
     }
 
-    public function insertPost($text, $directory, $files = null)
+    public function getFolderDepartment($id)
+    {
+
+        $stmt = $this->pdo->prepare("SELECT dep from nested_categorys where category_id = :id");
+        $stmt->execute(array('id' => $id));
+        $res = $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $res[0]->dep;
+    }
+
+    public function insertPost($params)
     {
         try {
-            $stmt = $this->pdo->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when) VALUES(?, ?, ?, 1, 1, ' . time() . ')');
+            $stmt = $this->pdo->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when) VALUES(:text, :file, :directory_id, :department_id, '.$_SESSION['user_id'].', ' . time() . ')');
 
-            $stmt->execute(array($text, $files, $directory));
+            $stmt->execute($params);
 
             return $this->pdo->lastInsertId();;
 
@@ -209,12 +219,12 @@ ORDER BY node.lft;');
     public function saveFile($file = array())
     {
         $sql = 'INSERT INTO files (name, label, added_from, added_when, department_id, directory, post_id)
-                  VALUES(?, ?, 1, ' . time() . ', 1, ?, ?)';
+                  VALUES(?, ?, '.$_SESSION['user_id'].', ' . time() . ', ?, ?, ?)';
 
         $stmt = $this->pdo->prepare($sql);
 
         foreach ($file as $f) {
-            $stmt->execute(array($f['name'], $f['label'], $f['folder'], $f['post_id']));
+            $stmt->execute(array($f['name'], $f['label'], $f['dep_id'], $f['folder'], $f['post_id']));
         }
         //$stmt->execute($file);
 

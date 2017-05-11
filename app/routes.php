@@ -81,6 +81,8 @@ $router->post('admin', array('App\Controllers\DocumentsController', 'admin_store
 
 $router->post('admin2', array('App\Controllers\DocumentsController', 'admin_store2'));
 
+$router->post('admin/posts', array('App\Controllers\DocumentsController', 'admin_store2'));
+
 $router->post('bb_test', array('App\Controllers\DocumentsController', 'bb_store'));
 
 

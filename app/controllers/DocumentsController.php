@@ -53,15 +53,15 @@ class DocumentsController
 
         $dep_id = App::get('database')->getId('id', $dep, 'departments');
 
-
+        //die(var_dump($dep_id));
         //$posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
         $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
         //dd($posts);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
 
-       // $files = App::get('database')->selectAllFiles($id);
-        $files = App::get('database')->selectAllFiles(0);
+        // $files = App::get('database')->selectAllFiles($id);
+        $files = App::get('database')->selectAllFiles(array('directory' => 0, 'dep' => $dep_id));
 
         // $documents = App::get('database')->selectDirectories($id);
         $current_folder = $dep;
@@ -155,15 +155,18 @@ class DocumentsController
 
     public function admin_store2()
     {
-
+//        echo '<pre>' . print_r($_POST, true) . '</pre>';
+//        var_dump(intval($_FILES['userfile']));
+//        die();
         $response = array();
 
         /***************** CHECK IS USER CREATE POST **********************/
         if (!empty($_POST['text'])) {
-
-            $post_id = $this->savePost();
+            $folder_id = intval($_POST['folder']);
+            $department_id = App::get('database')->getFolderDepartment($folder_id);
+            //die(var_dump($department_id));
+            $post_id = $this->savePost(array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id));
             $response['new_post'] = $post_id;
-
         }
 
         /*** UPLOAD FILE ***/
@@ -173,9 +176,9 @@ class DocumentsController
 
         }
         foreach ($response as $res) {
-          //  echo $res;
+            //  echo $res;
         }
-        redirect('admin2');
+        redirect('posts');
 
     }
 
@@ -222,6 +225,7 @@ class DocumentsController
             $files = $_FILES['userfile'];
             $files['label'] = $_POST['label'];
             $files['folder'] = $_POST['folder'];
+            $files['dep'] =  App::get('database')->getFolderDepartment($_POST['folder']);
 
             foreach ($files as $k => $f) {
 
@@ -231,6 +235,7 @@ class DocumentsController
                         $narr[$kk][$k] = $v;
                         $narr[$kk]['folder'] = $files['folder'];
                         $narr[$kk]['post_id'] = $post_id;
+                        $narr[$kk]['dep_id'] = $files['dep'];
 
                     }
                 }
@@ -311,13 +316,15 @@ class DocumentsController
 
     /**
      * INSERT USER`S POST INTO DB
+     * @param $params
+     * @return
      */
-    private function savePost()
+    private function savePost($params)
     {
 
         if (isset($_POST['save'])) {
 
-            $id = App::get('database')->insertPost($_POST['text'], $_POST['folder'], intval($_FILES['userfile']));
+            $id = App::get('database')->insertPost($params);
 
         }
         return $id;

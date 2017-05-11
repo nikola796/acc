@@ -213,7 +213,7 @@ class User
                 LEFT JOIN departments AS d ON ( u.department = d.id )
                 LEFT JOIN roles AS r ON ( u.role = r.id )
                 LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
-                LEFT JOIN mynested_category AS f ON ( f.category_id = uf.folder_id )';
+                LEFT JOIN nested_categorys AS f ON ( f.category_id = uf.folder_id )';
 
         if (!isset($_POST['param']) || $_POST['param'] !== 'all') {
             $sql .= ' WHERE u.active = 1 ';
@@ -257,7 +257,7 @@ class User
                 LEFT JOIN departments AS d ON ( u.department = d.id )
                 LEFT JOIN roles AS r ON ( u.role = r.id )
                 LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
-                LEFT JOIN mynested_category AS f ON ( f.category_id = uf.folder_id )';
+                LEFT JOIN nested_categorys AS f ON ( f.category_id = uf.folder_id )';
 
         if (empty($requestData['columns'][3]['search']['value'])) {   //name
             $sql .= " WHERE u.active = 1 ";
@@ -306,7 +306,12 @@ class User
             $nestedData[] = $row["email"];
             $nestedData[] = $row["dep"]. '<input type="hidden" class="dep_id" name="dep_id" value="'.$row["dep_id"].'" />';
             $nestedData[] = $row["role"]. '<input type="hidden" class="role_id" name="role_id" value="'.$row["role_id"].'" />';
-            $nestedData[] = $row["access"]. '<input type="hidden" class="access_id" name="access_id" value="'.$row["access_id"].'" />';
+            if($row["role_id"] == 1){
+                $nestedData[] = 'Всички папка';
+            } else{
+                $nestedData[] = $row["access"]. '<input type="hidden" class="access_id" name="access_id" value="'.$row["access_id"].'" />';
+            }
+
             if($row['active'] == 1){
                 $nestedData[] =  'Активен';
             } else{

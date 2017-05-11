@@ -1,4 +1,5 @@
 <?php require('partials/header.php') ?>
+
     <style>
         #select2-id {
             width: 100%;
@@ -64,9 +65,9 @@
                                 <select name="folder[]" id="folder" class="form-control" multiple="multiple"
                                         style="width: 100%">
                                     <option></option>
-                                    <?php foreach ($folders as $folder): ?>
-                                        <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
-                                    <?php endforeach; ?>
+<!--                                    --><?php //foreach ($folders as $folder): ?>
+<!--                                        <option value="--><?//= $folder->category_id ?><!--">--><?//=(strpos($folder->name, '*') !== false ? 'tt'.$folder->name : '<strong>rr'.$folder->name.'</strong>')?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -102,6 +103,7 @@
                     </div>
 
                     <div class="panel-body">
+                        <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
                         <table id="example" class="table table-striped table-bordered dataTable" border="0" cellspacing="0" cellpadding="0" aria-describedby="example_info">
                             <div>
                                 <label>
@@ -151,6 +153,9 @@
                     </div>
                 </div>
             </div>
+
+
+
         </div>
 
     </div>
@@ -161,18 +166,29 @@
 
     <link href="<?php url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
+<!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+<!---->
+<!--    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" media="screen">-->
+
     <script src="<?php url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
 
     <script src="<?php url() ?>public/datatables/dataTables.bootstrap.js"></script>
 
 <!--    <script src="--><?php //url() ?><!--public/js/tables.js"></script>-->
-
+<!--    <script src="//code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>-->
     <script src="<?php url() ?>public/js/libs/select2.min.js"></script>
 
     <script src="<?php url() ?>public/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(document).ready(function () {
+
+            $(document).ready(function() {
+                $('#example_test').DataTable();
+            } );
+
             $('#users').addClass('current')
             var dataTable = $('#example').DataTable( {
                 "processing": true,
@@ -208,8 +224,19 @@
             $('#department').select2({
                 placeholder: "Избери звено"
             });
+
+            var data = [
+                <?php foreach ($folders as $folder): ?>
+                { id: <?=$folder->category_id?>, text: '<?php echo (strpos($folder->name, '*') === false ? '<strong>'.$folder->name.'</strong>' : '<span>'.$folder->name.'</span>')?>' },
+                <?php endforeach;?>
+                ];
+
+
             $('#folder').select2({
-                placeholder: "Задай достъп"
+                placeholder: "Задай достъп",
+                data: data,
+                templateResult: function (d) { return $(d.text); },
+                templateSelection: function (d) { return $(d.text); },
             });
 
 
@@ -371,10 +398,6 @@
                     }]
 
                 });
-//                if(button_class.search('activate') > 0){
-//                    console.log(button_class);
-//                }
-                //console.log(button_class);
             })
 
 
@@ -387,30 +410,6 @@
                     console.log('Active')
                    // param = 'active';
                 }
-
-
-
-//                var param;
-//                if($('#deactivated_users:checkbox:checked').length > 0){
-//                    param = 'all';
-//                } else {
-//
-//                    param = 'active';
-//                }
-//                $.ajax({
-//                    type: 'POST',
-//                    url: 'users/all',
-//                    data: {param: param}
-//                }).done(function (data) {
-//                    $.each(data.users_roles_access, function(k, v){
-//
-//                        console.log(v.name);
-//                        console.log(v.email);
-//                        console.log(v.dep);
-//                        console.log(v.role);
-//                        console.log(v.access);
-//                    });
-//                })
 
             })
 
