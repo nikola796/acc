@@ -53,16 +53,18 @@ class DocumentsController
 
         $dep_id = App::get('database')->getId('id', $dep, 'departments');
 
-        //die(var_dump($dep_id));
+        //die(var_dump($dep_id[0]->id));
         //$posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
-        $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
+        $dep_folder_id = App::get('database')->getDepartmentFolderId($dep_id[0]->id);
+        //dd($dep_folder_id);
+        $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id, 'directory' => $dep_folder_id[0]->category_id));
         //dd($posts);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
 
         // $files = App::get('database')->selectAllFiles($id);
-        $files = App::get('database')->selectAllFiles(array('directory' => 0, 'dep' => $dep_id));
-
+        $files = App::get('database')->selectAllFiles(array('directory' =>  $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->id,));
+        //dd($files);
         // $documents = App::get('database')->selectDirectories($id);
         $current_folder = $dep;
         //return view('show', compact('folders', 'dep', 'posts'));

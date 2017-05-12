@@ -1,6 +1,6 @@
 <?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
-<div class="text-center"><h4>Дирекции</h4><hr /></div>
+<div class="text-center"><h4>Дирекции, митници и самостоятелни звена</h4><hr /></div>
 
 
 <ul style="list-style-type: none;line-height: 200%;">

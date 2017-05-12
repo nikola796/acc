@@ -196,6 +196,14 @@ ORDER BY node.lft;');
 
     }
 
+    public function getDepartmentFolderId($dep)
+    {
+        $stmt = $this->pdo->prepare('SELECT category_id FROM nested_categorys WHERE dep = ? AND parent_id = 0');
+        $stmt->execute(array($dep));
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function getPosts($values = array())
     {
         //die(var_dump($values));
