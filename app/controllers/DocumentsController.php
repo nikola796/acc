@@ -259,7 +259,7 @@ class DocumentsController
 // loop and process files
             for ($i = 0; $i < count($filenames); $i++) {
                 $ext = explode('.', basename($filenames[$i]));
-                $target = "C:\\xampp_5.3\\htdocs\\intranet_test\\public\\files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
+                $target = "/var/www/html/intranet_test/public/files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
 
                 if (move_uploaded_file($files['tmp_name'][$i], $target)) {
                     $success_upload = true;
