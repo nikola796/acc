@@ -1,9 +1,11 @@
 <?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
+
+
 <div class="text-center"><h4>Дирекции, митници и самостоятелни звена</h4><hr /></div>
 
 
-<ul style="list-style-type: none;line-height: 200%;">
+<ol style="line-height: 250%;">
 
     <?php foreach ($departments as $department): ?>
 
@@ -11,7 +13,7 @@
 
     <?php endforeach;?>
 
-</ul>
+</ol>
 
 
 <?php require('partials/footer.php') ?>
