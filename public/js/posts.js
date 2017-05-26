@@ -64,7 +64,10 @@ $('#mod').on('click', function (dialog) {
                             BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_SUCCESS,
                                 title: 'Успех',
-                                message: 'Успешно създадохте новата папка!'
+                                message: 'Успешно създадохте нова папка!',
+                                onhide: function(dialogRef){
+                                    window.location.reload(true);
+                                }
                             });
                             $button.enable();
                             $button.stopSpin();
@@ -77,7 +80,7 @@ $('#mod').on('click', function (dialog) {
                     BootstrapDialog.alert({
                         type: BootstrapDialog.TYPE_WARNING,
                         title: 'Внимание',
-                        message: 'Не сте въвели нищо в полето за име на новата папка!'
+                        message: 'Не сте въвели име на новата папка!'
                     });
                 }
             }
@@ -112,7 +115,7 @@ $(document).on('click', '#createFolder', function () {
         BootstrapDialog.alert({
             type: BootstrapDialog.TYPE_WARNING,
             title: 'Внимание',
-            message: 'Не сте въвели нищо в полето за име на новата папка!'
+            message: 'Не сте въвели име на новата папка!'
         });
     }
 
