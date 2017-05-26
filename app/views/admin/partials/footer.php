@@ -1,3 +1,4 @@
+
 <footer>
     <div class="container">
 
@@ -17,6 +18,8 @@
 <script src="<?php url() ?>public/js/libs/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php url() ?>public/js/libs/bootstrap-dialog.js" type="text/javascript"></script>
 <script src="<?php url() ?>public/ckeditor/ckeditor.js"></script>
+
+<script src="<?php url() ?>public/js/libs/select2.min.js"></script>
 
 <script src="<?php url()?>/public/ckeditor/ckeditor.js"></script>
 <script src="<?php url()?>/public/ckeditor/adapters/jquery.js"></script>

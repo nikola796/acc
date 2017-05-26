@@ -224,9 +224,21 @@ ORDER BY node.lft;');
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function getFileName($files)
+    {
+        $stmt = $this->pdo->prepare('SELECT name FROM files WHERE id = :id');
+        foreach ($files as $file_id){
+            $stmt->execute(array('id' => intval($file_id)));
+            $res[] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return $res;
+
+    }
+
     public function saveFile($file = array())
     {
-        $sql = 'INSERT INTO files (name, label, added_from, added_when, department_id, directory, post_id)
+        $sql = 'INSERT INTO files (name, label, added_from, file_added_when, department_id, directory, post_id)
                   VALUES(?, ?, '.$_SESSION['user_id'].', ' . time() . ', ?, ?, ?)';
 
         $stmt = $this->pdo->prepare($sql);

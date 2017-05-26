@@ -65,7 +65,9 @@ div.list-group a:visited {
 }
 
 .spacer-bg {
+    height:5%;
     margin: 20px;
+    border:1px solid red;
 }
 
 .spacer-sm {

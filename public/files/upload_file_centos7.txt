@@ -1,0 +1,55 @@
+﻿SELinux is preventing /usr/sbin/httpd from write access on the directory images.
+
+*****  Plugin httpd_write_content (92.2 confidence) suggests   ***************
+
+If you want to allow httpd to have write access on the images directory
+Then you need to change the label on 'images'
+Do
+# semanage fcontext -a -t httpd_sys_rw_content_t 'images'
+# restorecon -v 'images'
+
+*****  Plugin catchall_boolean (7.83 confidence) suggests   ******************
+
+If you want to allow httpd to unified
+Then you must tell SELinux about this by enabling the 'httpd_unified' boolean.
+You can read 'None' man page for more details.
+Do
+setsebool -P httpd_unified 1
+
+*****  Plugin catchall (1.41 confidence) suggests   **************************
+
+If you believe that httpd should be allowed write access on the images directory by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# ausearch -c 'httpd' --raw | audit2allow -M my-httpd
+# semodule -i my-httpd.pp
+
+Additional Information:
+Source Context                system_u:system_r:httpd_t:s0
+Target Context                unconfined_u:object_r:httpd_sys_content_t:s0
+Target Objects                images [ dir ]
+Source                        httpd
+Source Path                   /usr/sbin/httpd
+Port                          <Unknown>
+Host                          localhost.dev7
+Source RPM Packages           
+Target RPM Packages           
+Policy RPM                    selinux-policy-3.13.1-102.el7_3.13.noarch
+Selinux Enabled               True
+Policy Type                   targeted
+Enforcing Mode                Enforcing
+Host Name                     localhost.dev7
+Platform                      Linux localhost.dev7 3.10.0-514.6.1.el7.x86_64 #1
+                              SMP Wed Jan 18 13:06:36 UTC 2017 x86_64 x86_64
+Alert Count                   156
+First Seen                    2017-02-10 14:48:43 EET
+Last Seen                     2017-05-12 14:41:54 EEST
+Local ID                      664de18e-952f-474a-b198-f7b8756e80dc
+
+Raw Audit Messages
+type=AVC msg=audit(1494589314.645:450): avc:  denied  { write } for  pid=5618 comm="httpd" name="images" dev="dm-0" ino=16777285 scontext=system_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:httpd_sys_content_t:s0 tclass=dir
+
+
+Hash: httpd,httpd_t,httpd_sys_content_t,dir,write

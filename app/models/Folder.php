@@ -18,6 +18,7 @@ class Folder
 
     public static function createFolder()
     {
+        //die(var_dump($_POST['parent']));
 //TODO GET USER_ID ADN DEPARTMENT FROM SESSION AND PUT IN SQL QUERY ABOVE
         $conf = App::get('config');
 //die(var_dump($_POST['parent']));
@@ -28,10 +29,10 @@ class Folder
         if ($_POST['parent'] == 0) {
 
             try {
-                $stmt = $db->prepare('SELECT max(rgt) as rgt FROM mynested_category');
+                $stmt = $db->prepare('SELECT max(rgt) as rgt FROM nested_categorys');
                 $stmt->execute();
                 $res = $stmt->fetchAll(PDO::FETCH_CLASS);
-                $sql = 'INSERT INTO mynested_category (parent_id, name, lft, rgt, dep) VALUES(?,?, ?, ?, 1)';
+                $sql = 'INSERT INTO nested_categorys (parent_id, name, lft, rgt, dep) VALUES(?,?, ?, ?, 4)';
                 //die(var_dump($sql));
                 $stmt = $db->prepare($sql);
 

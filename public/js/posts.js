@@ -49,11 +49,11 @@ $('#mod').on('click', function (dialog) {
                             parent: $('#perentFolder').val()
                         }
                     }).done(function (data) {
-                        console.log(typeof data);
+                        console.log(data);
                         if (data !== 'success') {
                             BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_WARNING,
-                                title: 'Мнимание',
+                                title: 'Внимание',
                                 message: 'Възникна проблем с Вашата заявка!'
                             });
                             $button.enable();
@@ -119,7 +119,10 @@ $(document).on('click', '#createFolder', function () {
 })
 
 $(document).on('click', 'span.glyphicon-remove', function () {
-    $(this).parent('div').remove();
+    var removed_file_name = $(this).parent('div').find('.file_name_txt').text();
+    var removed_file = $(this).parent('div').find('input.attached_files_id').val();
+    $(this).parent('div').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" /><input type="hidden" name="removed_file_name[]" value="'+ removed_file_name +'" />');
+   // $('#attachedFiles').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" />');
 })
 $(document).on('click', '#addAnotherFile', function () {
     $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
@@ -196,6 +199,7 @@ function handleFiles(files) {
 
             remove_span.addEventListener("click", function (e) {
                 $(this).parents('li').remove();
+                //console.log('TEST');
                 if ($('#fileList li').length === 0) {
                     $('#fileList').hide();
                 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dataset xmlns="http://developer.cognos.com/schemas/xmldata/1/"
  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
@@ -27,4 +28,35 @@
 			<value>2</value>
 		</row>		
 	</data>
+=======
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dataset xmlns="http://developer.cognos.com/schemas/xmldata/1/"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+	<metadata>
+		<item name="AsOfDate" type="xs:string" length="12"/>
+		<item name="RateOfReturn" type="xs:double"/>
+		<item name="FamAcctIndex" type="xs:string" length="3"/>
+		<item name="RowID" type="xs:string" length="1"/>
+		<item name="BrM" type="xs:string" length="1"/>
+		<item name="ProductLineCode" type="xs:int"/>
+	</metadata>
+	<data>
+		<row>
+			<value>Apr 26, 2002</value>
+			<value>0.210066429</value>
+			<value>JA1</value>
+			<value>F</value>
+			<value>B</value>
+			<value>1</value>
+		</row>
+		<row>
+			<value>Apr 27, 2002</value>
+			<value>0.1111111</value>
+			<value>BBB</value>
+			<value>G</value>
+			<value>B</value>
+			<value>2</value>
+		</row>		
+	</data>
+>>>>>>> feature_posts_20170526
 </dataset>
