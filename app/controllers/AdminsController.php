@@ -10,6 +10,8 @@ namespace app\controllers;
 
 
 use App\Core\App;
+use app\models\File;
+use app\models\Post;
 use app\models\User;
 
 class AdminsController
@@ -17,9 +19,13 @@ class AdminsController
 
     private $user;
 
+    private $post;
+
     public function __construct()
     {
         $this->user = new User();
+
+        $this->post = new Post();
     }
 
     public function index()
@@ -55,8 +61,11 @@ class AdminsController
 
     public function posts()
     {
+        $file = new File();
+        $files = $file->getAllFiles();
+        $posts = $this->post->getAllPost();
         $folders = App::get('database')->selectFolders('nested_categorys');
-        return view('admin/posts', compact('folders'));
+        return view('admin/posts', compact('folders', 'posts', 'files'));
     }
 
     public function createUser()

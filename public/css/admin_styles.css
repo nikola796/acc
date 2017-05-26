@@ -650,3 +650,12 @@ body {
       border-radius:10px;
    }  
 }
+
+.spacer-bg {
+    margin: 20px;
+
+}
+
+.spacer-sm {
+    margin: 10px;
+}

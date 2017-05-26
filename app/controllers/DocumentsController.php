@@ -11,6 +11,7 @@ namespace App\Controllers;
 use App\Core\App;
 
 use app\models\Folder;
+use app\models\Post;
 use app\models\User;
 use Connection;
 use Exception;
@@ -63,7 +64,7 @@ class DocumentsController
         $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
 
         // $files = App::get('database')->selectAllFiles($id);
-        $files = App::get('database')->selectAllFiles(array('directory' =>  $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->id,));
+        $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->id,));
         //dd($files);
         // $documents = App::get('database')->selectDirectories($id);
         $current_folder = $dep;
@@ -157,30 +158,37 @@ class DocumentsController
 
     public function admin_store2()
     {
-//        echo '<pre>' . print_r($_POST, true) . '</pre>';
+        if (isset($_POST['save']) && $_POST['save'] == 1) {
+            //TODO METHOD FOR INSERT
+            $response = array();
+
+            /***************** CHECK IS USER CREATE POST **********************/
+            if (!empty($_POST['text'])) {
+                $folder_id = intval($_POST['folder']);
+                $department_id = App::get('database')->getFolderDepartment($folder_id);
+                //die(var_dump($department_id));
+                $post_id = $this->savePost(array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id));
+                if ($post_id > 0) {
+                    $response['new_post'] = 'Успешно добавихте нова публикация';
+                }
+
+            }
+
+            /*** UPLOAD FILE ***/
+            if (isset($_FILES['userfile'])) {
+                $response += $this->fileUpload($post_id, array('act' => 'add'));
+            }
+
+            $_SESSION['add_new_file_post'] = $response;
+            redirect('posts');
+
+        } elseif (isset($_POST['save']) && $_POST['save'] == 2) {
+            echo $this->updatePost();
+        }
+        // echo '<pre>' . print_r($_POST, true) . '</pre>';die();
 //        var_dump(intval($_FILES['userfile']));
 //        die();
-        $response = array();
 
-        /***************** CHECK IS USER CREATE POST **********************/
-        if (!empty($_POST['text'])) {
-            $folder_id = intval($_POST['folder']);
-            $department_id = App::get('database')->getFolderDepartment($folder_id);
-            //die(var_dump($department_id));
-            $post_id = $this->savePost(array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id));
-            $response['new_post'] = $post_id;
-        }
-
-        /*** UPLOAD FILE ***/
-        if (isset($_FILES['userfile'])) {
-
-            $response['new_file'] = $this->fileUpload($post_id);
-
-        }
-        foreach ($response as $res) {
-            //  echo $res;
-        }
-        redirect('posts');
 
     }
 
@@ -217,9 +225,11 @@ class DocumentsController
     /**
      * IN THIS METHOD WE PREPARE AND EXECUTE FILE UPLOAD
      * @param null $post_id
+     * @param array $action
+     * @return array|string
      * @internal param $files
      */
-    private function fileUpload($post_id = null)
+    public function fileUpload($post_id = null, $action = array())
     {
 
 
@@ -227,7 +237,10 @@ class DocumentsController
             $files = $_FILES['userfile'];
             $files['label'] = $_POST['label'];
             $files['folder'] = $_POST['folder'];
-            $files['dep'] =  App::get('database')->getFolderDepartment($_POST['folder']);
+            if ($action['act'] == 'add') {
+                $files['dep'] = App::get('database')->getFolderDepartment($_POST['folder']);
+            }
+
 
             foreach ($files as $k => $f) {
 
@@ -245,7 +258,10 @@ class DocumentsController
 
             }
             // echo '<pre>' . print_r($narr, true) . '</pre>';die();
-            App::get('database')->saveFile($narr);
+            if ($action['act'] == 'add') {
+                App::get('database')->saveFile($narr);
+            }
+
 
 // a flag to see if everything is ok
             $success_upload = null;
@@ -280,7 +296,20 @@ class DocumentsController
 // store a successful response (default at least an empty array). You
 // could return any additional response info you need to the plugin for
 // advanced implementations.
-                $output = array('success' => 'Successfully uploaded file ');
+                $up_files = '';
+                $output = array('success' => 'Успешно добавихте файл');
+                if (count($paths) > 1) {
+                    $output['success'] .= 'ове ';
+                } else {
+                    $output['success'] .= ' ';
+                }
+                foreach ($paths as $path) {
+
+                    $up_file[] = basename($path);
+                }
+
+                $output['success'] .= implode(', ', $up_file);
+
 // for example you can get the list of files uploaded this way
 // $output = ['uploaded' => $paths];
             } elseif ($success_upload === false) {
@@ -292,14 +321,25 @@ class DocumentsController
             } else {
                 $output = array('error' => 'No files were processed.');
             }
-
+            return $output;
 // return a json encoded response for plugin to process successfully
-            return json_encode($output);
+            // return json_encode($output);
 
         } else {
             echo '<pre>' . print_r($_FILES['userfile']['error'], true) . '</pre>';
         }
 
+    }
+
+    public function delete_post()
+    {
+        header('Content-Type: application/json');
+        if (isset($_POST['post_id'])) {
+            $post_id = $_POST['post_id'];
+        }
+        $post = new Post();
+        $response = $post->deletePost($post_id);
+        echo json_encode(array('data' => $response));
     }
 
     /**
@@ -330,6 +370,44 @@ class DocumentsController
 
         }
         return $id;
+
+    }
+
+    /**
+     * UPDATE POST FROM USER
+     */
+    private function updatePost()
+    {
+        //var_dump($_POST['removed_file_name'][0]);
+        // list($f_name, $f_ext) = explode('.',$_POST['removed_file_name'][0]);
+        // $_SESSION['tt'] = array($f_name, $f_ext);
+        //$_SESSION['tt'] = implode(', ', $_POST['removed_file_name']);
+        // echo '<pre>' . print_r($_POST, true) . '</pre>';die();
+        $post = new Post();
+        if (isset($_POST['file_id'])) {
+            $existing_files = implode(', ', $_POST['file_id']);
+        } else {
+            $existing_files = 0;
+        }
+
+        if (isset($_POST['removed_file_id'])) {
+
+            $removed_files = implode(', ', $_POST['removed_file_id']);
+
+        } else {
+            $removed_files = 0;
+        }
+
+        if (isset($_POST['removed_file_name'])) {
+            $removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
+            //$removed_files_names =  $_POST['removed_file_name'];
+        } else {
+            $removed_files_names = '';
+        }
+
+        //echo '<pre>' . print_r($removed_files_names, true) . '</pre>';die();
+        // echo '<pre>' . print_r($removed_files, true) . '</pre>';die();
+        return $post->updatePost(array('post_id' => $_POST['postId'], 'post' => $_POST['text'], 'folder' => $_POST['folder'], 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names));
 
     }
 
