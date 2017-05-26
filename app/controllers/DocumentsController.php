@@ -10,6 +10,7 @@ namespace App\Controllers;
 
 use App\Core\App;
 
+use app\models\File;
 use app\models\Folder;
 use app\models\Post;
 use app\models\User;
@@ -333,13 +334,23 @@ class DocumentsController
 
     public function delete_post()
     {
-        header('Content-Type: application/json');
+
         if (isset($_POST['post_id'])) {
             $post_id = $_POST['post_id'];
         }
         $post = new Post();
         $response = $post->deletePost($post_id);
+        header('Content-Type: application/json');
         echo json_encode(array('data' => $response));
+    }
+
+    public function delete_file()
+    {
+        if (isset($_POST['file_id'])) {
+            $file_id = $_POST['file_id'];
+        }
+        $file = new File();
+        echo $response = $file->deleteFile($file_id);
     }
 
     /**

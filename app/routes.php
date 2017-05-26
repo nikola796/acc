@@ -87,7 +87,7 @@ $router->post('bb_test', array('App\Controllers\DocumentsController', 'bb_store'
 
 $router->post('admin/delete-post', array('App\Controllers\DocumentsController', 'delete_post'));
 
-
+$router->post('admin/delete-file', array('App\Controllers\DocumentsController', 'delete_file'));
 
 /***************** TEST FOR FILTER ROUTES ******************************************************************************/
 $router->filter('auth', function(){

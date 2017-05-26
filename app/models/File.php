@@ -148,4 +148,11 @@ class File
         return $stmt->rowCount();
     }
 
+    public function deleteFile($file_id)
+    {
+       $stmt = $this->db->prepare('DELETE FROM files WHERE id = ?');
+       $stmt->execute(array($file_id));
+       return $stmt->rowCount();
+    }
+
 }
