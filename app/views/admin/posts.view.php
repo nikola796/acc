@@ -244,12 +244,12 @@ if(isset($_SESSION['update_post'])){
                                                 <td class="name"><span class="name"><?= $file->post ?></span></td>
                                                 <td class="vert-align">
                                                     <div class="text-center">
-                                                        <button title="Редактирай" id="<? //= $ura->id ?>"
-                                                                class="btn btn-primary btn-xs user_id">
+                                                        <button title="Редактирай" id="<?= $file->id ?>"
+                                                                class="btn btn-primary btn-xs file_id">
                                                             <i class="glyphicon glyphicon-pencil"></i>
                                                         </button>
-                                                        <button title="Премахни" id="<? //= $ura->id ?>"
-                                                                class="btn btn-danger btn-xs del_user">
+                                                        <button title="Премахни" id="<?= $file->id ?>"
+                                                                class="btn btn-danger btn-xs del_file">
                                                             <i class="glyphicon glyphicon-remove"></i>
 
                                                         </button>
@@ -327,6 +327,36 @@ if(isset($_SESSION['update_post'])){
 //
 //           unset($_SESSION['update_post']);
 //        }
+        $(document).on('click', '.file_id', function(){
+            console.log($(this).attr('id'));
+        })
+
+        $(document).on('click', '.del_file', function(){
+            var id = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                url: 'delete-file',
+                data: {file_id: id}
+            }).done(function (data) {
+                var msg = '';
+                if(data == 1){
+                    msg = 'Успешно премахнахте файл';
+
+                } else {
+                    msg = 'Възникна проблем с изтриване на файла';
+                }
+
+                BootstrapDialog.alert({
+                    type: BootstrapDialog.TYPE_SUCCESS,
+                    title: 'Успех',
+                    message: msg,
+                    onhide: function(dialogRef){
+                        window.location.reload(true);
+                    }
+                })
+            })
+        })
+
         $(document).on('click', '.del_post', function(){
             var post_id = $(this).attr('id');
             $.ajax({
