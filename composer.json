@@ -9,6 +9,7 @@
 
   },
   "require": {
-    "phroute/phroute": "1.*"
+    "phroute/phroute": "1.*",
+    "ckeditor/ckeditor": "dev-full/stable"
   }
 }

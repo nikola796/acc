@@ -16,7 +16,7 @@ App::bind('config', require 'config.php');
 //require 'core/database/Connection.php';
 //
 require_once 'core/init.inc.php';
-
+require_once 'core/session.php';
 //$options = @parse_ini_file('core/BBCodeParser.ini');
 //$parser = new HTML_BBCodeParser2($options);
 
@@ -26,6 +26,8 @@ App::bind('database', new QueryBuilder(
 	Connection::make($conf['database'])
 
 ));
+
+define("NESTED_CATEGORIES", "nested_categories_test");
 
 function view($name, $data = array())
 {
@@ -75,5 +77,21 @@ function url()
 function uri(){
 
     return substr($_SERVER['PHP_SELF'], 0,-9);
+}
+
+function download_file($stored_filename, $original_filename){
+    $file = realpath('core/files').DIRECTORY_SEPARATOR . $stored_filename;
+    $filesize = filesize($file);
+    header('Content-Description: File Transfer');
+    header("Content-type: application/forcedownload");
+    header('Content-disposition: attachment; filename="'.$original_filename.'"');
+    header("Content-Transfer-Encoding: Binary");
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header("Content-length: ".$filesize);
+    ob_clean();
+    flush();
+    readfile("$file");
+    exit;
 }
 

@@ -21,8 +21,8 @@
     </style>
 </head>
 
-<body bgcolor="#010080" leftmargin="0" topmargin="0" >
+<body bgcolor="#010080" leftmargin="0" topmargin="0" style="">
 
-<div class="wrapper container">
+<div class="container" style="">
 
 <?php require('nav.php');

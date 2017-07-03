@@ -47,5 +47,48 @@
             "router",
             "routing"
         ]
+    },
+    {
+        "name": "ckeditor/ckeditor",
+        "version": "dev-full/stable",
+        "version_normalized": "dev-full/stable",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ckeditor/ckeditor-releases.git",
+            "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/b6ab4c126861b21d357a619d92b42b83fd2d291f",
+            "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f",
+            "shasum": ""
+        },
+        "time": "2017-05-25T17:49:26+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+",
+            "LGPL-2.1+",
+            "MPL-1.1+"
+        ],
+        "authors": [
+            {
+                "name": "CKSource",
+                "homepage": "http://cksource.com"
+            }
+        ],
+        "description": "JavaScript WYSIWYG web text editor.",
+        "homepage": "http://ckeditor.com",
+        "keywords": [
+            "CKEditor",
+            "editor",
+            "fckeditor",
+            "html",
+            "javascript",
+            "richtext",
+            "text",
+            "wysiwyg"
+        ]
     }
 ]

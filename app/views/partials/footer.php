@@ -29,6 +29,7 @@
                     url: '<?= url()?>auth',
                     data: {username: username, password: password}
                 }).done(function(data){
+                    //console.log(data);
                     if(data == 'Logged'){
                         window.location.replace("<?= url()?>admin/home");
                     } else{

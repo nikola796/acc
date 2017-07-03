@@ -215,6 +215,7 @@
                 var i = $(this).attr('data-column'); // getting column index
                 var v = $(this).val(); // getting search input value
                 dataTable.columns(i).search(v).draw();
+                console.log(i + ' ' + v);
             });
 
             $('#roles').select2({
@@ -316,6 +317,7 @@
                 var department = $(this).closest('tr').find('td:eq(2)').text();
                 // var access = $(this).closest('tr').find('td:eq(4)').text().split(', ');
                 var access_num = $(this).closest('tr').find('input.access_id').val();
+                console.log(access_num);
                 // var access_id = $('#access_id').val().split(',');
                 $('#folder').val(0).trigger('change');
                 if (access_num.length > 0) {

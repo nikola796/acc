@@ -64,7 +64,8 @@ class AdminsController
         $file = new File();
         $files = $file->getAllFiles();
         $posts = $this->post->getAllPost();
-        $folders = App::get('database')->selectFolders('nested_categorys');
+        //$folders = App::get('database')->selectFolders('nested_categorys'); OLD WAY
+        $folders = App::get('database')->selectFolders(NESTED_CATEGORIES);
         return view('admin/posts', compact('folders', 'posts', 'files'));
     }
 

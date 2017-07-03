@@ -1,8 +1,8 @@
 </div>
-<div style="" class="col-md-2" >
-    <div class="panel panel-primary">
+<div style="" class="col-md-3 pull-right" >
+    <div class="panel panel-primary" style="float: right">
         <div class="panel-heading">
-            <h5 class="panel-title">Администрация</h5>
+            <h5 class="panel-title text-center">Администрация</h5>
         </div>
         <div class="panel-body" >
             <form method="post" action="<?php url() ?>auth" class="form-horizontal">
@@ -30,7 +30,7 @@
 
 
 
-<div class="" style="float:left">
+<div class="" style="float:right">
     <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php url()?>public/images/calendar.gif">
         <tr>
             <td align="center"> <font face="tahoma,arial" ><?php echo date("d");?></font><br/>

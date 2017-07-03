@@ -1,6 +1,5 @@
 <?php require('partials/header.php') ?>
 <?php
-//echo '<pre>' . print_r($_SESSION['update_post'], true) . '</pre>';
 if(isset($_SESSION['update_post'])){
     foreach ($_SESSION['update_post'] as $res){
         $r .= '\n' . $res;
@@ -234,12 +233,12 @@ if(isset($_SESSION['update_post'])){
                                         <?php foreach ($files as $file): ?>
                                             <tr>
                                                 <td class="file_label"><?= $file->label ?></td>
-                                                <td class="file_name"><?= $file->name ?></td>
+                                                <td class="file_name"><?= $file->original_filename ?></td>
                                                 <td class="email"><?= $file->author ?></td>
                                                 <td><input type="hidden" name="folder_id" class="folder_id"
                                                            value=""><span class="role"><?= $file->folder ?></span></td>
                                                 <td>
-                                                    <span class="access"><?= date('Y-m-d H:i:s', $file->file_added_when) ?></span>
+                                                    <span class="access"><?= $file->file_added_when ?></span>
                                                 </td>
                                                 <td class="name"><span class="name"><?= $file->post ?></span></td>
                                                 <td class="vert-align">
@@ -272,8 +271,15 @@ if(isset($_SESSION['update_post'])){
         </div>
     </div>
     </div>
+    <script src="<?php url()?>public/ckeditor/ckeditor.js"></script>
+
 
 <?php require('partials/footer.php') ?>
+    <script>
+
+        CKEDITOR.replace( 'text' );
+
+    </script>
     <link href="<?php url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
     <!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
@@ -338,8 +344,9 @@ if(isset($_SESSION['update_post'])){
                 url: 'delete-file',
                 data: {file_id: id}
             }).done(function (data) {
+                console.log(data);
                 var msg = '';
-                if(data == 1){
+                if(data >= 1){
                     msg = 'Успешно премахнахте файл';
 
                 } else {

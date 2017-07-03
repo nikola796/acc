@@ -26,7 +26,7 @@
             <li><?= $post->post ?></li>   <!-- OLD VERSION -> parser()->qParse(htmlspecialchars($post->post)) -->
             <?php foreach ($files as $file): ?>
                 <?php if ($file->post_id == $post->id): ?>
-                    <p style="margin-left:5px"><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                    <p style="margin-left:5px"><a href="<?php url()?>files?<?= $file->stored_filename ?>&<?= $file->original_filename ?>"><?= $file->label ?></a>
                     </p>
                 <?php endif ?>
             <?php endforeach ?>
@@ -54,7 +54,7 @@
 
         <?php foreach ($files as $file): ?>
             <?php if ($file->post_id === null): ?>
-                <li><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
+                <li><a href="<?php url()?>files?<?= $file->stored_filename ?>&<?= $file->original_filename ?>"><?= $file->label ?></a>
                 </li>
             <?php endif; ?>
         <?php endforeach ?>

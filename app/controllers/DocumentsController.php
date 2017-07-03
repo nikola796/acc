@@ -17,7 +17,6 @@ use app\models\User;
 use Connection;
 use Exception;
 use HTML_BBCodeParser2;
-
 class DocumentsController
 {
 
@@ -25,7 +24,7 @@ class DocumentsController
     public function getIndex()
     {
 
-        $departments = App::get('database')->selectAll('departments');
+        $departments = App::get('database')->selectAllSpaces();
 
         return view('documents', compact('departments'));
 
@@ -51,22 +50,27 @@ class DocumentsController
 
     public function showTest($dep)
     {
+//        if($_SERVER['REDIRECT_URL'] == '/intranet_test/Документи/Важно'){
+//            echo "Важно";
+//        } else {
+//            echo 'Не е важно';
+//        }
 
 
-        $dep_id = App::get('database')->getId('id', $dep, 'departments');
-
-        //die(var_dump($dep_id[0]->id));
+        //$dep_id = App::get('database')->getId('id', $dep, 'departments');
+        $dep_id = App::get('database')->getId('category_id', $dep, NESTED_CATEGORIES);
+        //die(var_dump($dep_id[0]->category_id));
         //$posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
-        $dep_folder_id = App::get('database')->getDepartmentFolderId($dep_id[0]->id);
+        $dep_folder_id = App::get('database')->getDepartmentFolderId($dep_id[0]->category_id);
         //dd($dep_folder_id);
-        $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id, 'directory' => $dep_folder_id[0]->category_id));
+        $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->category_id, 'directory' => $dep_folder_id[0]->category_id));
         //dd($posts);
 
-        $folders = App::get('database')->selectAllFolders($dep_id[0]->id);
-
+        $folders = App::get('database')->selectAllFolders($dep_id[0]->category_id);
+        //dd($folders);
         // $files = App::get('database')->selectAllFiles($id);
-        $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->id,));
-        //dd($files);
+        $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->category_id));
+       // dd($files);
         // $documents = App::get('database')->selectDirectories($id);
         $current_folder = $dep;
         //return view('show', compact('folders', 'dep', 'posts'));
@@ -153,18 +157,22 @@ class DocumentsController
     public function createFolder()
     {
         if (isset($_POST['parent'])) {
-            return Folder::createFolder();
+            $department_id = Folder::getParentDepartment($_POST['parent']);
+           // dd($department_id);
+            return Folder::createFolder($department_id);
         }
     }
 
     public function admin_store2()
     {
+        //echo '<pre>' . print_r($_POST, true) . '</pre>';die();
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
             $response = array();
 
             /***************** CHECK IS USER CREATE POST **********************/
             if (!empty($_POST['text'])) {
+
                 $folder_id = intval($_POST['folder']);
                 $department_id = App::get('database')->getFolderDepartment($folder_id);
                 //die(var_dump($department_id));
@@ -177,7 +185,8 @@ class DocumentsController
 
             /*** UPLOAD FILE ***/
             if (isset($_FILES['userfile'])) {
-                $response += $this->fileUpload($post_id, array('act' => 'add'));
+                $file = new File();
+                $response += $file->fileUpload2($post_id, array('act' => 'add'));
             }
 
             $_SESSION['add_new_file_post'] = $response;
@@ -233,7 +242,6 @@ class DocumentsController
     public function fileUpload($post_id = null, $action = array())
     {
 
-
         if ($_FILES['userfile']['error'][0] === 0) {
             $files = $_FILES['userfile'];
             $files['label'] = $_POST['label'];
@@ -241,7 +249,6 @@ class DocumentsController
             if ($action['act'] == 'add') {
                 $files['dep'] = App::get('database')->getFolderDepartment($_POST['folder']);
             }
-
 
             foreach ($files as $k => $f) {
 
@@ -258,34 +265,44 @@ class DocumentsController
 
 
             }
-            // echo '<pre>' . print_r($narr, true) . '</pre>';die();
-            if ($action['act'] == 'add') {
-                App::get('database')->saveFile($narr);
+            $file = new File();
+            $res = $file->process_uploaded_file($narr);
+
+            if(count($res['all_files']) > 0){
+                $success_upload = true;
             }
+
+        //    echo $res['name'];
+           // die();
+          //  echo '<pre>' . print_r($res, true) . '</pre>';die();
+//            echo '<pre>' . print_r($narr, true) . '</pre>';die();
+//            if ($action['act'] == 'add') {
+//                App::get('database')->saveFile($narr);
+//            }
 
 
 // a flag to see if everything is ok
-            $success_upload = null;
+          //  $success_upload = null;
 
 // file paths to store
-            $paths = array();
+        //    $paths = array();
 
 // get file names
-            $filenames = $files['name'];
+          //  $filenames = $files['name'];
 
 // loop and process files
-            for ($i = 0; $i < count($filenames); $i++) {
-                $ext = explode('.', basename($filenames[$i]));
-                $target = "C:\\xampp_5.3\\htdocs\\intranet_test\\public\\files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
-
-                if (move_uploaded_file($files['tmp_name'][$i], $target)) {
-                    $success_upload = true;
-                    $paths[] = $target;
-                } else {
-                    $success_upload = false;
-                    break;
-                }
-            }
+//            for ($i = 0; $i < count($filenames); $i++) {
+//                $ext = explode('.', basename($filenames[$i]));
+//                $target = "C:\\xampp_5.3\\htdocs\\intranet_test\\public\\files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
+//
+//                if (move_uploaded_file($files['tmp_name'][$i], $target)) {
+//                    $success_upload = true;
+//                    $paths[] = $target;
+//                } else {
+//                    $success_upload = false;
+//                    break;
+//                }
+//            }
 
 // check and process based on successful status
             if ($success_upload === true) {
@@ -299,26 +316,22 @@ class DocumentsController
 // advanced implementations.
                 $up_files = '';
                 $output = array('success' => 'Успешно добавихте файл');
-                if (count($paths) > 1) {
+                if (count($res['all_files']) > 1) {
                     $output['success'] .= 'ове ';
                 } else {
                     $output['success'] .= ' ';
                 }
-                foreach ($paths as $path) {
 
-                    $up_file[] = basename($path);
-                }
-
-                $output['success'] .= implode(', ', $up_file);
+                $output['success'] .= implode(', ', $res['all_files']);
 
 // for example you can get the list of files uploaded this way
 // $output = ['uploaded' => $paths];
             } elseif ($success_upload === false) {
                 $output = array('error' => 'Error while uploading images. Contact the system administrator');
 // delete any uploaded files
-                foreach ($paths as $file) {
-                    unlink($file);
-                }
+              //  foreach ($paths as $file) {
+                //    unlink($file);
+              //  }
             } else {
                 $output = array('error' => 'No files were processed.');
             }
@@ -350,7 +363,8 @@ class DocumentsController
             $file_id = $_POST['file_id'];
         }
         $file = new File();
-        echo $response = $file->deleteFile($file_id);
+
+        echo $response = $file->deleteFile(array('id' => $file_id));
     }
 
     /**
@@ -403,7 +417,8 @@ class DocumentsController
 
         if (isset($_POST['removed_file_id'])) {
 
-            $removed_files = implode(', ', $_POST['removed_file_id']);
+            //$removed_files = implode(', ', $_POST['removed_file_id']);
+            $removed_files =  $_POST['removed_file_id'];
 
         } else {
             $removed_files = 0;
@@ -420,6 +435,11 @@ class DocumentsController
         // echo '<pre>' . print_r($removed_files, true) . '</pre>';die();
         return $post->updatePost(array('post_id' => $_POST['postId'], 'post' => $_POST['text'], 'folder' => $_POST['folder'], 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names));
 
+    }
+
+    public function showGet($filename)
+    {
+       echo $filename;
     }
 
 }

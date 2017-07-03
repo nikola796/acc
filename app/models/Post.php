@@ -28,9 +28,9 @@ class Post
     public function getAllPost()
     {
 
-        $stmt = $this->db->prepare('SELECT p.*, group_concat(f.id separator "; ") as file_id, group_concat(f.label separator "; ") as label,group_concat(f.name separator "; ") as file_name, nc.name as folder, u.name as username FROM posts as p
+        $stmt = $this->db->prepare('SELECT p.*, group_concat(f.id separator "; ") as file_id, group_concat(f.label separator "; ") as label,group_concat(f.original_filename separator "; ") as file_name, nc.name as folder, u.name as username FROM posts as p
                                               LEFT JOIN files as f on (p.id=f.post_id) 
-                                              LEFT JOIN nested_categorys  AS nc ON (p.directory=nc.category_id) 
+                                              LEFT JOIN '.NESTED_CATEGORIES.'  AS nc ON (p.directory=nc.category_id) 
                                               LEFT JOIN users as u ON (p.added_from=u.id) GROUP BY p.id');
 
         $stmt->execute();
@@ -40,7 +40,7 @@ class Post
 
     public function updatePost($params = array())
     {
-     //   echo '<pre>' . print_r($params, true) . '</pre>';
+        //echo '<pre>' . print_r($params, true) . '</pre>';
 
         $existing_files = array_splice($params, 3, 1);
 
@@ -51,23 +51,23 @@ class Post
         if(($removed_files_name['removed_files_name'][0])){
             foreach ($removed_files_name['removed_files_name'] as $v){
                 foreach($v as $vv){
-                    $vvv[] = $vv['name'];
+                    $vvv[] = $vv['original_filename'];
                 };
         }
 
 }
 
 
-        //echo '<pre>' . print_r($params, true) . '</pre>';die();
+
         // $removed_files_names = array('removed_files_name' => array(' index.txt'));
         //die(implode(', ', $removed_files_names['removed_files_name']));
         // echo '<pre>' . print_r($removed_files_names, true) . '</pre>';die();
         $department = App::get('database')->getFolderDepartment($params['folder']);
-
+        //echo '<pre>' . print_r($department, true) . '</pre>';die();
         $ex_files = $existing_files['existing_file'];
 
         $rm_files = $removed_files['removed_files'];
-
+        //echo '<pre>' . print_r($rm_files, true) . '</pre>';die();
         if (isset($_FILES['userfile']) || $ex_files != 0) {
             $attached = 1;
 
@@ -88,17 +88,23 @@ class Post
            // }
 
             if ($rm_files != 0) {
-                $stmt = $this->db->prepare('DELETE FROM files WHERE id  IN (' . $rm_files . ') AND  post_id = ?');
-                $stmt->execute(array($params['post_id']));
+
+                //$arr = explode(', ', $rm_files);
+                $file = new File();
+                $file->deleteFile($rm_files);
+               // $stmt = $this->db->prepare('DELETE FROM files WHERE id  IN (' . $rm_files . ') AND  post_id = ?');
+               // $stmt->execute(array($params['post_id']));
 
 
             }
 
             if (isset($_FILES['userfile'])) {
                 $file = new File();
-                $response += $file->fileUpload($params['post_id'], array('act' => 'edit', 'department_id' => $department));
+                //dd($department);
+                //$response += $file->process_uploaded_file();
+                $response += $file->fileUpload2($params['post_id'], array('act' => 'edit', 'department_id' => $department));
             }
-            $file = 'error505.png';
+
             // return $stmt->rowCount();
             $this->db->commit();
            // die(var_dump($removed_files_name));
@@ -146,12 +152,31 @@ class Post
             $stmt->execute(array($post_id));
             $row_count = $stmt->rowCount();
 
-            $stmt = $this->db->prepare('DELETE FROM files WHERE post_id = ?');
+            $path = realpath('core/files') . DIRECTORY_SEPARATOR;
+            $del_files = 0;
+
+            $stmt = $this->db->prepare('SELECT stored_filename FROM files WHERE post_id = ?');
             $stmt->execute(array($post_id));
-            $file_count = $stmt->rowCount();
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+            $stmt = $this->db->prepare('DELETE FROM files WHERE post_id = ?');
+
+            foreach ($row as $file){
+                if (unlink($path . $file->stored_filename)) {
+
+                    $del_files += 1;
+                }
+            }
+
+            if(count($row) == $del_files){
+                $stmt->execute(array($post_id));
+            }
+            //dd($del_files);
+            //$stmt->execute(array($post_id));
+           // $file_count = $stmt->rowCount();
             $this->db->commit();
 
-            return array('del_post' => $row_count, 'del_file' => $file_count);
+            return array('del_post' => $row_count, 'del_file' => $del_files);
         }catch (PDOException $ex){
             $this->db->rollBack();
             echo $ex->getMessage();

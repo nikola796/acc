@@ -293,8 +293,8 @@ class User
             $actions = '<div class="text-center">';
 
             if($row['active'] == 1){
-                $actions .= '<button id="'. $row['id'] .'" class="btn btn-primary btn-xs user_id"><i class="glyphicon glyphicon-pencil"></i> Edit</button>';
-                $actions .= '<button class="btn btn-danger btn-xs del_user" style="margin-left:5%" id="' . $row['id'] . '"><i class="glyphicon glyphicon-remove"> Delete</button>';
+                $actions .= '<button id="'. $row['id'] .'" class="btn btn-primary btn-xs user_id" title="Редактирай"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp';
+                $actions .= '<button id="'. $row['id'] .'" class="btn btn-danger btn-xs del_user" title="Премахни"><i class="glyphicon glyphicon-remove"></i></button>';
             } else{
                 $actions .= '<button class="btn btn-success btn-xs activate_user" style="margin-left:5%" id="' . $row['id'] . '"><i class="glyphicon glyphicon-triangle-right"></i> Activate</button>';
             }
@@ -350,6 +350,13 @@ try{
 }
 
 
+    }
+
+    public function getUserAccess($user_id)
+    {
+        $stmt = $this->db->prepare('SELECT folder_id FROM users_folders WHERE user_id = ?');
+        $stmt->execute(array($user_id));
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
 }

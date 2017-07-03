@@ -1,13 +1,3 @@
-/**
- * Created by Vladislav Andreev on 26.4.2017 г..
- */
-
-CKEDITOR.replace('text', {
-    language: 'bg',
-    height: 250,
-    extraPlugins: 'colorbutton,colordialog'
-});
-
 
 $("#folder").on('change', function () {
     var str = '';
@@ -43,7 +33,7 @@ $('#mod').on('click', function (dialog) {
                     dialog.setClosable(false);
                     $.ajax({
                         method: 'post',
-                        url: 'create-folder',
+                        url: 'new-folder',
                         data: {
                             name: $('#newFolderName').val(),
                             parent: $('#perentFolder').val()

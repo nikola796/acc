@@ -1,14 +1,14 @@
 <div class="row">
 
-    <div style="" class="col-md-2">
+    <div style="" class="col-md-3">
 
         <div class="panel panel-primary" style="background-color: #FFFFE6;">
             <div class="panel-heading">
-                <h5 class="panel-title">Документи</h5>
+                <h5 class="panel-title text-center">Документи</h5>
             </div>
             <div class="list-group table-of-contents">
                 <a class="list-group-item" href="<?php url()?>">Начало</a>
-                <a style="color:red" class="list-group-item" href="<?php url()?>Важно">Важно</a>
+                <a style="color:red" class="list-group-item" href="<?php url()?>Документи/Важно">Важно</a>
                 <a class="list-group-item" href="<?php url()?>Документи">Преглед на документи</a>
                 <a class="list-group-item" href="#tables">Форум</a>
                 <a class="list-group-item" href="#forms">Чат</a>
@@ -17,7 +17,7 @@
 
         <div class="panel panel-primary" style="background-color: #FFFFE6; ">
             <div class="panel-heading">
-                <h5 class="panel-title">Търсене</h5>
+                <h5 class="panel-title text-center">Търсене</h5>
             </div>
             <div class="panel-body">
 
@@ -42,7 +42,7 @@
 
         <div class="panel panel-primary" style="background-color: #FFFFE6;">
             <div class="panel-heading">
-                <p style="font-size:0.9em;color: #00FF00; font-weight:bold" class="panel-title">Валутни курсове</p>
+                <p style="font-size:1em;color: #00FF00; font-weight:bold" class="panel-title">Валутни курсове</p>
             </div>
             <div style="bgcolor: #FFFFFF"
             " class="panel-body">
@@ -58,4 +58,4 @@
     //    ?>
 </div>
 
-<div style="" class="col-lg-8">
+<div style="" class="col-lg-6">
