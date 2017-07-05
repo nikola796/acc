@@ -27,7 +27,7 @@ App::bind('database', new QueryBuilder(
 
 ));
 
-define("NESTED_CATEGORIES", "nested_categories_test");
+define("NESTED_CATEGORIES", "nested_categories");
 
 function view($name, $data = array())
 {

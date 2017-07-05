@@ -26,7 +26,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
                                 <ul class="dropdown-menu animated fadeInUp">
-                                    <li><a href="profile.html">Profile</a></li>
+                                    <li><a href="profile">Profile</a></li>
                                     <li><a href="<?= uri()?>admin/logout">Изход</a></li>
                                 </ul>
                             </li>

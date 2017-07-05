@@ -65,10 +65,10 @@ class Folder
         } else {
             try {
                 /**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
-                $db->query("LOCK TABLE NESTED_CATEGORIES WRITE");
-                $db->query("SELECT @myRight := rgt, @myDep := dep FROM NESTED_CATEGORIES WHERE category_id = {$_POST['parent']}");
-                $db->query("UPDATE NESTED_CATEGORIES SET rgt = rgt + 2 WHERE rgt >= @myRight");
-                $db->query("UPDATE NESTED_CATEGORIES SET lft = lft + 2 WHERE lft >= @myRight");
+                $db->query('LOCK TABLE '. NESTED_CATEGORIES .' WRITE');
+                $db->query('SELECT @myRight := rgt, @myDep := dep FROM '. NESTED_CATEGORIES .' WHERE category_id = '.$_POST['parent']);
+                $db->query('UPDATE '. NESTED_CATEGORIES .' SET rgt = rgt + 2 WHERE rgt >= @myRight');
+                $db->query('UPDATE '. NESTED_CATEGORIES .' SET lft = lft + 2 WHERE lft >= @myRight');
                 $stmt = $db->prepare('INSERT INTO ' . NESTED_CATEGORIES . ' (name, lft, rgt,dep,parent_id, added_when,added_from) VALUES(?, @myRight, @myRight + 1, @myDep, ?, ' . time() . ', ' . $_SESSION["user_id"] . ')');
 
 //                $stmt = $db->query("LOCK TABLE nested_categorys WRITE");

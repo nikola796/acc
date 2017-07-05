@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f"
+                "reference": "fd5a6ba8521135c7de6d45fe688b481c5e4ad072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/b6ab4c126861b21d357a619d92b42b83fd2d291f",
-                "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/fd5a6ba8521135c7de6d45fe688b481c5e4ad072",
+                "reference": "fd5a6ba8521135c7de6d45fe688b481c5e4ad072",
                 "shasum": ""
             },
             "type": "library",
@@ -45,7 +45,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2017-05-25 17:49:26"
+            "time": "2017-06-28 15:13:19"
         },
         {
             "name": "phroute/phroute",

@@ -1,5 +1,48 @@
 [
     {
+        "name": "ckeditor/ckeditor",
+        "version": "dev-full/stable",
+        "version_normalized": "dev-full/stable",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ckeditor/ckeditor-releases.git",
+            "reference": "fd5a6ba8521135c7de6d45fe688b481c5e4ad072"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/fd5a6ba8521135c7de6d45fe688b481c5e4ad072",
+            "reference": "fd5a6ba8521135c7de6d45fe688b481c5e4ad072",
+            "shasum": ""
+        },
+        "time": "2017-06-28T15:13:19+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+",
+            "LGPL-2.1+",
+            "MPL-1.1+"
+        ],
+        "authors": [
+            {
+                "name": "CKSource",
+                "homepage": "http://cksource.com"
+            }
+        ],
+        "description": "JavaScript WYSIWYG web text editor.",
+        "homepage": "http://ckeditor.com",
+        "keywords": [
+            "CKEditor",
+            "editor",
+            "fckeditor",
+            "html",
+            "javascript",
+            "richtext",
+            "text",
+            "wysiwyg"
+        ]
+    },
+    {
         "name": "phroute/phroute",
         "version": "v1.4.4",
         "version_normalized": "1.4.4.0",
@@ -46,49 +89,6 @@
         "keywords": [
             "router",
             "routing"
-        ]
-    },
-    {
-        "name": "ckeditor/ckeditor",
-        "version": "dev-full/stable",
-        "version_normalized": "dev-full/stable",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/ckeditor/ckeditor-releases.git",
-            "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/b6ab4c126861b21d357a619d92b42b83fd2d291f",
-            "reference": "b6ab4c126861b21d357a619d92b42b83fd2d291f",
-            "shasum": ""
-        },
-        "time": "2017-05-25T17:49:26+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-2.0+",
-            "LGPL-2.1+",
-            "MPL-1.1+"
-        ],
-        "authors": [
-            {
-                "name": "CKSource",
-                "homepage": "http://cksource.com"
-            }
-        ],
-        "description": "JavaScript WYSIWYG web text editor.",
-        "homepage": "http://ckeditor.com",
-        "keywords": [
-            "CKEditor",
-            "editor",
-            "fckeditor",
-            "html",
-            "javascript",
-            "richtext",
-            "text",
-            "wysiwyg"
         ]
     }
 ]

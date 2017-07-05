@@ -1,7 +1,5 @@
 <?php
-//session_set_cookie_params('1800', '/', 'localhost', true, true);
-//session_name('intranet_session');
-//session_start();
+
 $router->get('', array('PagesController', 'home'));
 
 $router->get('Документи', array('App\Controllers\DocumentsController', 'getIndex'));
@@ -14,27 +12,6 @@ $router->get('Важно', array('App\Controllers\FilesController', 'important')
 
 $router->get('files?{stored_filename}&{original_filename}', array('App\Controllers\FilesController', 'downloadFile'));
 
-// TEST ROUTES
-// TODO DELETE AFTER TESTS ENDS
-
-$router->get('admin/home', array('app\\controllers\\AdminsController', 'index'),
-    array('before' => 'auth'));
-
-$router->get('admin/users', array('app\\controllers\\AdminsController', 'users'),
-    array('before' => 'auth'));
-
-$router->get('admin/posts', array('app\\controllers\\AdminsController', 'posts'),
-    array('before' => 'auth'));
-
-$router->get('admin/logout',   array('app\controllers\AuthController', 'logout'));
-
-$router->get('admin2',  array('App\Controllers\DocumentsController', 'admin2'));
-
-$router->get('admin/departments',  array('app\controllers\DepartmentsController', 'index'),
-    array('before' => 'auth'));
-
-$router->get('admin/folders',  array('app\\controllers\\FoldersController', 'index'),
-    array('before' => 'auth'));
 
 $router->get('test', array('App\Controllers\DocumentsController', 'getTestIndex'));
 
@@ -43,19 +20,6 @@ $router->get('Документи/{dep}', array('App\Controllers\DocumentsControl
 $router->get('Документи/{dep}?filaname', array('App\Controllers\DocumentsController', 'showGet'));
 
 $router->get('bb_test', array('App\Controllers\DocumentsController', 'bb'));
-
-$router->get('parser', function(){
-    return view('parser');
-});
-
-$router->get('test-del', function(){
-    unlink(realpath('app/models').DIRECTORY_SEPARATOR.'error505.png');
-  // unlink('C:\xampp_5.3\htdocs\intranet_test\app\error505.png');
-});
-
-$router->get('ckeditor', function(){
-    return view('ckeditor');
-});
 
 $router->get('admin/edit', function(){
     return view('admin/lang');
@@ -71,7 +35,34 @@ $router->get('admin/calendar', function(){
     return view('admin/calendar');
 });
 
-$router->get('admin/important', array('app\controllers\ImportantController', 'index'));
+
+/***************** ADMIN GET ROUTES *************************************************************************/
+
+$router->get('admin/important', array('app\controllers\ImportantController', 'index'),
+    array('before' => 'auth'));
+
+$router->get('admin/home', array('app\\controllers\\AdminsController', 'index'),
+    array('before' => 'auth'));
+
+$router->get('admin/profile', array('App\\Controllers\\UsersController', 'show'),
+    array('before' => 'auth'));
+
+$router->get('admin/users', array('app\\controllers\\AdminsController', 'users'),
+    array('before' => 'auth'));
+
+$router->get('admin/posts', array('app\\controllers\\AdminsController', 'posts'),
+    array('before' => 'auth'));
+
+$router->get('admin/logout',   array('app\controllers\AuthController', 'logout'));
+
+//$router->get('admin2',  array('App\Controllers\DocumentsController', 'admin2'));
+
+$router->get('admin/departments',  array('app\controllers\DepartmentsController', 'index'),
+    array('before' => 'auth'));
+
+$router->get('admin/folders',  array('app\\controllers\\FoldersController', 'index'),
+    array('before' => 'auth'));
+
 
 
 
@@ -140,6 +131,9 @@ $router->post('admin/edit-folder',  array('app\\controllers\\FoldersController',
     array('before' => 'auth'));
 
 $router->post('admin/new-folder',  array('app\\controllers\\FoldersController', 'store'),
+    array('before' => 'auth'));
+
+$router->post('admin/profile', array('App\\Controllers\\UsersController', 'changePassword'),
     array('before' => 'auth'));
 
 /***************** TEST FOR FILTER ROUTES ******************************************************************************/

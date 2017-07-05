@@ -161,7 +161,7 @@ ORDER BY node.lft;');
     public function getFolderDepartment($id)
     {
 
-        $stmt = $this->pdo->prepare("SELECT dep from NESTED_CATEGORIES where category_id = :id");
+        $stmt = $this->pdo->prepare('SELECT dep from '. NESTED_CATEGORIES .' where category_id = :id');
         $stmt->execute(array('id' => $id));
         $res = $stmt->fetchAll(PDO::FETCH_CLASS);
         return $res[0]->dep;

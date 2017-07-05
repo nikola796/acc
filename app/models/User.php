@@ -359,4 +359,24 @@ try{
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function changePassword()
+    {
+        $new_pass = trim($_POST['new_pass']);
+        $old_pass = trim($_POST['old_pass']);
+        if(strlen($new_pass) > 3 and strlen($old_pass) > 3) {
+            $stmt = $this->db->prepare('SELECT count(*) AS cnt FROM users WHERE pass = :pass AND id = :id');
+            $stmt->execute(array('pass' => $this->saltPassword($old_pass), 'id' => $_SESSION['user_id']));
+
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($res[0]['cnt'] == 1) {
+                $stmt = $this->db->prepare('UPDATE users SET pass = :pass WHERE id = :id');
+                $stmt->execute(array('pass' => $this->saltPassword($new_pass), 'id' => $_SESSION['user_id']));
+                return $stmt->rowCount();
+       }
+        } else {
+            return 'Подадени са некоректни данни за смяна на парола!';
+        }
+    }
+
 }

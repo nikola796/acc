@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInited0b810d2335ff32efaa9eba9b865f86
+class ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3
 {
     public static $prefixesPsr0 = array (
         'P' => 
@@ -19,11 +19,9 @@ class ComposerStaticInited0b810d2335ff32efaa9eba9b865f86
     public static $classMap = array (
         'App\\Controllers\\DocumentsController' => __DIR__ . '/../..' . '/app/controllers/DocumentsController.php',
         'App\\Controllers\\FilesController' => __DIR__ . '/../..' . '/app/controllers/FilesController.php',
+        'App\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/core/App.php',
         'App\\Core\\Request' => __DIR__ . '/../..' . '/core/Request.php',
-        'ComposerAutoloaderInited0b810d2335ff32efaa9eba9b865f86' => __DIR__ . '/..' . '/composer/autoload_real.php',
-        'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
-        'Composer\\Autoload\\ComposerStaticInited0b810d2335ff32efaa9eba9b865f86' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Connection' => __DIR__ . '/../..' . '/core/database/Connection.php',
         'HTML_BBCodeParser2' => __DIR__ . '/../..' . '/core/HTML/BBCodeParser2.php',
         'HTML_BBCodeParser2_Filter' => __DIR__ . '/../..' . '/core/HTML/BBCodeParser2/Filter.php',
@@ -149,7 +147,6 @@ class ComposerStaticInited0b810d2335ff32efaa9eba9b865f86
         'QuickformForm' => __DIR__ . '/../..' . '/core/HTML/QuickForm/Renderer/Object.php',
         'Test' => __DIR__ . '/../..' . '/app/controllers/Test.php',
         'UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
-        'UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
         'app\\controllers\\AdminsController' => __DIR__ . '/../..' . '/app/controllers/AdminsController.php',
         'app\\controllers\\AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
         'app\\controllers\\DepartmentsController' => __DIR__ . '/../..' . '/app/controllers/DepartmentsController.php',
@@ -167,8 +164,8 @@ class ComposerStaticInited0b810d2335ff32efaa9eba9b865f86
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInited0b810d2335ff32efaa9eba9b865f86::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInited0b810d2335ff32efaa9eba9b865f86::$classMap;
+            $loader->prefixesPsr0 = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,11 +1,18 @@
 <?php
-//
-//namespace App\Controllers;
-//
+
+namespace App\Controllers;
+
 use App\Core\App;
+use app\models\User;
 
 class UsersController
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->user = new User();
+    }
 
     public function index()
     {
@@ -21,6 +28,22 @@ class UsersController
             array('name' => $_POST['name']));
 
         return redirect('router/users');
+
+    }
+
+    public function show()
+    {
+       return view('admin/profile');
+    }
+
+    public function changePassword()
+    {
+        $res = $this->user->changePassword();
+       if($res == 1){
+           echo 'Успешно променихте паролата си!';
+       } else {
+           echo $res;
+       }
 
     }
 
