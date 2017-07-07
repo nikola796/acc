@@ -6,6 +6,12 @@ $router->get('Документи', array('App\Controllers\DocumentsController', 
 
 $router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'));
 
+
+
+$router->get('recover', array('app\controllers\AuthController', 'recover'));
+
+$router->get('reset_password?{tok}', array('app\controllers\AuthController', 'reset_password'));
+
 //$router->get('files/{id}', array('App\Controllers\FilesController', 'index'));
 
 $router->get('Важно', array('App\Controllers\FilesController', 'important'));
@@ -135,6 +141,10 @@ $router->post('admin/new-folder',  array('app\\controllers\\FoldersController', 
 
 $router->post('admin/profile', array('App\\Controllers\\UsersController', 'changePassword'),
     array('before' => 'auth'));
+
+$router->post('reset_password', array('app\controllers\AuthController', 'forgot_password'));
+
+$router->post('new_password', array('App\\Controllers\\UsersController', 'new_password'));
 
 /***************** TEST FOR FILTER ROUTES ******************************************************************************/
 $router->filter('auth',

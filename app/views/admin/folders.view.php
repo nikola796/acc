@@ -139,15 +139,15 @@
 
 <?php require('partials/footer.php') ?>
 
-    <link href="<?php url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+    <link href="<?php echo url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
-    <script src="<?php url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
 
-    <script src="<?php url() ?>public/datatables/dataTables.bootstrap.js"></script>
+    <script src="<?php echo url() ?>public/datatables/dataTables.bootstrap.js"></script>
 
-    <script src="<?php url() ?>public/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo url() ?>public/js/jquery.dataTables.min.js"></script>
 
-    <script src="<?php url() ?>/public/js/posts.js"></script>
+    <script src="<?php echo url() ?>/public/js/posts.js"></script>
 
     <script>
 

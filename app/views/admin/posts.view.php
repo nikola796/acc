@@ -271,7 +271,7 @@ if(isset($_SESSION['update_post'])){
         </div>
     </div>
     </div>
-    <script src="<?php url()?>public/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo url()?>vendor/ckeditor/ckeditor/ckeditor.js"></script>
 
 
 <?php require('partials/footer.php') ?>
@@ -280,16 +280,16 @@ if(isset($_SESSION['update_post'])){
         CKEDITOR.replace( 'text' );
 
     </script>
-    <link href="<?php url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+    <link href="<?php echo url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
     <!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
     <!---->
     <!--    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" media="screen">-->
 
-    <script src="<?php url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
 
-    <script src="<?php url() ?>public/datatables/dataTables.bootstrap.js"></script>
-    <script src="<?php url() ?>/public/js/posts.js"></script>
+    <script src="<?php echo url() ?>public/datatables/dataTables.bootstrap.js"></script>
+    <script src="<?php echo url() ?>/public/js/posts.js"></script>
     <script>
 
     </script>

@@ -7,9 +7,9 @@
                 <h5 class="panel-title text-center">Документи</h5>
             </div>
             <div class="list-group table-of-contents">
-                <a class="list-group-item" href="<?php url()?>">Начало</a>
-                <a style="color:red" class="list-group-item" href="<?php url()?>Документи/Важно">Важно</a>
-                <a class="list-group-item" href="<?php url()?>Документи">Преглед на документи</a>
+                <a class="list-group-item" href="<?php echo url()?>">Начало</a>
+                <a style="color:red" class="list-group-item" href="<?php echo url()?>Документи/Важно">Важно</a>
+                <a class="list-group-item" href="<?php echo url()?>Документи">Преглед на документи</a>
                 <a class="list-group-item" href="#tables">Форум</a>
                 <a class="list-group-item" href="#forms">Чат</a>
             </div>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-1">
                                 <a href="#" class="btn btn-primary btn-xs">Търси</a>
-                                <img src="<?php url()?>public/images/srchanim1.gif" align="absmiddle"
+                                <img src="<?php echo url()?>public/images/srchanim1.gif" align="absmiddle"
                                      height="50" width="50">
                             </div>
                         </div>

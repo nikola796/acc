@@ -39,7 +39,7 @@ class QueryBuilder
 
     public function selectAllSpaces()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM NESTED_CATEGORIES WHERE parent_id = 0 AND active = 1");
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE parent_id = 0 AND active = 1');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }

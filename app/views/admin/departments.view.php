@@ -113,15 +113,15 @@
 
 <?php require('partials/footer.php') ?>
 
-    <link href="<?php url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+    <link href="<?php echo url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
     <!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
     <!---->
     <!--    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" media="screen">-->
 
-    <script src="<?php url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
 
-    <script src="<?php url() ?>public/datatables/dataTables.bootstrap.js"></script>
+    <script src="<?php echo url() ?>public/datatables/dataTables.bootstrap.js"></script>
 
     <!--    <script src="--><?php //url() ?><!--public/js/tables.js"></script>-->
     <!--    <script src="//code.jquery.com/jquery-1.12.4.js"></script>-->
@@ -129,7 +129,7 @@
     <!--    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>-->
     <!--    <script src="--><?php //url() ?><!--public/js/libs/select2.min.js"></script>-->
 
-    <script src="<?php url() ?>public/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo url() ?>public/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(document).ready(function () {

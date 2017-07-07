@@ -1,15 +1,21 @@
 {
   "autoload": {
 
-    "classmap": [
+    "files": ["vendor/swiftmailer/swiftmailer/lib/swift_required.php"],
 
-      "./"
+    "classmap": [
+      "app/controllers",
+      "app/models",
+      "core",
+      "vendor/ckeditor",
+      "vendor/phroute"
 
     ]
 
   },
   "require": {
     "phroute/phroute": "1.*",
-    "ckeditor/ckeditor": "dev-full/stable"
+    "ckeditor/ckeditor": "dev-full/stable",
+    "swiftmailer/swiftmailer": "^5.4"
   }
 }

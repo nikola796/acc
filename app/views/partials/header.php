@@ -8,14 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title><?= $title?></title>
-    <link href="<?php url()?>public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php url()?>public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
+    <link href="<?php echo url()?>public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url()?>public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
           type="text/css"/>
-    <link href="<?php url()?>public/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url()?>public/css/styles.css" rel="stylesheet" type="text/css">
 
-    <script src="<?php url()?>public/js/libs/jquery-2.2.4.min.js"></script>
-    <script src="<?php url()?>public/js/libs/bootstrap.min.js"></script>
+    <script src="<?php echo url()?>public/js/libs/jquery-2.2.4.min.js"></script>
+    <script src="<?php echo url()?>public/js/libs/bootstrap.min.js"></script>
     <style>
 
     </style>

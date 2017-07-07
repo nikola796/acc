@@ -39,8 +39,8 @@ class User
 
         $db = Connection::make($conf['database']);
 
-        $stmt = $db->prepare('SELECT * FROM users WHERE id=1');
-        $stmt->execute();
+        $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->execute(array('id' => $id));
         $user = $stmt->fetchAll(PDO::FETCH_CLASS);
 
         return $user;
@@ -377,6 +377,61 @@ try{
         } else {
             return 'Подадени са некоректни данни за смяна на парола!';
         }
+    }
+
+    public function check_password($password)
+    {
+        $stmt = $this->db->prepare('SELECT id, email  FROM users WHERE email = :email');
+        $stmt->execute($password);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function savePasswordResetToDatabase($tokenHashForDatabase, $userId, $userEmail)
+    {
+        try {
+            $stmt = $this->db->prepare('INSERT INTO password_resets (user_id, email, token) VALUES (:userId, :userEmail, :token)');
+            $stmt->execute(array('userId' => $userId, 'userEmail' => $userEmail, 'token' => $tokenHashForDatabase));
+            return $stmt->rowCount();
+        } catch (PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function loadPasswordResetFromDatabase($tokenHashFromLink, &$userId, &$creationDate)
+    {
+        try{
+            $stmt = $this->db->prepare('SELECT * FROM password_resets WHERE token = ? AND used = 0');
+            $stmt->execute(array($tokenHashFromLink));
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($res) == 1){
+                $userId = $res[0]['user_id'];
+                $creationDate = $res[0]['created_at'];
+                return true;
+            }
+
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function letUserChangePassword($userId)
+    {
+        try{
+            $stmt = $this->db->prepare('UPDATE password_resets SET used = 1 WHERE user_id = ?');
+            $stmt->execute(array($userId));
+            return $stmt->rowCount();
+        } catch (PDOException $e){
+            echo $e->getMessage();
+        }
+
+    }
+
+    public function new_password($data)
+    {
+        $data['pass'] = $this->saltPassword($data['pass']);
+        $stmt = $this->db->prepare('UPDATE users SET pass = :pass WHERE id = :id');
+        $stmt->execute($data);
+        return $stmt->rowCount();
     }
 
 }

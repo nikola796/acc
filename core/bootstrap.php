@@ -4,21 +4,7 @@ use App\Core\App;
 
 App::bind('config', require 'config.php');
 
-//$app = array();
-//
-//$app['config'] = require 'config.php';
-
-
-//require 'core/Router.php';
-//
-//require 'core/Request.php';
-//
-//require 'core/database/Connection.php';
-//
-require_once 'core/init.inc.php';
 require_once 'core/session.php';
-//$options = @parse_ini_file('core/BBCodeParser.ini');
-//$parser = new HTML_BBCodeParser2($options);
 
 $conf = App::get('config');
 App::bind('database', new QueryBuilder(
@@ -28,6 +14,9 @@ App::bind('database', new QueryBuilder(
 ));
 
 define("NESTED_CATEGORIES", "nested_categories");
+define("MAIL_USER", "SDtest.one@customs.bg");
+define("MAIL_PASS", "12345678");
+
 
 function view($name, $data = array())
 {
@@ -71,7 +60,7 @@ function url()
     } else {
         $URL = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
     }
-    echo substr( $URL, 0,-9);
+    return substr( $URL, 0,-9);
 }
 
 function uri(){

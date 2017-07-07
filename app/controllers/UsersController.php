@@ -47,4 +47,13 @@ class UsersController
 
     }
 
+    public function new_password()
+    {
+        $data = array('id' => intval($_POST['user_id']), 'pass' => trim($_POST['pass']));
+        $res = $this->user->new_password($data);
+        if ($res == 1){
+            echo 'Успешно променихте паролата си!';
+        }
+    }
+
 }

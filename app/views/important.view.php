@@ -12,7 +12,7 @@
 
         <?php foreach ($important_documents as $document): ?>
 
-            <li><a href="<?php url()?>public/files/<?= $document->name?>" download="" target="_blank"><?= $document->label ?></a></li>
+            <li><a href="<?php echo url()?>public/files/<?= $document->name?>" download="" target="_blank"><?= $document->label ?></a></li>
 
         <?php endforeach; ?>
 

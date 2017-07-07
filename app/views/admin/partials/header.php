@@ -8,15 +8,15 @@
 <!--    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">-->
 
     <!-- Bootstrap -->
-    <link href="<?php url()?>public/css/libs/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
+    <link href="<?php echo url()?>public/css/libs/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
           type="text/css"/>
 
     <!-- Select2 -->
-    <link href="<?php url()?>public/css/libs/select2.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php url()?>public/css/jquery.dataTables.css">
+    <link href="<?php echo url()?>public/css/libs/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo url()?>public/css/jquery.dataTables.css">
     <!-- styles -->
-    <link href="<?php url()?>/public/css/admin_styles.css" rel="stylesheet">
+    <link href="<?php echo url()?>/public/css/admin_styles.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

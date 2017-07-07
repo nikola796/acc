@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
     <title>Setting editor UI language</title>
-    <script src="<?php url()?>public/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo url()?>public/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>

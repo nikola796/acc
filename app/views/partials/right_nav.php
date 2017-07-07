@@ -5,7 +5,7 @@
             <h5 class="panel-title text-center">Администрация</h5>
         </div>
         <div class="panel-body" >
-            <form method="post" action="<?php url() ?>auth" class="form-horizontal">
+            <form method="post" action="<?php echo url() ?>auth" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <div class="col-lg-12">
@@ -19,8 +19,13 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-3">
+                        <div class="col-lg-10 col-lg-offset-4">
                             <button  id="user_login_form" class="btn btn-primary btn-xs">Въведи</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <a id="reset_password"  href="#"><strong>Забравена парола</strong></a>
                         </div>
                     </div>
                 </fieldset>
@@ -31,7 +36,7 @@
 
 
 <div class="" style="float:right">
-    <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php url()?>public/images/calendar.gif">
+    <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php echo url()?>public/images/calendar.gif">
         <tr>
             <td align="center"> <font face="tahoma,arial" ><?php echo date("d");?></font><br/>
                 <font face="tahoma,arial" size="2">

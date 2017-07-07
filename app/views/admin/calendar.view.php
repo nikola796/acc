@@ -1,8 +1,8 @@
 <?php require ('partials/header.php') ?>
     <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
-    <link href="<?php url()?>public/css/calendar.css" rel="stylesheet">
-            <link href="<?php url()?>public/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
+    <link href="<?php echo url()?>public/css/calendar.css" rel="stylesheet">
+            <link href="<?php echo url()?>public/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen">
 		  <div class="col-md-10">
 
 		  			<div class="content-box-large">
@@ -47,10 +47,10 @@
 
 <?php require ('partials/footer.php')?>
 
-    <script src="<?php url()?>public/js/libs/jquery-ui.js"></script>
-    <script src="<?php url()?>public/fullcalendar/fullcalendar.js"></script>
-    <script src="<?php url()?>public/fullcalendar/gcal.js"></script>
-    <script src="<?php url()?>public/js/custom.js"></script>
-    <script src="<?php url()?>public/js/calendar.js"></script>
+    <script src="<?php echo url()?>public/js/libs/jquery-ui.js"></script>
+    <script src="<?php echo url()?>public/fullcalendar/fullcalendar.js"></script>
+    <script src="<?php echo url()?>public/fullcalendar/gcal.js"></script>
+    <script src="<?php echo url()?>public/js/custom.js"></script>
+    <script src="<?php echo url()?>public/js/calendar.js"></script>
 
 <?php require ('partials/bottom.php')?>

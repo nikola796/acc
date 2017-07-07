@@ -53,8 +53,8 @@
 
 <?php require ('partials/footer.php')?>
 
-    <script src="<?php url()?>public/js/libs/jquery-ui.js"></script>
-    <script src="<?php url()?>public/js/custom.js"></script>
+    <script src="<?php echo url()?>public/js/libs/jquery-ui.js"></script>
+    <script src="<?php echo url()?>public/js/custom.js"></script>
 <script>
     $(document).on('submit', '#change_password', function(e){
         e.preventDefault();

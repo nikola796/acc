@@ -19,24 +19,24 @@ if(isset($_SESSION['is_logged']) && $_SESSION['is_logged'] === true) {
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Администрация</title>
-        <link href="<?php url() ?>public/css/libs/bootstrap.min.css" rel="stylesheet">
-        <link href="<?php url() ?>public/css/libs/fileinput.css" media="all" rel="stylesheet"
+        <link href="<?php echo url() ?>public/css/libs/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo url() ?>public/css/libs/fileinput.css" media="all" rel="stylesheet"
               type="text/css"/>
-        <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
+        <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
               type="text/css"/>
-        <link href="<?php url() ?>public/themes/explorer/theme.css" media="all" rel="stylesheet"
+        <link href="<?php echo url() ?>public/themes/explorer/theme.css" media="all" rel="stylesheet"
               type="text/css"/>
-        <link href="<?php url() ?>public/css/styles.css" media="all" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo url() ?>public/css/styles.css" media="all" rel="stylesheet" type="text/css"/>
 
-        <script src="<?php url() ?>public/js/libs/jquery-2.2.4.min.js"></script>
-        <script src="<?php url() ?>public/js/plugins/sortable.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/js/fileinput.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/js/locales/bg.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/js/locales/es.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/themes/explorer/theme.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/js/libs/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/js/libs/bootstrap-dialog.js" type="text/javascript"></script>
-        <script src="<?php url() ?>public/ckeditor/ckeditor.js"></script>
+        <script src="<?php echo url() ?>public/js/libs/jquery-2.2.4.min.js"></script>
+        <script src="<?php echo url() ?>public/js/plugins/sortable.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/js/fileinput.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/js/locales/bg.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/js/locales/es.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/themes/explorer/theme.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/js/libs/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/js/libs/bootstrap-dialog.js" type="text/javascript"></script>
+        <script src="<?php echo url() ?>public/ckeditor/ckeditor.js"></script>
 
         <style>
             li {
