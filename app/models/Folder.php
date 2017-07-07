@@ -334,7 +334,7 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $user_access = $user->getUserAccess($_SESSION['user_id']);
             foreach ($user_access as $ua) {
                 //echo $ua->folder_id;
-                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM nested_categories  WHERE category_id = ?');
+                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM '.NESTED_CATEGORIES.'  WHERE category_id = ?');
                 $stmt->execute(array( $ua->folder_id));
                 $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
             }

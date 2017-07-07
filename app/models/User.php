@@ -213,7 +213,7 @@ class User
                 LEFT JOIN departments AS d ON ( u.department = d.id )
                 LEFT JOIN roles AS r ON ( u.role = r.id )
                 LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
-                LEFT JOIN nested_categorys AS f ON ( f.category_id = uf.folder_id )';
+                LEFT JOIN '.NESTED_CATEGORIES.' AS f ON ( f.category_id = uf.folder_id )';
 
         if (!isset($_POST['param']) || $_POST['param'] !== 'all') {
             $sql .= ' WHERE u.active = 1 ';
@@ -257,7 +257,7 @@ class User
                 LEFT JOIN departments AS d ON ( u.department = d.id )
                 LEFT JOIN roles AS r ON ( u.role = r.id )
                 LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
-                LEFT JOIN nested_categorys AS f ON ( f.category_id = uf.folder_id )';
+                LEFT JOIN '.NESTED_CATEGORIES.' AS f ON ( f.category_id = uf.folder_id )';
 
         if (empty($requestData['columns'][3]['search']['value'])) {   //name
             $sql .= " WHERE u.active = 1 ";

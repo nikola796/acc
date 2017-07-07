@@ -12,11 +12,11 @@ class QueryBuilder
 
     public function getParents()
     {
-        $stmt = $this->pdo->prepare("SELECT node.category_id, node.name, (COUNT(parent.name) - 1) AS depth
-                                    FROM nested_category AS node,nested_category AS parent
+        $stmt = $this->pdo->prepare('SELECT node.category_id, node.name, (COUNT(parent.name) - 1) AS depth
+                                    FROM '.NESTED_CATEGORIES.' AS node,'.NESTED_CATEGORIES.' AS parent
                                     WHERE node.lft BETWEEN parent.lft AND parent.rgt
                                     GROUP BY node.name HAVING COUNT(parent.name) = 1
-                                    ORDER BY node.lft;");
+                                    ORDER BY node.lft;');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -121,8 +121,8 @@ class QueryBuilder
     public function getTestFolders($dep)
     {
         $stmt = $this->pdo->prepare('SELECT node.category_id,node.name, (COUNT(parent.name) - 1) AS depth
-FROM nested_category AS node,
-  nested_category AS parent
+FROM '.NESTED_CATEGORIES.' AS node,
+  '.NESTED_CATEGORIES.' AS parent
 WHERE node.lft BETWEEN parent.lft AND parent.rgt AND parent.rgt < 20
 GROUP BY node.name
   HAVING COUNT(parent.name) = 1
@@ -135,8 +135,8 @@ ORDER BY node.lft;');
     public function selectAllFolders($dep)
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
-        $stmt = $this->pdo->query("SELECT @Category_id := category_id FROM NESTED_CATEGORIES WHERE dep = {$dep} AND parent_id = 0");
-        $stmt = $this->pdo->prepare("SELECT * FROM NESTED_CATEGORIES WHERE dep = ? AND parent_id = @Category_id");
+        $stmt = $this->pdo->query('SELECT @Category_id := category_id FROM '.NESTED_CATEGORIES.' WHERE dep = '.$dep.' AND parent_id = 0');
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE dep = ? AND parent_id = @Category_id');
         $stmt->execute(array($dep));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -145,7 +145,7 @@ ORDER BY node.lft;');
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
 //die(var_dump($dep));
-        $stmt = $this->pdo->prepare("SELECT * FROM NESTED_CATEGORIES where parent_id = ?");
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' where parent_id = ?');
         $stmt->execute(array($parent));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -192,7 +192,7 @@ ORDER BY node.lft;');
     public function getUsersFolders($dep, $folder = null)
     {
 
-        $sql = 'SELECT * FROM mynested_category WHERE  dep = ?';
+        $sql = 'SELECT * FROM '.NESTED_CATEGORIES.' WHERE  dep = ?';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array($dep));
@@ -211,7 +211,7 @@ ORDER BY node.lft;');
 
     public function getDepartment($id)
     {
-        $stmt = $this->pdo->prepare('SELECT dep FROM `nested_categorys` where category_id = ?');
+        $stmt = $this->pdo->prepare('SELECT dep FROM '.NESTED_CATEGORIES.' where category_id = ?');
         $stmt->execute(array($id));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }

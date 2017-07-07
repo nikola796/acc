@@ -145,7 +145,7 @@ class Department
         $stmt->execute($data);
         $updatedDepCount = $stmt->rowCount();
 
-        $stmt = $this->db->prepare('UPDATE nested_categorys SET name = :name WHERE dep = :dep AND parent_id = 0');
+        $stmt = $this->db->prepare('UPDATE '.NESTED_CATEGORIES.' SET name = :name WHERE dep = :dep AND parent_id = 0');
         $stmt->execute(array('name' => $data['name'], 'dep' => $data['id']));
         $updateCatCount = $stmt->rowCount();
 
@@ -159,7 +159,7 @@ class Department
         $stmt->execute($data);
         $de_activate_departments = $stmt->rowCount();
 
-        $stmt = $this->db->prepare('UPDATE  nested_categorys SET active = :active WHERE dep = :id');
+        $stmt = $this->db->prepare('UPDATE  '.NESTED_CATEGORIES.' SET active = :active WHERE dep = :id');
         $stmt->execute($data);
         $de_activate_nested_categories = $stmt->rowCount();
 

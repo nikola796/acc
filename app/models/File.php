@@ -27,9 +27,9 @@ class File
     public function getAllFiles()
     {
 
-        $stmt = $this->db->prepare('    SELECT f.id,f.original_filename,f.label, u.name as author,nc.name as folder,f.file_added_when,p.post FROM intranet.files AS f
+        $stmt = $this->db->prepare('    SELECT f.id,f.original_filename,f.label, u.name as author,nc.name as folder,f.file_added_when,p.post FROM files AS f
                                                   LEFT JOIN users as u ON (f.added_from=u.id)
-                                                  LEFT JOIN nested_categorys as nc ON (f.directory=nc.category_id) 
+                                                  LEFT JOIN '.NESTED_CATEGORIES.' as nc ON (f.directory=nc.category_id) 
                                                   LEFT JOIN posts AS p ON (f.post_id=p.id)');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
