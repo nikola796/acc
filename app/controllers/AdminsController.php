@@ -44,7 +44,7 @@ class AdminsController
 
         $departments = App::get('database')->selectAll('departments');
 
-        $folders = App::get('database')->selectFolders('nested_categorys');
+        $folders = App::get('database')->selectFolders(NESTED_CATEGORIES);
 //die(view($folders));
         $users_roles_access = $this->user->getUsersRolesAccess();
 
