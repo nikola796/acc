@@ -18,6 +18,9 @@ class Department
 
     private $db;
 
+    /**
+     * Department constructor.
+     */
     public function __construct()
     {
         $conf = App::get('config');
@@ -25,6 +28,10 @@ class Department
         $this->db = Connection::make($conf['database']);
     }
 
+    /**
+     * GET ALL DEPARTMENTS
+     * @return array
+     */
     public function getAllDeparments()
     {
         $stmt = $this->db->prepare('SELECT d.name, d.added_when, d.modified, u.name as user FROM departments as d LEFT JOIN users as u ON(d.added_by=u.id)');
@@ -33,6 +40,9 @@ class Department
 
     }
 
+    /**
+     * GET ALL DEPARTMENTS BY AJAX
+     */
     public function getDepartmentAjax()
     {
 
@@ -126,6 +136,10 @@ class Department
         echo json_encode($json_data);  // send data as json format
     }
 
+    /**
+     * CREATE NEW DEPARTMENT
+     * @return string
+     */
     public function newDepartment()
     {
         $dep_name = $_POST['name'];
@@ -137,6 +151,10 @@ class Department
 
     }
 
+    /**
+     * EDIT DEPARTMENT
+     * @return array
+     */
     public function editDepartment()
     {
         $data = array('id' => $_POST['id'], 'name' => $_POST['name'], 'user_id' => $_SESSION['user_id']);
@@ -153,6 +171,11 @@ class Department
 
     }
 
+    /**
+     * ACTIVATE AND DEACTIVATE DEPARTMENT
+     * @param array $data
+     * @return array
+     */
     public function de_activateDepartment($data = array())
     {
         $stmt = $this->db->prepare('UPDATE  departments SET active = :active WHERE id = :id');

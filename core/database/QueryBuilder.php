@@ -39,7 +39,7 @@ class QueryBuilder
 
     public function selectAllSpaces()
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE parent_id = 0 AND active = 1');
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE parent_id = 0 AND active = 1 ORDER BY sort_number');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -136,7 +136,7 @@ ORDER BY node.lft;');
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
         $stmt = $this->pdo->query('SELECT @Category_id := category_id FROM '.NESTED_CATEGORIES.' WHERE dep = '.$dep.' AND parent_id = 0');
-        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE dep = ? AND parent_id = @Category_id');
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE dep = ? AND parent_id = @Category_id ORDER BY sort_number');
         $stmt->execute(array($dep));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -145,15 +145,33 @@ ORDER BY node.lft;');
     {
         //  $stmt = $this->pdo->prepare("call intranet.GetFolders({$dep});");
 //die(var_dump($dep));
-        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' where parent_id = ?');
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' where parent_id = ? ORDER BY sort_number');
         $stmt->execute(array($parent));
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function getId($id, $name, $table)
+    public function getId($id, $name, $table, $dep = null, $parent = null)
     {
-        $stmt = $this->pdo->prepare("SELECT {$id} from {$table} where name = :name");
-        $stmt->execute(array('name' => $name));
+        $sql = "SELECT {$id} from {$table} where name = :folder_name";
+        $statement = array('folder_name' => $name);
+
+
+        if($dep){
+            $sql = 'SELECT nc.category_id,nc.name,nc.dep,nc.parent_id FROM '.NESTED_CATEGORIES.' as nc
+                     left join '.NESTED_CATEGORIES.' as d ON (nc.dep = d.category_id)';
+            $where = ' where nc.name = :folder_name AND d.name = :dep_name';
+            $statement['dep_name'] = $dep;
+
+            if($parent){
+                $sql .= ' left join '.NESTED_CATEGORIES.' as p ON (nc.parent_id = p.category_id)';
+                $where .= ' AND p.name = :parent_name';
+                $statement['parent_name'] = $parent;
+            }
+            $sql .= $where;
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($statement);
         return $stmt->fetchAll(PDO::FETCH_CLASS);
 
     }
@@ -165,6 +183,15 @@ ORDER BY node.lft;');
         $stmt->execute(array('id' => $id));
         $res = $stmt->fetchAll(PDO::FETCH_CLASS);
         return $res[0]->dep;
+    }
+
+    public function getFolderName($id)
+    {
+
+        $stmt = $this->pdo->prepare('SELECT name from '. NESTED_CATEGORIES .' where category_id = :id');
+        $stmt->execute(array('id' => $id));
+        $res = $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $res[0]->name;
     }
 
     public function insertPost($params)

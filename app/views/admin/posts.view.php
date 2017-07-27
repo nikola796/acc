@@ -1,7 +1,7 @@
 <?php require('partials/header.php') ?>
 <?php
-if(isset($_SESSION['update_post'])){
-    foreach ($_SESSION['update_post'] as $res){
+if (isset($_SESSION['update_post'])) {
+    foreach ($_SESSION['update_post'] as $res) {
         $r .= '\n' . $res;
 
     }
@@ -19,7 +19,7 @@ if(isset($_SESSION['update_post'])){
         }
 
         /*.spacer-bg {*/
-            /*margin:5%;*/
+        /*margin:5%;*/
         /*}*/
     </style>
     <div class="col-md-10" style="margin-bottom: 50px;">
@@ -69,7 +69,7 @@ if(isset($_SESSION['update_post'])){
                                         <div class="form-group">
                                             <label for="folderName">Място на новата папка</label>
                                             <select name="folder" id="perentFolder" class="form-control">
-                                                <option value="0">Главна директория</option>
+                                                <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
                                                 <?php foreach ($folders as $folder): ?>
 
                                                     <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -92,12 +92,19 @@ if(isset($_SESSION['update_post'])){
 
                     <div id="perentFolders" class="form-group">
                         <select name="folder" class="form-control" id="folder">
+                            <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
                             <?php foreach ($folders as $folder): ?>
                                 <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-
+                    <div id="sort_number_div" class="form-group">
+                        <label for="sort_number">Ще се показва в папаката на ред:</label>
+                        <select name="sort_number" class="form-control" id="sort_number">
+                        </select>
+                        <div id="old_sort_number"></div>
+                    </div>
+                    <div class="spacer-bg"></div>
                     <div class="form-group">
 
                         <input type="button" class="form-control btn-info" id="addAnotherFile" value="Добави файл"/>
@@ -111,7 +118,8 @@ if(isset($_SESSION['update_post'])){
                     <div class="spacer-bg"></div>
                     <div class="text-center">
                         <!--                <button type="submit" class="btn btn-default" id="view_post" name="view">Прегледай</button>-->
-                        <button type="submit" class="btn btn-primary" name="save" id="submit_form" value="1">Запази</button>
+                        <button type="submit" class="btn btn-primary" name="save" id="submit_form" value="1">Запази
+                        </button>
                     </div>
                 </form>
             </div>
@@ -124,71 +132,75 @@ if(isset($_SESSION['update_post'])){
                         <div class="content-box-header panel-heading">
                             <div class="panel-title "><a style="text-decoration: none" id="allPosts" href="#">Всички
                                     публикации</a></div>
-
-                            <!--                    <div class="panel-options">-->
-                            <!--                        <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>-->
-                            <!--                        <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>-->
-                            <!--                    </div>-->
                         </div>
 
                         <div id="posts_div" style="display: none" class="content-box-large box-with-header">
-                            <?php if(count($posts) > 0): ?>
-                            <div class="panel-body">
-                                <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
-                                    <table id="example" class="table table-striped table-bordered dataTable" border="0"
-                                           cellspacing="0" cellpadding="0" aria-describedby="example_info">
-                                        <thead>
-                                        <tr>
-                                            <th>Публикация</th>
-                                            <th>Прикачен файл</th>
-                                            <th>Папка</th>
-                                            <th>Добавен от:</th>
-                                            <th>Добавен на:</th>
-                                            <th>Последна промяна:</th>
-                                            <th>Файл описание</th>
-                                            <th>Файл име</th>
-                                            <th>Действия</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table_body">
-                                        <?php foreach ($posts as $post): ?>
+                            <?php if (count($posts) > 0): ?>
+                                <div class="panel-body">
+                                    <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                        <table id="example" class="table table-striped table-bordered dataTable"
+                                               border="0"
+                                               cellspacing="0" cellpadding="0" aria-describedby="example_info">
+                                            <thead>
                                             <tr>
-                                                <td class="post"><?= $post->post ?></td>
-                                                <td class="attachment"><?= ($post->attachment == 1 ? 'Да' : 'He') ?></td>
-                                                <td class="post_folder"><input type="hidden" name="post_folder_id" class="post_folder_id"
-                                                                               value="<?= $post->directory ?>"><?= $post->folder ?></td>
-                                                <td> <input type="hidden" name="post_id" class="user_post_id" value="<?= $post->id ?>" /><span
-                                                            class="role"><?= $post->username ?></span></td>
-                                                <td><input type="hidden" name="access_id" class="access_id"
-                                                           value="<?= $ura->access_id ?>"><span
-                                                            class="access"><?= ($post->added_when ? date('Y-m-d H:i:s', $post->added_when) : '') ?></span>
-                                                </td>
-                                                <td class=""><span class="name"><?= $post->modified ?></span></td>
-                                                <td class=""><span class="name"><?= $post->label ?></span></td>
-                                                <td class="name"><span class="name"><?= $post->file_name ?></span>
-                                                <input type="hidden" name="file_id" class="file_id" value="<?= $post->file_id ?>">
-                                                </td>
-                                                <td class="vert-align">
-                                                    <div class="text-center">
-                                                        <button title="Редактирай" id="<?= $post->id ?>"
-                                                                class="btn btn-primary btn-xs post_id">
-                                                            <i class="glyphicon glyphicon-pencil"></i>
-                                                        </button>
-                                                        <button title="Премахни" id="<?= $post->id ?>"
-                                                                class="btn btn-danger btn-xs del_post">
-                                                            <i class="glyphicon glyphicon-remove"></i>
-
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <th>Публикация</th>
+                                                <th>Прикачен файл</th>
+                                                <th>Папка</th>
+                                                <th>Добавен от:</th>
+                                                <th>Добавен на:</th>
+                                                <th>Последна промяна:</th>
+                                                <th>Файл описание</th>
+                                                <th>Файл име</th>
+                                                <th>Поредност в папката</th>
+                                                <th>Действия</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="table_body">
+                                            <?php foreach ($posts as $post): ?>
+                                                <tr>
+                                                    <td class="post"><?= $post->post ?></td>
+                                                    <td class="attachment"><?= ($post->attachment == 1 ? 'Да' : 'He') ?></td>
+                                                    <td class="post_folder"><input type="hidden" name="post_folder_id"
+                                                                                   class="post_folder_id"
+                                                                                   value="<?= $post->directory ?>"><?= $post->folder ?>
+                                                    </td>
+                                                    <td><input type="hidden" name="post_id" class="user_post_id"
+                                                               value="<?= $post->id ?>"/><span
+                                                                class="role"><?= $post->username ?></span></td>
+                                                    <td><input type="hidden" name="access_id" class="access_id"
+                                                               value="<?= $ura->access_id ?>"><span
+                                                                class="access"><?= ($post->added_when ? date('Y-m-d H:i:s', $post->added_when) : '') ?></span>
+                                                    </td>
+                                                    <td class=""><span class="name"><?= $post->modified ?></span></td>
+                                                    <td class=""><span class="name"><?= $post->label ?></span></td>
+                                                    <td class="name"><span class="name"><?= $post->file_name ?></span>
+                                                        <input type="hidden" name="file_id" class="file_id"
+                                                               value="<?= $post->file_id ?>">
+                                                    </td>
+                                                    <td class=""><span
+                                                                class="sort_number"><?= $post->sort_number ?></span>
+                                                    </td>
+                                                    <td class="vert-align">
+                                                        <div class="text-center">
+                                                            <button title="Редактирай" id="<?= $post->id ?>"
+                                                                    class="btn btn-primary btn-xs post_id">
+                                                                <i class="glyphicon glyphicon-pencil"></i>
+                                                            </button>
+                                                            <button title="Премахни" id="<?= $post->id ?>"
+                                                                    class="btn btn-danger btn-xs del_post">
+                                                                <i class="glyphicon glyphicon-remove"></i>
 
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </div>
-                            </div>
-                                <?php else:?>
+                            <?php else: ?>
                                 <p>Няма добавени публикации.</p>
                             <?php endif; ?>
                         </div>
@@ -201,69 +213,60 @@ if(isset($_SESSION['update_post'])){
                         <div class="content-box-header panel-heading">
                             <div class="panel-title "><a style="text-decoration: none" id="allFiles" href="#">Всички
                                     файлове</a></div>
-
-                            <!--                    <div class="panel-options">-->
-                            <!--                        <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>-->
-                            <!--                        <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>-->
-                            <!--                    </div>-->
                         </div>
                         <div id="files_div" style="display: none" class="content-box-large box-with-header">
-                            <?php if(count($files) > 0): ?>
-                            <div class="panel-body">
-                                <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
-                                    <table id="files" class="table table-striped table-bordered dataTable" border="0"
-                                           cellspacing="0" cellpadding="0" aria-describedby="example_info">
-                                        <!--                                <div>-->
-                                        <!--                                    <label>-->
-                                        <!--                                        <input type="checkbox" id="all_check"> Включи деактивираните потребители-->
-                                        <!--                                    </label>-->
-                                        <!--                                </div>-->
-                                        <thead>
-                                        <tr>
-                                            <th>Описание</th>
-                                            <th>Име на файла</th>
-                                            <th>Добавен от:</th>
-                                            <th>Папка</th>
-                                            <th>Добавен на:</th>
-                                            <th>Публикация към файла</th>
-                                            <th>Действия</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table_body">
-                                        <?php foreach ($files as $file): ?>
+                            <?php if (count($files) > 0): ?>
+                                <div class="panel-body">
+                                    <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                        <table id="files" class="table table-striped table-bordered dataTable"
+                                               border="0"
+                                               cellspacing="0" cellpadding="0" aria-describedby="example_info">
+                                            <thead>
                                             <tr>
-                                                <td class="file_label"><?= $file->label ?></td>
-                                                <td class="file_name"><?= $file->original_filename ?></td>
-                                                <td class="email"><?= $file->author ?></td>
-                                                <td><input type="hidden" name="folder_id" class="folder_id"
-                                                           value=""><span class="role"><?= $file->folder ?></span></td>
-                                                <td>
-                                                    <span class="access"><?= $file->file_added_when ?></span>
-                                                </td>
-                                                <td class="name"><span class="name"><?= $file->post ?></span></td>
-                                                <td class="vert-align">
-                                                    <div class="text-center">
-                                                        <button title="Редактирай" id="<?= $file->id ?>"
-                                                                class="btn btn-primary btn-xs file_id">
-                                                            <i class="glyphicon glyphicon-pencil"></i>
-                                                        </button>
-                                                        <button title="Премахни" id="<?= $file->id ?>"
-                                                                class="btn btn-danger btn-xs del_file">
-                                                            <i class="glyphicon glyphicon-remove"></i>
-
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <th>Описание</th>
+                                                <th>Име на файла</th>
+                                                <th>Добавен от:</th>
+                                                <th>Папка</th>
+                                                <th>Добавен на:</th>
+                                                <th>Публикация към файла</th>
+                                                <th>Поредност в папката</th>
+                                                <th>Действия</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="table_body">
+                                            <?php foreach ($files as $file): ?>
+                                                <tr>
+                                                    <td class="file_label"><?= $file->label ?></td>
+                                                    <td class="file_name"><?= $file->original_filename ?></td>
+                                                    <td class="email"><?= $file->author ?></td>
+                                                    <td><input type="hidden" name="folder_id" class="folder_id"
+                                                               value=""><span class="role"><?= $file->folder ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="access"><?= $file->file_added_when ?></span>
+                                                    </td>
+                                                    <td class="name"><span class="name"><?= $file->post ?></span></td>
+                                                    <td class="sort_name"><span
+                                                                class="name"><?= $file->sort_number ?></span></td>
+                                                    <td class="vert-align">
+                                                        <div class="text-center">
+                                                            <button title="Премахни" id="<?= $file->id ?>"
+                                                                    class="btn btn-danger btn-xs del_file">
+                                                                <i class="glyphicon glyphicon-remove"></i>
 
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </div>
-                            </div>
-                            <?php else:?>
-                            <p>Няма добавени файлове</p>
-                            <?php endif;?>
+                            <?php else: ?>
+                                <p>Няма добавени файлове</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -271,20 +274,15 @@ if(isset($_SESSION['update_post'])){
         </div>
     </div>
     </div>
-    <script src="<?php echo url()?>vendor/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo url() ?>vendor/ckeditor/ckeditor/ckeditor.js"></script>
 
 
 <?php require('partials/footer.php') ?>
     <script>
 
-        CKEDITOR.replace( 'text' );
 
     </script>
     <link href="<?php echo url() ?>public/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
-
-    <!--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-    <!---->
-    <!--    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" media="screen">-->
 
     <script src="<?php echo url() ?>public/datatables/js/jquery.dataTables.min.js"></script>
 
@@ -294,26 +292,64 @@ if(isset($_SESSION['update_post'])){
 
     </script>
     <script>
+        CKEDITOR.replace('text');
+        $(document).ready(function () {
+            //alert($('#perentFolders option:selected').val());
+            $.ajax({
+                url: 'get_sort_numbers',
+                type: 'POST',
+                data: {parent: $('#perentFolders option:selected').val()}
+            }).done(function (data) {
+                data++;
+                $('#old_sort_number').html('<input type="hidden" name="default_sort_number" id="default_sort_number" value="' + data + '" />')
+                var i;
+                for (i = 1; i <= data; i++) {
+                    $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                }
+                $('#sort_number').val(data).prop('selected');
 
 
+            });
+        });
+
+        $(document).on('change', '#perentFolders', function () {
+            $('#sort_number').html('');
+
+            $.ajax({
+                url: 'get_sort_numbers',
+                type: 'POST',
+                data: {parent: $('#perentFolders option:selected').val()}
+            }).done(function (data) {
+                if ($('#submit_form').val() != 2) {
+                    data++;
+                }
+                var i;
+
+                for (i = 1; i <= data; i++) {
+                    $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                }
+                if ($('#submit_button').val() != 'edit') {
+                    $('#sort_number').val(data).prop('selected');
+                } else {
+                    $('#sort_number').val(sort_num).prop('selected');
+                }
+            });
+        });
 
         $('#posts').addClass('current');
-        <?php if(isset($_SESSION['update_post'])):?>
-       BootstrapDialog.alert({
-           type: BootstrapDialog.TYPE_SUCCESS,
-           title: 'Успех',
-           message: '<?=$r?>'
-       });
-       <?php  unset($_SESSION['update_post']);?>
-       <?php endif;?>
+
+        <?php if(isset($_SESSION['update_post']) && count($_SESSION['update_post']) > 0):?>
+        BootstrapDialog.alert({
+            type: BootstrapDialog.TYPE_SUCCESS,
+            title: 'Успех',
+            message: '<?=$r?>'
+        });
+        <?php  unset($_SESSION['update_post']);?>
+        <?php endif;?>
         var dataTable = $('#example,#files').DataTable();
-        //    $(document).on('submit', 'form', function(e){
-        //        e.preventDefault()
-        //        console.log('Form is Submitted')
-        //    })
-        //BootstrapDialog.alert('test');
-<?php
-        if (isset($_SESSION['add_new_file_post'])) {
+
+        <?php
+        if (isset($_SESSION['add_new_file_post']) && count($_SESSION['add_new_file_post']) > 0) {
 
             echo " BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_SUCCESS,
@@ -327,17 +363,12 @@ if(isset($_SESSION['update_post'])){
             unset($_SESSION['add_new_file_post']);
         }
         ?>
-//         if (isset($_SESSION['update_post'])) {
-//
 
-//
-//           unset($_SESSION['update_post']);
-//        }
-        $(document).on('click', '.file_id', function(){
+        $(document).on('click', '.file_id', function () {
             console.log($(this).attr('id'));
         })
 
-        $(document).on('click', '.del_file', function(){
+        $(document).on('click', '.del_file', function () {
             var id = $(this).attr('id');
             $.ajax({
                 type: 'POST',
@@ -346,7 +377,7 @@ if(isset($_SESSION['update_post'])){
             }).done(function (data) {
                 console.log(data);
                 var msg = '';
-                if(data >= 1){
+                if (data >= 1) {
                     msg = 'Успешно премахнахте файл';
 
                 } else {
@@ -357,78 +388,84 @@ if(isset($_SESSION['update_post'])){
                     type: BootstrapDialog.TYPE_SUCCESS,
                     title: 'Успех',
                     message: msg,
-                    onhide: function(dialogRef){
+                    onhide: function (dialogRef) {
                         window.location.reload(true);
                     }
                 })
             })
         })
 
-        $(document).on('click', '.del_post', function(){
+        $(document).on('click', '.del_post', function () {
             var post_id = $(this).attr('id');
             $.ajax({
                 type: 'POST',
                 url: 'delete-post',
                 data: {post_id: post_id}
             }).done(function (data) {
-                if(data.data.del_post == 1){
+                if (data.data.del_post == 1) {
                     var msg = 'Успешно изтрихте публикацията';
 
-                    if(data.data.del_file == 1){
+                    if (data.data.del_file == 1) {
                         msg += ' и файла към нея!'
-                    } else if(data.data.del_file > 1){
+                    } else if (data.data.del_file > 1) {
                         msg += ' и файловете към нея!'
                     }
 
-                } else{
+                } else {
                     msg = 'Възникна проблем. Моля опитайте по-късно';
                 }
-                    BootstrapDialog.alert({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: 'Успех',
-                        message: msg,
-                        onhide: function(dialogRef){
-                            window.location.reload(true);
-                        }
-                    });
+                BootstrapDialog.alert({
+                    type: BootstrapDialog.TYPE_SUCCESS,
+                    title: 'Успех',
+                    message: msg,
+                    onhide: function (dialogRef) {
+                        window.location.reload(true);
+                    }
+                });
 
                 console.log(data.data.del_post);
             })
         });
-
-        $(document).on('click', '.post_id', function(){
+        /**************** EDIT POST **********************************************************************/
+        var sort_num;
+        $(document).on('click', '.post_id', function () {
             var post_id = $(this).closest('tr').find('input.user_post_id').val();
             var post = $(this).closest('tr').find('td:eq(0)').html();
             var attached = $(this).closest('tr').find('td:eq(1)').text();
+            sort_num = $(this).closest('tr').find('td:eq(8)').text();
+            $('#old_sort_number').html('<input type="hidden" name="old_sort_number" value="' + sort_num + '" />');
+
+            console.log('Old number is: ' + sort_num);
             $('#folder').val('');
             $('#folder').val($(this).closest('tr').find('input.post_folder_id').val()).trigger('change');
             CKEDITOR.instances['text'].setData(post)
             //$('#cke_1_contents').html(post);
-            $('#attachedFiles').html('<input type="hidden" name="postId" value="'+ post_id +'" />');
-            if(attached == 'Да'){
+            $('#attachedFiles').html('<input type="hidden" name="postId" value="' + post_id + '" />');
+            if (attached == 'Да') {
                 var file_label = $(this).closest('tr').find('td:eq(6)').text().split('; ');
                 console.log(file_label);
                 var file_name = $(this).closest('tr').find('td:eq(7)').text().split('; ');
-                var file_id =  $(this).closest('tr').find('input.file_id').val().split('; ');
+
+                var file_id = $(this).closest('tr').find('input.file_id').val().split('; ');
 
 
                 $('#attachedFiles').append('<strong><span>Файлове към публикацията:</span></strong><div class="spacer-sm"></div>')
-               $.each(file_label, function(i, v){
-                   $('#attachedFiles').append('<div class="form-inline"><span style="float:left" class="file_name">Име на файла: <strong class="file_name_txt">' + file_name[i] + '</strong> </span><input class="attached_files_id" type="hidden" name="file_id[]" value="'+file_id[i]+'"><span style="margin-left:5%">Описание на файла: <strong>' + v + '</strong></span> <span class="glyphicon glyphicon-remove"></span> <br /></div>');
-                   $('#attachedFiles').append('<div class="spacer-sm"></div>');
-                   // console.log('Описание на файла: ' + v + '; Име на файла: '+ file_name[i])
+                $.each(file_label, function (i, v) {
+                    $('#attachedFiles').append('<div class="form-inline"><span style="float:left" class="file_name">Име на файла: <strong class="file_name_txt">' + file_name[i] + '</strong> </span><input class="attached_files_id" type="hidden" name="file_id[]" value="' + file_id[i] + '"><span style="margin-left:5%">Описание на файла: <strong>' + v + '</strong></span> <span class="glyphicon glyphicon-remove"></span> <br /></div>');
+                    $('#attachedFiles').append('<div class="spacer-sm"></div>');
+                    // console.log('Описание на файла: ' + v + '; Име на файла: '+ file_name[i])
                 });
 
             }
 
             $('#submit_form').text('Обнови');
             $('#submit_form').val(2);
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({scrollTop: 0}, "slow");
             return false;
 
         });
 
-        $(document).on('change', '.select_file', function(){
+        $(document).on('change', '.select_file', function () {
             //console.log( $(this).closest('div').find('span.file_name').html());
             $(this).closest('div').find('span.file_name').html('');
         })
@@ -441,7 +478,7 @@ if(isset($_SESSION['update_post'])){
             e.preventDefault();
             $('#files_div').toggle();
         });
-$('#folder').select2();
+        $('#folder, #sort_number').select2();
     </script>
 
 <?php require("partials/bottom.php");

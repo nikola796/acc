@@ -21,16 +21,16 @@
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" action="search.php" method="post" name="form1" target="_blank">
+                <form id="search_form" class="form-horizontal" action="search" method="post" name="form1" target="_blank">
                     <fieldset>
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <input class="form-control" id="inputEmail" type="text">
+                                <input class="form-control" name="term" id="inputSearch" type="text">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-1">
-                                <a href="#" class="btn btn-primary btn-xs">Търси</a>
+                                <input type="submit" class="btn btn-primary btn-xs" value="Търси" />
                                 <img src="<?php echo url()?>public/images/srchanim1.gif" align="absmiddle"
                                      height="50" width="50">
                             </div>
@@ -44,8 +44,7 @@
             <div class="panel-heading">
                 <p style="font-size:1em;color: #00FF00; font-weight:bold" class="panel-title">Валутни курсове</p>
             </div>
-            <div style="bgcolor: #FFFFFF"
-            " class="panel-body">
+            <div style="bgcolor: #FFFFFF" class="panel-body">
             <a name="scrollingCode"></a><a href="http://customs.bg/bg/page/25" target="_blank">Митнически валутни
                 курсове<!--а--></a>
         </div>

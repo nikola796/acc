@@ -6,20 +6,15 @@ $router->get('Документи', array('App\Controllers\DocumentsController', 
 
 $router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'));
 
-
+$router->get('search?{term}', array('App\Controllers\DocumentsController', 'search'));
 
 $router->get('recover', array('app\controllers\AuthController', 'recover'));
 
 $router->get('reset_password?{tok}', array('app\controllers\AuthController', 'reset_password'));
 
-//$router->get('files/{id}', array('App\Controllers\FilesController', 'index'));
-
 $router->get('Важно', array('App\Controllers\FilesController', 'important'));
 
 $router->get('files?{stored_filename}&{original_filename}', array('App\Controllers\FilesController', 'downloadFile'));
-
-
-$router->get('test', array('App\Controllers\DocumentsController', 'getTestIndex'));
 
 $router->get('Документи/{dep}', array('App\Controllers\DocumentsController', 'showTest'));
 
@@ -31,9 +26,9 @@ $router->get('admin/edit', function(){
     return view('admin/lang');
 });
 
-$router->get('{folder}/Файлове/{id}', array('App\Controllers\FilesController', 'indexTest'));
-
-$router->get('{folder}', array('App\Controllers\DocumentsController', 'getFolder'));
+$router->get('{folder}/Файлове', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('Документи/{department}/{parent_folder}/{folder}', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('Документи/{department}/{parent_folder}', array('App\Controllers\FilesController', 'indexTest'));
 
 $router->get('admin/table', array('app\controllers\AdminsController', 'table'));
 
@@ -73,6 +68,8 @@ $router->get('admin/folders',  array('app\\controllers\\FoldersController', 'ind
 
 
 /****** POST ROUTES *****************************************************************************************/
+
+$router->post('search', array('App\Controllers\DocumentsController', 'search_result'));
 
 $router->post('admin/table/get', array('app\controllers\AdminsController', 'tableGet'),
     array('before' => 'auth'));
@@ -142,27 +139,19 @@ $router->post('admin/new-folder',  array('app\\controllers\\FoldersController', 
 $router->post('admin/profile', array('App\\Controllers\\UsersController', 'changePassword'),
     array('before' => 'auth'));
 
+$router->post('admin/get_sort_numbers', array('app\\controllers\\FoldersController', 'getSortNumbers'),
+    array('before' => 'auth'));
+
 $router->post('reset_password', array('app\controllers\AuthController', 'forgot_password'));
 
 $router->post('new_password', array('App\\Controllers\\UsersController', 'new_password'));
 
+$router->get('404', array('App\Controllers\DocumentsController', 'notFound'));
+
 /***************** TEST FOR FILTER ROUTES ******************************************************************************/
-$router->filter('auth',
-//    function(){
-//
-//   if(!isset($_SESSION['is_logged']) || $_SESSION['is_logged'] != 1){
-//       redirect(uri());
-//       return false;
-//   }
-//}
-    array('app\controllers\AuthController', 'session_start')
-);
+$router->filter('auth', array('app\controllers\AuthController', 'session_start'));
 
 $router->filter('authComplete', function(){
     redirect(uri().'admin');
 });
-
-$router->get('/user/{name}', function($name){
-    return 'Hello ' . $name;
-}, array('before' => 'auth', 'after' => 'authComplete'));
 

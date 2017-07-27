@@ -27,7 +27,7 @@ class Important
 
     public function getAllDocuments()
     {
-        $stmt = $this->db->prepare('SELECT i.id,i.name,i.label,i.added_by,i.added_when,u.name as author FROM important as i LEFT JOIN users as u on (i.added_by = u.id) WHERE i.active=1');
+        $stmt = $this->db->prepare('SELECT i.id,i.name,i.label,i.added_by,i.added_when,u.name AS author FROM important AS i LEFT JOIN users AS u ON (i.added_by = u.id) WHERE i.active=1');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -39,7 +39,7 @@ class Important
             $stmt = $this->db->prepare('INSERT INTO important (name, label,added_by,added_when) VALUES (:name, :label, :author, ' . time() . ')');
             $stmt->execute($data);
             return $stmt->rowCount();
-        } catch (PDOException $ex){
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
         echo '<pre>' . print_r($data, true) . '</pre>';

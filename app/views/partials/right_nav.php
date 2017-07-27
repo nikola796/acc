@@ -35,8 +35,9 @@
 
 
 
-<div class="" style="float:right">
-    <table align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php echo url()?>public/images/calendar.gif">
+    <div class="panel panel-primary" style="float: right;background-color: #FFFFE6;border:1px solid #FFFFE6">
+
+    <table style="margin:0 auto" align="" width="70" height="95" cellpadding="0" cellspacing="0" background="<?php echo url()?>public/images/calendar.gif">
         <tr>
             <td align="center"> <font face="tahoma,arial" ><?php echo date("d");?></font><br/>
                 <font face="tahoma,arial" size="2">
@@ -47,9 +48,12 @@
                     <?php setlocale(LC_TIME, 'bg_BG.UTF8'); echo strftime("%a");?>
                 </font> </td>
         </tr>
+
     </table>
 
+    <?php require('online_users.php')?>
 </div>
+
 </div>
 
 

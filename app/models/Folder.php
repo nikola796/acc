@@ -18,19 +18,35 @@ class Folder
 {
     private $db = null;
 
+    /**
+     * Folder constructor.
+     */
     public function __construct()
     {
         $conf = App::get('config');
         $this->db = Connection::make($conf['database']);
     }
 
+    /**
+     * CREATE NEW FOLDER
+     * @param array $data
+     * @return string
+     */
     public static function createFolder($data = array())
     {
         //die(var_dump($_POST));
 //TODO GET USER_ID ADN DEPARTMENT FROM SESSION AND PUT IN SQL QUERY ABOVE
         $conf = App::get('config');
-//die(var_dump($_POST['parent']));
+//dd($data);
         $db = Connection::make($conf['database']);
+        $stmt = $db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
+
+        $stmt->execute(array('folder_name' => $data['folder_name'], 'parent_id' => $data['parent_id']));
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if($res[0]['cnt'] != 0){
+            return 'Папка с такова име вече съществува в избраното пространство!';
+        }
 
         $db->beginTransaction();
 
@@ -65,10 +81,10 @@ class Folder
         } else {
             try {
                 /**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
-                $db->query('LOCK TABLE '. NESTED_CATEGORIES .' WRITE');
-                $db->query('SELECT @myRight := rgt, @myDep := dep FROM '. NESTED_CATEGORIES .' WHERE category_id = '.$_POST['parent']);
-                $db->query('UPDATE '. NESTED_CATEGORIES .' SET rgt = rgt + 2 WHERE rgt >= @myRight');
-                $db->query('UPDATE '. NESTED_CATEGORIES .' SET lft = lft + 2 WHERE lft >= @myRight');
+                $db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE');
+                $db->query('SELECT @myRight := rgt, @myDep := dep FROM ' . NESTED_CATEGORIES . ' WHERE category_id = ' . $_POST['parent']);
+                $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt + 2 WHERE rgt >= @myRight');
+                $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft + 2 WHERE lft >= @myRight');
                 $stmt = $db->prepare('INSERT INTO ' . NESTED_CATEGORIES . ' (name, lft, rgt,dep,parent_id, added_when,added_from) VALUES(?, @myRight, @myRight + 1, @myDep, ?, ' . time() . ', ' . $_SESSION["user_id"] . ')');
 
 //                $stmt = $db->query("LOCK TABLE nested_categorys WRITE");
@@ -94,6 +110,11 @@ class Folder
 
     }
 
+    /**
+     * GET PARENT DEPARTMENT FOR CATEGORY
+     * @param $parent_id
+     * @return array
+     */
     public static function getParentDepartment($parent_id)
     {
         $conf = App::get('config');
@@ -105,6 +126,11 @@ class Folder
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    /**
+     * GET FOLDERS WITH PARENTS
+     * @param $table
+     * @return array
+     */
     public function selectFolders($table)
     {
         $sql = 'SELECT CONCAT( REPEAT( "* ", COUNT( parent.name ) -1) , nc.name) AS name, nc.category_id
@@ -123,6 +149,9 @@ class Folder
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    /**
+     * GET FOLDERS WITH AJAX
+     */
     public function getFoldersAjax()
     {
         $requestData = $_REQUEST;
@@ -136,14 +165,14 @@ class Folder
             4 => 'added_by',
             5 => 'modified',
             6 => 'modified_by',
-            7 => 'active'
+            7 => 'sort_number'
         );
 
         // getting total number records without any search
         // $totalData = $users_count[0]['cnt'];
         // when there is no search parameter then total number rows = total number filtered rows.
 
-        $sql = 'SELECT nc.category_id, nc.name,nc.parent_id, parent.name AS parent_dir, d.name AS department,nc.added_when,u.name AS added_by, nc.modified, u2.name AS modified_by, nc.active FROM ' . NESTED_CATEGORIES . ' AS nc
+        $sql = 'SELECT nc.category_id, nc.name,nc.parent_id, parent.name AS parent_dir, d.name AS department,nc.added_when,u.name AS added_by, nc.modified, u2.name AS modified_by, nc.active, nc.sort_number FROM ' . NESTED_CATEGORIES . ' AS nc
 LEFT JOIN users AS u ON (nc.added_from = u.id)
 LEFT JOIN users AS u2 ON (nc.modified_from = u2.id)
 LEFT JOIN ' . NESTED_CATEGORIES . ' AS d ON (nc.dep = d.category_id)
@@ -196,9 +225,12 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $actions = '<div class="text-center">';
 
             if ($row['active'] == 1) {
+                if($_SESSION['role'] == 1 || array_search($row['category_id'], $_SESSION['access']) === false){
 
-                $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-primary btn-xs folder_id" title="Редактирай"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp';
-                $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-danger btn-xs del_folder" title="Премахни"><i class="glyphicon glyphicon-remove"></i></button>';
+                        $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-primary btn-xs folder_id" title="Редактирай"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp';
+                        $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-danger btn-xs del_folder" title="Премахни"><i class="glyphicon glyphicon-remove"></i></button>';
+                }
+
             } else {
                 $actions .= '<button class="btn btn-success btn-xs activate_folder" style="margin-left:5%" id="' . $row['category_id'] . '"><i class="glyphicon glyphicon-triangle-right"></i> Activate</button>';
             }
@@ -213,11 +245,12 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $nestedData[] = $row["added_by"];
             $nestedData[] = $row["modified"];
             $nestedData[] = $row["modified_by"];
-            if ($row['active'] == 1) {
-                $nestedData[] = 'Активен';
-            } else {
-                $nestedData[] = 'Деактивиран';
-            }
+            $nestedData[] = $row["sort_number"] . '<input type="hidden" name="sort_number" class="sort_number" value="' . $row['sort_number'] . '" />';
+//            if ($row['active'] == 1) {
+//                $nestedData[] = 'Активен';
+//            } else {
+//                $nestedData[] = 'Деактивиран';
+//            }
             $nestedData[] = $actions;
 
             $data[] = $nestedData;
@@ -235,6 +268,9 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
         echo json_encode($json_data);  // send data as json format
     }
 
+    /**
+     * GET ALL FOLDERS
+     */
     public function getAllFolders()
     {
         $this->db->prepare('SELECT category_id, name');
@@ -247,10 +283,60 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
      */
     public function updateFolderName($data)
     {
-        //echo '<pre>' . print_r($data, true) . '</pre>';die();
-        $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET name = :name WHERE category_id = :cat_id');
-        $stmt->execute(array('name' => $data['name'], 'cat_id' => $data['folder_id']));
-        return $stmt->rowCount();
+        $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
+
+        $stmt->execute(array('folder_name' => $data['name'], 'parent_id' => $data['new_parent']));
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if($res[0]['cnt'] != 0){
+            return 'Папка с такова име вече съществува в избраното пространство!';
+        }
+        if($data['new_sort_number'] && $data['old_sort_number']){
+            //echo $data['new_sort_number'].' - '. $data['old_sort_number'];
+            if($data['old_sort_number'] < $data['new_sort_number']){
+                $symbol = '-';
+                $sign1 = '>';
+                $sign2 = '<=';
+            } else{
+                $symbol = '+';
+                $sign1 = '<';
+                $sign2 = '>=';
+            }
+            try{
+                $this->db->beginTransaction();
+
+                $stmt = $this->db->prepare('SELECT  @parent := parent_id FROM '. NESTED_CATEGORIES .' WHERE category_id = ?');
+                $stmt->execute(array($data['folder_id']));
+
+                $stmt = $this->db->prepare('UPDATE '. NESTED_CATEGORIES .' SET sort_number = (sort_number '.$symbol.' 1) WHERE parent_id = @parent AND sort_number '.$sign1.' ? AND sort_number '.$sign2.' ?');
+                $stmt->execute(array($data['old_sort_number'], $data['new_sort_number']));
+
+                $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET name = :name, sort_number = :sort_number WHERE category_id = :cat_id');
+                $stmt->execute(array('name' => $data['name'], 'sort_number' => $data['new_sort_number'], 'cat_id' => $data['folder_id']));
+                $updated_folder = $stmt->rowCount();
+
+                $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number '.$symbol.' 1) WHERE directory = @parent AND sort_number '.$sign1.' ? AND sort_number '.$sign2.' ? AND post_id IS NULL');
+                $stmt->execute(array($data['old_sort_number'], $data['new_sort_number']));
+
+                $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number '.$symbol.' 1) WHERE directory = @parent AND sort_number '.$sign1.' ? AND sort_number '.$sign2.' ?');
+                $stmt->execute(array($data['old_sort_number'], $data['new_sort_number']));
+
+                $this->db->commit();
+
+            } catch (PDOException $ex){
+                $this->db->rollBack();
+                echo $ex->getMessage();
+            }
+
+
+
+        } else{
+            $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET name = :name WHERE category_id = :cat_id');
+            $stmt->execute(array('name' => $data['name'], 'cat_id' => $data['folder_id']));
+            $updated_folder = $stmt->rowCount();
+        }
+
+        return  $updated_folder;
     }
 
     /**
@@ -260,6 +346,16 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
      */
     public function updateFolderPlace($data = array())
     {
+        $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
+
+        $stmt->execute(array('folder_name' => $data['name'], 'parent_id' => $data['new_parent']));
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if($res[0]['cnt'] != 0){
+            return 'Папка с такова име вече съществува в избраното пространство!';
+        }
+
+
         try {
             //   $this->db->beginTransaction();
 
@@ -322,6 +418,24 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
         }
     }
 
+    public function getSortNumbers($parent)
+    {
+
+       $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_nc FROM nested_categories WHERE parent_id = ?');
+       $stmt->execute(array($parent));
+       $mx_nc = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_p FROM posts WHERE directory = ?');
+        $stmt->execute(array($parent));
+        $mx_p = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_f FROM files WHERE directory = ?');
+        $stmt->execute(array($parent));
+        $mx_f = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array('mx_nc' => $mx_nc[0]['mx_nc'], 'mx_p' => $mx_p[0]['mx_p'], 'mx_f' => $mx_f[0]['mx_f']);
+    }
+
     /**
      * HERE WE CHECK USER ACCESS TO FOLDERS IF USER IS NOT SUPERVISOR AND SHOW HIM ONLY THIS ONE WHICH HE HAVE A RIGHTS.
      * @param $sql
@@ -334,8 +448,8 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $user_access = $user->getUserAccess($_SESSION['user_id']);
             foreach ($user_access as $ua) {
                 //echo $ua->folder_id;
-                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM '.NESTED_CATEGORIES.'  WHERE category_id = ?');
-                $stmt->execute(array( $ua->folder_id));
+                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM ' . NESTED_CATEGORIES . '  WHERE category_id = ?');
+                $stmt->execute(array($ua->folder_id));
                 $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
             }
             //echo '<pre>' . print_r($params, true) . '</pre>';
@@ -367,29 +481,40 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 
             $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
 
-            $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, @myWidth := rgt - lft + 1 FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
+            $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number, @myWidth := rgt - lft + 1 FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
             $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $lft = $r[0]['lft'];
             $rgt = $r[0]['rgt'];
+            $parent_id = $r[0]['parent_id'];
+            $sort_number = $r[0]['sort_number'];
 
             $width = $r[0]['@myWidth := rgt - lft + 1'];
 
-            if($this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft BETWEEN '.$lft.' AND '.$rgt)){
-                $this->db->exec('UPDATE  ' . NESTED_CATEGORIES . ' SET rgt = rgt - '.$width.' WHERE rgt > '.$rgt);
+            if ($this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt)) {
+                $this->db->exec('UPDATE  ' . NESTED_CATEGORIES . ' SET rgt = rgt - ' . $width . ' WHERE rgt > ' . $rgt);
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - '.$width.' WHERE lft > '.$rgt);
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - ' . $width . ' WHERE lft > ' . $rgt);
 
                 $this->db->exec('UNLOCK TABLES');
+
+                /**  UPDATE sort_number IN ALL TABLES */
+                $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number - 1) WHERE parent_id =:directory AND sort_number >=:sort_number');
+                $stmt->execute(array('directory' => $parent_id, 'sort_number' => $sort_number));
+
+                $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number - 1) WHERE directory =:directory AND sort_number > :sort_number AND post_id IS NULL');
+                $stmt->execute(array('directory' =>  $parent_id, 'sort_number' => $sort_number));
+
+                $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number - 1) WHERE directory = :directory AND sort_number > :sort_number');
+                $stmt->execute(array('directory' =>  $parent_id, 'sort_number' => $sort_number));
+
 
                 $this->db->commit();
 
                 return 'Успех';
-            } else{
+            } else {
                 $this->db->rollBack();
             }
-
-
 
 
 //            $sql = 'LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;
@@ -434,6 +559,11 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 
     }
 
+    /**
+     * DELETE FOLDER BUT NOT HIS SUBFOLDERS. SUBFOLDERS ARE AT THR SAME LEVEL AS DELETED.
+     * @param $id
+     * @return string
+     */
     public function deleteOnlyFolder($id)
     {
         try {
@@ -441,23 +571,33 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 
             $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
 
-            $stmt = $this->db->prepare('SELECT lft, rgt, parent_id FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
+            $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
             $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $lft = $r[0]['lft'];
             $rgt = $r[0]['rgt'];
             $parent = $r[0]['parent_id'];
+            $sort_number = $r[0]['sort_number'];
+
+            $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '. NESTED_CATEGORIES .' WHERE parent_id = :id');
+            $stmt->execute(array('id' => $id));
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $cnt = $result[0]['cnt'];
+
             //$width = $r[0]['@myWidth := rgt - lft + 1'];
 
-            $del_folders = $this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft = '.$lft);
+            $del_folders = $this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft = ' . $lft);
 
-            if($del_folders > 0){
+            if ($del_folders > 0) {
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 1, lft = lft - 1, parent_id = '.$parent.' WHERE lft BETWEEN '.$lft.' AND '. $rgt);
+                $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (case when (sort_number >'.$sort_number.') then (sort_number + ('.$cnt.' - 1)) else sort_number end) WHERE lft > '.$lft.' AND rgt > '. $rgt .' AND parent_id = :parent_id');
+                $stmt->execute(array('parent_id' => $parent));
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 2 WHERE rgt > '.$rgt);
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 1, lft = lft - 1, parent_id = ' . $parent . ', sort_number = (sort_number + ('.$sort_number.' -1)) WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt);
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - 2 WHERE lft > '.$rgt);
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 2, lft = lft - 2 WHERE rgt > ' . $rgt . ' AND lft > '. $rgt);
+
+                //$this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - 2 WHERE lft > ' . $rgt);
 
                 $this->db->exec('UNLOCK TABLES');
 
@@ -483,9 +623,9 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 //
 //                    UNLOCK TABLES;';
 
-          //  $stmt = $this->db->prepare($sql);
-          //  $stmt->execute();
-          //  return 'Успех';
+            //  $stmt = $this->db->prepare($sql);
+            //  $stmt->execute();
+            //  return 'Успех';
         } catch (PDOException $ex) {
             $this->db->rollBack();
             echo $ex->getMessage();

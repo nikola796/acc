@@ -1,5 +1,7 @@
 <?php require('partials/header.php') ?>
+<?php //dd($_SESSION['access']);
 
+?>
     <style>
         #select2-id, #select2-perentFolder-container {
             width: 100%;
@@ -42,7 +44,15 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="folderName">Поредност на показване</label>
+                                <select name="sort_number" id="sort_number" class="form-control" style="width: 100%">
 
+
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class=" col-sm-12">
                                 <button id="submit_button" type="submit" class="btn btn-primary form-control"
@@ -61,7 +71,6 @@
                         <div class="panel-title"><label>Моите пространства:</label></div>
                     </div>
                     <div class="form-group">
-                        <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Нова папка</button> -->
 
                         <!-- Modal -->
 
@@ -107,12 +116,6 @@
                         <div id="example_wrapper" class="dataTables_wrapper form-inline" role="grid">
                             <table id="example" class="table table-striped table-bordered dataTable" border="0"
                                    cellspacing="0" cellpadding="0" aria-describedby="example_info">
-                                <div>
-                                    <label>
-                                        <input type="checkbox" id="all_check"> Включи деактивираните
-                                    </label>
-
-                                </div>
                                 <thead>
                                 <tr>
                                     <th>Име</th>
@@ -122,7 +125,7 @@
                                     <th>Добавена от:</th>
                                     <th>Променена на</th>
                                     <th>Променена от</th>
-                                    <th>Статус</th>
+                                    <th>Поредност</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -153,12 +156,13 @@
 
         $(document).ready(function () {
 
+            $('#folders').addClass('current');
             $('#example_test').DataTable();
-            $('#parentFolder').select2();
+            $('#parentFolder, #sort_number').select2();
         });
-$(document).on('keyup', '.del_folder', function(){
-    console.log('click');
-})
+        $(document).on('keyup', '.del_folder', function () {
+
+        })
         $(document).on('click', '#createFolder', function () {
             if (($('#newFolderName').val().length) > 0) {
                 $.ajax({
@@ -187,7 +191,7 @@ $(document).on('keyup', '.del_folder', function(){
 
         })
 
-        $('#users').addClass('current')
+        // $('#users').addClass('current')
         var dataTable = $('#example').DataTable({
             "processing": true,
             "serverSide": true,
@@ -224,31 +228,56 @@ $(document).on('keyup', '.del_folder', function(){
             placeholder: "Избери звено"
         });
 
-        //            var data = [
-        //                <?php //foreach ($folders as $folder): ?>
-        //                { id: <?//=$folder->category_id?>//, text: '<?php //echo (strpos($folder->name, '*') === false ? '<strong>'.$folder->name.'</strong>' : '<span>'.$folder->name.'</span>')?>//' },
-        //                <?php //endforeach;?>
-        //            ];
+        /**  LISTENER FOR CHANGE FOLDER LOCATION AND SORT NUMBER */
+        $(document).on('change', '#parentFolder', function () {
+            $('#sort_number').html('');
+            sort_num = ''
+            $.ajax({
+                url: 'get_sort_numbers',
+                type: 'POST',
+                data: {parent: $(this).val()}
+            }).done(function (data) {
 
+                if (sort_num.length == 0) {
+                    data++;
+                }
+                var i;
 
-        //            $('#folder').select2({
-        //                placeholder: "Задай достъп",
-        //                data: data,
-        //                templateResult: function (d) { return $(d.text); },
-        //                templateSelection: function (d) { return $(d.text); },
-        //            });
+                for (i = 1; i <= data; i++) {
+                    $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                }
 
+                if (sort_num.length == 0) {
+
+                    $('#sort_number').val(data).prop('selected');
+                } else {
+                    //alert( $('#sort_number option:selected').val());
+                    $('#sort_number').val(sort_num).prop('selected');
+                }
+            });
+        });
 
         $('#newDepartmentForm').click(function (e) {
             e.preventDefault();
+            if ($("#createUserForm").is(':hidden')) {
+                $.ajax({
+                    url: 'get_sort_numbers',
+                    type: 'POST',
+                    data: {parent: $('#parentFolder option:selected').val()}
+                }).done(function (data) {
+                    data++;
+                    var i;
+                    for (i = 1; i <= data; i++) {
+                        $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                    }
+                    $('#sort_number').val(data).prop('selected');
+
+                });
+            }
 
             if ($("#createUserForm").is(':visible') && $('#newFolderName').val().length > 0) {
                 $('#newFolderName').val('');
                 $('#parentFolder').val(0).trigger('change');
-//                    $('#inputEmail').val('');
-//                    $('#roles').val(0).trigger('change');
-//                    $('#department').val(0).trigger('change');
-//                    $('#folder').val(0).trigger('change');
             } else {
                 $('#createUserForm').toggle();
 
@@ -297,7 +326,9 @@ $(document).on('keyup', '.del_folder', function(){
                     name: $('#newFolderName').val(),
                     folder_id: $('#folder_id').val(),
                     parent_id: $('#parent_id').val(),
-                    parent: $('#parentFolder').find(":selected").val()
+                    parent: $('#parentFolder').find(":selected").val(),
+                    new_sort_number: $('#sort_number').find(":selected").val(),
+                    old_sort_number: sort_num
                 }
             }).done(function (data) {
                 console.log(data);
@@ -314,89 +345,56 @@ $(document).on('keyup', '.del_folder', function(){
                         }]
 
                     });
+                } else {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,
+                        title: 'Грешка',
+                        message: data,
+                        buttons: [{
+                            label: 'Разбрах',
+                            action: function (dialogItself) {
+                                dialogItself.close();
+                            }
+                        }]
+
+                    });
                 }
             });
-            //location.reload();
-        });
-        //var $msg = $('#test_div');
 
+        });
+
+        var sort_num;
         /***************** EDIT USER *****************************************************/
         $(document).on('click', '.folder_id', function () {
             var id = $(this).attr('id');
             var folder = $(this).closest('tr').find('td:eq(0)').text();
             var parent_id = $(this).closest('tr').find('input.parent_id').val();
-            //$('input#test_input').val(folder);
+
             $('#hidden_content').html('<input type="hidden" name="folder_id" id="folder_id" value="' + id + '" />' +
                 '<input type="hidden" name="parent_id" id="parent_id" value="' + parent_id + '" />');
-            // $('#perentFolder').select2();
 
             $('#newFolderName').val(folder);
 
             $('#parentFolder').val($(this).closest('tr').find('input.parent_id').val()).trigger('change');
-            console.log(folder, parent_id);
-//                BootstrapDialog.show({
-//                    title: 'Нова папка',
-//                    message: $('#test_div'), //'Name: <input type="text" name="test" value="'+ folder +'" />',
-//                    buttons: [{
-//                        label: 'Създай',
-//                        cssClass: 'btn-primary',
-//                        action: function(){
-//                            console.log('Test')
-//                        }
-//                    }],
-//                    onhide: function(){
-//                        $('#newFolderName').val('');
-//                        $('#perentFolder').val(0).trigger('change');
-//                    }
-//                });
+
+            $('#sort_number').val($(this).closest('tr').find('input.sort_number').val()).trigger('change');
+            sort_num = $(this).closest('tr').find('input.sort_number').val();
+
             $('#inputDepartment').val(folder);
             $('#createUserForm').show();
-            //    var department = $(this).closest('tr').find('td:eq(2)').text();
-            // var access = $(this).closest('tr').find('td:eq(4)').text().split(', ');
-            //     var access_num = $(this).closest('tr').find('input.access_id').val();
-            // var access_id = $('#access_id').val().split(',');
-            //     $('#folder').val(0).trigger('change');
-            //     if (access_num.length > 0) {
-            //         $('#folder').val(access_num.split(',')).trigger('change');
-            //     }
-
-            //     $('#createUserForm').show();
-            //     $('#inputUser').val(($(this).closest('tr').find('td:eq(0)').text()));
-            //     $('#inputEmail').val(($(this).closest('tr').find('td:eq(1)').text()));
-            //     $('#div_pass').hide();
 
             $('#submit_button').text('Обнови').val('edit');
             $('#department_id_hidden').val($(this).attr('id'));
-            //     $('#submit_button').prop('value', 'edit');
-            //console.log($(this).closest('tr').find('.user_role').text());
-            //     $('#roles').val('');
-            //     $('#roles').val($(this).closest('tr').find('input.role_id').val()).trigger('change');
-
-            //     $('#department').val('');
-            //     $('#department').val($(this).closest('tr').find('input.dep_id').val()).trigger('change');
-
         });
 
         /**************** DE_ACTIVATE USER *******************************************************/
         $(document).on('click', '.del_folder', function () {
             var id = $(this).prop('id');
-//            var button_class = $(this).prop('class');
+
             var message = 'Искате да изтриете пространство. Моля изберете дали да изтриете само избраното пространство или и неговите под-пространства!';
-//            var label = '';
-//            var active = null;
+
             var butt_class = 'btn-danger';
-//            if (button_class.search('activate') > 0) {
-//                message = 'Вие искате да активирате звено. Моля потвърдете!';
-//                label = 'Активирай';
-//                active = 1;
-//                butt_class = 'btn-success'
-//            }
-//            if (button_class.search('del') > 0) {
-//                message = 'Вие искате да деактивирате звено. При деактивиране на звеното ще се деактивират всички папки и файлове към него. Моля потвърдете!';
-//                label = 'Деактивирай';
-//                active = 0
-//                butt_class = 'btn-danger';
-//            }
+
             BootstrapDialog.show({
                 type: BootstrapDialog.TYPE_WARNING,
                 title: 'Внимание',
@@ -483,17 +481,12 @@ $(document).on('keyup', '.del_folder', function(){
             });
         });
 
-
         $(document).on('change', '#deactivated_users', function () {
             //var param;
             if ($('#deactivated_users:checkbox:checked').length > 0) {
-                // param = 'all';
-                location.href = 'users?all';
-            } else {
-                console.log('Active')
-                // param = 'active';
-            }
 
+                location.href = 'users?all';
+            }
         })
 
     </script>

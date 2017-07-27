@@ -15,6 +15,9 @@ use Swift_SmtpTransport;
 class AuthController
 {
 
+    /**
+     * USER LOGIN
+     */
     public function login()
     {
 
@@ -22,17 +25,23 @@ class AuthController
             echo 'Logged';
             // redirect('admin/home');
         } else {
-            $user = User::userLogin();
-            //echo $user[0]->role;
-            //echo '<pre>' . print_r($user, true) . '</pre>';die();
-            if (count($user) == 1) {
-                if ($user[0]->active == 1) {
+            $user = new User();
+            $user_login = $user->userLogin();
+            $user_access_folders = $user->getUserAccess($user_login[0]->id);
+
+            foreach ($user_access_folders as $uaf) {
+                $ua[] = $uaf->folder_id;
+            }
+
+            if (count($user_login) == 1) {
+                if ($user_login[0]->active == 1) {
                     $_SESSION['is_logged'] = true;
-                    $_SESSION['username'] = $user[0]->name;
-                    $_SESSION['user_id'] = $user[0]->id;
-                    $_SESSION['department'] = $user[0]->department;
-                    $_SESSION['section'] = $user[0]->section;
-                    $_SESSION['role'] = $user[0]->role;
+                    $_SESSION['username'] = $user_login[0]->name;
+                    $_SESSION['user_id'] = $user_login[0]->id;
+                    $_SESSION['department'] = $user_login[0]->department;
+                    $_SESSION['section'] = $user_login[0]->section;
+                    $_SESSION['role'] = $user_login[0]->role;
+                    $_SESSION['access'] = $ua;
                     // var_dump( $_SESSION['is_logged']);
                     //echo '<pre>' . print_r($_SESSION, true) . '</pre>';die();
                     echo 'Logged';
@@ -51,6 +60,9 @@ class AuthController
 
     }
 
+    /**
+     * USER LOGOUT
+     */
     public function logout()
     {
 
@@ -58,6 +70,9 @@ class AuthController
         redirect(uri());
     }
 
+    /**
+     * START SESSION
+     */
     public function session_start()
     {
         if (!isset($_SESSION['is_logged']) || $_SESSION['is_logged'] != 1) {
@@ -67,15 +82,18 @@ class AuthController
 
     }
 
+    /**
+     * FORGOT PASSWORD. PREPARE TOKEN AND SEND MAIL TO USER.
+     */
     public function forgot_password()
     {
         $user_email = array('email' => $_POST['email']);
         $user = new User();
         $is_user_pass_exist = $user->check_password($user_email);
 
-        if(isset($is_user_pass_exist[0]['id']) && $is_user_pass_exist[0]['id'] > 0){
+        if (isset($is_user_pass_exist[0]['id']) && $is_user_pass_exist[0]['id'] > 0) {
             // Generate a new token with its hash
-             StoPasswordReset::generateToken($tokenForLink, $tokenHashForDatabase);
+            StoPasswordReset::generateToken($tokenForLink, $tokenHashForDatabase);
 
             //echo '<pre>' . print_r($creationDate, true) . '</pre>';die();
             $user->savePasswordResetToDatabase($tokenHashForDatabase, $is_user_pass_exist[0]['id'], $is_user_pass_exist[0]['email']);
@@ -83,23 +101,28 @@ class AuthController
             // Send link with the original token
             $emailLink = 'Направена е заявка за промяна на Вашата парола. От линка по-долу може да промените паролата си. 
 В случай, че не сте направили заявка игнорирайте това съобщение!
-Линк за възстановяване: '. url() .'reset_password?'. $tokenForLink;
+Линк за възстановяване: ' . url() . 'reset_password?' . $tokenForLink;
             $res = $this->send_recover_mail($user_email, $emailLink);
-            if(intval($res) > 0){
+            if (intval($res) > 0) {
                 echo 'На посочения от Вас имейл бе изпратен код за възстановяване. Кодът ще е активен през следващите 8 часа!';
             } else {
                 echo 'Възникна проблем при възстановяването на Вашата парола. Моля опитайте по-късно.';
             }
-        } else{
+        } else {
             echo 'Посочената от Вас поща не е открита!';
         }
     }
 
+    /**
+     * RESET USER PASSWORD
+     * @param $tok
+     * @return mixed
+     */
     public function reset_password($tok)
     {
 
         // Validate the token
-        if (!isset($tok) || !StoPasswordReset::isTokenValid($tok)){
+        if (!isset($tok) || !StoPasswordReset::isTokenValid($tok)) {
             $response = 'The token is invalid.';
         }
 
@@ -108,22 +131,28 @@ class AuthController
         $user = new User();
 
 
-        if (!$user->loadPasswordResetFromDatabase($tokenHashFromLink, $userId, $creationDate)){
+        if (!$user->loadPasswordResetFromDatabase($tokenHashFromLink, $userId, $creationDate)) {
             $response = 'The token does not exist or has already been used.';
         }
 
         // Check whether the token has expired
-        if (StoPasswordReset::isTokenExpired($creationDate)){
+        if (StoPasswordReset::isTokenExpired($creationDate)) {
             $response = 'The token has expired.';
         }
 
         $user->letUserChangePassword($userId);
 
-        return view('reset_password', compact('response','userId'));
+        return view('reset_password', compact('response', 'userId'));
 
     }
 
 
+    /**
+     * SEND PASSWORD RECOVER MAIL TO USER
+     * @param $mail
+     * @param $text
+     * @return int
+     */
     private function send_recover_mail($mail, $text)
     {
 
@@ -148,17 +177,12 @@ class AuthController
 
         $message = Swift_Message::newInstance('Възстановяване на парола')
             ->setFrom(array('intranet@customs.bg' => 'Интранет'))
-            ->setTo(array($mail['email'], 'vladislav.andreev@customs.bg','tsenka.koleva@customs.bg'))
+            ->setTo(array($mail['email'], 'vladislav.andreev@customs.bg', 'tsenka.koleva@customs.bg'))
             ->setBody($text);
 
 // Send the message
         $result = $mailer->send($message);
         return $result;
     }
-
-    public function test()
-    {
-       return view('reset_password');
-}
 
 }

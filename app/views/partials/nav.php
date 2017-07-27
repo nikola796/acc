@@ -19,8 +19,11 @@
             <img src="<?php echo url()?>public/images/right_logo.jpg" />
         </div>
     </div>
+
 </nav>
+
 </div>
-
-
+<div class="row">
+    <div class="col-md-8" style="margin-bottom:10px;"><a href="<?= url()?>" >Начало</a> <?= $nav ?></div>
+</div>
 <?php require('left_nav.php') ?>
