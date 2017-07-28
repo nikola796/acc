@@ -324,6 +324,7 @@
                 url: url,
                 data: {
                     name: $('#newFolderName').val(),
+                    old_name: $('#folder_name').val(),
                     folder_id: $('#folder_id').val(),
                     parent_id: $('#parent_id').val(),
                     parent: $('#parentFolder').find(":selected").val(),
@@ -371,7 +372,7 @@
             var parent_id = $(this).closest('tr').find('input.parent_id').val();
 
             $('#hidden_content').html('<input type="hidden" name="folder_id" id="folder_id" value="' + id + '" />' +
-                '<input type="hidden" name="parent_id" id="parent_id" value="' + parent_id + '" />');
+                '<input type="hidden" name="parent_id" id="parent_id" value="' + parent_id + '" /><input type="hidden" name="folder_name" id="folder_name" value="' + folder + '" />');
 
             $('#newFolderName').val(folder);
 
