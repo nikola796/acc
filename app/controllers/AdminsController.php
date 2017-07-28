@@ -49,7 +49,7 @@ class AdminsController
         $departments = App::get('database')->selectAll('departments');
 
         $folders = App::get('database')->selectFolders(NESTED_CATEGORIES);
-//die(view($folders));
+
         $users_roles_access = $this->user->getUsersRolesAccess();
 
         if (isset($_POST['param'])) {
@@ -60,7 +60,6 @@ class AdminsController
             return view('admin/users', compact('users', 'roles', 'departments', 'folders', 'users_roles_access'));
         }
 
-        //var_dump($users);
     }
 
     /**
@@ -75,7 +74,7 @@ class AdminsController
         //$folders = App::get('database')->selectFolders('nested_categorys'); OLD WAY
         $folder = new Folder();
         $folders = $folder->selectFolders(NESTED_CATEGORIES);
-        //$folders = App::get('database')->selectFolders(NESTED_CATEGORIES);
+
         return view('admin/posts', compact('folders', 'posts', 'files'));
     }
 

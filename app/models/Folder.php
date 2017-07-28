@@ -37,7 +37,7 @@ class Folder
         //die(var_dump($_POST));
 //TODO GET USER_ID ADN DEPARTMENT FROM SESSION AND PUT IN SQL QUERY ABOVE
         $conf = App::get('config');
-//dd($data);
+
         $db = Connection::make($conf['database']);
         $stmt = $db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
 
@@ -58,7 +58,7 @@ class Folder
                 $res = $stmt->fetchAll(PDO::FETCH_CLASS);
                 $data['lft'] = $res[0]->rgt + 1;
                 $data['rgt'] = $res[0]->rgt + 2;
-                $sql = 'INSERT INTO ' . NESTED_CATEGORIES . ' (parent_id, name, lft, rgt, dep, added_when,added_from) VALUES(:parent_id,:folder_name, :lft, :rgt, :department, ' . time() . ', ' . $_SESSION["user_id"] . ')';
+                $sql = 'INSERT INTO ' . NESTED_CATEGORIES . ' (parent_id, name, lft, rgt, dep, added_when,added_from, sort_number) VALUES(:parent_id,:folder_name, :lft, :rgt, :department, ' . time() . ', ' . $_SESSION["user_id"] . ', :sort_number)';
                 //die(var_dump($sql));
                 $stmt = $db->prepare($sql);
 
@@ -79,20 +79,21 @@ class Folder
                 $db->rollBack();
             }
         } else {
+            //dd($data);
             try {
                 /**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
                 $db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE');
                 $db->query('SELECT @myRight := rgt, @myDep := dep FROM ' . NESTED_CATEGORIES . ' WHERE category_id = ' . $_POST['parent']);
                 $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt + 2 WHERE rgt >= @myRight');
                 $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft + 2 WHERE lft >= @myRight');
-                $stmt = $db->prepare('INSERT INTO ' . NESTED_CATEGORIES . ' (name, lft, rgt,dep,parent_id, added_when,added_from) VALUES(?, @myRight, @myRight + 1, @myDep, ?, ' . time() . ', ' . $_SESSION["user_id"] . ')');
+                $stmt = $db->prepare('INSERT INTO ' . NESTED_CATEGORIES . ' (name, lft, rgt, dep, parent_id, added_when, added_from, sort_number) VALUES(:folder_name, @myRight, @myRight + 1, :department, :parent_id, ' . time() . ', ' . $_SESSION["user_id"] . ', :sort_number)');
 
 //                $stmt = $db->query("LOCK TABLE nested_categorys WRITE");
 //                $stmt = $db->query("SELECT @myLeft := lft, @myDep := dep FROM nested_categorys WHERE category_id = {$_POST['parent']}");
 //                $stmt = $db->query("UPDATE nested_categorys SET rgt = rgt + 2 WHERE rgt >= @myLeft");
 //                $stmt = $db->query("UPDATE nested_categorys SET lft = lft + 2 WHERE lft >= @myRight");
 //                $stmt = $db->prepare("INSERT INTO nested_categorys(name, lft, rgt,dep) VALUES(?, @myLeft + 1, @myLeft + 2, @myDep)");
-                $stmt->execute(array($_POST['name'], $_POST['parent']));
+                $stmt->execute($data);
                 $stmt = $db->query("UNLOCK TABLES");
 
                 $db->commit();

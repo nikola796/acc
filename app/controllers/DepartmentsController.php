@@ -39,7 +39,6 @@ class DepartmentsController
      */
     public function index()
     {
-        // $departments = $this->department->getAllDeparments();
         return view('admin/departments');
     }
 

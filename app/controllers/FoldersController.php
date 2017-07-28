@@ -49,9 +49,10 @@ class FoldersController
      */
     public function store()
     {
+        //dd($_POST);
         $folder_name = trim($_POST['name']);
         $parent_id = intval($_POST['parent']);
-        $data = array('folder_name' => $folder_name, 'parent_id' => $parent_id);
+        $data = array('folder_name' => $folder_name, 'parent_id' => $parent_id, 'sort_number' => intval($_POST['new_sort_number']));
         if ($parent_id === 0) {
             $data['department'] = 0;
             echo Folder::createFolder($data);
@@ -68,7 +69,6 @@ class FoldersController
      */
     public function update()
     {
-        //echo '<pre>' . print_r($_POST, true) . '</pre>';die();
         $data = array('name' => trim($_POST['name']), 'folder_id' => intval($_POST['folder_id']), 'old_parent' => intval($_POST['parent_id']), 'new_parent' => intval($_POST['parent']));
         $new_sort_number = intval($_POST['new_sort_number']);
         $old_sort_number = intval($_POST['old_sort_number']);
@@ -76,7 +76,7 @@ class FoldersController
             $data['new_sort_number'] = $new_sort_number;
             $data['old_sort_number'] = $old_sort_number;
         }
-        //echo '<pre>' . print_r($data, true) . '</pre>';die();
+
         if ($data['old_parent'] == $data['new_parent']) {
 
             $result = $this->folder->updateFolderName($data);
