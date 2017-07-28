@@ -77,35 +77,22 @@ class DocumentsController
 
     public function showTest($dep)
     {
-//        if($_SERVER['REDIRECT_URL'] == '/intranet_test/Документи/Важно'){
-//            echo "Важно";
-//        } else {
-//            echo 'Не е важно';
-//        }
-
-
-        //$dep_id = App::get('database')->getId('id', $dep, 'departments');
         $dep_id = App::get('database')->getId('category_id', $dep, NESTED_CATEGORIES);
         if ($dep_id[0]->category_id == NULL) {
             return view('404');
         }
 
-        //$posts = App::get('database')->getPosts(array('department' => $dep_id[0]->id));
         $dep_folder_id = App::get('database')->getDepartmentFolderId($dep_id[0]->category_id);
-        //dd($dep_folder_id);
+
         $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->category_id, 'directory' => $dep_folder_id[0]->category_id));
-        //dd($posts);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->category_id);
-        //dd($folders);
-        // $files = App::get('database')->selectAllFiles($id);
+
         $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->category_id));
-        // dd($files);
-        // $documents = App::get('database')->selectDirectories($id);
+
         $current_folder = $dep;
         $department_name = $current_folder;
-        //dd($current_folder);
-        //return view('show', compact('folders', 'dep', 'posts'));
+
         return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name'));
 
     }
@@ -115,14 +102,13 @@ class DocumentsController
     {
         if (isset($_POST['parent'])) {
             $department_id = Folder::getParentDepartment($_POST['parent']);
-            // dd($department_id);
+
             return Folder::createFolder($department_id);
         }
     }
 
     public function admin_store2()
     {
-        //echo '<pre>' . print_r($_POST, true) . '</pre>';die();
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
             $response = array();
@@ -132,7 +118,7 @@ class DocumentsController
 
                 $folder_id = intval($_POST['folder']);
                 $department_id = App::get('database')->getFolderDepartment($folder_id);
-                //die(var_dump($department_id));
+
                 $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
                     $data['old_sort_number'] = intval($_POST['default_sort_number']);
@@ -140,7 +126,7 @@ class DocumentsController
                 } else {
                     $data['new_sort_number'] = intval($_POST['sort_number']);
                 }
-                //echo '<pre>' . print_r($data, true) . '</pre>';die();
+
                 $post_id = $this->savePost($data);
                 if ($post_id > 0) {
                     $response['new_post'] = 'Успешно добавихте нова публикация';
@@ -160,10 +146,6 @@ class DocumentsController
         } elseif (isset($_POST['save']) && $_POST['save'] == 2) {
             echo $this->updatePost();
         }
-        // echo '<pre>' . print_r($_POST, true) . '</pre>';die();
-//        var_dump(intval($_FILES['userfile']));
-//        die();
-
 
     }
 
@@ -173,11 +155,9 @@ class DocumentsController
      */
     public function admin2()
     {
-
         $user = User::getUser(1);
 
         $folders = App::get('database')->getUsersFolders(1);
-
 
         return view('form2', compact('user', 'folders'));
 
@@ -228,38 +208,6 @@ class DocumentsController
             if (count($res['all_files']) > 0) {
                 $success_upload = true;
             }
-
-            //    echo $res['name'];
-            // die();
-            //  echo '<pre>' . print_r($res, true) . '</pre>';die();
-//            echo '<pre>' . print_r($narr, true) . '</pre>';die();
-//            if ($action['act'] == 'add') {
-//                App::get('database')->saveFile($narr);
-//            }
-
-
-// a flag to see if everything is ok
-            //  $success_upload = null;
-
-// file paths to store
-            //    $paths = array();
-
-// get file names
-            //  $filenames = $files['name'];
-
-// loop and process files
-//            for ($i = 0; $i < count($filenames); $i++) {
-//                $ext = explode('.', basename($filenames[$i]));
-//                $target = "C:\\xampp_5.3\\htdocs\\intranet_test\\public\\files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
-//
-//                if (move_uploaded_file($files['tmp_name'][$i], $target)) {
-//                    $success_upload = true;
-//                    $paths[] = $target;
-//                } else {
-//                    $success_upload = false;
-//                    break;
-//                }
-//            }
 
 // check and process based on successful status
             if ($success_upload === true) {

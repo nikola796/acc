@@ -35,21 +35,15 @@ class FilesController
      */
     public function indexTest($department, $parent_folder, $folder = null)
     {
-        //dd($department);
-        //echo 'Дирекция->'.$department.' / Родител->'.$parent_folder.' / Папка->'.$folder;die();
-        //die($current_folder);
-        if($folder){
+        if ($folder) {
             $folder_id = App::get('database')->getId('category_id', $folder, NESTED_CATEGORIES, $department, $parent_folder);
             $current_folder = $folder;
-        } else{
+        } else {
             $folder_id = App::get('database')->getId('category_id', $parent_folder, NESTED_CATEGORIES, $department);
             $current_folder = $parent_folder;
         }
-        //dd($folder_id);
 
-        //$department = App::get('database')->getFolderDepartment($folder_id[0]->category_id);
-        $department_name = App::get('database')->getFolderName($folder_id[0]->dep);
-//dd($department_name);
+        $department_name = App::get('database')->getFolderName($folder_id[0]->dep);;
         $folders = App::get('database')->selectSubFolders($folder_id[0]->category_id);
 
         if (empty($folders)) {
@@ -60,7 +54,7 @@ class FilesController
         $posts = App::get('database')->getPosts(array('department' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
 
         $files = App::get('database')->selectAllFiles(array('dep' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
-        //dd($folders);
+
         return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
 
     }

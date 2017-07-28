@@ -55,9 +55,6 @@ class AuthController
             }
         }
 
-
-        //redirect(uri());
-
     }
 
     /**
@@ -95,7 +92,6 @@ class AuthController
             // Generate a new token with its hash
             StoPasswordReset::generateToken($tokenForLink, $tokenHashForDatabase);
 
-            //echo '<pre>' . print_r($creationDate, true) . '</pre>';die();
             $user->savePasswordResetToDatabase($tokenHashForDatabase, $is_user_pass_exist[0]['id'], $is_user_pass_exist[0]['email']);
 
             // Send link with the original token
