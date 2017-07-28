@@ -86,7 +86,7 @@ class DocumentsController
 
         //$dep_id = App::get('database')->getId('id', $dep, 'departments');
         $dep_id = App::get('database')->getId('category_id', $dep, NESTED_CATEGORIES);
-        if($dep_id[0]->category_id == NULL){
+        if ($dep_id[0]->category_id == NULL) {
             return view('404');
         }
 
@@ -134,11 +134,10 @@ class DocumentsController
                 $department_id = App::get('database')->getFolderDepartment($folder_id);
                 //die(var_dump($department_id));
                 $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
-                if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])){
+                if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
                     $data['old_sort_number'] = intval($_POST['default_sort_number']);
                     $data['new_sort_number'] = intval($_POST['sort_number']);
-                }
-                else{
+                } else {
                     $data['new_sort_number'] = intval($_POST['sort_number']);
                 }
                 //echo '<pre>' . print_r($data, true) . '</pre>';die();
@@ -186,7 +185,7 @@ class DocumentsController
 
     public function notFound()
     {
-     return view('404');
+        return view('404');
     }
 
 
@@ -375,7 +374,7 @@ class DocumentsController
         }
 
         $data = array('post_id' => $_POST['postId'], 'post' => $_POST['text'], 'folder' => $_POST['folder'], 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names);
-        if (intval($_POST['old_sort_number']) != intval($_POST['sort_number'])){
+        if (intval($_POST['old_sort_number']) != intval($_POST['sort_number'])) {
             $data['old_sort_number'] = intval($_POST['old_sort_number']);
             $data['new_sort_number'] = intval($_POST['sort_number']);
         }
@@ -391,17 +390,20 @@ class DocumentsController
 
     public function search($term)
     {
-        $t = explode('=',$term);
+        $t = explode('=', $term);
         $search = $t['1'];
 
         $conf = App::get('config');
 
         $db = Connection::make($conf['database']);
 
-        $stmt = $db->prepare('SELECT DISTINCT label as label FROM files WHERE label LIKE :term OR original_filename LIKE :term');
-        $stmt->execute(array('term' => '%'.$t[1].'%'));
+        $stmt = $db->prepare('SELECT DISTINCT label AS label FROM files WHERE label LIKE :term OR original_filename LIKE :term');
+        $stmt->execute(array('term' => '%' . $t[1] . '%'));
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        if (count($res) == 0) {
+            $res[0]['label'] = 'Няма резултати!';
+        };
         header('Content-type: application/json');
 
 
@@ -410,24 +412,24 @@ class DocumentsController
 
     public function search_result()
     {
-        if(strlen(trim($_POST['term'])) > 2){
+        if (strlen(trim($_POST['term'])) > 2) {
             $term = trim($_POST['term']);
 
             $conf = App::get('config');
 
             $db = Connection::make($conf['database']);
-            $sql = 'SELECT f.original_filename,f.stored_filename,f.label,f.file_added_when, u.name,nc.name as zveno, ncc.name as folder FROM files as f
-                    LEFT JOIN users as u ON (f.added_from = u.id)
-                    LEFT JOIN '.NESTED_CATEGORIES.' as nc ON (f.department_id = nc.category_id)
-                    LEFT JOIN '.NESTED_CATEGORIES.' as ncc ON (f.directory = ncc.category_id)
+            $sql = 'SELECT f.original_filename,f.stored_filename,f.label,f.file_added_when, u.name,nc.name AS zveno, ncc.name AS folder FROM files AS f
+                    LEFT JOIN users AS u ON (f.added_from = u.id)
+                    LEFT JOIN ' . NESTED_CATEGORIES . ' AS nc ON (f.department_id = nc.category_id)
+                    LEFT JOIN ' . NESTED_CATEGORIES . ' AS ncc ON (f.directory = ncc.category_id)
                     WHERE label LIKE :term OR original_filename LIKE :term';
             $stmt = $db->prepare($sql);
-            $stmt->execute(array('term' => '%'.$term.'%'));
+            $stmt->execute(array('term' => '%' . $term . '%'));
             $search_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return view('search_results', compact('search_results'));
 
-        } else{
+        } else {
             echo 'Too short term';
         }
 
@@ -436,9 +438,9 @@ class DocumentsController
     public function online()
     {
         session_start();
-        $session    = session_id();
-        $time       = time();
-        $time_check = $time-300;     //We Have Set Time 5 Minutes
+        $session = session_id();
+        $time = time();
+        $time_check = $time - 300;     //We Have Set Time 5 Minutes
 
         $conf = App::get('config');
 
@@ -450,14 +452,13 @@ class DocumentsController
         $count = $stmt->rowCount();
 
         //If count is 0 , then enter the values
-        if($count == 0){
-            $sql1    = "INSERT INTO online_users(session, time)VALUES('$session', '$time')";
+        if ($count == 0) {
+            $sql1 = "INSERT INTO online_users(session, time)VALUES('$session', '$time')";
             $stmt = $db->prepare($sql1);
             $stmt->execute();
-        }
-        // else update the values
+        } // else update the values
         else {
-            $sql2    = "UPDATE online_users SET time='$time' WHERE session = '$session'";
+            $sql2 = "UPDATE online_users SET time='$time' WHERE session = '$session'";
             $stmt = $db->prepare($sql2);
             $stmt->execute();
         }
@@ -471,10 +472,9 @@ class DocumentsController
         echo "<b>Users Online : </b> $count_user_online ";
 
         // after 5 minutes, session will be deleted
-        $sql4    = "DELETE FROM online_users WHERE time<$time_check";
+        $sql4 = "DELETE FROM online_users WHERE time<$time_check";
         $stmt = $db->prepare($sql4);
         $stmt->execute();
-
 
 
     }

@@ -27,11 +27,6 @@ if (isset($_SESSION['update_post'])) {
             <div class="panel-heading">
                 <div class="panel-title"><h4 class="text-center">Нова публикация</h4>
                 </div>
-
-                <div class="panel-options">
-                    <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-                    <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-                </div>
             </div>
             <div class="panel-body">
                 <form action="" method="post" enctype="multipart/form-data">
