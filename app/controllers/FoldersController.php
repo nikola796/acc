@@ -118,7 +118,7 @@ class FoldersController
         $res = $this->folder->getSortNumbers($parent);
 
         if (max($res) == null) {
-            echo 1;
+            echo 0;
         } else {
             echo max($res);
         }
