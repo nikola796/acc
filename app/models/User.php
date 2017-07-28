@@ -116,15 +116,17 @@ class User
 
                 $this->db->beginTransaction();
 
-                $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, added_when, department, role)
+                $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
                                                     VALUES (:name, :pass, :email, NOW(), :department, :role)');
                 $stmt->execute($user_data);
                 $user_id = $this->db->lastInsertId();
 
-                $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
-                foreach ($access as $folder) {
-                    $stmt->execute(array($user_id, $folder));
-                }
+                    $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
+                    foreach ($access as $folder) {
+                        $stmt->execute(array($user_id, $folder));
+                    }
+
+
 
                 $this->db->commit();
 
@@ -137,7 +139,7 @@ class User
             }
         }
         try {
-            $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, added_when, department, role)
+            $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
                                                     VALUES (:name, :pass, :email, NOW(), :department, :role)');
             $stmt->execute($user_data);
 
