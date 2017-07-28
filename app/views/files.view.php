@@ -1,64 +1,87 @@
-<?php require('partials/header.php') ?>
+<?php
 
-<?php if ($folders[0]->name): ?>
-    <h5>Папки към <?= $current_folder ?></h5>
+$mergeArr = array_merge($folders, $posts, $files);
+if ($current_folder != 'Документи') {
+    if ($current_folder == $department_name) {
+        $nav .= ' > <a href="' . uri() . 'Документи">Документи</a>';
+        $nav .= ' > <span>' . $current_folder . ' </span>';
+    } else {
+        $nav .= '> <a href="' . uri() . 'Документи">Документи</a> > <a href="' . uri() . 'Документи/' . $department_name . '"> ' . $department_name . '</a> > <span> ' . $current_folder . ' </span>';
 
-
-    <ul>
-
-        <?php foreach ($folders as $folder): ?>
-            <li>
-                <a href="<?php url()?><?= str_replace(' ', '+', $folder->name) ?>/Файлове/<?= $folder->category_id ?>"><?= $folder->name ?></a>
-            </li>
-        <?php endforeach ?>
-    </ul>
-    <hr />
-<?php endif; ?>
-
-<?php if (count($posts) > 0): ?>
-    <h5>Постове към <?= $current_folder ?></h5>
-
-
-    <ul>
-
-        <?php foreach ($posts as $post): ?>
-
-            <li><?= $post->post ?></li>   <!-- OLD VERSION -> parser()->qParse(htmlspecialchars($post->post)) -->
-            <?php foreach ($files as $file): ?>
-                <?php if ($file->post_id == $post->id): ?>
-                    <p style="margin-left:5px"><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
-                    </p>
-                <?php endif ?>
-            <?php endforeach ?>
-
-        <?php endforeach ?>
-    </ul>
-    <hr />
-<?endif ?>
-
-<?php foreach ($files as $only_files): ?>
-
-    <?php
-    if ($only_files->post_id == null) {
-        $msg = '<h5>Файлове към ' . $current_folder . '</h5>';
-        break;
-    } else{
-        $msg = '';
     }
-    ?>
+} else {
+    $nav = ' > <a href="' . uri() . 'Документи">Документи</a>';
+}
 
-<?php endforeach ?>
-<?php if(strlen($msg) > 0):?>
-    <?= $msg ?>
-    <ul>
+usort($mergeArr, function ($a, $b) {
+    return $a->sort_number - $b->sort_number;
+});
 
-        <?php foreach ($files as $file): ?>
-            <?php if ($file->post_id === null): ?>
-                <li><a href="<?php url()?>public/files/<?= $file->name ?>"><?= $file->label ?></a>
-                </li>
-            <?php endif; ?>
-        <?php endforeach ?>
-    </ul>
-    <hr />
-<?php endif?>
-<?php require 'partials/footer.php';
+?>
+
+
+
+<?php require('partials/header.php') ?>
+<?php if ($current_folder == 'Важно'): ?>
+    <a href="http://79.124.14.51/lakorda/?i=1" target="_blank" class="style1"><img
+                src="<?= url() ?>public/images/lacorda.png" width="140" height="45">
+    </a>
+<?php endif ?>
+
+<?php if (count((array)$mergeArr[0]) > 1): ?>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Ресурси към <?= $current_folder ?></th>
+            </tr>
+            </thead>
+            <?php foreach ($mergeArr as $ma): ?>
+                <tr>
+                    <?php if ($ma->category_id): ?>
+                        <td>
+                            <i style="margin-right: 3px" class="glyphicon glyphicon-folder-open"></i>
+                            <a href="<?= url() . ($current_folder == 'Документи' ? $current_folder : ($department_name == $current_folder ? 'Документи/' . $current_folder : 'Документи/' . $department_name . '/' . $current_folder)) . '/' . str_replace(' ', '+', $ma->name) ?>"><?= $ma->name ?></a>
+                        </td>
+                    <?php endif; ?>
+                    <?php if ($ma->post) {
+                        echo '<td>';
+                        echo '<i class="glyphicon glyphicon-pencil" style="float: left;margin-right: 5px"></i>' . $ma->post;
+                        if ($ma->attachment == 1) {
+                            foreach ($mergeArr as $fma) {
+                                if ($ma->id == $fma->post_id) {
+                                    echo '<p style="margin-left:10px"><i style="margin-right: 2px" class="glyphicon glyphicon-file"></i><a href="' . url() . 'files?' . $fma->stored_filename . '&' . $fma->original_filename . '"' . $fma->label . '</a></p>';
+
+                                }
+                            }
+                        }
+                    }
+                    echo '</td>';
+                    ?>
+
+                    <?php if (isset($ma->stored_filename) && $ma->post_id === null): ?>
+                        <td>
+                            <i style="margin-right: 2px" class="glyphicon glyphicon-file"></i>
+                            <a href="<?= url() ?>files?<?= $ma->stored_filename ?>& <?= $ma->original_filename ?>"><?= $ma->label ?></a>
+                        </td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+
+        </table>
+    </div>
+<?php endif ?>
+<?php require 'partials/footer.php'; ?>
+
+
+<?php if (isset($_SESSION['file_error'])): ?>
+    <script>
+        BootstrapDialog.show({
+            type: BootstrapDialog.TYPE_WARNING,
+            title: 'Внимание',
+            message: '<?=$_SESSION['file_error']?>'
+        });
+    </script>';
+<?php endif; ?>
+<?php unset($_SESSION['file_error']); ?>
