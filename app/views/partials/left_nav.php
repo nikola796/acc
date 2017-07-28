@@ -10,8 +10,8 @@
                 <a class="list-group-item" href="<?php echo url()?>">Начало</a>
                 <a style="color:red" class="list-group-item" href="<?php echo url()?>Документи/Важно">Важно</a>
                 <a class="list-group-item" href="<?php echo url()?>Документи">Преглед на документи</a>
-                <a class="list-group-item" href="#tables">Форум</a>
-                <a class="list-group-item" href="#forms">Чат</a>
+<!--                <a class="list-group-item" href="#tables">Форум</a>-->
+<!--                <a class="list-group-item" href="#forms">Чат</a>-->
             </div>
         </div>
 

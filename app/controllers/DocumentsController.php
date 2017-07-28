@@ -209,43 +209,7 @@ class DocumentsController
                 $success_upload = true;
             }
 
-<<<<<<< HEAD
-            //    echo $res['name'];
-            // die();
-            //  echo '<pre>' . print_r($res, true) . '</pre>';die();
-//            echo '<pre>' . print_r($narr, true) . '</pre>';die();
-//            if ($action['act'] == 'add') {
-//                App::get('database')->saveFile($narr);
-//            }
 
-
-// a flag to see if everything is ok
-            //  $success_upload = null;
-
-// file paths to store
-            //    $paths = array();
-
-// get file names
-            //  $filenames = $files['name'];
-
-// loop and process files
-
-//            for ($i = 0; $i < count($filenames); $i++) {
-//                $ext = explode('.', basename($filenames[$i]));
-//                $target = "C:\\xampp_5.3\\htdocs\\intranet_test\\public\\files" . DIRECTORY_SEPARATOR . basename($filenames[$i]);
-//
-//                if (move_uploaded_file($files['tmp_name'][$i], $target)) {
-//                    $success_upload = true;
-//                    $paths[] = $target;
-//                } else {
-//                    $success_upload = false;
-//                    break;
-//                }
-//            }
-
-
-=======
->>>>>>> feature_bugs_20170728
 // check and process based on successful status
             if ($success_upload === true) {
 // call the function to save all data to database
@@ -388,12 +352,9 @@ class DocumentsController
 
         if (count($res) == 0) {
             $res[0]['label'] = 'Няма резултати!';
-<<<<<<< HEAD
-        }
-        
-=======
+
         };
->>>>>>> feature_bugs_20170728
+
         header('Content-type: application/json');
 
 
