@@ -121,10 +121,12 @@ class User
                 $stmt->execute($user_data);
                 $user_id = $this->db->lastInsertId();
 
-                $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
-                foreach ($access as $folder) {
-                    $stmt->execute(array($user_id, $folder));
-                }
+                    $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
+                    foreach ($access as $folder) {
+                        $stmt->execute(array($user_id, $folder));
+                    }
+
+
 
                 $this->db->commit();
 

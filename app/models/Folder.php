@@ -58,6 +58,11 @@ class Folder
                 $res = $stmt->fetchAll(PDO::FETCH_CLASS);
                 $data['lft'] = $res[0]->rgt + 1;
                 $data['rgt'] = $res[0]->rgt + 2;
+
+                $stmt = $db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND parent_id = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
+
                 $sql = 'INSERT INTO ' . NESTED_CATEGORIES . ' (parent_id, name, lft, rgt, dep, added_when,added_from, sort_number) VALUES(:parent_id,:folder_name, :lft, :rgt, :department, ' . time() . ', ' . $_SESSION["user_id"] . ', :sort_number)';
                 //die(var_dump($sql));
                 $stmt = $db->prepare($sql);
@@ -67,6 +72,8 @@ class Folder
 
                 $stmt = $db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET dep = ? WHERE category_id = ' . $dep_id);
                 $stmt->execute(array($dep_id));
+
+
 
                 $db->commit();
 
@@ -82,7 +89,13 @@ class Folder
             //dd($data);
             try {
                 /**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
+
                 $db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE');
+
+                $stmt = $db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND parent_id = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
+
                 $db->query('SELECT @myRight := rgt, @myDep := dep FROM ' . NESTED_CATEGORIES . ' WHERE category_id = ' . $_POST['parent']);
                 $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt + 2 WHERE rgt >= @myRight');
                 $db->query('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft + 2 WHERE lft >= @myRight');
@@ -284,14 +297,18 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
      */
     public function updateFolderName($data)
     {
-        $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
+        if($data['name'] != $data['old_name']){
+            $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '.NESTED_CATEGORIES.' WHERE name = :folder_name AND parent_id = :parent_id');
 
-        $stmt->execute(array('folder_name' => $data['name'], 'parent_id' => $data['new_parent']));
-        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->execute(array('folder_name' => $data['name'], 'parent_id' => $data['new_parent']));
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if($res[0]['cnt'] != 0){
-            return 'Папка с такова име вече съществува в избраното пространство!';
+            if($res[0]['cnt'] != 0){
+                return 'Папка с такова име вече съществува в избраното пространство!';
+            }
         }
+        unset($data['old_name']);
+
         if($data['new_sort_number'] && $data['old_sort_number']){
             //echo $data['new_sort_number'].' - '. $data['old_sort_number'];
             if($data['old_sort_number'] < $data['new_sort_number']){
