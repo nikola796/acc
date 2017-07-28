@@ -21,7 +21,7 @@
             </div>
             <div class="panel-body">
 
-                <form id="search_form" class="form-horizontal" action="search" method="post" name="form1" target="_blank">
+                <form id="search_form" class="form-horizontal" action="<?= url()?>search" method="post" name="form1" target="_blank">
                     <fieldset>
                         <div class="form-group">
                             <div class="col-lg-12">

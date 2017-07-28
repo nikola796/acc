@@ -402,6 +402,10 @@ class DocumentsController
         $stmt->execute(array('term' => '%'.$t[1].'%'));
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        if (count($res) == 0) {
+            $res[0]['label'] = 'Няма резултати!';
+        }
+        
         header('Content-type: application/json');
 
 
