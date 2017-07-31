@@ -55,6 +55,11 @@
                     }
                 }]
             });
+        });
+
+        $(document).on('click', '#admin_redirect', function(e){
+            e.preventDefault();
+            window.location.replace("<?= url()?>admin/home");
         })
 
         $(document).on('click', '#user_login_form', function(e){

@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="access">
                             <label class="col-sm-2 control-label">Достъп</label>
                             <div class="col-sm-10">
                                 <select name="folder[]" id="folder" class="form-control" multiple="multiple"
@@ -128,10 +128,20 @@
     <script>
         $(document).ready(function () {
 
-            $(document).ready(function () {
-                $('#example_test').DataTable();
-            });
+//            $(document).ready(function () {
+//                $('#example_test').DataTable();
+//            });
+            $(document).on('change', '#roles', function(){
+               if($(this).val() == 1){
+                 $('#access').hide();
 
+                   $('#folder').val([]).trigger('change');
+                 //alert($(this).val());
+               } else{
+                   $('#access').show();
+                   //alert($(this).val());
+               }
+            })
             $('#users').addClass('current')
             var dataTable = $('#example').DataTable({
                 "processing": true,

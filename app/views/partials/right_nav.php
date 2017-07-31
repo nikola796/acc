@@ -28,6 +28,13 @@
                             <a id="reset_password"  href="#"><strong>Забравена парола</strong></a>
                         </div>
                     </div>
+                    <?php if($_SESSION['is_logged'] === true):?>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <a style="color:blueviolet" id="admin_redirect"  href="#"><strong>Администрация</strong></a>
+                        </div>
+                    </div>
+                    <?php endif;?>
                 </fieldset>
             </form>
         </div>
