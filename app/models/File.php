@@ -91,6 +91,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
      */
     public function fileUpload($post_id = null, $action = array())
     {
+        dd($_FILES);
         if ($_FILES['userfile']['error'][0] === 0) {
             $files = $_FILES['userfile'];
             $files['label'] = $_POST['label'];
@@ -325,7 +326,6 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
      */
     public function process_uploaded_file($files)
     {
-
         foreach ($files as $file) {
             if ($file['size'] > 0) {
                 $data_storage_path = realpath('core/files') . DIRECTORY_SEPARATOR;
@@ -337,8 +337,10 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                 $stored_filename .= $file_ext;
                 $sort_number = $file['sort_number'];
                 $default_sort_number = $file['default_sort_number'];
-                //echo '<pre>' . print_r($data, true) . '</pre>';die();
+                //dd($data_storage_path);
+               //move_uploaded_file($file['tmp_name'], '/var/www/html/intranet_test/public/'. $original_filename);
                 if (!move_uploaded_file($file['tmp_name'], $data_storage_path . $stored_filename)) {
+                   //dd($data_storage_path . $stored_filename);
                     // unable to move,  check error_log for details
                     return 0;
                 }
@@ -353,6 +355,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 
             }
         }
+        //dd($data);
         $data['all_files'] = $file_name;
         return $data;
     }

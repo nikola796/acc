@@ -137,6 +137,7 @@ class DocumentsController
             /*** UPLOAD FILE ***/
             if (isset($_FILES['userfile'])) {
                 $file = new File();
+
                 $response += $file->fileUpload2($post_id, array('act' => 'add'));
             }
 
