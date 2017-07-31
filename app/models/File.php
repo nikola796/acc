@@ -356,11 +356,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 
             }
         }
-<<<<<<< HEAD
-        //dd($data);
-=======
-        //dd($files);
->>>>>>> featureSubFolder
+
         $data['all_files'] = $file_name;
         return $data;
     }

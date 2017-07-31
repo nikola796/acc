@@ -5,38 +5,40 @@
             <h5 class="panel-title text-center">Администрация</h5>
         </div>
         <div class="panel-body" >
-            <form method="post" action="<?php echo url() ?>auth" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <input class="form-control" id="username" name="username" placeholder="Потребител" type="text">
-                        </div>
+            <?php if($_SESSION['is_logged'] === true):?>
+                <div class="form-group">
+                    <div class="text-center">
+                        <a id="admin_redirect"  href="#"><strong>Администрация</strong></a>
                     </div>
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <input class="form-control" id="password" name="password" placeholder="Парола" type="password">
+                </div>
+                <?php else:?>
+                <form method="post" action="<?php echo url() ?>auth" class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input class="form-control" id="username" name="username" placeholder="Потребител" type="text">
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input class="form-control" id="password" name="password" placeholder="Парола" type="password">
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-4">
-                            <button  id="user_login_form" class="btn btn-primary btn-xs">Въведи</button>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-4">
+                                <button  id="user_login_form" class="btn btn-primary btn-xs">Въведи</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="text-center">
-                            <a id="reset_password"  href="#"><strong>Забравена парола</strong></a>
+                        <div class="form-group">
+                            <div class="text-center">
+                                <a id="reset_password"  href="#"><strong>Забравена парола</strong></a>
+                            </div>
                         </div>
-                    </div>
-                    <?php if($_SESSION['is_logged'] === true):?>
-                    <div class="form-group">
-                        <div class="text-center">
-                            <a style="color:blueviolet" id="admin_redirect"  href="#"><strong>Администрация</strong></a>
-                        </div>
-                    </div>
-                    <?php endif;?>
-                </fieldset>
-            </form>
+
+                    </fieldset>
+                </form>
+            <?php endif;?>
         </div>
     </div>
 
