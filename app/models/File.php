@@ -326,6 +326,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
      */
     public function process_uploaded_file($files)
     {
+
         foreach ($files as $file) {
             if ($file['size'] > 0) {
                 $data_storage_path = realpath('core/files') . DIRECTORY_SEPARATOR;
@@ -355,7 +356,11 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 
             }
         }
+<<<<<<< HEAD
         //dd($data);
+=======
+        //dd($files);
+>>>>>>> featureSubFolder
         $data['all_files'] = $file_name;
         return $data;
     }
@@ -401,13 +406,13 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 
 
             }
-//dd($narr);
+
             $res = $this->process_uploaded_file($narr);
 
             if (count($res['all_files']) > 0) {
                 $success_upload = true;
             }
-
+//dd($res);
 // a flag to see if everything is ok
             //  $success_upload = null;
 

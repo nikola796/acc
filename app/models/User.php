@@ -493,4 +493,35 @@ class User
         return $stmt->rowCount();
     }
 
+    /**
+     * CHECK IF IN SELECTED FOLDER HAS SUBFOLDER FOR SOME OF SELECTED
+     * @param $access
+     * @return array
+     */
+    public function checkFoldersReations($access)
+    {
+        $sql = 'SELECT node.category_id
+                FROM nested_categories AS node,
+                nested_categories AS parent
+                WHERE node.lft BETWEEN parent.lft AND parent.rgt
+                AND parent.category_id = :id
+                ORDER BY node.lft';
+        foreach ($access as $folder){
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(array('id' => $folder));
+            $res[] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        foreach($res as $k => $v){
+            foreach ($v as $kk => $vv){
+                $re[] = $vv['category_id'];
+            }
+        }
+        $cnt = array_count_values($re);
+        $key = array_keys($cnt, 2);
+        $acc = array_diff($access, $key);
+
+        return $acc;
+    }
+
 }

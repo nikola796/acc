@@ -88,8 +88,10 @@ class AdminsController
 
         if ($user_data['action'] == 'add') {
             if (count($user_info) === 0) {
-                $access = $user_data['access'];
+                $access = $this->user->checkFoldersReations($user_data['access']);
+
                 unset($user_data['action'], $user_data['id'], $user_data['access']);
+
                 $result = $this->user->createUser($user_data, $access);
                 echo($result == 1 ? 'Успешно създадохте нов потребител' : '');
             } else if (count($user_info) === 1) {
@@ -98,8 +100,10 @@ class AdminsController
                 echo 'Съществуват повече от едни записа с това потребителско име или с този мейл';
             }
         } elseif ($user_data['action'] == 'edit') {
-            $access = $user_data['access'];
+            $access = $this->user->checkFoldersReations($user_data['access']);
+
             unset($user_data['pass'], $user_data['action'], $user_data['access']);
+
             $result = $this->user->editUser($user_data, $access);
             echo($result == 1 ? 'Успешно редактирахте потребителя' : '');
         }

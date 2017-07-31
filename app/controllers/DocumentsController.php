@@ -109,6 +109,7 @@ class DocumentsController
 
     public function admin_store2()
     {
+
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
             $response = array();
@@ -139,6 +140,7 @@ class DocumentsController
                 $file = new File();
 
                 $response += $file->fileUpload2($post_id, array('act' => 'add'));
+
             }
 
             $_SESSION['add_new_file_post'] = $response;

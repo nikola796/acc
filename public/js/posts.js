@@ -118,7 +118,7 @@ $(document).on('click', 'span.glyphicon-remove', function () {
    // $('#attachedFiles').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" />');
 })
 $(document).on('click', '#addAnotherFile', function () {
-    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
+    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input style="width: 50%;" class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
 });
 $(document).on('click', '#view_post', function (e) {
     e.preventDefault();
