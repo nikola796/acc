@@ -10,18 +10,22 @@
     </div>
     <div class="navbar-collapse collapse">
         <div class="nav navbar-nav">
-           <img src="<?php url()?>public/images/left_logo.jpg" style="height:90px;" />
+           <img src="<?php echo url()?>public/images/left_logo.jpg" style="height:90px;" />
         </div>
         <div class="nav navbar-nav navbar-center">
-            <img src="<?php url()?>public/images/top_logo.jpg" />
+            <img src="<?php echo url()?>public/images/top_logo.jpg" />
         </div>
         <div class="nav navbar-nav navbar-right">
-            <img src="<?php url()?>public/images/right_logo.jpg" /
+
+            <img src="<?php echo url()?>public/images/right_logo.jpg" />
+
         </div>
     </div>
+
 </nav>
+    
 </div>
-
-
-
+<div class="row">
+    <div class="col-md-8" style="margin-bottom:10px;"><a href="<?= url()?>" >Начало</a> <?= $nav ?></div>
+</div>
 <?php require('left_nav.php') ?>

@@ -1,18 +1,27 @@
-<?php $title = 'Документи'?>
+<?php $title = 'Документи' ?>
+<?php $nav = ' > <a href="'.uri().'Документи">Документи</a>'; ?>
+
 
 <?php require('partials/header.php') ?>
-<div class="text-center"><h4>Дирекции</h4><hr /></div>
 
 
-<ul style="list-style-type: none;line-height: 200%;">
+    <div class="text-center"><h4>Пространства</h4>
+        <hr style="color:aqua"/>
+    </div>
 
-    <?php foreach ($departments as $department): ?>
 
-        <li><a href="Документи/<?= str_replace(' ', '+', $department->name) ?>"><?= $department->name ?></a></li>
+    <ol style="line-height: 250%;">
 
-    <?php endforeach;?>
+        <?php foreach ($departments as $department): ?>
 
-</ul>
+            <li><a href='Документи/<?= str_replace(' ', '+', $department->name) ?>'>
+                    <i class="glyphicon glyphicon-folder-open" style="margin-right: 5px;"></i> <?= $department->name ?>
+                </a></li>
+
+        <?php endforeach; ?>
+
+    </ol>
+
 
 
 

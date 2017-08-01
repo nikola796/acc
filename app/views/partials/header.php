@@ -10,22 +10,23 @@
 
  
     <title><?= $title?></title>
-    <link href="<?php url()?>public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php url()?>public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
+    <link href="<?php echo url()?>public/css/libs/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url()?>public/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url()?>public/css/libs/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
           type="text/css"/>
-    <link href="<?php url()?>public/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo url()?>public/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" media="screen">
 
-    <script src="<?php url()?>public/js/libs/jquery-2.2.4.min.js"></script>
-    <script src="<?php url()?>public/js/libs/bootstrap.min.js"></script>
+
     <style>
 
     </style>
 </head>
 
-<body bgcolor="#010080" leftmargin="0" topmargin="0" >
+<body bgcolor="#010080" leftmargin="0" topmargin="0" style="">
 
-<div class="wrapper container">
+<div class="container" style="">
     
 <?php require('nav.php');
 

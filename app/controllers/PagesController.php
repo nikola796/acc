@@ -9,9 +9,6 @@ class PagesController
     public function home()
     {
 
-
-        //$tasks = App::get('database')->selectAll('todos');
-
         return view('index');
 
     }

@@ -22,15 +22,17 @@ try {
 
 } catch (Phroute\Exception\HttpRouteNotFoundException $e) {
 
-    var_dump($e);
-    die();
-
-} catch (Phroute\Exception\HttpMethodNotAllowedException $e) {
-
-    var_dump($e);
-    die();
-
+   // var_dump($e);
+   // die();
+//header('Location: '. url().'404');
+    return view('404');
+exit();
 }
 
+<<<<<<< HEAD
 
 //processOutput($response);
+=======
+//processOutput($response);
+
+>>>>>>> dev
