@@ -29,10 +29,5 @@ try {
 exit();
 }
 
-<<<<<<< HEAD
-
-//processOutput($response);
-=======
 //processOutput($response);
 
->>>>>>> dev
