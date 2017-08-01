@@ -1,13 +1,3 @@
-/**
- * Created by Vladislav Andreev on 26.4.2017 г..
- */
-
-CKEDITOR.replace('text', {
-    language: 'bg',
-    height: 250,
-    extraPlugins: 'colorbutton,colordialog'
-});
-
 
 $("#folder").on('change', function () {
     var str = '';
@@ -43,17 +33,17 @@ $('#mod').on('click', function (dialog) {
                     dialog.setClosable(false);
                     $.ajax({
                         method: 'post',
-                        url: 'create-folder',
+                        url: 'new-folder',
                         data: {
                             name: $('#newFolderName').val(),
                             parent: $('#perentFolder').val()
                         }
                     }).done(function (data) {
-                        console.log(typeof data);
+                        console.log(data);
                         if (data !== 'success') {
                             BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_WARNING,
-                                title: 'Мнимание',
+                                title: 'Внимание',
                                 message: 'Възникна проблем с Вашата заявка!'
                             });
                             $button.enable();
@@ -64,7 +54,10 @@ $('#mod').on('click', function (dialog) {
                             BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_SUCCESS,
                                 title: 'Успех',
-                                message: 'Успешно създадохте новата папка!'
+                                message: 'Успешно създадохте нова папка!',
+                                onhide: function(dialogRef){
+                                    window.location.reload(true);
+                                }
                             });
                             $button.enable();
                             $button.stopSpin();
@@ -77,7 +70,7 @@ $('#mod').on('click', function (dialog) {
                     BootstrapDialog.alert({
                         type: BootstrapDialog.TYPE_WARNING,
                         title: 'Внимание',
-                        message: 'Не сте въвели нищо в полето за име на новата папка!'
+                        message: 'Не сте въвели име на новата папка!'
                     });
                 }
             }
@@ -112,17 +105,20 @@ $(document).on('click', '#createFolder', function () {
         BootstrapDialog.alert({
             type: BootstrapDialog.TYPE_WARNING,
             title: 'Внимание',
-            message: 'Не сте въвели нищо в полето за име на новата папка!'
+            message: 'Не сте въвели име на новата папка!'
         });
     }
 
 })
 
 $(document).on('click', 'span.glyphicon-remove', function () {
-    $(this).parent('div').remove();
+    var removed_file_name = $(this).parent('div').find('.file_name_txt').text();
+    var removed_file = $(this).parent('div').find('input.attached_files_id').val();
+    $(this).parent('div').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" /><input type="hidden" name="removed_file_name[]" value="'+ removed_file_name +'" />');
+   // $('#attachedFiles').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" />');
 })
 $(document).on('click', '#addAnotherFile', function () {
-    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
+    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input style="width: 50%;" class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
 });
 $(document).on('click', '#view_post', function (e) {
     e.preventDefault();
@@ -196,6 +192,7 @@ function handleFiles(files) {
 
             remove_span.addEventListener("click", function (e) {
                 $(this).parents('li').remove();
+                //console.log('TEST');
                 if ($('#fileList li').length === 0) {
                     $('#fileList').hide();
                 }
