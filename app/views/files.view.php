@@ -1,6 +1,7 @@
 <?php
 
 $mergeArr = array_merge($folders, $posts, $files);
+
 if ($current_folder != 'Документи') {
     if ($current_folder == $department_name) {
         $nav .= ' > <a href="' . uri() . 'Документи">Документи</a>';
@@ -28,7 +29,7 @@ usort($mergeArr, function ($a, $b) {
     </a>
 <?php endif ?>
 
-<?php if (count((array)$mergeArr[0]) > 1): ?>
+<?php if (count((array)$mergeArr[1]) > 1): ?>
 
     <div class="table-responsive">
         <table class="table table-hover">
@@ -71,6 +72,8 @@ usort($mergeArr, function ($a, $b) {
 
         </table>
     </div>
+<?php else:?>
+    <h4>Не са открити документи!</h4>
 <?php endif ?>
 <?php require 'partials/footer.php'; ?>
 

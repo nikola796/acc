@@ -35,6 +35,7 @@ class FilesController
      */
     public function indexTest($department, $parent_folder, $folder = null)
     {
+
         if ($folder) {
             $folder_id = App::get('database')->getId('category_id', $folder, NESTED_CATEGORIES, $department, $parent_folder);
             $current_folder = $folder;
