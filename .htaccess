@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteBase /intranet_test/
 RewriteCond $1 !^(public)
+RewriteCond $1 !^(vendor)
 RewriteRule ^(.+)$ index.php [QSA,L]
