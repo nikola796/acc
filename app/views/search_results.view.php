@@ -31,7 +31,7 @@
                 <td><a class="no-style" href="<?php echo url()?>files?<?= $search_result['stored_filename']?>&<?= $search_result['original_filename']?>"><?=$search_result['original_filename']?></a></td>
                 <td><?=$search_result['label']?></td>
                 <td><?=$search_result['name']?></td>
-                <td><?=$search_result['file_added_when']?></td>
+                <td><?=$search_result['modified']?></td>
                 <td><?=$search_result['zveno']?></td>
                 <td><?=$search_result['folder']?></td>
             </tr>

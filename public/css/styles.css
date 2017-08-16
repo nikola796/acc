@@ -78,6 +78,11 @@ hr {
     border:1px solid red;
 }
 
+.spacer-big {
+    height:5%;
+    margin: 20px;
+}
+
 .spacer-sm {
     margin: 10px;
 }

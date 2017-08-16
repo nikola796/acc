@@ -33,7 +33,7 @@ class File
      */
     public function getAllFiles()
     {
-$sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS author,nc.name AS folder,f.file_added_when,p.post FROM files AS f
+$sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS author,nc.name AS folder,f.modified,p.post FROM files AS f
                                                   LEFT JOIN users AS u ON (f.added_from=u.id)
                                                   LEFT JOIN ' . NESTED_CATEGORIES . ' AS nc ON (f.directory=nc.category_id) 
                                                   LEFT JOIN posts AS p ON (f.post_id=p.id)';

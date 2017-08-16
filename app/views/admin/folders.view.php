@@ -259,6 +259,7 @@
 
         $('#newDepartmentForm').click(function (e) {
             e.preventDefault();
+            var sort_number = '';
             if ($("#createUserForm").is(':hidden')) {
                 $.ajax({
                     url: 'get_sort_numbers',
@@ -266,6 +267,7 @@
                     data: {parent: $('#parentFolder option:selected').val()}
                 }).done(function (data) {
                     data++;
+                    sort_number = data;
                     var i;
                     for (i = 1; i <= data; i++) {
                         $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
@@ -273,6 +275,8 @@
                     $('#sort_number').val(data).prop('selected');
 
                 });
+                $('#hidden_content').html('<input type="hidden" name="old_sort_number" id="old_sort_numder" value="'+sort_number+'" />');
+                alert(sort_number);
             }
 
             if ($("#createUserForm").is(':visible') && $('#newFolderName').val().length > 0) {
@@ -287,6 +291,12 @@
             $('#department_id_hidden').val('');
 
         });
+
+        $(document).on('change', '#sort_number', function(){
+            alert($(this).val());
+        })
+
+
 
         /*************** CREATE NEW DEPARTMENT **************************************************************/
         $(document).on('submit', '#createUser', function (e) {

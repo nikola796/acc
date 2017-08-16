@@ -16,7 +16,7 @@
     <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
           type="text/css"/>
     <link href="<?php echo url()?>public/css/styles.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" media="screen">
+    <link href="<?php echo url()?>public/css/libs/jquery.dataTables.min.css" rel="stylesheet" media="screen">
 
 
     <style>

@@ -238,7 +238,7 @@ if (isset($_SESSION['update_post'])) {
                                                                value=""><span class="role"><?= $file->folder ?></span>
                                                     </td>
                                                     <td>
-                                                        <span class="access"><?= $file->file_added_when ?></span>
+                                                        <span class="access"><?= $file->modified ?></span>
                                                     </td>
                                                     <td class="name"><span class="name"><?= $file->post ?></span></td>
                                                     <td class="sort_name"><span

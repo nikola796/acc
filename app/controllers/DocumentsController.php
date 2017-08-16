@@ -372,7 +372,7 @@ class DocumentsController
             $conf = App::get('config');
 
             $db = Connection::make($conf['database']);
-            $sql = 'SELECT f.original_filename,f.stored_filename,f.label,f.file_added_when, u.name,nc.name AS zveno, ncc.name AS folder FROM files AS f
+            $sql = 'SELECT f.original_filename,f.stored_filename,f.label,f.modified, u.name,nc.name AS zveno, ncc.name AS folder FROM files AS f
                     LEFT JOIN users AS u ON (f.added_from = u.id)
                     LEFT JOIN ' . NESTED_CATEGORIES . ' AS nc ON (f.department_id = nc.category_id)
                     LEFT JOIN ' . NESTED_CATEGORIES . ' AS ncc ON (f.directory = ncc.category_id)
