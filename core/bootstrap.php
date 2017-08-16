@@ -14,6 +14,7 @@ App::bind('database', new QueryBuilder(
 ));
 
 define("NESTED_CATEGORIES", "nested_categories");
+define("HOST", "10.30.128.15");
 define("MAIL_USER", "SDtest.one@customs.bg");
 define("MAIL_PASS", "12345678");
 define('SUPPORT_MAIL', 'vladislav.andreev@customs.bg');

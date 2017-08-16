@@ -9,6 +9,7 @@
 namespace app\models;
 
 
+use app\controllers\AuthController;
 use App\Core\App;
 use Connection;
 use PDO;
@@ -109,7 +110,8 @@ class User
     public function createUser($user_data, $access)
     {
 
-        $user_data['pass'] = $this->saltPassword($user_data['pass']);
+        $user_password = $this->randomPassword();
+        $user_data['pass'] = $this->saltPassword($user_password);
 
         if ($user_data['role'] > 1) {
             try {
@@ -126,11 +128,20 @@ class User
                         $stmt->execute(array($user_id, $folder));
                     }
 
+                $emailLink = 'Вашият потребител в интранет страницата на АМ е създаден успешно. Потребителското Ви име е: '.$user_data['name'].'. 
+Вашата парола за достъп е: '.$user_password.' . Тя е генерирана автоматично и само Вие я имате! 
+За Ваше улеснение след първоначален вход в системата може да промените паролата си от настройките на профила.
+Линк за вход:  ' . url();
 
+                $res = AuthController::send_mail($user_data['email'], $emailLink, 'Нов потребител в интранет страницата на АМ');
+                if (intval($res) > 0) {
+                    $this->db->commit();
 
-                $this->db->commit();
-
-                return $stmt->rowCount();
+                    return $stmt->rowCount();
+                } else{
+                    $this->db->rollBack();
+                    echo 'Нещо се обърка и потребителя не бе създаден!';
+                }
 
             } catch (PDOException $e) {
 
@@ -219,6 +230,18 @@ class User
         $digest = crypt($pass, $salt);
 
         return $digest;
+    }
+
+    private function randomPassword()
+    {
+        $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
     }
 
     /**

@@ -93,7 +93,7 @@ class AdminsController
                 unset($user_data['action'], $user_data['id'], $user_data['access']);
 
                 $result = $this->user->createUser($user_data, $access);
-                echo($result == 1 ? 'Успешно създадохте нов потребител' : '');
+                echo($result == 1 ? 'Успешно създадохте нов потребител' : $result);
             } else if (count($user_info) === 1) {
                 echo($user_info[0]['active'] == 0 ? 'Вече съществува деактивиран потребител с това потребителско име или с този мейл. Използвайте други данни, за да създадете нов потребител или активирайте този потребител от меню Потребители' : 'Вече съществува потребител с това потребителско име или с този мейл');
             } else {
