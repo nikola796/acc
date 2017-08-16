@@ -69,7 +69,6 @@ class FoldersController
      */
     public function update()
     {
-        //dd($_POST);
         $data = array('name' => trim($_POST['name']), 'old_name' => trim($_POST['old_name']), 'folder_id' => intval($_POST['folder_id']), 'old_parent' => intval($_POST['parent_id']), 'new_parent' => intval($_POST['parent']));
         $new_sort_number = intval($_POST['new_sort_number']);
         $old_sort_number = intval($_POST['old_sort_number']);

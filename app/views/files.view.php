@@ -2,7 +2,8 @@
 
 
 $mergeArr = array_merge($folders, $posts, $files);
-
+//echo count((array)$mergeArr);
+//dd($mergeArr);
 if ($current_folder != 'Документи') {
     if ($current_folder == $department_name) {
         $nav .= ' > <a href="' . uri() . 'Документи">Документи</a>';
@@ -18,7 +19,6 @@ if ($current_folder != 'Документи') {
 usort($mergeArr, function ($a, $b) {
     return $a->sort_number - $b->sort_number;
 });
-//echo '<pre>' . print_r($mergeArr, true) . '</pre>';die();
 ?>
 
 <?php require('partials/header.php') ?>
@@ -48,6 +48,7 @@ usort($mergeArr, function ($a, $b) {
             </tr>
             </thead>
             <?php foreach ($mergeArr as $ma): ?>
+                <?php if($ma->sort_number == null) continue ?>
                 <tr>
                     <?php if ($ma->category_id): ?>
                         <td><?= $ma->sort_number?></td>
@@ -62,15 +63,19 @@ usort($mergeArr, function ($a, $b) {
                         echo '<td>'.$ma->sort_number.'</td>';
                         echo '<td><i class="glyphicon glyphicon-pencil" style="float: left;margin-right: 5px"></i>' . $ma->post;
                         if ($ma->attachment == 1) {
-                            foreach ($mergeArr as $fma) {
+                            foreach ($mergeArr as $k => $fma) {
                                 if ($ma->id == $fma->post_id) {
-                                    echo '<p style="margin-left:10px"><i style="margin-right: 2px" class="glyphicon glyphicon-file"></i><a href="' . url() . 'files?' . $fma->stored_filename . '&' . $fma->original_filename . '"' . $fma->label . '</a></p>';
-
+                                    echo '<p style="margin-left:10px"><i style="margin-right: 2px" class="glyphicon glyphicon-file"></i><a href="' . url() . 'files?' . $fma->stored_filename . '&' . $fma->original_filename . '"</a>' . $fma->label . '</p>';
+                                    $key[] = $k;
                                 }
                             }
                         }
                         echo '</td><td>'.$ma->modified.'</td>';
                     }
+<<<<<<< HEAD
+=======
+                    //dd($mergeArr);
+>>>>>>> feature_final
                     //echo '</td><td>'.$ma->modified.'</td>';
                     ?>
 
@@ -92,6 +97,7 @@ usort($mergeArr, function ($a, $b) {
     <h4>Не са открити документи!</h4>
 <?php endif ?>
 <?php require 'partials/footer.php'; ?>
+<<<<<<< HEAD
 <script>
 
 //         $('#example').DataTable( {
@@ -108,6 +114,8 @@ usort($mergeArr, function ($a, $b) {
          });
 </script>
 
+=======
+>>>>>>> feature_final
 <?php if (isset($_SESSION['file_error'])): ?>
     <script>
         BootstrapDialog.show({

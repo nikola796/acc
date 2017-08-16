@@ -306,16 +306,17 @@ if (isset($_SESSION['update_post'])) {
 
             });
         });
-
+        var sort_num;
         $(document).on('change', '#perentFolders', function () {
             $('#sort_number').html('');
-
+            //console.log(sort_num);
             $.ajax({
                 url: 'get_sort_numbers',
                 type: 'POST',
                 data: {parent: $('#perentFolders option:selected').val()}
             }).done(function (data) {
-                if ($('#submit_form').val() != 2) {
+
+                if ($('#submit_form').val() != 2 || sort_num.length == 0) {
                     data++;
                 }
                 var i;
@@ -323,10 +324,20 @@ if (isset($_SESSION['update_post'])) {
                 for (i = 1; i <= data; i++) {
                     $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
                 }
-                if ($('#submit_button').val() != 'edit') {
+
+                if ($('#submit_form').val() != 2) {
                     $('#sort_number').val(data).prop('selected');
                 } else {
-                    $('#sort_number').val(sort_num).prop('selected');
+
+                    if(sort_num.length !== 0){
+                        $('#sort_number').val(Number(sort_num)).prop('selected');
+                        sort_num = '';
+
+                    } else{
+
+                        $('#sort_number').val(data).prop('selected');
+                    }
+
                 }
             });
         });
@@ -422,23 +433,26 @@ if (isset($_SESSION['update_post'])) {
             })
         });
         /**************** EDIT POST **********************************************************************/
-        var sort_num;
+
         $(document).on('click', '.post_id', function () {
+            //console.log("click");
             var post_id = $(this).closest('tr').find('input.user_post_id').val();
             var post = $(this).closest('tr').find('td:eq(0)').html();
             var attached = $(this).closest('tr').find('td:eq(1)').text();
+
             sort_num = $(this).closest('tr').find('td:eq(8)').text();
-            $('#old_sort_number').html('<input type="hidden" name="old_sort_number" value="' + sort_num + '" />');
+            $('#old_sort_number').html('<input type="hidden" id="sor_num" name="old_sort_number" value="' + sort_num + '" /><input type="hidden" id="old_parent" name="old_parent" value="' + $(this).closest('tr').find('input.post_folder_id').val() + '" />');
 
             console.log('Old number is: ' + sort_num);
             $('#folder').val('');
             $('#folder').val($(this).closest('tr').find('input.post_folder_id').val()).trigger('change');
+
             CKEDITOR.instances['text'].setData(post)
             //$('#cke_1_contents').html(post);
             $('#attachedFiles').html('<input type="hidden" name="postId" value="' + post_id + '" />');
             if (attached == 'Да') {
                 var file_label = $(this).closest('tr').find('td:eq(6)').text().split('; ');
-                console.log(file_label);
+                //console.log(file_label);
                 var file_name = $(this).closest('tr').find('td:eq(7)').text().split('; ');
 
                 var file_id = $(this).closest('tr').find('input.file_id').val().split('; ');

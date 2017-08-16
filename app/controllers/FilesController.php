@@ -48,14 +48,19 @@ class FilesController
         $folders = App::get('database')->selectSubFolders($folder_id[0]->category_id);
 
         if (empty($folders)) {
-            $folders = App::get('database')->getDepartment($folder_id[0]->category_id);
+            $dep_id = App::get('database')->getDepartment($folder_id[0]->category_id);
+
+            $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->dep, 'directory' => $folder_id[0]->category_id));
+
+            $files = App::get('database')->selectAllFiles(array('dep' => $dep_id[0]->dep, 'directory' => $folder_id[0]->category_id));
+
+        } else{
+            $posts = App::get('database')->getPosts(array('department' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
+
+            $files = App::get('database')->selectAllFiles(array('dep' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
 
         }
-
-        $posts = App::get('database')->getPosts(array('department' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
-
-        $files = App::get('database')->selectAllFiles(array('dep' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
-
+        
         return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
 
     }

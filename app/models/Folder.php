@@ -62,6 +62,12 @@ class Folder
                 $stmt = $db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND parent_id = :parent_id');
                 $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
 
+                $stmt = $db->prepare('UPDATE posts SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND directory = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
+                $stmt = $db->prepare('UPDATE files SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND directory = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
 
                 $sql = 'INSERT INTO ' . NESTED_CATEGORIES . ' (parent_id, name, lft, rgt, dep, added_when,added_from, sort_number) VALUES(:parent_id,:folder_name, :lft, :rgt, :department, ' . time() . ', ' . $_SESSION["user_id"] . ', :sort_number)';
                 //die(var_dump($sql));
@@ -89,11 +95,17 @@ class Folder
             //dd($data);
             try {
                 /**************************************** ADD NEW FOLDER IN SAME FOLDER AS PARENT **********************************************************************************/
+                $stmt = $db->prepare('UPDATE posts SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND directory = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
+                $stmt = $db->prepare('UPDATE files SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND directory = :parent_id');
+                $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
 
                 $db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE');
 
                 $stmt = $db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = sort_number + 1 WHERE sort_number >= :sort_number AND parent_id = :parent_id');
                 $stmt->execute(array('sort_number' => $data['sort_number'], 'parent_id' => $data['parent_id']));
+
 
 
                 $db->query('SELECT @myRight := rgt, @myDep := dep FROM ' . NESTED_CATEGORIES . ' WHERE category_id = ' . $_POST['parent']);
@@ -373,9 +385,35 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             return 'Папка с такова име вече съществува в избраното пространство!';
         }
 
-
+        if($data['old_sort_number'] == ''){
+            $data['old_sort_number'] = $data['new_sort_number'];
+        }
+        //dd($data);
         try {
-            //   $this->db->beginTransaction();
+
+               $this->db->beginTransaction();
+
+            /** UPDATE posts TABLE */
+            $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number + 1) WHERE directory = :folder AND sort_number >= :new_sort_number');
+            $stmt->execute(array('folder' => $data['new_parent'], 'new_sort_number' => $data['new_sort_number']));
+
+            $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number - 1) WHERE directory = :old_parent AND sort_number > :old_sort_number');
+            $stmt->execute(array('old_parent' => $data['old_parent'], 'old_sort_number' => $data['old_sort_number']));
+
+            /** UPDATE FOLDERS TABLE */
+            $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number + 1) WHERE parent_id = :folder AND sort_number >= :new_sort_number ');
+            $stmt->execute(array('folder' => $data['new_parent'], 'new_sort_number' => $data['new_sort_number']));
+
+            $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number - 1) WHERE parent_id = :old_parent AND sort_number > :old_sort_number');
+            $stmt->execute(array('old_parent' => $data['old_parent'], 'old_sort_number' => $data['old_sort_number']));
+
+            /** UPDATE FILES TABLE */
+            $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number + 1) WHERE directory = :folder AND sort_number >= :new_sort_number AND post_id IS NULL');
+            $stmt->execute(array('folder' => $data['new_parent'], 'new_sort_number' => $data['new_sort_number']));
+
+            $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number - 1) WHERE directory = :old_parent AND sort_number > :old_sort_number AND post_id IS NULL');
+            $stmt->execute(array('old_parent' => $data['old_parent'], 'old_sort_number' => $data['old_sort_number']));
+
 
             $sql = 'LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;
 
@@ -428,10 +466,10 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 //return $sql;
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            // $this->db->commit();
+             $this->db->commit();
             return 'success';
         } catch (PDOException $ex) {
-            //   $this->db->rollBack();
+               $this->db->rollBack();
             echo $ex->getMessage();
         }
     }
@@ -497,7 +535,7 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
+
 
             $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number, @myWidth := rgt - lft + 1 FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
@@ -508,6 +546,32 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $sort_number = $r[0]['sort_number'];
 
             $width = $r[0]['@myWidth := rgt - lft + 1'];
+
+            $stmt = $this->db->prepare('SELECT category_id FROM '.NESTED_CATEGORIES.' where lft between :lft and :rgt');
+            $stmt->execute(array('lft' => $lft, 'rgt' => $rgt));
+            $deleted_folders_ids = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $stmt = $this->db->prepare('DELETE FROM posts WHERE directory = :category_id');
+            foreach ($deleted_folders_ids as $cat_id){
+                $stmt->execute($cat_id);
+            }
+
+
+            $stmt = $this->db->prepare('SELECT id, stored_filename FROM files WHERE directory = :category_id');
+            foreach ($deleted_folders_ids as $cat_id){
+                $stmt->execute($cat_id);
+                $files_for_delete = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            $stmt = $this->db->prepare('DELETE FROM files WHERE id = :id');
+            foreach ($files_for_delete as $file_id){
+                if (unlink(realpath('core/files') . DIRECTORY_SEPARATOR . $file_id['stored_filename'])) {
+                    $stmt->execute(array('id' => $file_id['id']));
+                }
+
+            }
+
+            $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
 
             if ($this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt)) {
                 $this->db->exec('UPDATE  ' . NESTED_CATEGORIES . ' SET rgt = rgt - ' . $width . ' WHERE rgt > ' . $rgt);

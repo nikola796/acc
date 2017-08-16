@@ -110,6 +110,7 @@ class DocumentsController
     public function admin_store2()
     {
 
+
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
             $response = array();
@@ -313,20 +314,25 @@ class DocumentsController
 
         if (isset($_POST['removed_file_id'])) {
 
-            $removed_files = $_POST['removed_file_id'];
+            $removed_files = intval($_POST['removed_file_id']);
 
         } else {
             $removed_files = 0;
         }
 
         if (isset($_POST['removed_file_name'])) {
-            $removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
+            $removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
         } else {
             $removed_files_names = '';
         }
 
-        $data = array('post_id' => $_POST['postId'], 'post' => $_POST['text'], 'folder' => $_POST['folder'], 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names);
+        $data = array('post_id' => intval($_POST['postId']), 'post' => $_POST['text'], 'folder' => intval($_POST['folder']), 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names);
         if (intval($_POST['old_sort_number']) != intval($_POST['sort_number'])) {
+            $data['old_sort_number'] = intval($_POST['old_sort_number']);
+            $data['new_sort_number'] = intval($_POST['sort_number']);
+        }
+        if($data['folder'] != intval($_POST['old_parent'])){
+            $data['old_parent'] = intval($_POST['old_parent']);
             $data['old_sort_number'] = intval($_POST['old_sort_number']);
             $data['new_sort_number'] = intval($_POST['sort_number']);
         }

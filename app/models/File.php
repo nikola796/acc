@@ -91,7 +91,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
      */
     public function fileUpload($post_id = null, $action = array())
     {
-        dd($_FILES);
+        //dd($_FILES);
         if ($_FILES['userfile']['error'][0] === 0) {
             $files = $_FILES['userfile'];
             $files['label'] = $_POST['label'];
@@ -206,10 +206,10 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                     $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number + 1) WHERE parent_id =:directory AND sort_number >=:sort_number');
                     $stmt->execute(array('directory' => $file['directory'], 'sort_number' => $file['sort_number']));
 //dd('Test');
-                    $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number + 1) WHERE directory =:directory AND sort_number > :sort_number AND post_id IS NULL');
+                    $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number + 1) WHERE directory =:directory AND sort_number >= :sort_number AND post_id IS NULL');
                     $stmt->execute(array('directory' => $file['directory'], 'sort_number' => $file['sort_number']));
 
-                    $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number + 1) WHERE directory = :directory AND sort_number > :sort_number');
+                    $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number + 1) WHERE directory = :directory AND sort_number >= :sort_number');
                     $stmt->execute(array('directory' => $file['directory'], 'sort_number' => $file['sort_number']));
 
                     unset($file['default_sort_number']);

@@ -58,7 +58,11 @@ class UsersController
         $res = $this->user->changePassword();
         if ($res == 1) {
             echo 'Успешно променихте паролата си!';
-        } else {
+        }
+        elseif($res == 0) {
+            echo 'Въведохте старата си парола.';
+        }
+        else {
             echo $res;
         }
 
@@ -69,10 +73,17 @@ class UsersController
      */
     public function new_password()
     {
+
         $data = array('id' => intval($_POST['user_id']), 'pass' => trim($_POST['pass']));
         $res = $this->user->new_password($data);
         if ($res == 1) {
-            echo 'Успешно променихте паролата си!';
+            echo 'Успешно променихте паролата си! Използвайте формата за вход, като въведете потребителското си име и новата парола.';
+        }
+        elseif($res === 0) {
+            echo 'Въведохте забравената си парола. Използвайте формата за вход, като въведете потребителското си име и парола.';
+        }
+        else{
+            echo 'Нещо се обърка!';
         }
     }
 

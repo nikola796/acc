@@ -186,8 +186,40 @@ class Post
 
         try {
             $this->db->beginTransaction();
+            if($params['old_parent']){
 
-            if ($params['new_sort_number'] && $params['old_sort_number']) {
+                /** UPDATE posts TABLE */
+                $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number + 1) WHERE directory = :folder AND sort_number >= :new_sort_number');
+                $stmt->execute(array('folder' => $params['folder'], 'new_sort_number' => $params['new_sort_number']));
+
+                $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number - 1) WHERE directory = :old_parent AND sort_number > :old_sort_number');
+                $stmt->execute(array('old_parent' => $params['old_parent'], 'old_sort_number' => $params['old_sort_number']));
+
+                /** UPDATE FOLDERS TABLE */
+                $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number + 1) WHERE parent_id = :folder AND sort_number >= :new_sort_number ');
+                $stmt->execute(array('folder' => $params['folder'], 'new_sort_number' => $params['new_sort_number']));
+
+                $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (sort_number - 1) WHERE parent_id = :old_parent AND sort_number > :old_sort_number');
+                $stmt->execute(array('old_parent' => $params['old_parent'], 'old_sort_number' => $params['old_sort_number']));
+
+                /** UPDATE FILES TABLE */
+                $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number + 1) WHERE directory = :folder AND sort_number >= :new_sort_number AND post_id IS NULL');
+                $stmt->execute(array('folder' => $params['folder'], 'new_sort_number' => $params['new_sort_number']));
+
+                $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number - 1) WHERE directory = :old_parent AND sort_number > :old_sort_number AND post_id IS NULL');
+                $stmt->execute(array('old_parent' => $params['old_parent'], 'old_sort_number' => $params['old_sort_number']));
+
+                /**  REMOVE OLD SORT VALUE AND OLD_PARENT FROM ARRAY */
+                unset($params['old_sort_number']);
+                unset($params['old_parent']);
+//dd($params);
+                /** UPDATE posts TABLE */
+                $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ', sort_number = :new_sort_number WHERE id = :post_id');
+                $stmt->execute($params);
+                $resp = $stmt->rowCount();
+            }
+
+            else if ($params['new_sort_number'] && $params['old_sort_number']) {
                 if ($params['old_sort_number'] < $params['new_sort_number']) {
                     $symbol = '-';
                     $sign1 = '>';
