@@ -535,7 +535,7 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
+
 
             $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number, @myWidth := rgt - lft + 1 FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
@@ -546,6 +546,32 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $sort_number = $r[0]['sort_number'];
 
             $width = $r[0]['@myWidth := rgt - lft + 1'];
+
+            $stmt = $this->db->prepare('SELECT category_id FROM '.NESTED_CATEGORIES.' where lft between :lft and :rgt');
+            $stmt->execute(array('lft' => $lft, 'rgt' => $rgt));
+            $deleted_folders_ids = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $stmt = $this->db->prepare('DELETE FROM posts WHERE directory = :category_id');
+            foreach ($deleted_folders_ids as $cat_id){
+                $stmt->execute($cat_id);
+            }
+
+
+            $stmt = $this->db->prepare('SELECT id, stored_filename FROM files WHERE directory = :category_id');
+            foreach ($deleted_folders_ids as $cat_id){
+                $stmt->execute($cat_id);
+                $files_for_delete = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            $stmt = $this->db->prepare('DELETE FROM files WHERE id = :id');
+            foreach ($files_for_delete as $file_id){
+                if (unlink(realpath('core/files') . DIRECTORY_SEPARATOR . $file_id['stored_filename'])) {
+                    $stmt->execute(array('id' => $file_id['id']));
+                }
+
+            }
+
+            $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
 
             if ($this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt)) {
                 $this->db->exec('UPDATE  ' . NESTED_CATEGORIES . ' SET rgt = rgt - ' . $width . ' WHERE rgt > ' . $rgt);
