@@ -11,7 +11,7 @@ function processOutput($response){
 }
 
 $router = new Phroute\RouteCollector(new Phroute\RouteParser);
-//var_dump($router);die();
+
 require 'app/routes.php';
 
 $dispatcher = new Phroute\Dispatcher($router);

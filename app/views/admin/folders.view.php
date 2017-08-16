@@ -256,9 +256,10 @@
                 }
             });
         });
-
+        var sort_num;
         $('#newDepartmentForm').click(function (e) {
             e.preventDefault();
+            var sort_number = '';
             if ($("#createUserForm").is(':hidden')) {
                 $.ajax({
                     url: 'get_sort_numbers',
@@ -266,13 +267,17 @@
                     data: {parent: $('#parentFolder option:selected').val()}
                 }).done(function (data) {
                     data++;
+                    sort_num = data;
+                    sort_number = data;
                     var i;
                     for (i = 1; i <= data; i++) {
                         $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
                     }
                     $('#sort_number').val(data).prop('selected');
+                    $('#hidden_content').html('<input type="hidden" name="old_sort_number" id="old_sort_numder" value="'+data+'" />');
 
                 });
+
             }
 
             if ($("#createUserForm").is(':visible') && $('#newFolderName').val().length > 0) {
@@ -364,7 +369,7 @@
 
         });
 
-        var sort_num;
+
         /***************** EDIT USER *****************************************************/
         $(document).on('click', '.folder_id', function () {
             var id = $(this).attr('id');

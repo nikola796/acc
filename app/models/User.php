@@ -416,7 +416,7 @@ class User
      */
     public function check_password($password)
     {
-        $stmt = $this->db->prepare('SELECT id, email  FROM users WHERE email = :email');
+        $stmt = $this->db->prepare('SELECT id, email, name  FROM users WHERE email = :email');
         $stmt->execute($password);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

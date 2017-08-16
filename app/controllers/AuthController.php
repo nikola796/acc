@@ -97,6 +97,7 @@ class AuthController
             // Send link with the original token
             $emailLink = 'Направена е заявка за промяна на Вашата парола. От линка по-долу може да промените паролата си. 
 В случай, че не сте направили заявка игнорирайте това съобщение!
+Потребителско име: '.$is_user_pass_exist[0]['name'].'.
 Линк за възстановяване: ' . url() . 'reset_password?' . $tokenForLink;
             $res = $this->send_recover_mail($user_email, $emailLink);
             if (intval($res) > 0) {
@@ -173,7 +174,7 @@ class AuthController
 
         $message = Swift_Message::newInstance('Възстановяване на парола')
             ->setFrom(array('intranet@customs.bg' => 'Интранет'))
-            ->setTo(array($mail['email'], 'vladislav.andreev@customs.bg', 'tsenka.koleva@customs.bg'))
+            ->setTo(array($mail['email'], 'vladislav.andreev@customs.bg'))
             ->setBody($text);
 
 // Send the message
