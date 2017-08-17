@@ -1,21 +1,35 @@
 <?php
-$acc = array(0 => 2, 1 =>15);
-$ar = array(
-    0 => array( 0 => array(
-                                'category_id' => 2, 'name' => 'Аида'
-                             ),
-                 1 => array(
-                                'category_id' => 5, 'name' => 'Техническо задание'
-                             )
-                ),
-    1 => array(0 => array('category_id' => 5, 'name' => 'Техническо задание')));
+
+function randomPassword() {
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+
+echo randomPassword();
+
+//$acc = array(0 => 2, 1 =>15);
+//$ar = array(
+//    0 => array( 0 => array(
+//                                'category_id' => 2, 'name' => 'Аида'
+//                             ),
+//                 1 => array(
+//                                'category_id' => 5, 'name' => 'Техническо задание'
+//                             )
+//                ),
+//    1 => array(0 => array('category_id' => 5, 'name' => 'Техническо задание')));
 
 //echo '<pre>' . print_r($ar, true) . '</pre>';
 
-foreach ($ar as $a){
-    $key[] = array_search(2, $a);
-}
-echo '<pre>' . print_r($key, true) . '</pre>';
+//foreach ($ar as $a){
+//    $key[] = array_search(2, $a);
+//}
+//echo '<pre>' . print_r($key, true) . '</pre>';
 
 //$pr = array('Пространство едно' => array('num' => 4),'Пространство две' => array('num' => 3));
 //

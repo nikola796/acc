@@ -1,6 +1,5 @@
 <?php
 
-
 $mergeArr = array_merge($folders, $posts, $files);
 //echo count((array)$mergeArr);
 //dd($mergeArr);
@@ -19,6 +18,7 @@ if ($current_folder != 'Документи') {
 usort($mergeArr, function ($a, $b) {
     return $a->sort_number - $b->sort_number;
 });
+
 ?>
 
 <?php require('partials/header.php') ?>

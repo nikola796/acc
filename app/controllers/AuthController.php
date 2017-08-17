@@ -99,7 +99,7 @@ class AuthController
 В случай, че не сте направили заявка игнорирайте това съобщение!
 Потребителско име: '.$is_user_pass_exist[0]['name'].'.
 Линк за възстановяване: ' . url() . 'reset_password?' . $tokenForLink;
-            $res = $this->send_recover_mail($user_email, $emailLink);
+            $res = static::send_mail($user_email['email'], $emailLink, 'Възстановяване на парола');
             if (intval($res) > 0) {
                 echo 'На посочения от Вас имейл бе изпратен код за възстановяване. Кодът ще е активен през следващите 8 часа!';
             } else {
@@ -148,15 +148,16 @@ class AuthController
      * SEND PASSWORD RECOVER MAIL TO USER
      * @param $mail
      * @param $text
+     * @param null $subject
      * @return int
      */
-    private function send_recover_mail($mail, $text)
+    public static function send_mail($mail, $text, $subject = null)
     {
 
         require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
 // Create the Transport
-        $transport = Swift_SmtpTransport::newInstance('10.30.128.15', 25)
+        $transport = Swift_SmtpTransport::newInstance(HOST, 25)
             ->setUsername(MAIL_USER)
             ->setPassword(MAIL_PASS);
 
@@ -172,9 +173,9 @@ class AuthController
 
 // Create a message
 
-        $message = Swift_Message::newInstance('Възстановяване на парола')
+        $message = Swift_Message::newInstance($subject)
             ->setFrom(array('intranet@customs.bg' => 'Интранет'))
-            ->setTo(array($mail['email'], 'vladislav.andreev@customs.bg'))
+            ->setTo(array($mail, 'vladislav.andreev@customs.bg'))
             ->setBody($text);
 
 // Send the message

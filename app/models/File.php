@@ -259,7 +259,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
     public function deleteFile($files_id = array())
     {
 
-        $path = realpath('core/files') . DIRECTORY_SEPARATOR;
+        $path = realpath(FILES_FOLDER) . DIRECTORY_SEPARATOR;
         $del_files = 0;
         foreach ($files_id as $file_id) {
             $stmt = $this->db->prepare('SELECT stored_filename, post_id, sort_number, directory FROM files WHERE id = ?');
@@ -329,7 +329,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 
         foreach ($files as $file) {
             if ($file['size'] > 0) {
-                $data_storage_path = realpath('core/files') . DIRECTORY_SEPARATOR;
+                $data_storage_path = realpath(FILES_FOLDER) . DIRECTORY_SEPARATOR;
                 $original_filename = $file['name'];
                 $file_basename = substr($original_filename, 0, strripos($original_filename, '.')); // strip extention
                 $file_ext = substr($original_filename, strripos($original_filename, '.'));

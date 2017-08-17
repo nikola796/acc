@@ -26,12 +26,12 @@
                                 <input type="email" placeholder="Поща" id="inputEmail" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group" id="div_pass">
-                            <label class="col-sm-2 control-label" for="inputPassword">Парола</label>
-                            <div class="col-sm-10">
-                                <input type="password" placeholder="Парола" id="inputPassword" class="form-control">
-                            </div>
-                        </div>
+<!--                        <div class="form-group" id="div_pass">-->
+<!--                            <label class="col-sm-2 control-label" for="inputPassword">Парола</label>-->
+<!--                            <div class="col-sm-10">-->
+<!--                                <input type="password" placeholder="Парола" id="inputPassword" class="form-control">-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Роля</label>
                             <div class="col-sm-10">
@@ -224,13 +224,31 @@
             $(document).on('submit', '#createUser', function (e) {
                 e.preventDefault();
                 //console.log($('#user_id_hidden').val());
-                var form_errors = [];
-                if ($('#inputUser').val() == '') {
-                    form_errors['username'] = 'Въведете потребителско име';
+                var error_message;
+                if ($.trim($('#inputUser').val()).length == 0) {
+                    BootstrapDialog.alert('Въведете потребителско име');
+                    return false;
 
-                } else {
+                } else if($.trim($('#inputUser').val()).length <= 3){
+                    BootstrapDialog.alert('Прекалено кратко потребителско име. Минимална дължина 4 символа');
+                    return false;
 
-                    delete form_errors['username'];
+                }
+
+                if ($.trim($('#inputEmail').val()).length == 0) {
+                    BootstrapDialog.alert('Въведете поща!');
+                    return false;
+                }
+
+
+                if ($.trim($('#roles').val()).length == 0) {
+                    BootstrapDialog.alert('Изберете роля!');
+                    return false;
+                } else if($('#roles').val() > 1) {
+                    if ($.trim($('#folder').val()).length == 0) {
+                        BootstrapDialog.alert('Изберете ресурсите, до които ще има достъп администратора!');
+                        return false;
+                    }
                 }
 
                 $.ajax({
