@@ -18,6 +18,7 @@ define("HOST", "10.30.128.15");
 define("MAIL_USER", "SDtest.one@customs.bg");
 define("MAIL_PASS", "12345678");
 define('SUPPORT_MAIL', 'vladislav.andreev@customs.bg');
+define('FILES_FOLDER', 'core'.DIRECTORY_SEPARATOR.'files');
 
 
 function view($name, $data = array())
@@ -71,7 +72,7 @@ function uri(){
 }
 
 function download_file($stored_filename, $original_filename){
-    $file = realpath('core/files').DIRECTORY_SEPARATOR . $stored_filename;
+    $file = realpath(FILES_FOLDER).DIRECTORY_SEPARATOR . $stored_filename;
     $filesize = filesize($file);
     header('Content-Description: File Transfer');
     header("Content-type: application/forcedownload");

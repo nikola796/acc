@@ -100,7 +100,7 @@ class FilesController
      */
     public function downloadFile($stored_name, $real_name)
     {
-        $file = realpath('core'. DIRECTORY_SEPARATOR .'files') . DIRECTORY_SEPARATOR . $stored_name;
+        $file = realpath(FILES_FOLDER) . DIRECTORY_SEPARATOR . $stored_name;
         if (is_file($file)) {
             $filesize = filesize($file);
 

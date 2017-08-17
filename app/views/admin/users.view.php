@@ -240,7 +240,7 @@
                     return false;
                 }
 
-                
+
                 if ($.trim($('#roles').val()).length == 0) {
                     BootstrapDialog.alert('Изберете роля!');
                     return false;
