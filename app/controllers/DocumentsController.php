@@ -335,6 +335,7 @@ class DocumentsController
      */
     private function updatePost()
     {
+
         $post = new Post();
         if (isset($_POST['file_id'])) {
             $existing_files = implode(', ', $_POST['file_id']);
@@ -344,14 +345,15 @@ class DocumentsController
 
         if (isset($_POST['removed_file_id'])) {
 
-            $removed_files = intval($_POST['removed_file_id']);
+            $removed_files = $_POST['removed_file_id'];
 
         } else {
             $removed_files = 0;
         }
 
         if (isset($_POST['removed_file_name'])) {
-            $removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
+            //$removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
+            $removed_files_names = $_POST['removed_file_id'];
         } else {
             $removed_files_names = '';
         }

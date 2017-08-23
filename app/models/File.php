@@ -263,7 +263,7 @@ class File
         $del_files = 0;
         foreach ($files_id as $file_id) {
             $stmt = $this->db->prepare('SELECT stored_filename, post_id, sort_number, directory FROM files WHERE id = ?');
-            $stmt->execute(array($file_id));
+            $stmt->execute(array(intval($file_id)));
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if ($row[0]->post_id !== null) {
                 $post_id[] = $row[0]->post_id;
