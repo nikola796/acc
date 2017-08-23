@@ -540,6 +540,7 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number, @myWidth := rgt - lft + 1 FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
             $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            dd($r);
             $lft = $r[0]['lft'];
             $rgt = $r[0]['rgt'];
             $parent_id = $r[0]['parent_id'];

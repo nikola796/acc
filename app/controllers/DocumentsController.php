@@ -143,7 +143,7 @@ class DocumentsController
                 $response += $file->fileUpload2($post_id, array('act' => 'add'));
 
             }
-
+dd($response);
             $_SESSION['add_new_file_post'] = $response;
             redirect('posts');
 

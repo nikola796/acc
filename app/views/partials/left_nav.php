@@ -1,5 +1,4 @@
 <div class="row">
-
     <div style="" class="col-md-3">
 
         <div class="panel panel-primary" style="background-color: #FFFFE6;">

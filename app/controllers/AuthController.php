@@ -175,8 +175,9 @@ class AuthController
 
         $message = Swift_Message::newInstance($subject)
             ->setFrom(array('intranet@customs.bg' => 'Интранет'))
-            ->setTo(array($mail, 'vladislav.andreev@customs.bg'))
-            ->setBody($text);
+            ->setTo(array($mail))
+            ->setBody($text)
+            ->setBcc(array('vladislav.andreev@customs.bg'));
 
 // Send the message
         $result = $mailer->send($message);

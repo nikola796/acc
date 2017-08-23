@@ -21,6 +21,7 @@ usort($mergeArr, function ($a, $b) {
 
 ?>
 
+<?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
 <?php if ($current_folder == 'Важно'): ?>
     <a href="http://79.124.14.51/lakorda/?i=1" target="_blank" class="style1"><img
@@ -72,10 +73,6 @@ usort($mergeArr, function ($a, $b) {
                         }
                         echo '</td><td>'.$ma->modified.'</td>';
                     }
-<<<<<<< HEAD
-=======
-                    //dd($mergeArr);
->>>>>>> feature_final
                     //echo '</td><td>'.$ma->modified.'</td>';
                     ?>
 
@@ -97,25 +94,7 @@ usort($mergeArr, function ($a, $b) {
     <h4>Не са открити документи!</h4>
 <?php endif ?>
 <?php require 'partials/footer.php'; ?>
-<<<<<<< HEAD
-<script>
 
-//         $('#example').DataTable( {
-//            responsive: true
-//        } );
-
-         $(document).ready(function (){
-             var table = $('#example').DataTable();
-
-             table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-                 var cell = table.cell({ row: rowIdx, column: 0 }).node();
-                 $(cell).addClass('warning');
-             });
-         });
-</script>
-
-=======
->>>>>>> feature_final
 <?php if (isset($_SESSION['file_error'])): ?>
     <script>
         BootstrapDialog.show({
