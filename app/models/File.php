@@ -263,7 +263,7 @@ class File
         $del_files = 0;
         foreach ($files_id as $file_id) {
             $stmt = $this->db->prepare('SELECT stored_filename, post_id, sort_number, directory FROM files WHERE id = ?');
-            $stmt->execute(array($file_id));
+            $stmt->execute(array(intval($file_id)));
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if ($row[0]->post_id !== null) {
                 $post_id[] = $row[0]->post_id;
@@ -394,15 +394,13 @@ class File
                             $narr[$kk]['folder'] = $files['folder'];
                             $narr[$kk]['post_id'] = $post_id;
                             $narr[$kk]['dep_id'] = $files['dep'];
-                            $narr[$kk]['sort_number'] = $sort_number;
+                            $narr[$kk]['sort_number'] = ($sort_number + $kk);
                             $narr[$kk]['default_sort_number'] = $default_sort_number;
-
                         }
                     }
 
 
                 }
-
                 $res = $this->process_uploaded_file($narr);
 
                 if (count($res['all_files']) > 0) {

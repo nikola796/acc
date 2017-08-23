@@ -316,6 +316,7 @@ class DocumentsController
      */
     private function updatePost()
     {
+        echo '<pre>' . print_r($_POST, true) . '</pre>';
         $post = new Post();
         if (isset($_POST['file_id'])) {
             $existing_files = implode(', ', $_POST['file_id']);
@@ -325,14 +326,15 @@ class DocumentsController
 
         if (isset($_POST['removed_file_id'])) {
 
-            $removed_files = intval($_POST['removed_file_id']);
+            $removed_files = $_POST['removed_file_id'];
 
         } else {
             $removed_files = 0;
         }
 
         if (isset($_POST['removed_file_name'])) {
-            $removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
+            //$removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
+            $removed_files_names = $_POST['removed_file_name'];
         } else {
             $removed_files_names = '';
         }
@@ -347,7 +349,7 @@ class DocumentsController
             $data['old_sort_number'] = intval($_POST['old_sort_number']);
             $data['new_sort_number'] = intval($_POST['sort_number']);
         }
-
+//dd($data);
         return $post->updatePost($data);
 
     }
