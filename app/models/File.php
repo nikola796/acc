@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Vladislav Andreev
@@ -394,7 +395,7 @@ class File
                             $narr[$kk]['folder'] = $files['folder'];
                             $narr[$kk]['post_id'] = $post_id;
                             $narr[$kk]['dep_id'] = $files['dep'];
-                            $narr[$kk]['sort_number'] = $sort_number;
+                            $narr[$kk]['sort_number'] = ($sort_number + $kk);
                             $narr[$kk]['default_sort_number'] = $default_sort_number;
 
                         }
