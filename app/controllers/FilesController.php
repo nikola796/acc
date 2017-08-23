@@ -60,7 +60,7 @@ class FilesController
             $files = App::get('database')->selectAllFiles(array('dep' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
 
         }
-        
+
         return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
 
     }
@@ -122,6 +122,81 @@ class FilesController
         }
 
 
+    }
+
+    public function checkFileErrors()
+    {
+        /**  CHECK FOR ERRORS ON UPLOAD FILES **/
+        foreach ($_FILES['userfile']['error'] as $k => $error) {
+            if ($error > 0) {
+                $errors[$k] = $error;
+            } else {
+                if (isset($_POST['label'][$k]) && strlen(trim($_POST['label'][$k])) > 0) {
+                    //$files = $_FILES['userfile'][$k];
+                    $files_label[$k] = $_POST['label'][$k];
+                }
+            }
+        }
+
+        /** IF NO ERRORS CONTINUE **/
+        if (count($errors) === 0) {
+            /** IF FILE GOT A LABEL CONTINUE **/
+            if (count($_FILES['userfile']['error']) === count($files_label)) {
+return $output = array('success' => 'File is OK');
+            } else {
+                // NO DESCRIPTION FOR SOME FILE
+                $output = array('error' => 'Не сте добавили описание на файл');
+            }
+
+        } else {
+            // CHECK FOR TYPE OF ERROR
+            $output = $this->uploadedFileErrorCheck($errors);
+
+        }
+        return $output;
+    }
+
+    /**
+     * @param array $errors
+     * @return mixed
+     * @internal param array $test
+     * @internal param $output
+     */
+    private function uploadedFileErrorCheck($errors = array())
+    {
+        $output = array();
+        foreach ($errors as $error) {
+
+            switch ($error) {
+
+                case 1:
+                    $output['error'] = 'Файлът, който се опитвате да прикачите е с прекалено голям размер. Максимално допустим е файл с големина до 20Mb';
+                    break;
+                case 2:
+                    $output['error'] = 'Файлът, който се опитвате да прикачите е с прекалено голям размер. Максимално допустим е файл с големина до 20Mb';
+                    break;
+                case 3:
+                    $output['error'] = 'Прикаченият файл е само частично добавен!';
+                    break;
+                case 4:
+                    $output['error'] = ' Не сте прикачили файл!';
+                    break;
+                case 6:
+                    $output['error'] = ' Липсва временната папка за прикачване!.';
+                    break;
+                case 7:
+                    $output['error'] = ' Грешка при опит да се пише на диска.';
+                    break;
+                case 8:
+                    $output['error'] = ' PHP спря качването на файла.';
+                    break;
+                default:
+                    $output['error'] = 'Неясна грешка при прикачнаве на файл. Моля опитайте отново.';
+            }
+        }
+
+
+        return $output;
     }
 
 

@@ -13,6 +13,7 @@ if (isset($_SESSION['update_post'])) {
 //$r = '';
 //$msg = 'Премахнахте файл: '.implode(', ', $_SESSION['tt']);
 //var_dump($r);
+ //dd($files)
 ?>
     <style>
         .table tbody > tr > td.vert-align {
@@ -237,6 +238,7 @@ if (isset($_SESSION['update_post'])) {
                                             </tr>
                                             </thead>
                                             <tbody id="table_body">
+
                                             <?php foreach ($files as $file): ?>
                                                 <tr>
                                                     <td class="file_label"><?= $file->label ?></td>
