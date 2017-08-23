@@ -16,8 +16,9 @@ function wrapText(elementID, openTag, closeTag) {
 }
 
 var $text = $('#sel');
-$('#mod').on('click', function (dialog) {
+$(document).on('click', '#mod', function (dialog) {
     dialog.preventDefault();
+
     BootstrapDialog.show({
         title: 'Нова папка',
         message: $text,
@@ -36,7 +37,8 @@ $('#mod').on('click', function (dialog) {
                         url: 'new-folder',
                         data: {
                             name: $('#newFolderName').val(),
-                            parent: $('#perentFolder').val()
+                            parent: $('#perentFolder').val(),
+                            new_sort_number: $('#sort_number_new_folder').find(":selected").val()
                         }
                     }).done(function (data) {
                         console.log(data);
@@ -56,7 +58,7 @@ $('#mod').on('click', function (dialog) {
                                 title: 'Успех',
                                 message: 'Успешно създадохте нова папка!',
                                 onhide: function(dialogRef){
-                                    window.location.reload(true);
+                                    //window.location.reload(true);
                                 }
                             });
                             $button.enable();
@@ -78,8 +80,39 @@ $('#mod').on('click', function (dialog) {
             label: 'Отказ',
             action: function (dialogItself) {
                 dialogItself.close();
+
             }
-        }]
+        }],
+        onhide: function() {
+            $('#newFolderName').val('');
+
+            $('#sort_number').html('');
+            $.ajax({
+                url: 'get_sort_numbers',
+                type: 'POST',
+                data: {parent: $('#perentFolders option:selected').val()}
+            }).done(function (data) {
+                data++;
+
+                var i;
+                for (i = 1; i <= data; i++) {
+                    $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                }
+
+                $('#sort_number').val(data).prop('selected');
+
+            });
+                $.ajax({
+                    url: 'ajax-get-folders',
+                    type: 'POST'
+                }).done(function(data){
+                    $('#folder').html('');
+                    $.each(data, function (k, v) {
+                        $('#folder').append('<option value="'+ v['category_id'] +'">'+ v['name'] +'</option>')
+                    })
+                })
+
+        }
     })
 })
 
@@ -118,7 +151,7 @@ $(document).on('click', 'span.glyphicon-remove', function () {
    // $('#attachedFiles').html('<input type="hidden" name="removed_file_id[]" value="'+ removed_file +'" />');
 })
 $(document).on('click', '#addAnotherFile', function () {
-    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" name="userfile[]" type="file" /><span>Описание на файла:<span style="color: red">*</span> </span><input style="width: 50%;" class="form-control" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
+    $('#attachedFiles').append('<div class="form-inline"><input style="display:inline" class="uploaded_file" name="userfile[]" type="file" /><span style="margin-left:5px;">Описание на файла:<span style="color: red">*</span> </span><input style="width: 50%;" class="form-control file_name" type="text" required name="label[]" /><span class="glyphicon glyphicon-remove"></span> <br /></div>');
 });
 $(document).on('click', '#view_post', function (e) {
     e.preventDefault();

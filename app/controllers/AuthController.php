@@ -177,11 +177,17 @@ class AuthController
             ->setFrom(array('intranet@customs.bg' => 'Интранет'))
             ->setTo(array($mail))
             ->setBody($text)
-            ->setBcc(array('vladislav.andreev@customs.bg'));
+            ->addBcc('vladislav.andreev@customs.bg');
 
 // Send the message
-        $result = $mailer->send($message);
-        return $result;
+        try{
+            $result = $mailer->send($message);
+            return $result;
+        } catch (\Swift_TransportException $e){
+            print_r($e);
+            print_r('Bad username / password');
+        }
+
     }
 
 }

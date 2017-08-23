@@ -11,6 +11,7 @@ namespace app\models;
 use App\Core\App;
 use Connection;
 use PDO;
+use App\Core\UploadException;
 
 class File
 {
@@ -33,7 +34,7 @@ class File
      */
     public function getAllFiles()
     {
-$sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS author,nc.name AS folder,f.modified,p.post FROM files AS f
+        $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS author,nc.name AS folder,f.modified,p.post FROM files AS f
                                                   LEFT JOIN users AS u ON (f.added_from=u.id)
                                                   LEFT JOIN ' . NESTED_CATEGORIES . ' AS nc ON (f.directory=nc.category_id) 
                                                   LEFT JOIN posts AS p ON (f.post_id=p.id)';
@@ -197,8 +198,8 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
     public function saveFile($file = array())
     {
         //dd($file);
-        if($file['sort_number'] != null){
-            if($file['sort_number'] != $file['default_sort_number']){
+        if ($file['sort_number'] != null) {
+            if ($file['sort_number'] != $file['default_sort_number']) {
 
                 try {
                     $this->db->beginTransaction();
@@ -228,7 +229,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                     echo $ex->getMessage();
                 }
 
-            } else{
+            } else {
                 unset($file['default_sort_number']);
                 $sql = 'INSERT INTO files (original_filename, stored_filename, file_basename, file_ext, file_size, file_md5_hash, label, added_from, department_id, directory, post_id, sort_number)
                   VALUES(:original_filename, :stored_filename, :file_basename, :file_ext, :file_size, :file_md5_hash, :label, ' . $_SESSION['user_id'] . ', :department_id, :directory, :post_id, :sort_number)';
@@ -236,7 +237,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute($file);
             }
-        } else{
+        } else {
             unset($file['default_sort_number']);
             unset($file['sort_number']);
             $sql = 'INSERT INTO files (original_filename, stored_filename, file_basename, file_ext, file_size, file_md5_hash, label, added_from, department_id, directory, post_id)
@@ -245,7 +246,6 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
             $stmt = $this->db->prepare($sql);
             $stmt->execute($file);
         }
-
 
 
         return $stmt->rowCount();
@@ -303,10 +303,10 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                 $stmt->execute(array('directory' => $row[0]->directory, 'sort_number' => $row[0]->sort_number));
 //dd('Test');
                 $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number - 1) WHERE directory =:directory AND sort_number > :sort_number AND post_id IS NULL');
-                $stmt->execute(array('directory' =>  $row[0]->directory, 'sort_number' => $row[0]->sort_number));
+                $stmt->execute(array('directory' => $row[0]->directory, 'sort_number' => $row[0]->sort_number));
 
                 $stmt = $this->db->prepare('UPDATE posts SET sort_number = (sort_number - 1) WHERE directory = :directory AND sort_number > :sort_number');
-                $stmt->execute(array('directory' =>  $row[0]->directory, 'sort_number' => $row[0]->sort_number));
+                $stmt->execute(array('directory' => $row[0]->directory, 'sort_number' => $row[0]->sort_number));
 
                 $this->db->commit();
 
@@ -326,7 +326,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
      */
     public function process_uploaded_file($files)
     {
-
+//dd($files);
         foreach ($files as $file) {
             if ($file['size'] > 0) {
                 $data_storage_path = realpath(FILES_FOLDER) . DIRECTORY_SEPARATOR;
@@ -339,9 +339,9 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
                 $sort_number = $file['sort_number'];
                 $default_sort_number = $file['default_sort_number'];
                 //dd($data_storage_path);
-               //move_uploaded_file($file['tmp_name'], '/var/www/html/intranet_test/public/'. $original_filename);
+                //move_uploaded_file($file['tmp_name'], '/var/www/html/intranet_test/public/'. $original_filename);
                 if (!move_uploaded_file($file['tmp_name'], $data_storage_path . $stored_filename)) {
-                   //dd($data_storage_path . $stored_filename);
+                    dd($data_storage_path . $stored_filename);
                     // unable to move,  check error_log for details
                     return 0;
                 }
@@ -357,6 +357,7 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
             }
         }
 
+
         $data['all_files'] = $file_name;
         return $data;
     }
@@ -371,52 +372,51 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
     public function fileUpload2($post_id = null, $action = array())
     {
 
-        if ($_FILES['userfile']['error'][0] === 0) {
-            $files = $_FILES['userfile'];
-            $files['label'] = $_POST['label'];
-            $files['folder'] = $_POST['folder'];
-            $files['dep'] = $action['department_id'];
+                $files = $_FILES['userfile'];
+                $files['label'] = $_POST['label'];
+                $files['folder'] = $_POST['folder'];
+                $files['dep'] = $action['department_id'];
 
-            if ($action['act'] == 'add') {
-                $files['dep'] = App::get('database')->getFolderDepartment($_POST['folder']);
-                if($post_id == null){
-                    $sort_number = intval($_POST['sort_number']);
-                    $default_sort_number = intval($_POST['default_sort_number']);
-                }
-            }
-
-            foreach ($files as $k => $f) {
-
-                if (is_array($f)) {
-                    foreach ($f as $kk => $v) {
-                        //echo '<pre>' . print_r($k .'=>'. $v, true) . '</pre>';die();
-                        $narr[$kk][$k] = $v;
-                        $narr[$kk]['folder'] = $files['folder'];
-                        $narr[$kk]['post_id'] = $post_id;
-                        $narr[$kk]['dep_id'] = $files['dep'];
-                        $narr[$kk]['sort_number'] = $sort_number;
-                        $narr[$kk]['default_sort_number'] = $default_sort_number;
-
+                if ($action['act'] == 'add') {
+                    $files['dep'] = intval(App::get('database')->getFolderDepartment($_POST['folder']));
+                    if ($post_id == null) {
+                        $sort_number = intval($_POST['sort_number']);
+                        $default_sort_number = intval($_POST['default_sort_number']);
                     }
                 }
 
+                foreach ($files as $k => $f) {
 
-            }
+                    if (is_array($f)) {
+                        foreach ($f as $kk => $v) {
+                            //echo '<pre>' . print_r($k .'=>'. $v, true) . '</pre>';die();
+                            $narr[$kk][$k] = $v;
+                            $narr[$kk]['folder'] = $files['folder'];
+                            $narr[$kk]['post_id'] = $post_id;
+                            $narr[$kk]['dep_id'] = $files['dep'];
+                            $narr[$kk]['sort_number'] = $sort_number;
+                            $narr[$kk]['default_sort_number'] = $default_sort_number;
 
-            $res = $this->process_uploaded_file($narr);
+                        }
+                    }
 
-            if (count($res['all_files']) > 0) {
-                $success_upload = true;
-            }
-//dd($res);
+
+                }
+
+                $res = $this->process_uploaded_file($narr);
+
+                if (count($res['all_files']) > 0) {
+                    $success_upload = true;
+                }
+//dd($success_upload);
 // a flag to see if everything is ok
-            //  $success_upload = null;
+                //  $success_upload = null;
 
 // file paths to store
-            //    $paths = array();
+                //    $paths = array();
 
 
-            if ($success_upload === true) {
+                if ($success_upload === true) {
 // call the function to save all data to database
 // code for the following function `save_data` is not
 // mentioned in this example
@@ -425,35 +425,110 @@ $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS auth
 // store a successful response (default at least an empty array). You
 // could return any additional response info you need to the plugin for
 // advanced implementations.
-                $up_files = '';
-                $output = array('success' => 'Успешно добавихте файл');
-                if (count($res['all_files']) > 1) {
-                    $output['success'] .= 'ове ';
-                } else {
-                    $output['success'] .= ' ';
-                }
+                    $up_files = '';
+                    $output = array('success' => 'Успешно добавихте файл');
+                    if (count($res['all_files']) > 1) {
+                        $output['success'] .= 'ове ';
+                    } else {
+                        $output['success'] .= ' ';
+                    }
 
-                $output['success'] .= implode(', ', $res['all_files']);
+                    $output['success'] .= implode(', ', $res['all_files']);
 
 // for example you can get the list of files uploaded this way
 // $output = ['uploaded' => $paths];
-            } elseif ($success_upload === false) {
-                $output = array('error' => 'Error while uploading images. Contact the system administrator');
+                } elseif ($success_upload === false) {
+                    $output = array('error' => 'Error while uploading images. Contact the system administrator');
 // delete any uploaded files
-                //  foreach ($paths as $file) {
-                //    unlink($file);
-                //  }
-            } else {
-                $output = array('error' => 'No files were processed.');
-            }
-            return $output;
-// return a json encoded response for plugin to process successfully
-            // return json_encode($output);
+                    //  foreach ($paths as $file) {
+                    //    unlink($file);
+                    //  }
+                } else {
+                    $output = array('error' => 'No files were processed.');
+                }
 
-        } else {
-            echo '<pre>' . print_r($_FILES['userfile']['error'], true) . '</pre>';
+// return a json encoded response for plugin to process successfully
+                // return json_encode($output);
+
+        return $output;
+
+    }
+
+    public static function checkFileErrors()
+    {
+        /**  CHECK FOR ERRORS ON UPLOAD FILES **/
+        foreach ($_FILES['userfile']['error'] as $k => $error) {
+            if ($error > 0) {
+                $errors[$k] = $error;
+            } else {
+                if (isset($_POST['label'][$k]) && strlen(trim($_POST['label'][$k])) > 0) {
+                    //$files = $_FILES['userfile'][$k];
+                    $files_label[$k] = $_POST['label'][$k];
+                }
+            }
         }
 
+        /** IF NO ERRORS CONTINUE **/
+        if (count($errors) === 0) {
+            /** IF FILE GOT A LABEL CONTINUE **/
+            if (count($_FILES['userfile']['error']) === count($files_label)) {
+                return $output = array('success' => 'File is OK');
+            } else {
+                // NO DESCRIPTION FOR SOME FILE
+                $output = array('error' => 'Не сте добавили описание на файл');
+            }
+
+        } else {
+            // CHECK FOR TYPE OF ERROR
+            $output = static::uploadedFileErrorCheck($errors);
+
+        }
+        return $output;
+    }
+
+
+
+    /**
+     * @param array $errors
+     * @return mixed
+     * @internal param array $test
+     * @internal param $output
+     */
+    private static function uploadedFileErrorCheck($errors = array())
+    {
+        $output = array();
+        foreach ($errors as $error) {
+
+            switch ($error) {
+
+                case 1:
+                    $output['error'] = 'Файлът, който се опитвате да прикачите е с прекалено голям размер. Максимално допустим е файл с големина до 20Mb';
+                    break;
+                case 2:
+                    $output['error'] = 'Файлът, който се опитвате да прикачите е с прекалено голям размер. Максимално допустим е файл с големина до 20Mb';
+                    break;
+                case 3:
+                    $output['error'] = 'Прикаченият файл е само частично добавен!';
+                    break;
+                case 4:
+                    $output['error'] = ' Не сте прикачили файл!';
+                    break;
+                case 6:
+                    $output['error'] = ' Липсва временната папка за прикачване!.';
+                    break;
+                case 7:
+                    $output['error'] = ' Грешка при опит да се пише на диска.';
+                    break;
+                case 8:
+                    $output['error'] = ' PHP спря качването на файла.';
+                    break;
+                default:
+                    $output['error'] = 'Неясна грешка при прикачнаве на файл. Моля опитайте отново.';
+            }
+        }
+
+
+        return $output;
     }
 
 }
