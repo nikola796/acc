@@ -1,4 +1,14 @@
 <?php
+$a = 2;
+
+if($a == 1){
+    echo 'a = 1';
+} elseif ($a > 0){
+    echo '<br> a > 0';
+} else{
+    echo 'a is not = 1 and is not > 1';
+}
+
 
 function randomPassword() {
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
@@ -11,7 +21,7 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-echo randomPassword();
+//echo randomPassword();
 
 //$acc = array(0 => 2, 1 =>15);
 //$ar = array(

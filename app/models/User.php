@@ -107,7 +107,7 @@ class User
      * @param $access
      * @return AFFECTED ROWS AFTER CREATING NEW USER
      */
-    public function createUser($user_data, $access)
+    public function createUser($user_data, $access = null)
     {
 
         $user_password = $this->randomPassword();
@@ -128,12 +128,7 @@ class User
                         $stmt->execute(array($user_id, $folder));
                     }
 
-                $emailLink = 'Вашият потребител в интранет страницата на АМ е създаден успешно. Потребителското Ви име е: '.$user_data['name'].'. 
-Вашата парола за достъп е: '.$user_password.' . Тя е генерирана автоматично и само Вие я имате! 
-За Ваше улеснение след първоначален вход в системата може да промените паролата си от настройките на профила.
-Линк за вход:  ' . url();
-
-                $res = AuthController::send_mail($user_data['email'], $emailLink, 'Нов потребител в интранет страницата на АМ');
+                $res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
                 if (intval($res) > 0) {
                     $this->db->commit();
 
@@ -150,14 +145,34 @@ class User
             }
         }
         try {
+            $this->db->beginTransaction();
             $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
                                                     VALUES (:name, :pass, :email, NOW(), :department, :role)');
             $stmt->execute($user_data);
+            $res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
+            if (intval($res) > 0) {
+                $this->db->commit();
 
-            return $stmt->rowCount();
+                return $stmt->rowCount();
+            } else{
+
+                echo 'Нещо се обърка и потребителя не бе създаден!';
+            }
         } catch (PDOException $ex) {
+            $this->db->rollBack();
             echo $ex->getMessage();
         }
+    }
+
+    private function mailForNewUser($user_password, $username, $email)
+    {
+        $emailLink = 'Вашият потребител в интранет страницата на АМ е създаден успешно. Потребителското Ви име е: '.$username.'. 
+Вашата парола за достъп е: '.$user_password.' . Тя е генерирана автоматично и само Вие я имате! 
+За Ваше улеснение след първоначален вход в системата може да промените паролата си от настройките на профила.
+Линк за вход:  ' . url();
+
+        $res = AuthController::send_mail($email, $emailLink, 'Нов потребител в интранет страницата на АМ');
+        return $res;
     }
 
     /**
@@ -521,7 +536,7 @@ class User
      * @param $access
      * @return array
      */
-    public function checkFoldersReations($access)
+    public function checkFoldersReations($access = array())
     {
         $sql = 'SELECT node.category_id
                 FROM nested_categories AS node,

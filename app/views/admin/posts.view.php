@@ -8,6 +8,7 @@ if (isset($_SESSION['update_post'])) {
 
 }
 
+//dd($_SESSION['add_new_file_post']);
 //unset($_SESSION['update_post']);
 //$r = '';
 //$msg = 'Премахнахте файл: '.implode(', ', $_SESSION['tt']);
@@ -71,6 +72,13 @@ if (isset($_SESSION['update_post'])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="sorting">Поредност на показване</label>
+                                            <select id="sort_number_new_folder" name="sorting" class="form-control">
+
+                                            </select>
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Отказ
@@ -288,6 +296,12 @@ if (isset($_SESSION['update_post'])) {
     </script>
     <script>
         CKEDITOR.replace('text');
+        $(document).on('click', 'form button[type=submit]', function(e) {
+            //   alert($.each($('.uploaded_file').val()));
+
+                  //  e.preventDefault(); //prevent the default action
+
+            });
         $(document).ready(function () {
             //alert($('#perentFolders option:selected').val());
             $.ajax({
@@ -299,13 +313,34 @@ if (isset($_SESSION['update_post'])) {
                 $('#old_sort_number').html('<input type="hidden" name="default_sort_number" id="default_sort_number" value="' + data + '" />')
                 var i;
                 for (i = 1; i <= data; i++) {
-                    $('#sort_number').append('<option value="' + i + '">' + i + '</option>');
+                    $('#sort_number, #sort_number_new_folder').append('<option value="' + i + '">' + i + '</option>');
                 }
-                $('#sort_number').val(data).prop('selected');
+                $('#sort_number, #sort_number_new_folder').val(data).prop('selected');
 
 
             });
         });
+        $(document).on('change', '#perentFolder', function () {
+
+            $('#sort_number_new_folder').html('');
+            $.ajax({
+                url: 'get_sort_numbers',
+                type: 'POST',
+                data: {parent: $('#perentFolder option:selected').val()}
+            }).done(function (data) {
+                data++;
+                alert(data);
+                var i;
+                for (i = 1; i <= data; i++) {
+                    $('#sort_number_new_folder').append('<option value="' + i + '">' + i + '</option>');
+                }
+
+                $('#sort_number_new_folder').val(data).prop('selected');
+
+                $('#default_sort_number').val(data);
+
+            });
+            });
         var sort_num;
         $(document).on('change', '#perentFolders', function () {
             $('#sort_number').html('');
@@ -318,6 +353,7 @@ if (isset($_SESSION['update_post'])) {
 
                 if ($('#submit_form').val() != 2 || sort_num.length == 0) {
                     data++;
+                    $('#default_sort_number').val(data);
                 }
                 var i;
 
@@ -354,21 +390,45 @@ if (isset($_SESSION['update_post'])) {
         <?php endif;?>
         var dataTable = $('#example,#files').DataTable();
 
-        <?php
-        if (isset($_SESSION['add_new_file_post']) && count($_SESSION['add_new_file_post']) > 0) {
 
-            echo " BootstrapDialog.alert({
-                                type: BootstrapDialog.TYPE_SUCCESS,
-                                title: 'Успех',
-                                message: '";
-            foreach ($_SESSION['add_new_file_post'] as $msg) {
-                echo $msg . '<br />';
-            }
-            echo "'})";
 
-            unset($_SESSION['add_new_file_post']);
-        }
-        ?>
+
+  <?php      if (isset($_SESSION['add_new_file_post']) && count($_SESSION['add_new_file_post']) > 0) : ?>
+
+   <?php
+
+$message = '';
+   foreach ($_SESSION['add_new_file_post'] as $k => $msg){
+                     if($k == 'error'){
+                    $type = "BootstrapDialog.TYPE_DANGER";
+                    $title = 'Грешка';
+
+                }elseif ($k == 'success' || $k == 'new_post'){
+                    $type = "BootstrapDialog.TYPE_SUCCESS";
+                    $title = "Успех";
+                }
+                $message .= $msg.'<br />';
+   }
+   ?>
+//                if($k == 'error'){
+//                    $type = 'BootstrapDialog.TYPE_DANGER';
+//                    $title = 'Грешка';
+//
+//                }elseif ($k == 'success'){
+//                    $type = 'BootstrapDialog.TYPE_SUCCESS';
+//                    $title = 'Успех';
+//                }
+//                $msg = $msg;
+//            }
+
+             BootstrapDialog.alert({
+                                type: <?= $type ?>,
+                                title: "<?= $title ?>",
+                                message: "<?= $message ?>"
+                                });
+<?php endif ?>
+       <?php     unset($_SESSION['add_new_file_post'])?>
+
 
         $(document).on('click', '.file_id', function () {
             console.log($(this).attr('id'));

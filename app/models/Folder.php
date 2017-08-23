@@ -648,14 +648,14 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
      */
     public function deleteOnlyFolder($id)
     {
+
         try {
             $this->db->beginTransaction();
-
-            $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
 
             $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
             $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
             $lft = $r[0]['lft'];
             $rgt = $r[0]['rgt'];
             $parent = $r[0]['parent_id'];
@@ -672,10 +672,17 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 
             if ($del_folders > 0) {
 
+                $stmt = $this->db->prepare('UPDATE posts SET sort_number = (case when (sort_number >'.$sort_number.') then (sort_number + ('.$cnt.' - 1)) else sort_number end) WHERE directory = :parent_id');
+                $stmt->execute(array('parent_id' => $parent));
+
+                $stmt = $this->db->prepare('UPDATE files SET sort_number = (case when (sort_number >'.$sort_number.') then (sort_number + ('.$cnt.' - 1)) else sort_number end) WHERE directory = :parent_id');
+                $stmt->execute(array('parent_id' => $parent));
+
+                $this->db->query('LOCK TABLE ' . NESTED_CATEGORIES . ' WRITE;');
                 $stmt = $this->db->prepare('UPDATE ' . NESTED_CATEGORIES . ' SET sort_number = (case when (sort_number >'.$sort_number.') then (sort_number + ('.$cnt.' - 1)) else sort_number end) WHERE lft > '.$lft.' AND rgt > '. $rgt .' AND parent_id = :parent_id');
                 $stmt->execute(array('parent_id' => $parent));
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 1, lft = lft - 1, parent_id = ' . $parent . ', sort_number = (sort_number + ('.$sort_number.' -1)) WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt);
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 1, lft = lft - 1, parent_id = ' . $parent . ' WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt);
 
                 $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 2, lft = lft - 2 WHERE rgt > ' . $rgt . ' AND lft > '. $rgt);
 

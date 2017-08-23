@@ -44,6 +44,13 @@ class FoldersController
         $this->folder->getFoldersAjax();
     }
 
+    public function ajaxGetFolders()
+    {
+       $user_folders = $this->folder->selectFolders(NESTED_CATEGORIES);
+        header('Content-Type: application/json');
+       echo json_encode($user_folders);
+    }
+
     /**
      * STORE FOLDER
      */
@@ -115,6 +122,7 @@ class FoldersController
     public function getSortNumbers()
     {
         $parent = intval($_POST['parent']);
+
         $res = $this->folder->getSortNumbers($parent);
 
         if (max($res) == null) {

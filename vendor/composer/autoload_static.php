@@ -11,6 +11,20 @@ class ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3
         'bbb610b8ed3f906ac4e5bffda82f9e34' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'A' => 
+        array (
+            'App\\Core\\' => 9,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'App\\Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'P' => 
         array (
@@ -26,7 +40,9 @@ class ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3
         'App\\Controllers\\FilesController' => __DIR__ . '/../..' . '/app/controllers/FilesController.php',
         'App\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/core/App.php',
+        'App\\Core\\Exception' => __DIR__ . '/../..' . '/core/Exception.php',
         'App\\Core\\Request' => __DIR__ . '/../..' . '/core/Request.php',
+        'App\\Core\\UploadException' => __DIR__ . '/../..' . '/core/UploadException.php',
         'Connection' => __DIR__ . '/../..' . '/core/database/Connection.php',
         'PagesController' => __DIR__ . '/../..' . '/app/controllers/PagesController.php',
         'Phroute\\Dispatcher' => __DIR__ . '/..' . '/phroute/phroute/src/Phroute/Dispatcher.php',
@@ -62,6 +78,8 @@ class ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitcdcca3a1112aba7f12a49dff6d1130c3::$classMap;
 

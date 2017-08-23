@@ -109,17 +109,27 @@ class DocumentsController
 
     public function admin_store2()
     {
-
-
+        $response = array();
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
-            $response = array();
+            if(intval($_FILES['userfile']) !== 0){
+                $response = File::checkFileErrors();
+                if ($response['error']){
+                    $_SESSION['add_new_file_post'] = $response;
+                    redirect('posts');
+                } else{
+                    unset($response['success']);
+                }
+            }
+
+
 
             /***************** CHECK IS USER CREATE POST **********************/
             if (!empty($_POST['text'])) {
 
                 $folder_id = intval($_POST['folder']);
-                $department_id = App::get('database')->getFolderDepartment($folder_id);
+
+                $department_id = intval(App::get('database')->getFolderDepartment($folder_id));
 
                 $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
@@ -128,8 +138,8 @@ class DocumentsController
                 } else {
                     $data['new_sort_number'] = intval($_POST['sort_number']);
                 }
-
                 $post_id = $this->savePost($data);
+                //dd($post_id);
                 if ($post_id > 0) {
                     $response['new_post'] = 'Успешно добавихте нова публикация';
                 }
@@ -142,8 +152,28 @@ class DocumentsController
 
                 $response += $file->fileUpload2($post_id, array('act' => 'add'));
 
-            }
+//                        $file_upload_response = $file->fileUpload2($post_id, array('act' => 'add'));
+//                        if(is_array($file_upload_response)){
+//                            $response = array_merge($response, $file_upload_response);
+//                        }
 
+//                foreach ($_FILES['userfile']['tmp_name'] as $k => $file){
+//                    if(strlen($file) > 1){
+//                        if(strlen(trim($_POST['label'][$k])) > 2){
+//                            $file = new File();
+//
+//                            $response += $file->fileUpload2($post_id, array('act' => 'add'));
+//                        } else{
+//                            $response['no_file_name'] = 'Не сте въвели име на файла!';
+//                        }
+//                    }else{
+//                        $response['no_file'] = 'Не сте прикачили файла!';
+//                    }
+//                }
+
+
+            }
+            //dd($response);
             $_SESSION['add_new_file_post'] = $response;
             redirect('posts');
 
