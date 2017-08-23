@@ -109,17 +109,27 @@ class DocumentsController
 
     public function admin_store2()
     {
-
-
+        $response = array();
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
-            $response = array();
+            if(intval($_FILES['userfile']) !== 0){
+                $response = File::checkFileErrors();
+                if ($response['error']){
+                    $_SESSION['add_new_file_post'] = $response;
+                    redirect('posts');
+                } else{
+                    unset($response['success']);
+                }
+            }
+
+
 
             /***************** CHECK IS USER CREATE POST **********************/
             if (!empty($_POST['text'])) {
 
                 $folder_id = intval($_POST['folder']);
-                $department_id = App::get('database')->getFolderDepartment($folder_id);
+
+                $department_id = intval(App::get('database')->getFolderDepartment($folder_id));
 
                 $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
@@ -128,8 +138,8 @@ class DocumentsController
                 } else {
                     $data['new_sort_number'] = intval($_POST['sort_number']);
                 }
-
                 $post_id = $this->savePost($data);
+                //dd($post_id);
                 if ($post_id > 0) {
                     $response['new_post'] = 'Успешно добавихте нова публикация';
                 }
@@ -142,8 +152,9 @@ class DocumentsController
 
                 $response += $file->fileUpload2($post_id, array('act' => 'add'));
 
+
             }
-dd($response);
+
             $_SESSION['add_new_file_post'] = $response;
             redirect('posts');
 
@@ -305,6 +316,7 @@ dd($response);
      */
     private function updatePost()
     {
+        echo '<pre>' . print_r($_POST, true) . '</pre>';
         $post = new Post();
         if (isset($_POST['file_id'])) {
             $existing_files = implode(', ', $_POST['file_id']);
@@ -314,14 +326,15 @@ dd($response);
 
         if (isset($_POST['removed_file_id'])) {
 
-            $removed_files = intval($_POST['removed_file_id']);
+            $removed_files = $_POST['removed_file_id'];
 
         } else {
             $removed_files = 0;
         }
 
         if (isset($_POST['removed_file_name'])) {
-            $removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
+            //$removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
+            $removed_files_names = $_POST['removed_file_name'];
         } else {
             $removed_files_names = '';
         }
@@ -336,7 +349,7 @@ dd($response);
             $data['old_sort_number'] = intval($_POST['old_sort_number']);
             $data['new_sort_number'] = intval($_POST['sort_number']);
         }
-
+//dd($data);
         return $post->updatePost($data);
 
     }

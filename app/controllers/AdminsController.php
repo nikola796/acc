@@ -88,7 +88,10 @@ class AdminsController
 
         if ($user_data['action'] == 'add') {
             if (count($user_info) === 0) {
-                $access = $this->user->checkFoldersReations($user_data['access']);
+                if($user_data['role'] > 1){
+                    $access = $this->user->checkFoldersReations($user_data['access']);
+                }
+
 
                 unset($user_data['action'], $user_data['id'], $user_data['access']);
 
