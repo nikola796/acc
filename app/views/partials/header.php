@@ -25,6 +25,7 @@
     <script src="<?php echo url() ?>public/js/libs/jquery-ui.js" type="text/javascript"></script>
     <script src="<?php echo url() ?>public/js/libs/bootstrap-dialog.js" type="text/javascript"></script>
 
+
     <style>
 
     </style>

@@ -21,6 +21,7 @@ usort($mergeArr, function ($a, $b) {
 
 ?>
 
+<?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
 <?php if ($current_folder == 'Важно'): ?>
     <a href="http://79.124.14.51/lakorda/?i=1" target="_blank" class="style1"><img
@@ -72,7 +73,6 @@ usort($mergeArr, function ($a, $b) {
                         }
                         echo '</td><td>'.$ma->modified.'</td>';
                     }
-                    //dd($mergeArr);
                     //echo '</td><td>'.$ma->modified.'</td>';
                     ?>
 
@@ -94,6 +94,7 @@ usort($mergeArr, function ($a, $b) {
     <h4>Не са открити документи!</h4>
 <?php endif ?>
 <?php require 'partials/footer.php'; ?>
+
 <?php if (isset($_SESSION['file_error'])): ?>
     <script>
         BootstrapDialog.show({
