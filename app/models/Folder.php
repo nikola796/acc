@@ -168,7 +168,7 @@ class Folder
         $sql = $this->userAccess($sql);
         // echo '<pre>' . print_r($_SESSION, true) . '</pre>';
         // die($_SESSION['role']);
-        $sql .= ' GROUP BY nc.name ORDER BY nc.lft';
+        $sql .= ' GROUP BY nc.category_id ORDER BY nc.lft';
         // die($sql);
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
