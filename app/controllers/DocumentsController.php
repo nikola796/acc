@@ -109,6 +109,8 @@ class DocumentsController
 
     public function savePostFile()
     {
+        //echo '<pre>' . print_r($_FILES, true) . '</pre>';
+    //dd($_POST);
         $response = array();
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
@@ -316,11 +318,6 @@ class DocumentsController
      */
     private function updatePost()
     {
-<<<<<<< HEAD
-
-=======
-        echo '<pre>' . print_r($_POST, true) . '</pre>';
->>>>>>> ac5f2dd599f313bbe9e865faa4056aa987fda521
         $post = new Post();
         if (isset($_POST['file_id'])) {
             $existing_files = implode(', ', $_POST['file_id']);
@@ -337,13 +334,8 @@ class DocumentsController
         }
 
         if (isset($_POST['removed_file_name'])) {
-<<<<<<< HEAD
-            //$removed_files_names = App::get('database')->getFileName(intval($_POST['removed_file_id']));
-            $removed_files_names = $_POST['removed_file_id'];
-=======
             //$removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
             $removed_files_names = $_POST['removed_file_name'];
->>>>>>> ac5f2dd599f313bbe9e865faa4056aa987fda521
         } else {
             $removed_files_names = '';
         }

@@ -205,6 +205,10 @@ class Post
                 /** UPDATE FILES TABLE */
                 $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number + 1) WHERE directory = :folder AND sort_number >= :new_sort_number AND post_id IS NULL');
                 $stmt->execute(array('folder' => $params['folder'], 'new_sort_number' => $params['new_sort_number']));
+                if($attached === 1){
+                    $stmt = $this->db->prepare('UPDATE files SET directory = :folder, department_id = ' . $department . ' WHERE post_id = :post_id');
+                    $stmt->execute(array('post_id' => $params['post_id'], 'folder' => $params['folder']));
+                }
 
                 $stmt = $this->db->prepare('UPDATE files SET sort_number = (sort_number - 1) WHERE directory = :old_parent AND sort_number > :old_sort_number AND post_id IS NULL');
                 $stmt->execute(array('old_parent' => $params['old_parent'], 'old_sort_number' => $params['old_sort_number']));
@@ -212,7 +216,7 @@ class Post
                 /**  REMOVE OLD SORT VALUE AND OLD_PARENT FROM ARRAY */
                 unset($params['old_sort_number']);
                 unset($params['old_parent']);
-//dd($params);
+
                 /** UPDATE posts TABLE */
                 $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ', sort_number = :new_sort_number WHERE id = :post_id');
                 $stmt->execute($params);
