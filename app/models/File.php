@@ -397,13 +397,11 @@ class File
                             $narr[$kk]['dep_id'] = $files['dep'];
                             $narr[$kk]['sort_number'] = ($sort_number + $kk);
                             $narr[$kk]['default_sort_number'] = $default_sort_number;
-
                         }
                     }
 
 
                 }
-
                 $res = $this->process_uploaded_file($narr);
 
                 if (count($res['all_files']) > 0) {
