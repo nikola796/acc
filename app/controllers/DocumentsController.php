@@ -107,7 +107,7 @@ class DocumentsController
         }
     }
 
-    public function admin_store2()
+    public function savePostFile()
     {
         $response = array();
         if (isset($_POST['save']) && $_POST['save'] == 1) {

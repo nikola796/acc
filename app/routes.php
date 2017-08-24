@@ -103,7 +103,7 @@ $router->post('admin', array('App\Controllers\DocumentsController', 'admin_store
 
 $router->post('admin2', array('App\Controllers\DocumentsController', 'admin_store2'));
 
-$router->post('admin/posts', array('App\Controllers\DocumentsController', 'admin_store2'),
+$router->post('admin/posts', array('App\Controllers\DocumentsController', 'savePostFile'),
     array('before' => 'auth'));
 
 $router->post('admin/ajax-get-folders', array('app\\controllers\\FoldersController', 'ajaxGetFolders'),
