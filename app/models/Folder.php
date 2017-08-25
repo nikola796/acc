@@ -656,17 +656,17 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $stmt = $this->db->prepare('SELECT lft, rgt, parent_id, sort_number FROM ' . NESTED_CATEGORIES . ' WHERE category_id = :id');
             $stmt->execute(array('id' => $id));
             $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+
             $lft = $r[0]['lft'];
             $rgt = $r[0]['rgt'];
             $parent = $r[0]['parent_id'];
             $sort_number = $r[0]['sort_number'];
-
+            //echo '<pre>' . print_r($r, true) . '</pre>';
             $stmt = $this->db->prepare('SELECT COUNT(*) AS cnt FROM '. NESTED_CATEGORIES .' WHERE parent_id = :id');
             $stmt->execute(array('id' => $id));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $cnt = $result[0]['cnt'];
-
+//dd($cnt);
             //$width = $r[0]['@myWidth := rgt - lft + 1'];
 
             $del_folders = $this->db->exec('DELETE FROM ' . NESTED_CATEGORIES . ' WHERE lft = ' . $lft);
@@ -685,8 +685,9 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
 
                 $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 1, lft = lft - 1, parent_id = ' . $parent . ' WHERE lft BETWEEN ' . $lft . ' AND ' . $rgt);
 
-                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 2, lft = lft - 2 WHERE rgt > ' . $rgt . ' AND lft > '. $rgt);
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET rgt = rgt - 2 WHERE rgt > ' . $rgt );
 
+                $this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - 2 WHERE lft > ' . $lft );
                 //$this->db->exec('UPDATE ' . NESTED_CATEGORIES . ' SET lft = lft - 2 WHERE lft > ' . $rgt);
 
                 $this->db->exec('UNLOCK TABLES');

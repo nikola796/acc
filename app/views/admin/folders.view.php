@@ -279,12 +279,9 @@
                     $('#hidden_content').html('<input type="hidden" name="old_sort_number" id="old_sort_numder" value="'+data+'" />');
 
                 });
-<<<<<<< HEAD
-                $('#hidden_content').html('<input type="hidden" name="old_sort_number" id="old_sort_numder" value="'+sort_number+'" />');
-                alert(sort_number);
-=======
 
->>>>>>> feature_final
+                $('#hidden_content').html('<input type="hidden" name="old_sort_number" id="old_sort_numder" value="'+sort_number+'" />')
+
             }
 
             if ($("#createUserForm").is(':visible') && $('#newFolderName').val().length > 0) {

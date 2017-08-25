@@ -259,7 +259,6 @@ class File
      */
     public function deleteFile($files_id = array())
     {
-
         $path = realpath(FILES_FOLDER) . DIRECTORY_SEPARATOR;
         $del_files = 0;
         foreach ($files_id as $file_id) {
@@ -342,7 +341,7 @@ class File
                 //dd($data_storage_path);
                 //move_uploaded_file($file['tmp_name'], '/var/www/html/intranet_test/public/'. $original_filename);
                 if (!move_uploaded_file($file['tmp_name'], $data_storage_path . $stored_filename)) {
-                    dd($data_storage_path . $stored_filename);
+                   // dd($data_storage_path . $stored_filename);
                     // unable to move,  check error_log for details
                     return 0;
                 }
@@ -402,7 +401,10 @@ class File
 
 
                 }
+
+                //dd($narr);
                 $res = $this->process_uploaded_file($narr);
+
 
                 if (count($res['all_files']) > 0) {
                     $success_upload = true;
