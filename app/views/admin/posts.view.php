@@ -5,10 +5,9 @@ if (isset($_SESSION['update_post'])) {
         $r .= '\n' . $res;
 
     }
-
+echo '<script>alert('.$r.')</script>';
 }
-var_dump($r);
-echo '<pre>' . print_r($_SESSION, true) . '</pre>';
+var_dump($_SESSION['update_post']);
 //unset($_SESSION['update_post']);
 //$r = '';
 //$msg = 'Премахнахте файл: '.implode(', ', $_SESSION['tt']);
