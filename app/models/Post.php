@@ -162,17 +162,18 @@ class Post
         $removed_files = array_splice($params, 3, 1);
 
         $removed_files_name = array_splice($params, 3, 1);
-        //echo '<pre>' . print_r($removed_files_name['removed_files_name'], true) . '</pre>';die();
-        if (($removed_files_name['removed_files_name'][0])) {
-            foreach ($removed_files_name['removed_files_name'] as $v) {
-                foreach ($v as $vv) {
-                    $vvv[] = $vv['original_filename'];
-                };
-            }
 
-        }
+        //echo '<pre>' . print_r($removed_files, true) . '</pre>';die();
+//        if (($removed_files_name['removed_files_name'][0])) {
+//            foreach ($removed_files_name['removed_files_name'] as $v) {
+//                foreach ($v as $vv) {
+//                    $vvv[] = $vv['original_filename'];
+//                };
+//            }
+//
+//        }
         $department = App::get('database')->getFolderDepartment($params['folder']);
-        //echo '<pre>' . print_r($department, true) . '</pre>';die();
+
         $ex_files = $existing_files['existing_file'];
 
         $rm_files = $removed_files['removed_files'];
@@ -260,9 +261,9 @@ class Post
 
 
             } else {
-                $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ' WHERE id = :post_id');
-                $stmt->execute($params);
-                $resp = $stmt->rowCount();
+              //  $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ' WHERE id = :post_id');
+              //  $stmt->execute($params);
+              //  $resp = $stmt->rowCount();
             }
 
             $response = array();
@@ -271,23 +272,24 @@ class Post
             // }
 
             if ($rm_files != 0) {
-                $file = new File();
-                $file->deleteFile($rm_files);
-            }
 
+                $file = new File();
+                $file->deleteFile($rm_files, $removed_files_name['removed_files_name'], $params['post_id']);
+            }
+            
             if (isset($_FILES['userfile'])) {
                 $file = new File();
                 $response += $file->fileUpload2($params['post_id'], array('act' => 'edit', 'department_id' => $department));
             }
 
             $this->db->commit();
-            if ($vvv) {
+            if ($removed_files_name['removed_files_name']) {
 
                 $response['removed_files_are'] = 'Успешно премахнахте файл';
-                if (count($vvv) > 1) {
-                    $response['removed_files_are'] .= 'ове: ' . implode(', ', $vvv);
+                if (count($removed_files_name['removed_files_name']) > 1) {
+                    $response['removed_files_are'] .= 'ове: ' . implode(', ', $removed_files_name['removed_files_name']);
                 } else {
-                    $response['removed_files_are'] .= ': ' . implode(', ', $vvv);
+                    $response['removed_files_are'] .= ': ' . implode(', ', $removed_files_name['removed_files_name']);
                 }
 
             }

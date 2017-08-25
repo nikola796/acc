@@ -112,17 +112,20 @@ class DocumentsController
         //echo '<pre>' . print_r($_FILES, true) . '</pre>';
     //dd($_POST);
         $response = array();
+
+        if(intval($_FILES['userfile']) !== 0){
+            $response = File::checkFileErrors();
+            if ($response['error']){
+                $_SESSION['add_new_file_post'] = $response;
+                redirect('posts');
+            } else{
+                unset($response['success']);
+            }
+        }
+
         if (isset($_POST['save']) && $_POST['save'] == 1) {
             //TODO METHOD FOR INSERT
-            if(intval($_FILES['userfile']) !== 0){
-                $response = File::checkFileErrors();
-                if ($response['error']){
-                    $_SESSION['add_new_file_post'] = $response;
-                    redirect('posts');
-                } else{
-                    unset($response['success']);
-                }
-            }
+
 
 
 
@@ -161,6 +164,7 @@ class DocumentsController
             redirect('posts');
 
         } elseif (isset($_POST['save']) && $_POST['save'] == 2) {
+
             echo $this->updatePost();
         }
 
@@ -318,6 +322,7 @@ class DocumentsController
      */
     private function updatePost()
     {
+
         $post = new Post();
         if (isset($_POST['file_id'])) {
             $existing_files = implode(', ', $_POST['file_id']);
@@ -337,7 +342,7 @@ class DocumentsController
             //$removed_files_names = App::get('database')->getFileName($_POST['removed_file_id']);
             $removed_files_names = $_POST['removed_file_name'];
         } else {
-            $removed_files_names = '';
+            $removed_files_names = null;
         }
 
         $data = array('post_id' => intval($_POST['postId']), 'post' => $_POST['text'], 'folder' => intval($_POST['folder']), 'existing_file' => $existing_files, 'removed_files' => $removed_files, 'removed_files_name' => $removed_files_names);
@@ -350,7 +355,7 @@ class DocumentsController
             $data['old_sort_number'] = intval($_POST['old_sort_number']);
             $data['new_sort_number'] = intval($_POST['sort_number']);
         }
-//dd($data);
+
         return $post->updatePost($data);
 
     }

@@ -7,8 +7,8 @@ if (isset($_SESSION['update_post'])) {
     }
 
 }
-
-//dd($_SESSION['add_new_file_post']);
+var_dump($r);
+echo '<pre>' . print_r($_SESSION, true) . '</pre>';
 //unset($_SESSION['update_post']);
 //$r = '';
 //$msg = 'Премахнахте файл: '.implode(', ', $_SESSION['tt']);
