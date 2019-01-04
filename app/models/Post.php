@@ -224,7 +224,7 @@ class Post
                 $resp = $stmt->rowCount();
             }
 
-            else if ($params['new_sort_number'] && $params['old_sort_number']) {
+             elseif ($params['new_sort_number'] && $params['old_sort_number']) {
                 if ($params['old_sort_number'] < $params['new_sort_number']) {
                     $symbol = '-';
                     $sign1 = '>';
@@ -261,11 +261,11 @@ class Post
 
 
             } else {
-              //  $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ' WHERE id = :post_id');
-              //  $stmt->execute($params);
-              //  $resp = $stmt->rowCount();
+                $stmt = $this->db->prepare('UPDATE posts SET post = :post, attachment = ' . $attached . ', directory = :folder, department = ' . $department . ', added_from = ' . $_SESSION['user_id'] . ' WHERE id = :post_id');
+                $stmt->execute($params);
+                $resp = $stmt->rowCount();
             }
-
+            $this->db->commit();
             $response = array();
             //if ($resp > 0) {
             $response['succss_update_post'] .= 'Успешно обновихте Вашия пост';
@@ -274,7 +274,7 @@ class Post
             if ($rm_files != 0) {
 
                 $file = new File();
-                $file->deleteFile($rm_files, $removed_files_name['removed_files_name'], $params['post_id']);
+                $file->deleteFile($rm_files);
             }
             
             if (isset($_FILES['userfile'])) {
@@ -282,7 +282,7 @@ class Post
                 $response += $file->fileUpload2($params['post_id'], array('act' => 'edit', 'department_id' => $department));
             }
 
-            $this->db->commit();
+
             if ($removed_files_name['removed_files_name']) {
 
                 $response['removed_files_are'] = 'Успешно премахнахте файл';

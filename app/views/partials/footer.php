@@ -10,6 +10,70 @@
     $(document).ready(function () {
          $('#example').DataTable();
 
+        $(document).on('click', '#register', function(e) {
+            e.preventDefault();
+            console.log('Click');
+            BootstrapDialog.show({
+                title: 'Регистрация',
+                message: $(
+                    '<input type="text" id="user_email" class="form-control" placeholder="Вашият мейл...">' +
+                    '<input type="text" id="username_register" class="form-control" placeholder="Потребителско име">' +
+                    '<input type="password" id="user_password_register" class="form-control" placeholder="Парола">' +
+                    '<input type="password" id="user_password_confirm" class="form-control" placeholder="Потвърди Паролата">'
+                ),
+                buttons: [{
+                    label: 'Изпрати',
+                    cssClass: 'btn-primary',
+                    hotkey: 13, // Enter
+                    action: function () {
+                        if($.trim($('#user_email').val()).length == 0){
+                            alert('Не сте въвели поща!');
+                            return false;
+                        } else if($.trim($('#username_register').val()).length < 3){
+                            alert('Въвели сте прекалено кратко потребителско име!');
+                            return false;
+                        } else if($.trim($('#user_password_register').val()).length < 8) {
+                            alert('Въвели сте прекалено кратка парола!');
+                            return false;
+                        } else if($('#user_password_register').val() !== $('#user_password_confirm').val()) {
+                            alert('Паролите не съвпадат!');
+                            return false;
+                        }
+
+                        $.ajax({
+                            method: 'POST',
+                            url: '<?php echo url()?>users',
+                            data: {
+                                name: $('#username_register').val(),
+                                pass: $('#user_password_register').val(),
+                                email: $('#user_email').val(),
+                                role: 1,
+                                department: 1,
+                                access: 1,
+                                action: 'add',
+                                id: 0
+                            }
+                        }).done(function (data) {
+                            if (data) {
+                                BootstrapDialog.show({
+                                    type: BootstrapDialog.TYPE_SUCCESS,
+                                    title: 'Успех',
+                                    message: data,
+                                    buttons: [{
+                                        label: 'Разбрах',
+                                        action: function () {
+                                            window.location.reload(true);
+                                        }
+                                    }]
+
+                                });
+                            }
+                        });
+                    }
+                }]
+            })
+        })
+
         $(document).on('click', '#reset_password', function(e){
             e.preventDefault();
             BootstrapDialog.show({

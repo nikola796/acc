@@ -110,7 +110,7 @@ class DocumentsController
     public function savePostFile()
     {
         //echo '<pre>' . print_r($_FILES, true) . '</pre>';
-    //dd($_POST);
+
         $response = array();
 
         if(intval($_FILES['userfile']) !== 0){

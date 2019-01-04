@@ -36,6 +36,8 @@ $router->get('admin/calendar', function(){
     return view('admin/calendar');
 });
 
+$router->post('users', array('app\\controllers\\AdminsController', 'createUser'));
+
 
 /***************** ADMIN GET ROUTES *************************************************************************/
 

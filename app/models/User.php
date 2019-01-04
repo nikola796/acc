@@ -149,15 +149,15 @@ class User
             $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
                                                     VALUES (:name, :pass, :email, NOW(), :department, :role)');
             $stmt->execute($user_data);
-            $res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
-            if (intval($res) > 0) {
+            //$res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
+            //if (intval($res) > 0) {
                 $this->db->commit();
 
                 return $stmt->rowCount();
-            } else{
+            //} else{
 
-                echo 'Нещо се обърка и потребителя не бе създаден!';
-            }
+             //   echo 'Нещо се обърка и потребителя не бе създаден!';
+           // }
         } catch (PDOException $ex) {
             $this->db->rollBack();
             echo $ex->getMessage();

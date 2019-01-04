@@ -83,9 +83,11 @@ class AdminsController
      */
     public function createUser()
     {
+        //echo $_POST;
+        //return;
         $user_data = $_POST;
         $user_info = $this->user->isUserExist($user_data);
-
+echo "Test";
         if ($user_data['action'] == 'add') {
             if (count($user_info) === 0) {
                 if($user_data['role'] > 1){

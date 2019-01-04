@@ -35,6 +35,11 @@
                                 <a id="reset_password"  href="#"><strong>Забравена парола</strong></a>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="text-center">
+                                <a id="register"  href="#"><strong>Регистрация</strong></a>
+                            </div>
+                        </div>
 
                     </fieldset>
                 </form>

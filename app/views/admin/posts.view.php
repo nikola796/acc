@@ -5,9 +5,9 @@ if (isset($_SESSION['update_post'])) {
         $r .= '\n' . $res;
 
     }
-echo '<script>alert('.$r.')</script>';
+//echo '<script>alert('.$r.')</script>';
 }
-var_dump($_SESSION['update_post']);
+//var_dump($_SESSION['update_post']);
 //unset($_SESSION['update_post']);
 //$r = '';
 //$msg = 'Премахнахте файл: '.implode(', ', $_SESSION['tt']);
@@ -496,7 +496,7 @@ $message = '';
         /**************** EDIT POST **********************************************************************/
 
         $(document).on('click', '.post_id', function () {
-            //console.log("click");
+            console.log("click");
             var post_id = $(this).closest('tr').find('input.user_post_id').val();
             var post = $(this).closest('tr').find('td:eq(0)').html();
             var attached = $(this).closest('tr').find('td:eq(1)').text();

@@ -271,11 +271,13 @@ class File
 
 
             $stmt = $this->db->prepare('DELETE FROM files WHERE id = ?');
+            $stmt->execute(array($file_id));
+            $del_files += $stmt->rowCount();
             //echo '<pre>' . print_r($row, true) . '</pre>';
             //fclose(url().'public/files/'.$row[0]['name']);
-            if (unlink($path . $row[0]->stored_filename)) {
-                $stmt->execute(array($file_id));
-                $del_files += $stmt->rowCount();
+            if (is_file($path . $row[0]->stored_filename)) {
+                unlink($path . $row[0]->stored_filename);
+
             }
         }
         if ($post_id) {
@@ -289,7 +291,7 @@ class File
                 $stmt = $this->db->prepare('SELECT attachment FROM posts WHERE id = ?');
                 $stmt->execute(array($rows['post_id']));
                 $res = $stmt->fetchAll(PDO::FETCH_CLASS);
-                if ($res[0]->attachment == 1) {
+                if ($res[0]->attachment == 1 && ! isset($_FILES['userfile'])) {
                     $stmt = $this->db->prepare('UPDATE  posts SET attachment = 0 WHERE id = ?');
                     $stmt->execute(array($rows['post_id']));
                 }

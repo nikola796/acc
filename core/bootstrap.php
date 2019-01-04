@@ -14,10 +14,10 @@ App::bind('database', new QueryBuilder(
 ));
 
 define("NESTED_CATEGORIES", "nested_categories");
-define("HOST", "10.30.128.15");
-define("MAIL_USER", "SDtest.one@customs.bg");
+define("HOST", "localhost");
+define("MAIL_USER", "test.one@mail.com");
 define("MAIL_PASS", "12345678");
-define('SUPPORT_MAIL', 'vladislav.andreev@customs.bg');
+define('SUPPORT_MAIL', 'vlado796@gmail.com');
 define('FILES_FOLDER', 'core'.DIRECTORY_SEPARATOR.'files');
 
 

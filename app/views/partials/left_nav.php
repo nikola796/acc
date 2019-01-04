@@ -40,16 +40,6 @@
             </div>
         </div>
 
-        <div class="panel panel-primary" style="background-color: #FFFFE6;">
-            <div class="panel-heading">
-                <p style="font-size:1em;color: #00FF00; font-weight:bold" class="panel-title">Валутни курсове</p>
-            </div>
-            <div style="bgcolor: #FFFFFF" class="panel-body">
-            <a name="scrollingCode"></a><a href="http://customs.bg/bg/page/25" target="_blank">Митнически валутни
-                курсове<!--а--></a>
-        </div>
-
-    </div>
     <!--    --><?php
     //
     //    setlocale(LC_ALL,"bg_BG.UTF8");
