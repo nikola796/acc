@@ -6,3 +6,5 @@ config.php
 .htaccess
 
 core/files/
+
+.vscode
