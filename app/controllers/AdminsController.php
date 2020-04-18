@@ -32,7 +32,7 @@ class AdminsController
     {
 
         $folders = App::get('database')->getUsersFolders($_SESSION['department']);
-        return view('admin/admin3', compact('user', 'folders'));
+        return view('admin/admin3', compact('folders'));
 
     }
 

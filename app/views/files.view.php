@@ -2,6 +2,7 @@
 
 $mergeArr = array_merge($folders, $posts, $files);
 $sumAmount = 0;
+$nav = '';
 //echo count((array)$mergeArr);
 //dd($mergeArr);
 if ($current_folder != 'category') {
@@ -60,7 +61,7 @@ usort($mergeArr, function ($a, $b) {
                         </td>
                     <td><?= $ma->modified?></td>
                     <?php endif; ?>
-                    <?php if ($ma->post) {
+                    <?php if (isset($ma->post)) {
 
                         echo '<td>'.$ma->sort_number.'</td>';
                         echo '<td><i class="glyphicon glyphicon-pencil" style="float: left;margin-right: 5px"></i>' . $ma->post;
