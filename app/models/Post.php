@@ -40,9 +40,9 @@ class Post
                                               LEFT JOIN ' . NESTED_CATEGORIES . '  AS nc ON (p.directory=nc.category_id) 
                                               LEFT JOIN users AS u ON (p.added_from=u.id) ';
 
-        $sql = $this->userAccess($sql);
+        //$sql = $this->userAccess($sql);
 
-        $sql .= ' GROUP BY p.id ORDER BY p.added_when';
+        $sql .= ' WHERE p.added_from = '. $_SESSION['user_id'] .' GROUP BY p.id ORDER BY p.added_when';
 
         $stmt = $this->db->prepare($sql);
 
@@ -136,7 +136,7 @@ class Post
 
         } else {
             try {
-                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number)');
+                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number,type, amount) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number, :post_type, :postAmount)');
 
                 $stmt->execute($params);
 

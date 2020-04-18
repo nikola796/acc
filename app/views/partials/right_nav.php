@@ -2,13 +2,13 @@
 <div style="" class="col-md-3 pull-right" >
     <div class="panel panel-primary" style="float: right">
         <div class="panel-heading">
-            <h5 class="panel-title text-center">Администрация</h5>
+            <h5 class="panel-title text-center">Вход в системата</h5>
         </div>
         <div class="panel-body" >
             <?php if($_SESSION['is_logged'] === true):?>
                 <div class="form-group">
                     <div class="text-center">
-                        <a id="admin_redirect"  href="#"><strong>Администрация</strong></a>
+                        <a id="admin_redirect"  href="#"><strong>Моето пространство</strong></a>
                     </div>
                 </div>
                 <?php else:?>

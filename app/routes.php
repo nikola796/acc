@@ -2,7 +2,7 @@
 
 $router->get('', array('PagesController', 'home'));
 
-$router->get('Документи', array('App\Controllers\DocumentsController', 'getIndex'));
+$router->get('category', array('App\Controllers\DocumentsController', 'getCategories'));
 
 $router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'));
 
@@ -16,9 +16,9 @@ $router->get('Важно', array('App\Controllers\FilesController', 'important')
 
 $router->get('files?{stored_filename}&{original_filename}', array('App\Controllers\FilesController', 'downloadFile'));
 
-$router->get('Документи/{dep}', array('App\Controllers\DocumentsController', 'showTest'));
+$router->get('category/{dep}', array('App\Controllers\DocumentsController', 'getCategorie'));
 
-$router->get('Документи/{dep}?filaname', array('App\Controllers\DocumentsController', 'showGet'));
+$router->get('category/{dep}?filaname', array('App\Controllers\DocumentsController', 'showGet'));
 
 $router->get('bb_test', array('App\Controllers\DocumentsController', 'bb'));
 
@@ -27,8 +27,8 @@ $router->get('admin/edit', function(){
 });
 
 $router->get('{folder}/Файлове', array('App\Controllers\FilesController', 'indexTest'));
-$router->get('Документи/{department}/{parent_folder}/{folder}', array('App\Controllers\FilesController', 'indexTest'));
-$router->get('Документи/{department}/{parent_folder}', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('category/{department}/{parent_folder}/{folder}', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('category/{department}/{parent_folder}', array('App\Controllers\FilesController', 'indexTest'));
 
 $router->get('admin/table', array('app\controllers\AdminsController', 'table'));
 

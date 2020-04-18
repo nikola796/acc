@@ -8,7 +8,7 @@
             <div class="list-group table-of-contents">
                 <a class="list-group-item" href="<?php echo url()?>">Начало</a>
                 <a style="color:red" class="list-group-item" href="<?php echo url()?>Документи/Важно">Важно</a>
-                <a class="list-group-item" href="<?php echo url()?>Документи">Преглед на документи</a>
+                <a class="list-group-item" href="<?php echo url()?>category">Категории</a>
 <!--                <a class="list-group-item" href="#tables">Форум</a>-->
 <!--                <a class="list-group-item" href="#forms">Чат</a>-->
             </div>
