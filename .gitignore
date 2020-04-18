@@ -1,10 +1,8 @@
 config.php
-vendor
 .idea
 .idea/workspace.xml
-
+.idea/*.*
 .htaccess
-
 core/files/
-
+vendor
 .vscode

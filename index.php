@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 
 require 'core/bootstrap.php';
 
+
 use App\Core\Request;
 
 function processOutput($response){
@@ -21,12 +22,8 @@ try {
     $response = $dispatcher->dispatch(Request::method(), Request::uri());
 
 } catch (Phroute\Exception\HttpRouteNotFoundException $e) {
-
-   // var_dump($e);
-   // die();
-//header('Location: '. url().'404');
     return view('404');
-exit();
+    exit();
 }
 
 //processOutput($response);

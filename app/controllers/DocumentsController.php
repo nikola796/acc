@@ -33,18 +33,18 @@ class DocumentsController
      * GET ALL SPACES
      * @return mixed
      */
-    public function getIndex()
+    public function getCategories()
     {
 
         $folders = App::get('database')->selectAllSpaces();
 
-        $posts = App::get('database')->getPosts(array('department' => 0, 'directory' => 0));
+        //$posts = App::get('database')->getPosts(array('department' => 0, 'directory' => 0));
 
-        $files = App::get('database')->selectAllFiles(array('directory' => 0, 'dep' => 0));
+        //$files = App::get('database')->selectAllFiles(array('directory' => 0, 'dep' => 0));
 
-        $current_folder = 'Документи';
+        $current_folder = 'category';
 
-        return view('files', compact('folders', 'posts', 'files', 'current_folder'));
+        return view('categories', compact('folders','current_folder'));
 
     }
 
@@ -75,7 +75,7 @@ class DocumentsController
 
     }
 
-    public function showTest($dep)
+    public function getCategorie($dep)
     {
         $dep_id = App::get('database')->getId('category_id', $dep, NESTED_CATEGORIES);
         if ($dep_id[0]->category_id == NULL) {
@@ -109,7 +109,7 @@ class DocumentsController
 
     public function savePostFile()
     {
-        //echo '<pre>' . print_r($_FILES, true) . '</pre>';
+        //echo '<pre>' . print_r($_POST, true) . '</pre>';
 
         $response = array();
 
@@ -136,6 +136,10 @@ class DocumentsController
 
                 $department_id = intval(App::get('database')->getFolderDepartment($folder_id));
 
+                $postAmount = round(trim($_POST['postAmount']), 2) * 100;
+
+                $postType = intval(trim($_POST['post_type']));
+
                 $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
                     $data['old_sort_number'] = intval($_POST['default_sort_number']);
@@ -143,6 +147,9 @@ class DocumentsController
                 } else {
                     $data['new_sort_number'] = intval($_POST['sort_number']);
                 }
+                $data['post_type'] = $postType;
+                $data['postAmount'] = $postAmount;
+
                 $post_id = $this->savePost($data);
                 //dd($post_id);
                 if ($post_id > 0) {

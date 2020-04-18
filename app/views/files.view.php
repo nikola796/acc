@@ -1,18 +1,19 @@
 <?php
 
 $mergeArr = array_merge($folders, $posts, $files);
+$sumAmount = 0;
 //echo count((array)$mergeArr);
 //dd($mergeArr);
-if ($current_folder != 'Документи') {
+if ($current_folder != 'category') {
     if ($current_folder == $department_name) {
-        $nav .= ' > <a href="' . uri() . 'Документи">Документи</a>';
+        $nav .= ' > <a href="' . uri() . 'category">Категории</a>';
         $nav .= ' > <span>' . $current_folder . ' </span>';
     } else {
-        $nav .= '> <a href="' . uri() . 'Документи">Документи</a> > <a href="' . uri() . 'Документи/' . $department_name . '"> ' . $department_name . '</a> > <span> ' . $current_folder . ' </span>';
+        $nav .= '> <a href="' . uri() . 'category">Категории</a> > <a href="' . uri() . 'category/' . $department_name . '"> ' . $department_name . '</a> > <span> ' . $current_folder . ' </span>';
 
     }
 } else {
-    $nav = ' > <a href="' . uri() . 'Документи">Документи</a>';
+    $nav = ' > <a href="' . uri() . 'category">Категории</a>';
 }
 
 usort($mergeArr, function ($a, $b) {
@@ -23,11 +24,7 @@ usort($mergeArr, function ($a, $b) {
 
 <?php $title = 'Документи'?>
 <?php require('partials/header.php') ?>
-<?php if ($current_folder == 'Важно'): ?>
-    <a href="http://79.124.14.51/lakorda/?i=1" target="_blank" class="style1"><img
-                src="<?= url() ?>public/images/lacorda.png" width="140" height="45">
-    </a>
-<?php endif ?>
+
 
 <?php if (count((array)$mergeArr[0]) > 1): ?>
 <style>
@@ -35,10 +32,10 @@ usort($mergeArr, function ($a, $b) {
         background-color:#FFFFE6;
     }
     .warning {
-        background-color: #F99 !important;
+        background-color: #F99;
     }
 </style>
-<h4>Ресурси към <?= $current_folder ?></h4>
+<h4><?= ($current_folder == 'category' ? 'Категории' : ($posts ? 'Записи към ' .$current_folder : 'Категории към ' .$current_folder)) ?></h4>
 <div class="spacer-big"></div>
         <table id="example" class="display responsive no-wrap" width="100%">
             <thead>
@@ -46,6 +43,10 @@ usort($mergeArr, function ($a, $b) {
                 <th>#</th>
                 <th>Име</th>
                 <th>Дата</th>
+               <?php if ($posts) {
+                            echo '<th>Стойност</th>';
+                        }
+               ?>
             </tr>
             </thead>
             <?php foreach ($mergeArr as $ma): ?>
@@ -55,7 +56,7 @@ usort($mergeArr, function ($a, $b) {
                         <td><?= $ma->sort_number?></td>
                         <td><i style="margin-right: 5px" class="glyphicon glyphicon-folder-open"></i>
 
-                            <a href="<?= url() . ($current_folder == 'Документи' ? $current_folder : ($department_name == $current_folder ? 'Документи/' . $current_folder : 'Документи/' . $department_name . '/' . $current_folder)) . '/' . str_replace(' ', '+', $ma->name) ?>"><?= $ma->name ?></a>
+                            <a href="<?= url() . ($current_folder == 'category' ? $current_folder : ($department_name == $current_folder ? 'category/' . $current_folder : 'category/' . $department_name . '/' . $current_folder)) . '/' . str_replace(' ', '+', $ma->name) ?>"><?= $ma->name ?></a>
                         </td>
                     <td><?= $ma->modified?></td>
                     <?php endif; ?>
@@ -71,7 +72,8 @@ usort($mergeArr, function ($a, $b) {
                                 }
                             }
                         }
-                        echo '</td><td>'.$ma->modified.'</td>';
+                        $sumAmount+= $ma->amount / 100;
+                        echo '</td><td>'.$ma->modified.'</td><td>'. $ma->amount / 100 .'</td>';
                     }
                     //echo '</td><td>'.$ma->modified.'</td>';
                     ?>
@@ -87,7 +89,7 @@ usort($mergeArr, function ($a, $b) {
                     <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
-
+            <?php if ($posts) echo '<tr><td>0</td><td>Total:</td><td></td><td>'. $sumAmount .'</td></tr>' ?>
         </table>
 
 <?php else:?>

@@ -18,7 +18,4 @@
 
     </ul>
 
-
-
->>>>>>> feature_date
 <?php require 'partials/footer.php';?>

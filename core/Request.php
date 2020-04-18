@@ -12,7 +12,7 @@ class Request
 		
 		$uri = implode('/',
         array_slice(
-            explode('/', $_SERVER['REQUEST_URI']), 1));
+            explode('/', $_SERVER['REQUEST_URI']), 2));
 
 		return urldecode($uri);
 		 //processInput($_SERVER['REQUEST_URI']);
