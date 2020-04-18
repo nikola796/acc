@@ -101,6 +101,16 @@ if (isset($_SESSION['update_post'])) {
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <div id="post_type" class="form-group">
+                        <select name="post_type" class="form-control" id="post_type">
+                            <option value="0">Разход</option>
+                            <option value="0">Приход</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="folderName">Сума</label>
+                        <input type="text" name="postAmount" class="form-control" id="postAmount" placeholder="Въведете сума">
+                    </div>
                     <div id="sort_number_div" class="form-group">
                         <label for="sort_number">Ще се показва в папаката на ред:</label>
                         <select name="sort_number" class="form-control" id="sort_number">
@@ -154,6 +164,8 @@ if (isset($_SESSION['update_post'])) {
                                                 <th>Последна промяна:</th>
                                                 <th>Файл описание</th>
                                                 <th>Файл име</th>
+                                                <th>Вид</th>
+                                                <th>Сума</th>
                                                 <th>Поредност в папката</th>
                                                 <th>Действия</th>
                                             </tr>
@@ -179,6 +191,10 @@ if (isset($_SESSION['update_post'])) {
                                                     <td class="name"><span class="name"><?= $post->file_name ?></span>
                                                         <input type="hidden" name="file_id" class="file_id"
                                                                value="<?= $post->file_id ?>">
+                                                    </td>
+                                                    <td class="attachment"><?= ($post->type == 1 ? 'Приход' : 'Разход') ?></td>
+                                                    <td class=""><span
+                                                                class="sort_number"><?= $post->amount / 100 ?></span>
                                                     </td>
                                                     <td class=""><span
                                                                 class="sort_number"><?= $post->sort_number ?></span>

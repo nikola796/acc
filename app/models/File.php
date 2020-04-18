@@ -38,9 +38,9 @@ class File
         $sql = 'SELECT f.id, f.original_filename, f.sort_number, f.label, u.name AS author,nc.name AS folder,f.modified,p.post FROM files AS f
                                                   LEFT JOIN users AS u ON (f.added_from=u.id)
                                                   LEFT JOIN ' . NESTED_CATEGORIES . ' AS nc ON (f.directory=nc.category_id) 
-                                                  LEFT JOIN posts AS p ON (f.post_id=p.id)';
+                                                  LEFT JOIN posts AS p ON (f.post_id=p.id) WHERE f.added_from = '. $_SESSION['user_id'] .'';
 
-        $sql = $this->userAccess($sql);
+        //$sql = $this->userAccess($sql);
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
