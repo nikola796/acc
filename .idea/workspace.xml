@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4d4524c-fae1-472a-82ab-e4a532f18c5d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/AdminsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AdminsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/DocumentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/DocumentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/admin3.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/admin3.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/partials/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/partials/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/partials/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/partials/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/posts.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/posts.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/partials/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/partials/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/partials/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/partials/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/partials/left_nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/partials/left_nav.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/partials/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/partials/nav.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/partials/right_nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/partials/right_nav.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/bootstrap.php" afterDir="false" />
-    </list>
+    <list default="true" id="e4d4524c-fae1-472a-82ab-e4a532f18c5d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,168 +17,46 @@
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="intranet" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="files" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="intranet_test" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+            <state relative-caret-position="210">
+              <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/bootstrap.php">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+            <state relative-caret-position="21">
+              <caret line="1" column="17" lean-forward="true" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="left_nav.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/left_nav.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/AdminsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2550">
-              <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="right_nav.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/right_nav.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="folders.view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/folders.view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5202">
-              <caret line="306" column="35" selection-start-line="306" selection-start-column="35" selection-end-line="306" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/users.view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="62" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="62" />
+            <state relative-caret-position="342">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -306,7 +164,6 @@
         <option value="$PROJECT_DIR$/app/views/admin/partials/top_panel.php" />
         <option value="$PROJECT_DIR$/app/views/admin3.view.php" />
         <option value="$PROJECT_DIR$/app/views/admin/partials/sidebar.php" />
-        <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/app/views/admin/admin3.view.php" />
         <option value="$PROJECT_DIR$/app/views/partials/left_nav.php" />
         <option value="$PROJECT_DIR$/app/views/partials/right_nav.php" />
@@ -315,6 +172,7 @@
         <option value="$PROJECT_DIR$/app/models/User.php" />
         <option value="$PROJECT_DIR$/app/controllers/AdminsController.php" />
         <option value="$PROJECT_DIR$/core/bootstrap.php" />
+        <option value="$PROJECT_DIR$/.htaccess" />
       </list>
     </option>
   </component>
@@ -337,7 +195,9 @@
     </packageJsonPaths>
   </component>
   <component name="PhpServers">
-    <servers />
+    <servers>
+      <server host="localhost" id="5e570a01-c0a3-4d58-beeb-67eac3774c92" name="localhost" />
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 5.5">
     <include_path>
@@ -347,9 +207,9 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="538" />
-    <option name="y" value="135" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="264" />
+    <option name="y" value="33" />
     <option name="width" value="1449" />
     <option name="height" value="865" />
   </component>
@@ -388,22 +248,6 @@
             <path>
               <item name="acc" type="b2602c69:ProjectViewProjectNode" />
               <item name="acc" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="acc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="acc" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="acc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="acc" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="acc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="acc" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="core" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -662,7 +506,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1347000000" />
+    <option name="totallyTimeSpent" value="1347327000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -674,31 +518,46 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="538" y="135" width="1449" height="865" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32872504" />
-      <window_info anchor="bottom" id="Demandware" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51451975" side_tool="true" weight="0.2937853" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3278867" />
+      <window_info anchor="bottom" id="Demandware" order="7" weight="0.32897604" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.2707889" side_tool="true" weight="0.4814815" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.53812635" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2777778" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.7292111" visible="true" weight="0.36928105" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.17004265" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.7495961" visible="true" weight="0.17643923" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.16151386" />
+      <window_info id="Structure" order="0" sideWeight="0.25040388" side_tool="true" weight="0.17324094" />
+      <window_info id="Favorites" order="1" sideWeight="0.25040388" side_tool="true" weight="0.17324094" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39651415" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32591414" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2782194" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48548028" visible="true" weight="0.71664375" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.17038691" />
       <window_info content_ui="combo" id="Project" order="2" sideWeight="0.751634" visible="true" weight="0.19654427" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="4" weight="0.16200717" />
       <window_info id="Structure" order="0" sideWeight="0.7437071" side_tool="true" weight="0.19568452" />
-      <window_info id="Favorites" order="1" sideWeight="0.24836601" side_tool="true" weight="0.18912882" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.23558484" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32872504" />
+      <window_info anchor="bottom" id="Demandware" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2782194" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.32751092" />
+      <window_info anchor="right" id="Database" order="4" weight="0.16200717" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32897604" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51451975" side_tool="true" weight="0.2937853" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.23558484" />
       <window_info anchor="bottom" id="File Transfer" order="10" weight="0.27344993" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3287483" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48548028" visible="true" weight="0.71664375" />
+      <window_info id="Favorites" order="1" sideWeight="0.24836601" side_tool="true" weight="0.18912882" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.32751092" />
@@ -709,13 +568,13 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32872504" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3268366" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.27886057" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="4" weight="0.16200717" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49702382" visible="true" weight="0.46326837" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5029762" side_tool="true" weight="0.32838285" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3268366" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="File Transfer" order="10" weight="0.2739274" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -735,14 +594,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/autocomp.html" />
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -974,13 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/admin3.view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1044,17 +888,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php" />
     <entry file="file://$PROJECT_DIR$/core/bootstrap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="17" lean-forward="true" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
