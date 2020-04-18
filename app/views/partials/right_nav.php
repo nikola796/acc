@@ -5,7 +5,7 @@
             <h5 class="panel-title text-center">Вход в системата</h5>
         </div>
         <div class="panel-body" >
-            <?php if($_SESSION['is_logged'] === true):?>
+            <?php if(isset($_SESSION['is_logged']) && $_SESSION['is_logged'] === true):?>
                 <div class="form-group">
                     <div class="text-center">
                         <a id="admin_redirect"  href="#"><strong>Моето пространство</strong></a>
