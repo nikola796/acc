@@ -60,8 +60,17 @@ class FilesController
             $files = App::get('database')->selectAllFiles(array('dep' => $folders[0]->dep, 'directory' => $folder_id[0]->category_id));
 
         }
+        $allCategories = App::get('database')->selectChildren($folder_id[0]->category_id);
 
-        return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
+        $allCategoriesIDS = array_column($allCategories, 'category_id');
+
+        //echo '<pre>'.print_r($allCategoriesIDS). '</pre>'; die();
+        $totalExpense = App::get('database')->getTotals(array('department' => $folder_id[0]->parent_id, 'type' => 0), $allCategoriesIDS);
+
+        $totalRevenue = App::get('database')->getTotals(array('department' => $folder_id[0]->parent_id, 'type' => 1), $allCategoriesIDS);
+
+        $allData = array_merge($folders, $files, $posts);
+        return view('files', compact('allData','totalExpense','totalRevenue', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
 
     }
 
