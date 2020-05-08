@@ -38,13 +38,21 @@ class DocumentsController
 
         $folders = App::get('database')->selectAllSpaces();
 
+
         //$posts = App::get('database')->getPosts(array('department' => 0, 'directory' => 0));
 
         //$files = App::get('database')->selectAllFiles(array('directory' => 0, 'dep' => 0));
 
         $current_folder = 'category';
 
-        return view('categories', compact('folders','current_folder'));
+        //      TODO return json from request
+//        if(!empty($folders)){
+//            header("Access-Control-Allow-Origin: *");//this allows coors
+//            header('Content-Type: application/json');
+//            print json_encode($folders);
+//        }
+        $allData = array_merge($folders);
+        return view('files', compact('allData','current_folder'));
 
     }
 
@@ -86,14 +94,22 @@ class DocumentsController
 
         $posts = App::get('database')->getPosts(array('department' => $dep_id[0]->category_id, 'directory' => $dep_folder_id[0]->category_id));
 
+        $allCategories = App::get('database')->selectChildren($dep_id[0]->category_id);
+
+        $allCategoriesIDS = array_column($allCategories, 'category_id');
+
+        $totalExpense = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 0), $allCategoriesIDS);
+
+        $totalRevenue = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 1), $allCategoriesIDS);
+
         $folders = App::get('database')->selectAllFolders($dep_id[0]->category_id);
 
         $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->category_id));
 
         $current_folder = $dep;
         $department_name = $current_folder;
-
-        return view('files', compact('folders', 'files', 'current_folder', 'posts', 'department_name'));
+        $allData = array_merge($folders, $files, $posts);
+        return view('files', compact('allData','folders', 'files', 'current_folder', 'posts', 'department_name', 'totalExpense', 'totalRevenue'));
 
     }
 
@@ -113,7 +129,7 @@ class DocumentsController
 
         $response = array();
 
-        if(intval($_FILES['userfile']) !== 0){
+        if(isset($_FILES['userfile']) && intval($_FILES['userfile']) !== 0){
             $response = File::checkFileErrors();
             if ($response['error']){
                 $_SESSION['add_new_file_post'] = $response;
@@ -140,7 +156,7 @@ class DocumentsController
 
                 $postType = intval(trim($_POST['post_type']));
 
-                $data = array('text' => $_POST['text'], 'file' => intval($_FILES['userfile']), 'directory_id' => $folder_id, 'department_id' => $department_id);
+                $data = array('text' => $_POST['text'], 'file' => (isset($_FILES['userfile']) ? intval($_FILES['userfile']) : 0), 'directory_id' => $folder_id, 'department_id' => $department_id);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
                     $data['old_sort_number'] = intval($_POST['default_sort_number']);
                     $data['new_sort_number'] = intval($_POST['sort_number']);

@@ -46,7 +46,7 @@ class AdminsController
         //echo $users;die();
         $roles = $this->user->getRoles();
 
-        $departments = App::get('database')->selectAll('departments');
+        //$departments = App::get('database')->selectAll('departments');
 
         $folders = App::get('database')->selectFolders(NESTED_CATEGORIES);
 
@@ -57,7 +57,7 @@ class AdminsController
             $data = $data = array('users_roles_access' => $users_roles_access);
             echo json_encode($data);
         } else {
-            return view('admin/users', compact('users', 'roles', 'departments', 'folders', 'users_roles_access'));
+            return view('admin/users', compact('users', 'roles', 'folders', 'users_roles_access'));
         }
 
     }

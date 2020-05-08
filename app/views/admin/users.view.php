@@ -43,26 +43,26 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Звено</label>
-                            <div class="col-sm-10">
-                                <select name="department" id="department" class="form-control" style="width: 100%">
-                                    <option></option>
-                                    <?php foreach ($departments as $department): ?>
-                                        <option value="<?= $department->id ?>"><?= $department->name ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" id="access">
-                            <label class="col-sm-2 control-label">Достъп</label>
-                            <div class="col-sm-10">
-                                <select name="folder[]" id="folder" class="form-control" multiple="multiple"
-                                        style="width: 100%">
-                                    <option></option>
-                                </select>
-                            </div>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label class="col-sm-2 control-label">Звено</label>-->
+<!--                            <div class="col-sm-10">-->
+<!--                                <select name="department" id="department" class="form-control" style="width: 100%">-->
+<!--                                    <option></option>-->
+<!--                                    --><?php //foreach ($departments as $department): ?>
+<!--                                        <option value="--><?//= $department->id ?><!--">--><?//= $department->name ?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group" id="access">-->
+<!--                            <label class="col-sm-2 control-label">Достъп</label>-->
+<!--                            <div class="col-sm-10">-->
+<!--                                <select name="folder[]" id="folder" class="form-control" multiple="multiple"-->
+<!--                                        style="width: 100%">-->
+<!--                                    <option></option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -95,9 +95,7 @@
                                 <tr>
                                     <th>Потребител</th>
                                     <th>Поща</th>
-                                    <th>Звено</th>
                                     <th>Роля</th>
-                                    <th>Достъп</th>
                                     <th>Статус</th>
                                     <th>Действия</th>
                                 </tr>

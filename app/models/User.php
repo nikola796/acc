@@ -266,9 +266,8 @@ class User
     public function getUsersRolesAccess()
     {
 
-        $sql = 'SELECT u.id, u.name, u.email, d.name AS dep,d.id AS dep_id, r.role,r.id AS role_id, group_concat( f.name SEPARATOR ", "  ) AS access, group_concat(f.category_id) AS access_id
+        $sql = 'SELECT u.id, u.name, u.email, r.role,r.id AS role_id, group_concat( f.name SEPARATOR ", "  ) AS access, group_concat(f.category_id) AS access_id
                 FROM `users` AS u
-                LEFT JOIN departments AS d ON ( u.department = d.id )
                 LEFT JOIN roles AS r ON ( u.role = r.id )
                 LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
                 LEFT JOIN ' . NESTED_CATEGORIES . ' AS f ON ( f.category_id = uf.folder_id )';
@@ -307,12 +306,7 @@ class User
         // $totalData = $users_count[0]['cnt'];
         // when there is no search parameter then total number rows = total number filtered rows.
 
-        $sql = 'SELECT u.id, u.name, u.email, u.active, d.name AS dep,d.id AS dep_id, r.role,r.id AS role_id, group_concat( f.name SEPARATOR ", "  ) AS access, group_concat(f.category_id) AS access_id
-                FROM `users` AS u
-                LEFT JOIN departments AS d ON ( u.department = d.id )
-                LEFT JOIN roles AS r ON ( u.role = r.id )
-                LEFT JOIN users_folders AS uf ON ( u.id = uf.user_id )
-                LEFT JOIN ' . NESTED_CATEGORIES . ' AS f ON ( f.category_id = uf.folder_id )';
+        $sql = 'SELECT u.id, u.name, u.email, u.active, r.role,r.id AS role_id FROM `users` AS u LEFT JOIN roles AS r ON ( u.role = r.id ) ';
 
         if (empty($requestData['columns'][3]['search']['value'])) {   //name
             $sql .= " WHERE u.active = 1 ";
@@ -359,13 +353,13 @@ class User
 
             $nestedData[] = $row["name"];
             $nestedData[] = $row["email"];
-            $nestedData[] = $row["dep"] . '<input type="hidden" class="dep_id" name="dep_id" value="' . $row["dep_id"] . '" />';
+
             $nestedData[] = $row["role"] . '<input type="hidden" class="role_id" name="role_id" value="' . $row["role_id"] . '" />';
-            if ($row["role_id"] == 1) {
-                $nestedData[] = 'Всички папка';
-            } else {
-                $nestedData[] = $row["access"] . '<input type="hidden" class="access_id" name="access_id" value="' . $row["access_id"] . '" />';
-            }
+//            if ($row["role_id"] == 1) {
+//                $nestedData[] = 'Всички папка';
+//            } else {
+//                $nestedData[] = $row["access"] . '<input type="hidden" class="access_id" name="access_id" value="' . $row["access_id"] . '" />';
+//            }
 
             if ($row['active'] == 1) {
                 $nestedData[] = 'Активен';
