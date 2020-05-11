@@ -38,7 +38,7 @@ class AuthController
                     $_SESSION['is_logged'] = true;
                     $_SESSION['username'] = $user_login[0]->name;
                     $_SESSION['user_id'] = $user_login[0]->id;
-                    $_SESSION['department'] = $user_login[0]->department;
+
                     //$_SESSION['section'] = $user_login[0]->section;
                     $_SESSION['role'] = $user_login[0]->role;
                     //$_SESSION['access'] = $ua;

@@ -22,6 +22,10 @@ $router->get('category/{dep}?filaname', array('App\Controllers\DocumentsControll
 
 $router->get('bb_test', array('App\Controllers\DocumentsController', 'bb'));
 
+$router->get('login', array('PagesController', 'login'));
+
+$router->get('signup', array('PagesController', 'signup'));
+
 $router->get('admin/edit', function(){
     return view('admin/lang');
 });

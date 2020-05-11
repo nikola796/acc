@@ -226,7 +226,7 @@ ORDER BY node.lft;');
     public function getUsersFolders($dep, $folder = null)
     {
 
-        $sql = 'SELECT * FROM '.NESTED_CATEGORIES.' WHERE  dep = ?';
+        $sql = 'SELECT * FROM '.NESTED_CATEGORIES.' WHERE  added_from = ?';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array($dep));

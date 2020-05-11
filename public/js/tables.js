@@ -142,7 +142,7 @@ $(document).ready(function() {
             }).done(function(data){
                 //console.log(data);
                 if(data == 'Logged'){
-                    window.location.replace(baseUrl + '/admin/home');
+                    window.location.replace(baseUrl);
                 } else{
                     BootstrapDialog.alert({
                         type: BootstrapDialog.TYPE_WARNING,
