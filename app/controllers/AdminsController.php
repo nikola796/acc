@@ -31,7 +31,7 @@ class AdminsController
     public function index()
     {
 
-        $folders = App::get('database')->getUsersFolders($_SESSION['department']);
+        $folders = App::get('database')->getUsersFolders($_SESSION['user_id']);
         return view('admin/admin3', compact('folders'));
 
     }
