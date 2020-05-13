@@ -110,50 +110,53 @@ class User
     public function createUser($user_data, $access = null)
     {
 
-        $user_password = $this->randomPassword();
-        $user_data['pass'] = $this->saltPassword($user_password);
+        //$user_password = $this->randomPassword();
+        //$user_data['pass'] = $this->saltPassword($user_password);
 
-        if ($user_data['role'] > 1) {
-            try {
+        // if ($user_data['role'] > 1) {
+        //     try {
 
-                $this->db->beginTransaction();
+        //         $this->db->beginTransaction();
 
-                $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
-                                                    VALUES (:name, :pass, :email, NOW(), :department, :role)');
-                $stmt->execute($user_data);
-                $user_id = $this->db->lastInsertId();
+        //         $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
+        //                                             VALUES (:name, :pass, :email, NOW(), :department, :role)');
+        //         $stmt->execute($user_data);
+        //         $user_id = $this->db->lastInsertId();
 
-                    $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
-                    foreach ($access as $folder) {
-                        $stmt->execute(array($user_id, $folder));
-                    }
+        //             $stmt = $this->db->prepare('INSERT INTO users_folders (user_id, folder_id) VALUES (?, ?)');
+        //             foreach ($access as $folder) {
+        //                 $stmt->execute(array($user_id, $folder));
+        //             }
 
-                $res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
-                if (intval($res) > 0) {
-                    $this->db->commit();
+        //         $res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
+        //         if (intval($res) > 0) {
+        //             $this->db->commit();
 
-                    return $stmt->rowCount();
-                } else{
-                    $this->db->rollBack();
-                    echo 'Нещо се обърка и потребителя не бе създаден!';
-                }
+        //             return $stmt->rowCount();
+        //         } else{
+        //             $this->db->rollBack();
+        //             echo 'Нещо се обърка и потребителя не бе създаден!';
+        //         }
 
-            } catch (PDOException $e) {
+        //     } catch (PDOException $e) {
 
-                $this->db->rollBack();
-                echo $e->getMessage();
-            }
-        }
+        //         $this->db->rollBack();
+        //         echo $e->getMessage();
+        //     }
+        // }
         try {
             $this->db->beginTransaction();
-            $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when, department, role)
-                                                    VALUES (:name, :pass, :email, NOW(), :department, :role)');
+            $stmt = $this->db->prepare('    INSERT INTO users (name, pass, email, user_added_when)
+                                                    VALUES (:name, :pass, :email, NOW())');
             $stmt->execute($user_data);
             //$res = $this->mailForNewUser($user_password, $user_data['name'], $user_data['email']);
             //if (intval($res) > 0) {
-                $this->db->commit();
+            
+            $user_id = $this->db->lastInsertId();
+            
+            $this->db->commit();
 
-                return $stmt->rowCount();
+                return array('row_counts' => $stmt->rowCount(), 'user_id' => $user_id);
             //} else{
 
              //   echo 'Нещо се обърка и потребителя не бе създаден!';
