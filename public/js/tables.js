@@ -1,11 +1,13 @@
 $(document).ready(function() {
     $('#example_test').dataTable();
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
     $('#example, #category_table').DataTable();
 
     $(document).on('click', '#register', function(e) {
         e.preventDefault();
-        console.log('Click');
+        //console.log('Click');
         BootstrapDialog.show({
             title: 'Регистрация',
             message: $(
@@ -35,7 +37,7 @@ $(document).ready(function() {
 
                     $.ajax({
                         method: 'POST',
-                        url: '<?php echo url()?>users',
+                        url: baseUrl + '/users',
                         data: {
                             name: $('#username_register').val(),
                             pass: $('#user_password_register').val(),
@@ -86,7 +88,7 @@ $(document).ready(function() {
                     }
                     $.ajax({
                         type: 'POST',
-                        url: '<?php echo url()?>reset_password',
+                        url: baseUrl + '/reset_password',
                         data: {email: $('#user_email').val()}
                     }).done(function (data) {
                         BootstrapDialog.show({
@@ -110,7 +112,7 @@ $(document).ready(function() {
 
     $(document).on('click', '#admin_redirect', function(e){
         e.preventDefault();
-        window.location.replace("admin/home");
+        window.location.replace(baseUrl + "/admin/home");
     })
 
     $(document).on('click', '#user_login_form', function(e){
@@ -135,12 +137,12 @@ $(document).ready(function() {
         } else{
             $.ajax({
                 method: 'POST',
-                url: 'auth',
+                url: baseUrl + '/auth',
                 data: {username: username, password: password}
             }).done(function(data){
                 //console.log(data);
                 if(data == 'Logged'){
-                    window.location.replace("admin/home");
+                    window.location.replace(baseUrl);
                 } else{
                     BootstrapDialog.alert({
                         type: BootstrapDialog.TYPE_WARNING,

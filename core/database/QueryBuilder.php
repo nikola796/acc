@@ -39,7 +39,7 @@ class QueryBuilder
 
     public function selectAllSpaces()
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE parent_id = 0 AND active = 1 ORDER BY sort_number');
+        $stmt = $this->pdo->prepare('SELECT * FROM '.NESTED_CATEGORIES.' WHERE parent_id = 0 AND active = 1  AND added_from = '. $_SESSION['user_id'] .' ORDER BY sort_number');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
@@ -55,6 +55,13 @@ class QueryBuilder
                                               ORDER BY node.lft');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function selectChildren($category_id)
+    {
+        $stmt = $this->pdo->prepare('SELECT child.category_id FROM '.NESTED_CATEGORIES.' as parent, '.NESTED_CATEGORIES.' as child where child.lft between parent.lft and parent.rgt and parent.category_id = :category_id');
+        $stmt->execute([':category_id' => $category_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function selectDirectories($id)
@@ -219,7 +226,7 @@ ORDER BY node.lft;');
     public function getUsersFolders($dep, $folder = null)
     {
 
-        $sql = 'SELECT * FROM '.NESTED_CATEGORIES.' WHERE  dep = ?';
+        $sql = 'SELECT * FROM '.NESTED_CATEGORIES.' WHERE  added_from = ?';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array($dep));
@@ -240,6 +247,27 @@ ORDER BY node.lft;');
     {
         $stmt = $this->pdo->prepare('SELECT dep FROM '.NESTED_CATEGORIES.' where category_id = ?');
         $stmt->execute(array($id));
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function getTotals($values = array(), $directories) {
+        $sql = 'SELECT SUM(amount) as amount FROM posts WHERE department = :department AND type= :type';
+
+        for ($a = 0; $a < count($directories); $a++) {
+            if($a == 0) {
+                $sql .= ' AND (directory = '.$directories[$a];
+
+            } if ($a > 0){
+                $sql .= ' OR directory = '.$directories[$a];
+            } if (count($directories) - 1 == $a) {
+                $sql .= ')';
+            }
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute($values);
+
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 

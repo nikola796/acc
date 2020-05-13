@@ -182,9 +182,7 @@ if (isset($_SESSION['update_post'])) {
                                                     <td><input type="hidden" name="post_id" class="user_post_id"
                                                                value="<?= $post->id ?>"/><span
                                                                 class="role"><?= $post->username ?></span></td>
-                                                    <td><input type="hidden" name="access_id" class="access_id"
-                                                               value="<?= $ura->access_id ?>"><span
-                                                                class="access"><?= ($post->added_when ? date('Y-m-d H:i:s', $post->added_when) : '') ?></span>
+                                                    <td><span class="access"><?= ($post->added_when ? date('Y-m-d H:i:s', $post->added_when) : '') ?></span>
                                                     </td>
                                                     <td class=""><span class="name"><?= $post->modified ?></span></td>
                                                     <td class=""><span class="name"><?= $post->label ?></span></td>
