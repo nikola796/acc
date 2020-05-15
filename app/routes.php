@@ -2,11 +2,9 @@
 
 $router->get('', array('PagesController', 'home'));
 
-$router->get('category', array('App\Controllers\DocumentsController', 'getCategories'), 
-array('before' => 'auth'));
+$router->get('category', array('App\Controllers\DocumentsController', 'getCategories'));
 
-$router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'), 
-array('before' => 'auth'));
+$router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'));
 
 $router->get('search?{term}', array('App\Controllers\DocumentsController', 'search'));
 
@@ -14,33 +12,23 @@ $router->get('recover', array('app\controllers\AuthController', 'recover'));
 
 $router->get('reset_password?{tok}', array('app\controllers\AuthController', 'reset_password'));
 
-$router->get('files?{stored_filename}&{original_filename}', 
-array('App\Controllers\FilesController', 'downloadFile'));
+$router->get('Важно', array('App\Controllers\FilesController', 'important'));
 
-$router->get('category/{dep}', array('App\Controllers\DocumentsController', 'getCategorie'), 
-array('before' => 'auth'));
+$router->get('files?{stored_filename}&{original_filename}', array('App\Controllers\FilesController', 'downloadFile'));
 
-$router->get('category/{dep}?filaname', array('App\Controllers\DocumentsController', 'showGet'), 
-array('before' => 'auth'));
+$router->get('category/{dep}', array('App\Controllers\DocumentsController', 'getCategorie'));
+
+$router->get('category/{dep}?filaname', array('App\Controllers\DocumentsController', 'showGet'));
 
 $router->get('bb_test', array('App\Controllers\DocumentsController', 'bb'));
-
-$router->get('login', array('PagesController', 'login'));
-
-$router->get('signup', array('PagesController', 'signup'));
 
 $router->get('admin/edit', function(){
     return view('admin/lang');
 });
 
-$router->get('{folder}/Файлове', array('App\Controllers\FilesController', 'indexTest'), 
-array('before' => 'auth'));
-
-$router->get('category/{department}/{parent_folder}/{folder}', array('App\Controllers\FilesController', 'indexTest'), 
-array('before' => 'auth'));
-
-$router->get('category/{department}/{parent_folder}', array('App\Controllers\FilesController', 'indexTest'), 
-array('before' => 'auth'));
+$router->get('{folder}/Файлове', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('category/{department}/{parent_folder}/{folder}', array('App\Controllers\FilesController', 'indexTest'));
+$router->get('category/{department}/{parent_folder}', array('App\Controllers\FilesController', 'indexTest'));
 
 $router->get('admin/table', array('app\controllers\AdminsController', 'table'));
 
@@ -49,8 +37,6 @@ $router->get('admin/calendar', function(){
 });
 
 $router->post('users', array('app\\controllers\\AdminsController', 'createUser'));
-
-$router->post('signup', array('app\\controllers\\AdminsController', 'createUser'));
 
 
 /***************** ADMIN GET ROUTES *************************************************************************/
