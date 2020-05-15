@@ -87,18 +87,25 @@ class AdminsController
         //return;
         $user_data = $_POST;
         $user_info = $this->user->isUserExist($user_data);
-echo "Test";
+
         if ($user_data['action'] == 'add') {
             if (count($user_info) === 0) {
-                if($user_data['role'] > 1){
-                    $access = $this->user->checkFoldersReations($user_data['access']);
-                }
+                // if($user_data['role'] > 1){
+                //     $access = $this->user->checkFoldersReations($user_data['access']);
+                // }
 
 
                 unset($user_data['action'], $user_data['id'], $user_data['access']);
 
-                $result = $this->user->createUser($user_data, $access);
-                echo($result == 1 ? 'Успешно създадохте нов потребител' : $result);
+                $result = $this->user->createUser($user_data);
+                if ($result['row_counts'] == 1) {
+                    $_SESSION['is_logged'] = true;
+                    $_SESSION['username'] = $user_data['name'];
+                    $_SESSION['user_id'] = $result['user_id'];
+                    echo 'Успешно се регистрирахте!';
+                } else {
+                    $result;
+                }
             } else if (count($user_info) === 1) {
                 echo($user_info[0]['active'] == 0 ? 'Вече съществува деактивиран потребител с това потребителско име или с този мейл. Използвайте други данни, за да създадете нов потребител или активирайте този потребител от меню Потребители' : 'Вече съществува потребител с това потребителско име или с този мейл');
             } else {

@@ -12,7 +12,7 @@
                     <div class="panel-title "><a id="newUserForm" href="#">Нов потребител</a></div>
                 </div>
                 <div id="createUserForm" style="display: none" class="content-box-large box-with-header">
-                    <form action="" role="form" id="createUser" class="form-horizontal">
+                    <form action="" role="form" id="createUser" class="form-horizontal 12">
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="inputUser">Потребител</label>
                             <div class="col-sm-10">
@@ -43,26 +43,6 @@
                                 </select>
                             </div>
                         </div>
-<!--                        <div class="form-group">-->
-<!--                            <label class="col-sm-2 control-label">Звено</label>-->
-<!--                            <div class="col-sm-10">-->
-<!--                                <select name="department" id="department" class="form-control" style="width: 100%">-->
-<!--                                    <option></option>-->
-<!--                                    --><?php //foreach ($departments as $department): ?>
-<!--                                        <option value="--><?//= $department->id ?><!--">--><?//= $department->name ?><!--</option>-->
-<!--                                    --><?php //endforeach; ?>
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="form-group" id="access">-->
-<!--                            <label class="col-sm-2 control-label">Достъп</label>-->
-<!--                            <div class="col-sm-10">-->
-<!--                                <select name="folder[]" id="folder" class="form-control" multiple="multiple"-->
-<!--                                        style="width: 100%">-->
-<!--                                    <option></option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
