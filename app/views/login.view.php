@@ -7,7 +7,7 @@
 			                <div class="social">
 	                            <a class="face_login" href="#">
 	                                <span class="face_icon">
-	                                    <img src="images/facebook.png" alt="fb">
+	                                    <img src="<?php echo url()?>public/images/facebook.png" alt="fb">
 	                                </span>
 	                                <span class="text">Sign in with Facebook</span>
 	                            </a>
