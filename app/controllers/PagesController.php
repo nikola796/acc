@@ -20,21 +20,6 @@ class PagesController
 
     }
 
-    public function login()
-    {
-
-        return view('login');
-
-    }
-
-    public function signup()
-    {
-
-        return view('signup');
-
-    }
-
-
     /**
      * @return mixed
      */

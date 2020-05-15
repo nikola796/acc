@@ -2,7 +2,7 @@
 
 use App\Core\App;
 
-
+session_start();
 $session    = session_id();
 $time       = time();
 $time_check = $time-300;     //We Have Set Time 5 Minutes

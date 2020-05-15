@@ -26,6 +26,6 @@
     
 </div>
 <div class="row">
-    <div class="col-md-8" style="margin-bottom:10px;"><a href="<?= url()?>" >Начало</a> <?= isset($nav) ? $nav : '' ?></div>
+    <div class="col-md-8" style="margin-bottom:10px;"><a href="<?= url()?>" >Начало</a> <?= $nav ?></div>
 </div>
 <?php require('left_nav.php') ?>
