@@ -51,6 +51,13 @@ class User
         // die(var_dump($user));
     }
 
+    public static function isLogged() {
+        if(isset($_SESSION['is_logged']) && $_SESSION['is_logged'] === true) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * Check is user registered. IF is register user we start session and redirect to admin page
@@ -67,6 +74,23 @@ class User
         $user = $stmt->fetchAll(PDO::FETCH_CLASS);
 
         return $user;
+    }
+
+    public function userFBLogin($userID)
+    {
+        $stmt = $this->db->prepare('SELECT * FROM users WHERE fb_id=:userID');
+        $stmt->execute(array('userID' => $userID));
+        $user = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        return $user;
+    }
+
+    public function registerFBUser($userID, $userName, $userEmail) {
+        $stmt = $this->db->prepare('INSERT INTO users (name, email, fb_id, user_added_when)
+        VALUES (?, ?, ?, NOW())');
+        $stmt->execute(array($userName, $userEmail, $userID));
+        $user_id = $this->db->lastInsertId();
+        return $user_id;
     }
 
     /**

@@ -163,9 +163,9 @@ class Folder
                                               FROM ' . $table . ' AS nc, ' . $table . ' AS parent
                                               WHERE nc.lft
                                               BETWEEN parent.lft
-                                              AND parent.rgt AND nc.active = 1';
+                                              AND parent.rgt AND nc.active = 1 AND nc.added_from = '. $_SESSION['user_id'];
 
-        $sql = $this->userAccess($sql);
+        //$sql = $this->userAccess($sql);
         // echo '<pre>' . print_r($_SESSION, true) . '</pre>';
         // die($_SESSION['role']);
         $sql .= ' GROUP BY nc.category_id ORDER BY nc.lft';
@@ -205,13 +205,13 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS d ON (nc.dep = d.category_id)
 LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_id)';
 
         if (empty($requestData['columns'][3]['search']['value'])) {   //name
-            $sql .= " WHERE nc.active = 1 ";
+            $sql .= " WHERE nc.active = 1  AND nc.added_from = ". $_SESSION['user_id'];
             //echo $sql;die();
         } else {
             $sql .= " WHERE 1=1 ";
         }
 
-        $sql = $this->userAccess($sql);
+        //$sql = $this->userAccess($sql);
 
 //echo $sql;die();
         // $sql .= ' GROUP BY u.id';
@@ -251,11 +251,11 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
             $actions = '<div class="text-center">';
 
             if ($row['active'] == 1) {
-                if($_SESSION['role'] == 1 || array_search($row['category_id'], $_SESSION['access']) === false){
+                //if($_SESSION['role'] == 1 || array_search($row['category_id'], $_SESSION['access']) === false){
 
                         $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-primary btn-xs folder_id" title="Редактирай"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp';
                         $actions .= '<button id="' . $row['category_id'] . '" class="btn btn-danger btn-xs del_folder" title="Премахни"><i class="glyphicon glyphicon-remove"></i></button>';
-                }
+               //}
 
             } else {
                 $actions .= '<button class="btn btn-success btn-xs activate_folder" style="margin-left:5%" id="' . $row['category_id'] . '"><i class="glyphicon glyphicon-triangle-right"></i> Activate</button>';
@@ -477,15 +477,15 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
     public function getSortNumbers($parent)
     {
 
-       $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_nc FROM nested_categories WHERE parent_id = ?');
+       $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_nc FROM nested_categories WHERE parent_id = ? AND added_from = '. $_SESSION['user_id']);
        $stmt->execute(array($parent));
        $mx_nc = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_p FROM posts WHERE directory = ?');
+        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_p FROM posts WHERE directory = ? AND added_from = '. $_SESSION['user_id']);
         $stmt->execute(array($parent));
         $mx_p = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_f FROM files WHERE directory = ?');
+        $stmt = $this->db->prepare('SELECT MAX(sort_number) as mx_f FROM files WHERE directory = ? AND added_from = '. $_SESSION['user_id']);
         $stmt->execute(array($parent));
         $mx_f = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -499,28 +499,28 @@ LEFT JOIN ' . NESTED_CATEGORIES . ' AS parent ON (nc.parent_id= parent.category_
      */
     private function userAccess($sql)
     {
-        if ($_SESSION['role'] > 1) {
-            $user = new User();
-            $user_access = $user->getUserAccess($_SESSION['user_id']);
-            foreach ($user_access as $ua) {
-                //echo $ua->folder_id;
-                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM ' . NESTED_CATEGORIES . '  WHERE category_id = ?');
-                $stmt->execute(array($ua->folder_id));
-                $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
-            }
-            //echo '<pre>' . print_r($params, true) . '</pre>';
-            //  echo count($params);
-            $sql .= '  AND (';
-            foreach ($params as $k => $param) {
-                $sql .= ' nc.lft BETWEEN ' . $param[0]->lft . ' AND ' . $param[0]->rgt;
-                // echo $k.'<br />';
-                if (($k + 1) < count($params)) {
-                    $sql .= ' OR ';
-                }
-            }
-            $sql .= ' )';
+        // if ($_SESSION['role'] > 1) {
+        //     $user = new User();
+        //     $user_access = $user->getUserAccess($_SESSION['user_id']);
+        //     foreach ($user_access as $ua) {
+        //         //echo $ua->folder_id;
+        //         $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM ' . NESTED_CATEGORIES . '  WHERE category_id = ?');
+        //         $stmt->execute(array($ua->folder_id));
+        //         $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
+        //     }
+        //     //echo '<pre>' . print_r($params, true) . '</pre>';
+        //     //  echo count($params);
+        //     $sql .= '  AND (';
+        //     foreach ($params as $k => $param) {
+        //         $sql .= ' nc.lft BETWEEN ' . $param[0]->lft . ' AND ' . $param[0]->rgt;
+        //         // echo $k.'<br />';
+        //         if (($k + 1) < count($params)) {
+        //             $sql .= ' OR ';
+        //         }
+        //     }
+        //     $sql .= ' )';
 
-        }
+        // }
         return $sql;
     }
 

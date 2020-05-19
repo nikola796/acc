@@ -116,33 +116,33 @@ $(document).on('click', '#mod', function (dialog) {
     })
 })
 
-$(document).on('click', '#createFolder', function () {
-    if (($('#newFolderName').val().length) > 0) {
-        $.ajax({
-            method: 'post',
-            url: 'folders',
-            data: {
-                name: $('#newFolderName').val(),
-                parent: $('#perentFolder').val()
-            }
-        })
-            .done(function (data) {
-                console.log('seccess');
-                $('#myModal').modal('hide');
-                BootstrapDialog.alert({
-                    title: 'Браво',
-                    message: $text
-                });
-            })
-    } else {
-        BootstrapDialog.alert({
-            type: BootstrapDialog.TYPE_WARNING,
-            title: 'Внимание',
-            message: 'Не сте въвели име на новата папка!'
-        });
-    }
+// $(document).on('click', '#createFolder', function () {
+//     if (($('#newFolderName').val().length) > 0) {
+//         $.ajax({
+//             method: 'post',
+//             url: 'folders',
+//             data: {
+//                 name: $('#newFolderName').val(),
+//                 parent: $('#perentFolder').val()
+//             }
+//         })
+//             .done(function (data) {
+//                 console.log('seccess');
+//                 $('#myModal').modal('hide');
+//                 BootstrapDialog.alert({
+//                     title: 'Браво',
+//                     message: $text
+//                 });
+//             })
+//     } else {
+//         BootstrapDialog.alert({
+//             type: BootstrapDialog.TYPE_WARNING,
+//             title: 'Внимание',
+//             message: 'Не сте въвели име на новата папка!'
+//         });
+//     }
 
-})
+// })
 
 $(document).on('click', 'span.glyphicon-remove', function () {
     var removed_file_name = $(this).parent('div').find('.file_name_txt').text();

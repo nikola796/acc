@@ -23,7 +23,7 @@
                     <div class="panel-title "><a href="#" id="newDepartmentForm">Ново пространство</a></div>
                 </div>
                 <div class="content-box-large box-with-header" style="display: none;" id="createUserForm">
-                    <form class="form-horizontal" id="createUser" role="form" action="">
+                    <form class="form-horizontal" id="createNewFolder" role="form" action="">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label for="folderName">Име на пространството</label>
@@ -36,7 +36,7 @@
                             <div class="col-md-12">
                                 <label for="folderName">Място на пространството</label>
                                 <select name="folder" id="parentFolder" class="form-control" style="width: 100%">
-                                    <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
+                                    <option value="0">Главна директория</option>
                                     <?php foreach ($folders as $folder): ?>
 
                                         <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -93,7 +93,7 @@
                                             <label for="folderName">Място на новата папка</label>
                                             <select name="folder" id="perentFolder" class="form-control"
                                                     style="width: 100%">
-                                                <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
+                                                <option value="0">Главна директория</option>
                                                 <?php foreach ($folders as $folder): ?>
 
                                                     <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -304,7 +304,7 @@
 
 
         /*************** CREATE NEW DEPARTMENT **************************************************************/
-        $(document).on('submit', '#createUser', function (e) {
+        $(document).on('submit', '#createNewFolder', function (e) {
             e.preventDefault();
 
             var form_errors = [];

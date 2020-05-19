@@ -49,38 +49,38 @@ class File
 
     private function userAccess($sql)
     {
-        if ($_SESSION['role'] > 1) {
-            $user = new User();
-            $user_access = $user->getUserAccess($_SESSION['user_id']);
-            foreach ($user_access as $ua) {
-                //echo $ua->folder_id;
-                $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM ' . NESTED_CATEGORIES . '  WHERE category_id = ?');
-                $stmt->execute(array($ua->folder_id));
-                $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
-            }
+        // if ($_SESSION['role'] > 1) {
+        //     $user = new User();
+        //     $user_access = $user->getUserAccess($_SESSION['user_id']);
+        //     foreach ($user_access as $ua) {
+        //         //echo $ua->folder_id;
+        //         $stmt = $this->db->prepare('SELECT  `lft`,  `rgt` FROM ' . NESTED_CATEGORIES . '  WHERE category_id = ?');
+        //         $stmt->execute(array($ua->folder_id));
+        //         $params[] = $stmt->fetchAll(PDO::FETCH_CLASS);
+        //     }
 
-            $nsql = 'SELECT category_id FROM nested_categories WHERE lft BETWEEN ';
+        //     $nsql = 'SELECT category_id FROM nested_categories WHERE lft BETWEEN ';
 
-            foreach ($params as $k => $param) {
-                $nsql .= $param[0]->lft . ' AND ' . $param[0]->rgt;
-                // echo $k.'<br />';
-                if (($k + 1) < count($params)) {
-                    $nsql .= ' OR lft BETWEEN ';
-                }
-            }
+        //     foreach ($params as $k => $param) {
+        //         $nsql .= $param[0]->lft . ' AND ' . $param[0]->rgt;
+        //         // echo $k.'<br />';
+        //         if (($k + 1) < count($params)) {
+        //             $nsql .= ' OR lft BETWEEN ';
+        //         }
+        //     }
 
-            $stmt = $this->db->prepare($nsql);
-            $stmt->execute();
-            $user_access_folders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     $stmt = $this->db->prepare($nsql);
+        //     $stmt->execute();
+        //     $user_access_folders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $cats = implode(', ', array_map(function ($entry) {
-                return $entry['category_id'];
-            }, $user_access_folders));
+        //     $cats = implode(', ', array_map(function ($entry) {
+        //         return $entry['category_id'];
+        //     }, $user_access_folders));
 
 
-            $sql .= ' WHERE f.directory IN (' . $cats . ')';
+        //     $sql .= ' WHERE f.directory IN (' . $cats . ')';
 
-        }
+        // }
         //dd($sql);
         return $sql;
     }

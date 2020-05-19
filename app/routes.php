@@ -2,8 +2,11 @@
 
 $router->get('', array('PagesController', 'home'));
 
-$router->get('category', array('App\Controllers\DocumentsController', 'getCategories'), 
-array('before' => 'auth'));
+$router->get('home', array('PagesController', 'home'));
+
+$router->get('fb-callback?{code}', array('PagesController', 'fbCallback'));
+
+$router->get('category', array('App\Controllers\DocumentsController', 'getCategories'));
 
 $router->get('documents/{id}', array('App\Controllers\DocumentsController', 'show'), 
 array('before' => 'auth'));
