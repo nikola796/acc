@@ -22,7 +22,7 @@ $(document).ready(function(){
     e.preventDefault();
     var error_message;
     if ($.trim($('#inputUser').val()).length == 0) {
-        BootstrapDialog.alert('Въведете потребителско име');
+        //BootstrapDialog.alert('Въведете потребителско име');
         return false;
 
     } else if($.trim($('#inputUser').val()).length <= 3){

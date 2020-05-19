@@ -19,7 +19,7 @@
   "require": {
     "phroute/phroute": "1.*",
     "ckeditor/ckeditor": "dev-full/stable",
-    "swiftmailer/swiftmailer": "^5.4"
+    "swiftmailer/swiftmailer": "^5.4",
+    "facebook/graph-sdk": "^5.7"
   }
 }
-

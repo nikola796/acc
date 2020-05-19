@@ -65,7 +65,7 @@ if (isset($_SESSION['update_post'])) {
                                         <div class="form-group">
                                             <label for="folderName">Място на новата папка</label>
                                             <select name="folder" id="perentFolder" class="form-control">
-                                                <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
+                                               <option value="0">Главна директория</option>
                                                 <?php foreach ($folders as $folder): ?>
 
                                                     <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
@@ -95,7 +95,7 @@ if (isset($_SESSION['update_post'])) {
 
                     <div id="perentFolders" class="form-group">
                         <select name="folder" class="form-control" id="folder">
-                            <?= ($_SESSION['role'] == 1 ? '<option value="0">Главна директория</option>' : '') ?>
+                            <option value="0">Главна директория</option>
                             <?php foreach ($folders as $folder): ?>
                                 <option value="<?= $folder->category_id ?>"><?= $folder->name ?></option>
                             <?php endforeach; ?>

@@ -1,11 +1,28 @@
+<?php
+$fb = new Facebook\Facebook([
+  'app_id' => '1520466278341986',
+  'app_secret' => '03968417a9c6bfb1865669d23b4441b0',
+  'default_graph_version' => 'v2.10',
+  ]);
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('http://localhost/acc/fb-callback', $permissions);
+
+// echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+?>
 <?php require('partials/header_index.php') ?>
+    <?php require ('admin/partials/top_panel.php') ?>
+    <div class="page-content">
+        <div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-wrapper">
 			        <div class="box">
 			            <div class="content-wrap">
 			                <h6>Sign In</h6>
 			                <div class="social">
-	                            <a class="face_login" href="#">
+	                            <a class="face_login" href="<?php echo $loginUrl?>">
 	                                <span class="face_icon">
 	                                    <img src="<?php echo url()?>public/images/facebook.png" alt="fb">
 	                                </span>

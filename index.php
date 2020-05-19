@@ -1,5 +1,7 @@
 <?php
-//phpinfo();die();
+//echo $_SERVER['PHP_SELF'];
+//phpinfo();
+//die();
 require 'vendor/autoload.php';
 
 require 'core/bootstrap.php';
