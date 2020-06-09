@@ -121,7 +121,7 @@ class Post
 
                 unset($params['old_sort_number']);
 
-                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number)');
+                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number,relatedTo) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number, :post_date)');
 
                 $stmt->execute($params);
 
@@ -136,7 +136,7 @@ class Post
 
         } else {
             try {
-                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number,type, amount) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number, :post_type, :postAmount)');
+                $stmt = $this->db->prepare('INSERT INTO posts (post,attachment,directory,department,added_from,added_when,sort_number,type, amount,relatedTo) VALUES(:text, :file, :directory_id, :department_id, ' . $_SESSION['user_id'] . ', ' . time() . ',:new_sort_number, :post_type, :postAmount, :post_date)');
 
                 $stmt->execute($params);
 

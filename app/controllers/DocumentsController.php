@@ -84,7 +84,7 @@ class DocumentsController
     }
 
     public function getCategorie($dep)
-    {
+    {  
         $dep_id = App::get('database')->getId('category_id', $dep, NESTED_CATEGORIES);
         if ($dep_id[0]->category_id == NULL) {
             return view('404');
@@ -99,7 +99,8 @@ class DocumentsController
         $allCategoriesIDS = array_column($allCategories, 'category_id');
 
         $totalExpense = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 0), $allCategoriesIDS);
-
+        // echo '<pre>' . print_r($totalExpense, true) . '</pre>';
+        // die();
         $totalRevenue = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 1), $allCategoriesIDS);
 
         $folders = App::get('database')->selectAllFolders($dep_id[0]->category_id);
@@ -156,7 +157,11 @@ class DocumentsController
 
                 $postType = intval(trim($_POST['post_type']));
 
-                $data = array('text' => $_POST['text'], 'file' => (isset($_FILES['userfile']) ? intval($_FILES['userfile']) : 0), 'directory_id' => $folder_id, 'department_id' => $department_id);
+                $postType = intval(trim($_POST['post_type']));
+
+                $postDate = $_POST['post_date'];
+
+                $data = array('text' => $_POST['text'], 'file' => (isset($_FILES['userfile']) ? intval($_FILES['userfile']) : 0), 'directory_id' => $folder_id, 'department_id' => $department_id, 'post_date' => $postDate);
                 if (intval($_POST['sort_number']) != intval($_POST['default_sort_number'])) {
                     $data['old_sort_number'] = intval($_POST['default_sort_number']);
                     $data['new_sort_number'] = intval($_POST['sort_number']);
