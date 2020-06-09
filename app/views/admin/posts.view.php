@@ -104,7 +104,7 @@ if (isset($_SESSION['update_post'])) {
                     <div id="post_type" class="form-group">
                         <select name="post_type" class="form-control" id="post_type">
                             <option value="0">Разход</option>
-                            <option value="0">Приход</option>
+                            <option value="1">Приход</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -117,6 +117,7 @@ if (isset($_SESSION['update_post'])) {
                         </select>
                         <div id="old_sort_number"></div>
                     </div>
+
                     <div class="spacer-bg"></div>
                     <div class="form-group">
 
@@ -126,7 +127,10 @@ if (isset($_SESSION['update_post'])) {
                     <div id="attachedFiles">
 
                     </div>
-
+                    <div class="form-group">
+                        <label for="datepicker">Записа се отнася за дата:</label>
+                        <input type="text" id="datepicker" name="post_date" class="form-control">
+                    </div>
 
                     <div class="spacer-bg"></div>
                     <div class="text-center">
