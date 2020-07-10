@@ -58,8 +58,8 @@ usort($allData, function ($a, $b) {
                             </td>
                             <td><?= $ma->modified ?></td>
                             <?php if (isset($posts)): ?>
-                                <td></td>
-                                <td></td>
+                                <td>Подкатегория</td>
+                                <td>N/A</td>
                             <?php endif; ?>
                         <?php endif; ?>
                         <?php if (isset($ma->post)) {
@@ -93,11 +93,34 @@ usort($allData, function ($a, $b) {
                 <?php endforeach; ?>
             </table>
             <?php if (isset($totalRevenue) && isset($totalExpense)): ?>
-                <h5>
-                    <div>Общо приходи: <?= $totalRevenue[0]->amount / 100 ?></div>
-                    <div>Общо разходи: <?= ($totalExpense[0]->amount / 100) * -1 ?></div>
-                    <div>Разлика: <?= $totalRevenue[0]->amount / 100 - $totalExpense[0]->amount / 100 ?></div>
-                </h5>
+                <div class="totalRevenue">
+                    <span class="totalRevenue">Общо приходи до момента: <?= $totalRevenue[0]->amount / 100 ?></span>
+                    <span class="totalExpense">Общо разходи до момента: <?= ($totalExpense[0]->amount / 100) * -1 ?></span>
+                    <span class="totalDistinction">Разлика: <?= $totalRevenue[0]->amount / 100 - $totalExpense[0]->amount / 100 ?></span>
+                </div>
+                <div class="selectPeriod col-md-6">
+                    <a class="select-period-toggle" href="#">Покажи приходи/разходи за период</a>
+                    <div class="form-group select-period-wrapper">
+                        <div class="form-group">
+                            <label for="datepicker" class="col-md-6">Изберете начало на периода</label>
+                            <input type="text" id="startPeriod" class="datepicker col-md-6" name="post_date" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="datepicker" class="col-md-6">Изберете край на периода</label>
+                            <input type="text" id="endPeriod" class="datepicker col-md-6" name="post_date" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="record_type" class="col-md-6">Изберете вид на записите</label>
+                            <select class="records_type">
+                                <option name="expense" value="0" selected="selected">Разход</option>
+                                <option name="income" value="1">Приход</option>
+                            </select>
+                        </div>
+                        <div class="action">
+                            <a class="btn btn-primary calculate_period" data-category="<?= $department_id ?>" data-url="<?=url()?>calculate/period" id="calculate_period_amount" href="#">Изчисли</a>
+                        </div>
+                    </div>
+                </div>
             <?php endif ?>
         </div>
     <?php else: ?>

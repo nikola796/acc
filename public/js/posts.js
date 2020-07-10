@@ -2,7 +2,7 @@
 $("#folder").on('change', function () {
     var str = '';
     str = $("#folder option:selected").val();
-    console.log(str);
+    //console.log(str);
 })
 function wrapText(elementID, openTag, closeTag) {
     var textArea = document.getElementById(elementID);
@@ -41,7 +41,7 @@ $(document).on('click', '#mod', function (dialog) {
                             new_sort_number: $('#sort_number_new_folder').find(":selected").val()
                         }
                     }).done(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data !== 'success') {
                             BootstrapDialog.alert({
                                 type: BootstrapDialog.TYPE_WARNING,

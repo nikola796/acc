@@ -319,4 +319,18 @@ ORDER BY node.lft;');
 
         return $stmt->rowCount();
     }
+
+    public function getAmountByPeriod($params)
+    {
+        $sql = 'SELECT SUM(amount) as amount FROM posts WHERE FIND_IN_SET(directory, :array) AND relatedTo BETWEEN :startDate AND :endDate AND type = :type';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam('array', $params['ids']);
+        $stmt->bindParam('startDate', $params['startPeriod']);
+        $stmt->bindParam('endDate', $params['endPeriod']);
+        $stmt->bindParam('type', $params['type']);
+        $stmt->execute();     
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
 }

@@ -663,3 +663,7 @@ body {
 .breadcrumb.accounter {
     background-color: transparent;
 }
+
+.calculate_period {
+   float: right
+}

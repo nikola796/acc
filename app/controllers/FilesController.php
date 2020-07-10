@@ -64,13 +64,16 @@ class FilesController
 
         $allCategoriesIDS = array_column($allCategories, 'category_id');
 
-        //echo '<pre>'.print_r($allCategoriesIDS). '</pre>'; die();
+        $department_id = $folder_id[0]->category_id;
+
+        //echo '<pre>'.print_r($department_id). '</pre>'; die();
+
         $totalExpense = App::get('database')->getTotals(array('department' => $folder_id[0]->parent_id, 'type' => 0), $allCategoriesIDS);
 
         $totalRevenue = App::get('database')->getTotals(array('department' => $folder_id[0]->parent_id, 'type' => 1), $allCategoriesIDS);
 
         $allData = array_merge($folders, $files, $posts);
-        return view('files', compact('allData','totalExpense','totalRevenue', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder'));
+        return view('files', compact('allData','totalExpense','totalRevenue', 'files', 'current_folder', 'posts', 'department_name', 'parent_folder', 'department_id'));
 
     }
 
