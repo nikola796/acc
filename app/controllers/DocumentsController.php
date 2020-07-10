@@ -99,7 +99,7 @@ class DocumentsController
         $allCategoriesIDS = array_column($allCategories, 'category_id');
 
         $totalExpense = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 0), $allCategoriesIDS);
-        // echo '<pre>' . print_r($totalExpense, true) . '</pre>';
+        // echo '<pre>' . print_r($dep_id[0]->category_id, true) . '</pre>';
         // die();
         $totalRevenue = App::get('database')->getTotals(array('department' => $dep_id[0]->category_id, 'type' => 1), $allCategoriesIDS);
 
@@ -107,10 +107,11 @@ class DocumentsController
 
         $files = App::get('database')->selectAllFiles(array('directory' => $dep_folder_id[0]->category_id, 'dep' => $dep_id[0]->category_id));
 
+        $department_id = $dep_id[0]->category_id;
         $current_folder = $dep;
         $department_name = $current_folder;
         $allData = array_merge($folders, $files, $posts);
-        return view('files', compact('allData','folders', 'files', 'current_folder', 'posts', 'department_name', 'totalExpense', 'totalRevenue'));
+        return view('files', compact('allData','folders', 'files', 'current_folder', 'posts', 'department_name', 'totalExpense', 'totalRevenue', 'department_id'));
 
     }
 
@@ -486,8 +487,20 @@ class DocumentsController
         $sql4 = "DELETE FROM online_users WHERE time<$time_check";
         $stmt = $db->prepare($sql4);
         $stmt->execute();
+    }
 
+    public function calculatePeriod() {
+        $startPeriod = $_POST['startPeriod'];
+        $endPeriod = $_POST['endPeriod'];
+        $categoryId = trim((int)$_POST['categoryId']);
+        $type = trim((int)$_POST['type']);
 
+        $dep_folder_id = App::get('database')->selectChildren($categoryId);
+        $ids = implode(',', array_column($dep_folder_id, 'category_id'));
+
+        $amount = App::get('database')->getAmountByPeriod(array('ids' => $ids, 'startPeriod' => $startPeriod, 'endPeriod' => $endPeriod, 'type' => $type));
+        header('Content-Type: application/json');
+        echo json_encode($amount);
     }
     
 }

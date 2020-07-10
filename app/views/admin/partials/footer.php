@@ -29,4 +29,36 @@
 
 <script src="<?php echo url()?>public/js/tables.js"></script>
 
+<script>
+    $( function() {
+        // $( ".datepicker" ).datepicker({
+        //     dateFormat: "yy-mm-dd"
+        // });
+        
+    
+        $("#startPeriod").datepicker({
+            dateFormat: "yy-mm-dd",
+            //minDate: 1,
+            onSelect: function (date) {
+                var date2 = $('#startPeriod').datepicker('getDate');
+                date2.setDate(date2.getDate() + 1);
+                $('#endPeriod').datepicker('setDate', date2);
+                //sets minDate to dt1 date + 1
+                $('#endPeriod').datepicker('option', 'minDate', date2);
+            }
+        });
+        $('#endPeriod').datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function () {
+                var dt1 = $('#startPeriod').datepicker('getDate');
+                //console.log(dt1);
+                var dt2 = $('#endPeriod').datepicker('getDate');
+                if (dt2 <= dt1) {
+                    var minDate = $('#endPeriod').datepicker('option', 'minDate');
+                    $('#endPeriod').datepicker('setDate', minDate);
+                }
+            }
+        });
 
+    });
+</script>

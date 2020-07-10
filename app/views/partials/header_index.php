@@ -9,9 +9,10 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo url()?>public/css/libs/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
-          type="text/css"/>
+    <link href="<?php echo url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet" type="text/css"/>
 
+    <!-- jqueryUi -->
+    <link href="<?php echo url()?>public/css/libs/jquery-ui.css" rel="stylesheet">
     <!-- Select2 -->
     <link href="<?php echo url()?>public/css/libs/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo url()?>public/css/jquery.dataTables.css">
@@ -84,6 +85,14 @@
 
         #attached li {
             margin: 5px 0;
+        }
+
+        .calculate_period {
+            float: right;
+        }
+
+        .select-period-wrapper {
+            display: none
         }
 
         footer {

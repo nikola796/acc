@@ -55,6 +55,8 @@ $router->post('users', array('app\\controllers\\AdminsController', 'createUser')
 
 $router->post('signup', array('app\\controllers\\AdminsController', 'createUser'));
 
+$router->post('calculate/period', array('App\Controllers\DocumentsController', 'calculatePeriod'));
+
 
 /***************** ADMIN GET ROUTES *************************************************************************/
 
