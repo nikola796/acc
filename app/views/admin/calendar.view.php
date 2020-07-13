@@ -50,7 +50,7 @@
     <script src="<?php echo url()?>public/js/libs/jquery-ui.js"></script>
     <script src="<?php echo url()?>public/fullcalendar/fullcalendar.js"></script>
     <script src="<?php echo url()?>public/fullcalendar/gcal.js"></script>
-    <script src="<?php echo url()?>public/js/custom.js"></script>
+    <script src="<?php echo url()?>public/js/app.bundle.js"></script>
     <script src="<?php echo url()?>public/js/calendar.js"></script>
 
 <?php require ('partials/bottom.php')?>

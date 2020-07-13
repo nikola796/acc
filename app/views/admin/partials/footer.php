@@ -25,7 +25,7 @@
 
 <script src="<?php echo url() ?>public/js/libs/select2.min.js"></script>
 
-<script src="<?php echo url()?>/public/js/custom.js"></script>
+<script src="<?php echo url()?>/public/js/app.bundle.js"></script>
 
 <script src="<?php echo url()?>public/js/tables.js"></script>
 
