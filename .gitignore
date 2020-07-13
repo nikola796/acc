@@ -6,3 +6,4 @@ config.php
 core/files/
 vendor
 .vscode
+node_modules

@@ -16,7 +16,7 @@
     <link href="<?php echo url()?>public/css/libs/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo url()?>public/css/jquery.dataTables.css">
     <!-- styles -->
-    <link href="<?php echo url()?>/public/css/admin_styles.css" rel="stylesheet">
+    <link href="<?php echo url()?>/public/css/app.bundle.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -12,7 +12,7 @@
     <link href="<?php url() ?>public/css/libs/bootstrap-dialog.css" media="all" rel="stylesheet"
           type="text/css"/>
     <!-- styles -->
-    <link href="<?php url()?>/public/css/admin_styles.css" rel="stylesheet">
+    <link href="<?php url()?>/public/css/app.bundle.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -312,7 +312,7 @@
 <script src="<?php url()?>/public/ckeditor/ckeditor.js"></script>
 <script src="<?php url()?>/public/ckeditor/adapters/jquery.js"></script>
 
-<script src="<?php url()?>/public/js/custom.js"></script>
+<script src="<?php url()?>/public/js/app.bundle.js"></script>
 <!--<script src="--><?php //url()?><!--/public/js/editors.js"></script>-->
 <script>
 

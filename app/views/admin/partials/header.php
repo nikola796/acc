@@ -16,7 +16,7 @@
     <link href="<?php echo url()?>public/css/libs/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo url()?>public/css/jquery.dataTables.css">
     <!-- styles -->
-    <link href="<?php echo url()?>/public/css/admin_styles.css" rel="stylesheet">
+    <link href="<?php echo url()?>/public/css/app.bundle.css" rel="stylesheet">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">

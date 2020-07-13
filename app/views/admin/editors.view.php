@@ -191,7 +191,7 @@
 
     <script type="text/javascript" src="vendors/tinymce/js/tinymce/tinymce.min.js"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="js/app.bundle.js"></script>
     <script src="js/editors.js"></script>
   </body>
 </html>
